@@ -6,7 +6,7 @@
 //#include "I2C_F411.h"
 //#include "cmsis_armclang.h" 
 //#include "core_cm4.h"
-#include "UART_F411.h"
+#include "USART_F411.h"
 #include "DMA_F411.h"
 
 #define skip_rom 0xCC
@@ -27,6 +27,6 @@ _Bool DS18B20_read_bit (void);
 uint8_t DS18B20_read_byte (void);
 uint16_t DS18B20_read_temperatur (void);
 uint16_t DS18B20_read_temperatur_via_DMA (void);
-uint16_t test_DMA (void);
+
 
 #endif

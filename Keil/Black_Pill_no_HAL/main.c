@@ -47,7 +47,7 @@ EXTI_F411_init();
 DMA_F411_init();
 DMA_F411_ADC_init();
 ADC1_F411_Init();
-UART_F411_init();
+USART_F411_init();
 
 
 
@@ -76,7 +76,7 @@ key_scan();
 	sprintf(String,"ADC_ch0/1= %.2f/%.2fB", (double)ADC_ch0/1262, (double)ADC_ch1/1262 );
 	LCD_string (48,0, (uint8_t*)String);
 
-	sprintf(String,"Темпер. %.1f", (test_DMA()*0.1));
+	sprintf(String,"Темпер. %.1f", (DS18B20_read_temperatur_via_DMA()*0.1));
 	LCD_string (56,0, (uint8_t*)String);
 //	sprintf(String,"clock_poz %d", clock_poz);
 //	LCD_string(48,0,(uint8_t*)String);

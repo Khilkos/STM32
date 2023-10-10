@@ -16,8 +16,7 @@ const uint8_t convert_T[16] = {
 
 const uint8_t read_scratch[32] = {
                 OW_0, OW_0, OW_1, OW_1, OW_0, OW_0, OW_1, OW_1, // 0xcc SKIP ROM
-          //  OW_R, OW_R, OW_R, OW_R, OW_R, OW_R, OW_R, OW_R,
-	   OW_0, OW_1, OW_1, OW_1, OW_1, OW_1, OW_0, OW_1, // 0xbe READ SCRATCH
+								OW_0, OW_1, OW_1, OW_1, OW_1, OW_1, OW_0, OW_1, // 0xbe READ SCRATCH
                 OW_R, OW_R, OW_R, OW_R, OW_R, OW_R, OW_R, OW_R,
                 OW_R, OW_R, OW_R, OW_R, OW_R, OW_R, OW_R, OW_R
 };
@@ -27,12 +26,13 @@ uint8_t DMA_read_temp[32];
 _Bool DS18B20_Reset_single (void)
 {
 uint32_t temp=0;	
-UART_F411_set_9600_baud();
+USART_F411_set_9600_baud();
 	USART2->DR=0xf0;
 	while (!(USART2->SR & USART_SR_TC)) __NOP();
 	
 	
 	while (!(USART2->SR & USART_SR_RXNE)) __NOP();
+	USART_F411_set_115200_baud();
 	temp=USART2->DR;
 	if (temp==0xf0) return 0;
 	return 1;
@@ -41,7 +41,7 @@ UART_F411_set_9600_baud();
 //==================================================
 void DS18B20_write_bit(_Bool write_bit)
 {
-UART_F411_set_115200_baud();
+USART_F411_set_115200_baud();
 if (write_bit) USART2->DR=0xff;	else USART2->DR=0x00;
 while (!(USART2->SR & USART_SR_TC)) __NOP();
 }
@@ -118,7 +118,6 @@ uint16_t DS18B20_read_temperatur_via_DMA (void)
 		{	
 			Sensor_OK=DS18B20_Reset_single();
 			if (!Sensor_OK) return 0;
-			UART_F411_set_115200_baud();
 			DMA_F411_DS18B20_convert_T();
 			DMA_busy=1;
 			read_temperature_stage=1;
@@ -127,28 +126,25 @@ uint16_t DS18B20_read_temperatur_via_DMA (void)
 
 	if (read_temperature_stage==1 && !DMA_busy)
 		{
-			UART_F411_set_115200_baud();
 			if (DS18B20_read_bit()) read_temperature_stage=2;		
 		}
+
 	if (read_temperature_stage==2 && !DMA_busy)
 		{
 			Sensor_OK=DS18B20_Reset_single();
 		if (!Sensor_OK)	return 0;
-			UART_F411_set_115200_baud();
-			USART_F411_restart();
-			DMA_F411_DS18B20_read_scratch();
 			DMA_busy=1;
+			DMA_F411_DS18B20_read_scratch();
+			
 			read_temperature_stage=3;
 		}
 	if (read_temperature_stage==3 && !DMA_busy)
 		{		
 			DS18B20_temperature=0;
-			for (uint8_t i=0; i<=8; i++)
+			for (uint8_t i=0; i<16; i++)
 				{	
-					if (DMA_read_temp[i+17]==0xff) temp_bit=1; else temp_bit=0;
-				//DS18B20_temperature|= temp_bit;
-				//	DS18B20_temperature <<=1;
-				DS18B20_temperature|= temp_bit<<i;
+					if (DMA_read_temp[i+16]==0xff) temp_bit=1; else temp_bit=0;
+					DS18B20_temperature|= temp_bit<<i;
 				}
 				read_temperature_stage=0;
 			DS18B20_temperature=(DS18B20_temperature/16*10)+(uint16_t)((DS18B20_temperature&0b00001111)*0.625);
@@ -159,30 +155,6 @@ return DS18B20_temperature;
 
 //======================================================================
 
-uint16_t test_DMA (void)
-{
-	_Bool temp_bit=0;
-if (!DMA_busy)
-	{
-		DMA_busy=1;
-		UART_F411_set_115200_baud();
-		DS18B20_temperature=0;
-			for (uint8_t i=0; i<32; i++)
-				{	
-					if (DMA_read_temp[i]==0xff) temp_bit=1; else temp_bit=0;
-				//DS18B20_temperature|= temp_bit;
-				//	DS18B20_temperature <<=1;
-				DS18B20_temperature|= temp_bit<<i;
-				}
-		DS18B20_Reset_single();		
-		DMA_read_test();
-		
-	}
-	
-	
-
-return DS18B20_temperature;
-}
 
 
 

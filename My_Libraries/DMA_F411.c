@@ -83,7 +83,9 @@ DMA1_Stream6->CR &= ~DMA_SxCR_CIRC;	//кольцевой режим выключен
 DMA1_Stream6->CR |= DMA_SxCR_TCIE; //включение прерываний при завершении передачи
 NVIC->ISER[0]=( 1<<17);	//включение прерывания ДМА1 поток 6
 USART2->SR &=~USART_SR_TC;
-UART_F411_DMA_ON();	
+
+	USART_F411_DMAT_ON();
+
 DMA1_Stream6->CR |=DMA_SxCR_EN; //включение ДМА
 
 }
@@ -96,12 +98,10 @@ void DMA1_Stream6_IRQHandler(void)
 		{
 			DMA1->HIFCR |= DMA_HIFCR_CTCIF6;
 			while (!(USART2->SR & USART_SR_TC)) __NOP();
-		//	while (!(USART2->SR & USART_SR_RXNE)) __NOP();
-//			DMA1_Stream6->CR=0;	
 			DMA1_Stream6->CR &= ~(DMA_SxCR_EN);
 			if (!(DMA1_Stream5->CR & DMA_SxCR_EN)) DMA_busy=0;
 				
-			UART_F411_DMAT_OFF();
+			USART_F411_DMAT_OFF();
 			
 			
 		}
@@ -162,13 +162,8 @@ DMA1_Stream6->CR |= DMA_SxCR_TCIE; //включение прерываний при завершении передач
 NVIC->ISER[0]=( 1<<17);	//включение прерывания ДМА1 поток 6
 USART2->SR &=~USART_SR_TC;
 USART2->SR &=~USART_SR_RXNE;
-	
-//USART2->SR=0;	
-//(void)USART2->DR;
-//(void)USART2->DR;
 
-
-UART_F411_DMA_ON();	
+USART_F411_DMA_ON();	
 //USART_F411_restart();		
 
 	DMA1_Stream5->CR |=DMA_SxCR_EN; //включение ДМА	
@@ -189,80 +184,12 @@ void DMA1_Stream5_IRQHandler(void)
 	//		DMA1_Stream6->CR &= ~(DMA_SxCR_EN);
 	
 			DMA_busy=0;
-			UART_F411_DMAR_OFF();
+			USART_F411_DMAR_OFF();
 		}
-	GPIOB->BSRR=1<<14;	
+//	GPIOB->BSRR=1<<14;	
 }	
 
 
-//===================================================
-
-void DMA_read_test (void)
-{
-if (DMA1_Stream5->CR & DMA_SxCR_EN)
-	{
-		DMA1_Stream5->CR &= ~(DMA_SxCR_EN);
-		while (DMA1_Stream5->CR & DMA_SxCR_EN) __NOP();
-	}	
-	
-DMA1_Stream5->CR=0;
-	
-DMA1->HIFCR |=DMA_HIFCR_CTCIF5;//сброс флага прерывания - завершение передачи
-DMA1_Stream5->PAR = (uint32_t)&USART2->DR;	//адрес перефирии
-DMA1_Stream5->M0AR = (uint32_t)DMA_read_temp;		//адрес памяти
-DMA1_Stream5->NDTR = 8;	//количество данный передаваемых в ДМА
-DMA1_Stream5->CR |= (0x4UL<<DMA_SxCR_CHSEL_Pos); //выбор 4 канала ДМА
-DMA1_Stream5->CR |= 0x3UL<<DMA_SxCR_PL_Pos; //высокий приоритет потока
-DMA1_Stream5->FCR  &= ~(DMA_SxFCR_DMDIS); //прямой домтуп без измользования FIFO
-DMA1_Stream5->CR &= ~(0x3UL<<DMA_SxCR_DIR_Pos); //направление потока данных из перефирии в память
-DMA1_Stream5->CR |= DMA_SxCR_MINC; //инкремент памяти включить
-DMA1_Stream5->CR &= ~DMA_SxCR_PINC; //инкремент перефирии отключить
-DMA1_Stream5->CR &= ~(0x3UL<<DMA_SxCR_PSIZE_Pos); //размер потока перефирии 8 бит
-DMA1_Stream5->CR &= ~(0x3UL<<DMA_SxCR_MSIZE_Pos); //размер потока памяти 8 бит
-DMA1_Stream5->CR &= ~DMA_SxCR_CIRC;	//кольцевой режим выключен	
-DMA1_Stream5->CR |= DMA_SxCR_TCIE; //включение прерываний при завершении передачи
-NVIC->ISER[0]=( 1<<16);	//включение прерывания ДМА1 поток 6
-//DMA1_Stream5->CR |=DMA_SxCR_EN; //включение ДМА	
-
-	
-if (DMA1_Stream6->CR & DMA_SxCR_EN)
-	{
-		DMA1_Stream6->CR &= ~(DMA_SxCR_EN);
-		while (DMA1_Stream6->CR & DMA_SxCR_EN) __NOP();
-	}
-
-DMA1_Stream6->CR=0;	
-	
-DMA1->HIFCR |=DMA_HIFCR_CTCIF6;//сброс флага прерывания - завершение передачи
-DMA1_Stream6->PAR = (uint32_t)&USART2->DR;	//адрес перефирии
-DMA1_Stream6->M0AR = (uint32_t)read_scratch;		//адрес памяти
-DMA1_Stream6->NDTR = 8;	//количество данный передаваемых в ДМА
-DMA1_Stream6->CR |= (0x4UL<<DMA_SxCR_CHSEL_Pos); //выбор 4 канала ДМА
-DMA1_Stream6->CR |= 0x1UL<<DMA_SxCR_PL_Pos; //низкий приоритет потока
-DMA1_Stream6->FCR  &= ~(DMA_SxFCR_DMDIS); //прямой домтуп без измользования FIFO
-DMA1_Stream6->CR |= (0x1UL<<DMA_SxCR_DIR_Pos); //направление потока данных из памяти в перефирию
-DMA1_Stream6->CR |= DMA_SxCR_MINC; //инкремент памяти включить
-DMA1_Stream6->CR &= ~DMA_SxCR_PINC; //инкремент перефирии отключить
-DMA1_Stream6->CR &= ~(0x3UL<<DMA_SxCR_PSIZE_Pos); //размер потока перефирии 8 бит
-DMA1_Stream6->CR &= ~(0x3UL<<DMA_SxCR_MSIZE_Pos); //размер потока памяти 8 бит
-DMA1_Stream6->CR &= ~DMA_SxCR_CIRC;	//кольцевой режим выключен	
-DMA1_Stream6->CR |= DMA_SxCR_TCIE; //включение прерываний при завершении передачи
-NVIC->ISER[0]=( 1<<17);	//включение прерывания ДМА1 поток 6
-USART2->SR &=~USART_SR_TC;
-USART2->SR &=~USART_SR_RXNE;
-	
-//USART2->SR=0;	
-//(void)USART2->DR;
-//(void)USART2->DR;
-
-
-UART_F411_DMA_ON();	
-//USART_F411_restart();		
-
-	DMA1_Stream5->CR |=DMA_SxCR_EN; //включение ДМА	
-	//delay_ms(10);
-	DMA1_Stream6->CR |=DMA_SxCR_EN; //включение ДМА
-}
 
 
 
