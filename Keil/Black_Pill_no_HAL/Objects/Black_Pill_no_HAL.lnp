@@ -1,0 +1,24 @@
+--cpu=Cortex-M4.fp.sp
+".\objects\main.o"
+".\objects\board.o"
+".\objects\delay.o"
+".\objects\gpio_setup.o"
+".\objects\core_f411_init.o"
+".\objects\timer_f411_init.o"
+".\objects\exti_f411_init.o"
+".\objects\spi_f411.o"
+".\objects\st7920_stm32f4.o"
+".\objects\font_table.o"
+".\objects\rtc_f411.o"
+".\objects\adc_f411.o"
+".\objects\ds3131_f411.o"
+".\objects\i2c_f411.o"
+".\objects\dma_f411.o"
+".\objects\uart_f411.o"
+".\objects\ds18b20_f411.o"
+".\objects\startup_stm32f411xe.o"
+".\objects\system_stm32f4xx.o"
+--strict --scatter ".\Objects\Black_Pill_no_HAL.sct"
+--summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
+--info sizes --info totals --info unused --info veneers
+--list ".\Listings\Black_Pill_no_HAL.map" -o .\Objects\Black_Pill_no_HAL.axf
