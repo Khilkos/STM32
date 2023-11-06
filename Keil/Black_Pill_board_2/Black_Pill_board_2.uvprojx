@@ -337,7 +337,7 @@
             <v6WtE>0</v6WtE>
             <v6Rtti>0</v6Rtti>
             <VariousControls>
-              <MiscControls></MiscControls>
+              <MiscControls>-Wno-invalid-utf8 -Wno-gnu-binary-literal</MiscControls>
               <Define></Define>
               <Undefine></Undefine>
               <IncludePath>..\..\My_Libraries;..\Black_Pill_board_2</IncludePath>
