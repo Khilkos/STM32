@@ -13,7 +13,7 @@
 void LCD1602_send_command_via_I2C(uint8_t command);
 void LCD1602_send_data_via_I2C(uint8_t data);
 void LCD1602_init_via_I2C(void);
-
+void Draw_String(uint8_t adr, uint8_t *str);
 
 
 #endif
