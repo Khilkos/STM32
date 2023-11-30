@@ -424,6 +424,16 @@
               <FileType>1</FileType>
               <FilePath>..\..\My_Libraries\1602_I2C.c</FilePath>
             </File>
+            <File>
+              <FileName>HUB_08_F411.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\My_Libraries\HUB_08_F411.c</FilePath>
+            </File>
+            <File>
+              <FileName>HUB_08_F411.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\..\My_Libraries\HUB_08_F411.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
