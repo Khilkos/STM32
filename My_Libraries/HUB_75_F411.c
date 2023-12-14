@@ -1,50 +1,52 @@
-#include "HUB_08_F411.h"
+#include "HUB_75_F411.h"
 
-uint32_t screen_buf[16][2];
+uint32_t HUB75_screen_buf[16][2];
 static char String[100];
 
-void clear_screen_buf(void)
+void HUB75_clear_screen_buf(void)
 {
 for (uint8_t y=0; y<16; y++)
 	{
 			for (uint8_t x=0; x<2; x++)
-				{	screen_buf[y][x]=0;
+				{	HUB75_screen_buf[y][x]=0xffffffff;
 				}
 	}
 }
 //==================================
 
-void screen_buf_update(void)
+void HUB75_screen_buf_update(void)
 {
-	clear_screen_buf();
+	HUB75_clear_screen_buf();
 
+	
 sprintf(String,"Температур.");
-	LCD_string (0,0, (uint8_t*)String);										
+	HUB75_LCD_string (0,0, (uint8_t*)String);										
 
 sprintf(String,"Скорость.");
-	LCD_string (8,0, (uint8_t*)String);														
+	HUB75_LCD_string (8,0, (uint8_t*)String);														
+
+	}
+//==================================
+void HUB75_screen_buf_dot (uint16_t y, uint16_t x)
+{
+HUB75_screen_buf[y][x/32] |=(1<<x%32);
 }
 //==================================
-void HUB08_screen_buf_dot (uint16_t y, uint16_t x)
+void HUB75_screen_buf_no_dot (uint16_t y, uint16_t x)
 {
-screen_buf[y][x/32] |=(1<<x%32);
-}
-//==================================
-void HUB08_screen_buf_no_dot (uint16_t y, uint16_t x)
-{
-screen_buf[y][x/32] &=~(1<<x%32);
+HUB75_screen_buf[y][x/32] &=~(1<<x%32);
 }
 //=========================================================
 //Вывод строки ASCII на экран 
 //=========================================================
-void LCD_string (uint16_t y, uint16_t x, uint8_t *str)
+void HUB75_LCD_string (uint16_t y, uint16_t x, uint8_t *str)
 {	while (*str!='\0')
 	{	unsigned char    let=*str;
 		for (uint8_t k=0; k<5; k++)
 		{	int temp=FontTable[let][k];
 			//int temp=pgm_read_byte(&FontTable[let][k]);
 			for ( uint8_t i=0; i<8; i++)
-				{if (temp&(1<<7)) HUB08_screen_buf_dot(y+7-i,x+k); else HUB08_screen_buf_no_dot(y+7-i,x+k);
+				{if (temp&(1<<7)) HUB75_screen_buf_no_dot(y+7-i,x+k); else HUB75_screen_buf_dot(y+7-i,x+k);
 				temp=(temp<<1);}
 		}
 	x+=6;
@@ -53,7 +55,7 @@ void LCD_string (uint16_t y, uint16_t x, uint8_t *str)
 }
 //==================================
 //==================================
-void HUB_08_Send (void)
+void HUB75_Send (void)
 {
 
 	static uint8_t line_num;
@@ -61,7 +63,7 @@ void HUB_08_Send (void)
 										
 GPIOA->BSRR=1<<4;
 	if (line_num>15) line_num=0;
-	if (line_num==0) screen_buf_update();
+	if (line_num==0) HUB75_screen_buf_update();
 	if (line_num==0) {GPIOA->BSRR=1<<(0+res); GPIOA->BSRR=1<<(1+res);GPIOA->BSRR=1<<(2+res);GPIOA->BSRR=1<<(3+res);}
 			else if (line_num==1) {GPIOA->BSRR=1<<(0); GPIOA->BSRR=1<<(1+res);GPIOA->BSRR=1<<(2+res);GPIOA->BSRR=1<<(3+res);}
 			else if(line_num==2) {GPIOA->BSRR=1<<(0+res); GPIOA->BSRR=1<<(1);GPIOA->BSRR=1<<(2+res);GPIOA->BSRR=1<<(3+res);}
@@ -85,12 +87,12 @@ GPIOA->BSRR=1<<4;
 			{
 					for (uint8_t i=0; i<32; i++)
 						{
-								if (screen_buf[line_num][x]&0x01) GPIOB->BSRR=1<<(13+res); else GPIOB->BSRR=1<<(13);
+								if (HUB75_screen_buf[line_num][x]&0x01) GPIOB->BSRR=1<<(13+res); else GPIOB->BSRR=1<<(13);
 								//delay_ms(1);
 								GPIOB->BSRR=1<<14;
 								delay_us(1);
 								GPIOB->BSRR=1<<(14+res);
-								screen_buf[line_num][x] >>=1;
+								HUB75_screen_buf[line_num][x] >>=1;
 						}
 						
 						}

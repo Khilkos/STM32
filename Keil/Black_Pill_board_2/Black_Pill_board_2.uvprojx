@@ -52,7 +52,7 @@
           <OutputName>Black_Pill_board_2</OutputName>
           <CreateExecutable>1</CreateExecutable>
           <CreateLib>0</CreateLib>
-          <CreateHexFile>0</CreateHexFile>
+          <CreateHexFile>1</CreateHexFile>
           <DebugInformation>1</DebugInformation>
           <BrowseInformation>1</BrowseInformation>
           <ListingPath>.\Listings\</ListingPath>
@@ -337,7 +337,7 @@
             <v6WtE>0</v6WtE>
             <v6Rtti>0</v6Rtti>
             <VariousControls>
-              <MiscControls>-Wno-invalid-utf8 -Wno-gnu-binary-literal</MiscControls>
+              <MiscControls>-Wno-invalid-utf8 -Wno-gnu-binary-literal -Wno-invalid-source-encoding</MiscControls>
               <Define></Define>
               <Undefine></Undefine>
               <IncludePath>..\..\My_Libraries;..\Black_Pill_board_2</IncludePath>
@@ -433,6 +433,21 @@
               <FileName>HUB_08_F411.h</FileName>
               <FileType>5</FileType>
               <FilePath>..\..\My_Libraries\HUB_08_F411.h</FilePath>
+            </File>
+            <File>
+              <FileName>Font_table.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\My_Libraries\Font_table.c</FilePath>
+            </File>
+            <File>
+              <FileName>HUB_75_F411.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\My_Libraries\HUB_75_F411.c</FilePath>
+            </File>
+            <File>
+              <FileName>HUB_75_F411.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\..\My_Libraries\HUB_75_F411.h</FilePath>
             </File>
           </Files>
         </Group>
