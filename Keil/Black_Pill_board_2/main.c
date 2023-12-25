@@ -33,7 +33,7 @@ while (1)
 {
 
 if (GPIOB->IDR&1<<12) GPIOB->BSRR=1<<(12+res); else GPIOB->BSRR=1<<12;
-delay_us(900);
+delay_us(800);
 //	LCD1602_init_via_I2C();
 //Draw_String(0,(uint8_t*)"123");	
 //Draw_String(0x40, (uint8_t*)"Temperature=");

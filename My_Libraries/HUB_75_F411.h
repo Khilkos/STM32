@@ -13,7 +13,7 @@
 
 #define res 16
 
-extern uint32_t HUB75_screen_buf[16][2];
+extern uint32_t HUB75_screen_buf[32][2];
 //static char String[100];
 
 void HUB75_clear_screen_buf(void);
@@ -22,7 +22,7 @@ void HUB75_Send (void);
 void HUB75_screen_buf_dot (uint16_t y, uint16_t x);
 void HUB75_screen_buf_no_dot (uint16_t y, uint16_t x);
 void HUB75_LCD_string (uint16_t y, uint16_t x, uint8_t *str);
-
+void HUB75_running_line(uint8_t *str);
 
 #endif
 
