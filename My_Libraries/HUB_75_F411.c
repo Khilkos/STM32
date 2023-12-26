@@ -6,6 +6,7 @@ static uint8_t HUB75_temp_buffet_update=0;
 static uint8_t* HUB75_running_let=0;
 static uint8_t HUB75_temp_buffer[8]={0,0,0,0,0,0,0,0};
 
+
 void HUB75_clear_screen_buf(void)
 {
 for (uint8_t y=0; y<32; y++)
@@ -132,28 +133,33 @@ line_num++;
 }
 //==============================================================
 void HUB75_running_line(uint8_t *str)
-{	for (uint8_t y=0; y<8; y++)
-	{	for (uint8_t x=0; x<(64-1); x++)
-		{	if(HUB75_screen_buf[y][(x+1)/32]&(0x80000000>>(x+1)%32)) HUB75_screen_buf_no_dot(y,x); else HUB75_screen_buf_dot(y,x);	
+{	volatile static uint32_t HUB75_temp_screen_buf[8][2];
+	for (uint8_t y=0; y<8; y++)
+	{	for (uint8_t x=0; x<(64-1); x++) //32=64
+		{	if(HUB75_temp_screen_buf[y][(x+1)/32]&(0x1UL<<(x+1)%32)) HUB75_temp_screen_buf[y][x/32] |=(1<<x%32); else HUB75_temp_screen_buf[y][x/32] &=~(1<<x%32);	
 			if (x==(64-2)) 
 				{	if (y==0) 
 								{	if (HUB75_temp_buffet_update==0)
-										{	    if ((HUB75_running_let==0)&&(HUB75_running_let==0)) HUB75_running_let=str;
-											for (uint8_t x=0; x<5; x++)
-											{	for (uint8_t y=0; y<8;y++)
-												{if ( ((FontTable[*HUB75_running_let][x]))&(1<<y) ) HUB75_temp_buffer[y]|=(1<<(6-x));}
+										{	    if (HUB75_running_let==0) HUB75_running_let=str;
+											for (uint8_t x1=0; x1<5; x1++)
+											{	for (uint8_t y1=0; y1<8;y1++)
+												{if ( ((FontTable[*HUB75_running_let][x1]))&(1<<y1) ) HUB75_temp_buffer[y1]|=(1<<(6-x1));}
 											}
 											if (*HUB75_running_let!='\0')	 HUB75_running_let++; else HUB75_running_let=0;
 										}
 									if (HUB75_temp_buffet_update<5) HUB75_temp_buffet_update++; else HUB75_temp_buffet_update=0;	
 								}
 					
-					if (HUB75_temp_buffer[y]&(1<<7)) HUB75_screen_buf_no_dot(y, 64-1); else HUB75_screen_buf_dot(y, 64-1); 
-					HUB75_temp_buffer[y]=(HUB75_temp_buffer[y]<<1);
+					if (HUB75_temp_buffer[y]&(1<<7)) HUB75_temp_screen_buf[y][x/32] |=(1<<x%32); else HUB75_temp_screen_buf[y][x/32] &=~(1<<x%32); 
+					HUB75_temp_buffer[y]*=2; //сдвиг влево
 				}
 		}		
 	}
-	
+for (uint8_t i=0; i<8; i++)
+{
+HUB75_screen_buf[i][0]=~HUB75_temp_screen_buf[i][0];
+HUB75_screen_buf[i][1]=~HUB75_temp_screen_buf[i][1];
+}	
 	
 	
 }
