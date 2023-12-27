@@ -2,9 +2,9 @@
 
 uint32_t HUB75_screen_buf[32][2];
 static char String[300];
-static uint8_t HUB75_temp_buffet_update=0;
-static uint8_t* HUB75_running_let=0;
-static uint8_t HUB75_temp_buffer[8]={0,0,0,0,0,0,0,0};
+
+
+
 
 
 void HUB75_clear_screen_buf(void)
@@ -23,22 +23,21 @@ void HUB75_screen_buf_update(void)
 	HUB75_clear_screen_buf();
 
 	
-//sprintf(String,"Температур.");
-//	HUB75_LCD_string (0,0, (uint8_t*)String);										
-
-	
-	
-sprintf(String,"Скорость.");
+sprintf(String,"Время");
+	HUB75_LCD_string (0,0, (uint8_t*)String);										
+sprintf(String,"Время");
 	HUB75_LCD_string (8,0, (uint8_t*)String);		
+	
+sprintf(String,"27/12/2023");
+	HUB75_LCD_string (16,0, (uint8_t*)String);		
 
-sprintf(String,"Масса");
-	HUB75_LCD_string (16,0, (uint8_t*)String);	
-	
-sprintf(String,"Напряжение");
-	HUB75_LCD_string (24,0, (uint8_t*)String);	
-	
-sprintf((char*)String,"Паша и Полина молодцы, они помогают родителям и их слушаются!     ");
-HUB75_running_line((uint8_t*)&String);
+sprintf((char*)String,"Здесь могла быть Ваша реклама        ");
+HUB75_running_line((uint8_t*)&String,24);
+
+//sprintf((char*)String,"Скорость ветра очень высока     ");
+//HUB75_running_line((uint8_t*)&"Скорость ветра очень высока     ",16);
+
+
 	
 	}
 //==================================
@@ -132,8 +131,11 @@ GPIOA->BSRR=1UL<<(4+res);
 line_num++;
 }
 //==============================================================
-void HUB75_running_line(uint8_t *str)
-{	volatile static uint32_t HUB75_temp_screen_buf[8][2];
+void HUB75_running_line(uint8_t *str, uint8_t Y_pos)
+{static uint32_t HUB75_temp_screen_buf[8][2];
+	static uint8_t HUB75_temp_buffet_update;
+	static uint8_t HUB75_temp_buffer[8];
+	static uint8_t* HUB75_running_let;
 	for (uint8_t y=0; y<8; y++)
 	{	for (uint8_t x=0; x<(64-1); x++) //32=64
 		{	if(HUB75_temp_screen_buf[y][(x+1)/32]&(0x1UL<<(x+1)%32)) HUB75_temp_screen_buf[y][x/32] |=(1<<x%32); else HUB75_temp_screen_buf[y][x/32] &=~(1<<x%32);	
@@ -157,8 +159,8 @@ void HUB75_running_line(uint8_t *str)
 	}
 for (uint8_t i=0; i<8; i++)
 {
-HUB75_screen_buf[i][0]=~HUB75_temp_screen_buf[i][0];
-HUB75_screen_buf[i][1]=~HUB75_temp_screen_buf[i][1];
+HUB75_screen_buf[i+Y_pos][0]=~HUB75_temp_screen_buf[i][0];
+HUB75_screen_buf[i+Y_pos][1]=~HUB75_temp_screen_buf[i][1];
 }	
 	
 	
