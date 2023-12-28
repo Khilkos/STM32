@@ -137,9 +137,9 @@ void HUB75_running_line(uint8_t *str, uint8_t Y_pos)
 	static uint8_t HUB75_temp_buffer[8];
 	static uint8_t* HUB75_running_let;
 	for (uint8_t y=0; y<8; y++)
-	{	for (uint8_t x=0; x<(64-1); x++) //32=64
+	{	for (uint8_t x=0; x<(64); x++) //32=64
 		{	if(HUB75_temp_screen_buf[y][(x+1)/32]&(0x1UL<<(x+1)%32)) HUB75_temp_screen_buf[y][x/32] |=(1<<x%32); else HUB75_temp_screen_buf[y][x/32] &=~(1<<x%32);	
-			if (x==(64-2)) 
+			if (x==(64-1)) 
 				{	if (y==0) 
 								{	if (HUB75_temp_buffet_update==0)
 										{	    if (HUB75_running_let==0) HUB75_running_let=str;
