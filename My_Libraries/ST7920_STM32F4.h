@@ -27,7 +27,7 @@ void LCD_string (int y, int x, uint8_t *str); //вывод строки с координатами y,x,
 void line (int y1, int x1, int y2, int x2); //отрисовка линий функция line агументы y1,x1,y2,x2 -  начальные и конечные кооординаты трямой,требует библиотеки math.h
 //
 extern void delay_us(uint32_t time_delay_us);
-
+void ST7920_running_line(uint8_t *str, uint8_t Y_pos);
 
 
 #endif

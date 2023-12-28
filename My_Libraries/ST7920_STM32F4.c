@@ -302,5 +302,34 @@ void digit (uint8_t y_pos, uint8_t x_pos,uint16_t data, uint8_t size, uint8_t do
 		}
 }
 */
+//==============================================================
+void ST7920_running_line(uint8_t *str, uint8_t Y_pos)
+{	uint8_t X_size=128;
+	static uint32_t HUB75_temp_screen_buf[8][4];
+	static uint8_t HUB75_temp_buffet_update;
+	static uint8_t HUB75_temp_buffer[8];
+	static uint8_t* HUB75_running_let;
+	for (uint8_t y=0; y<8; y++)
+	{	for (uint8_t x=0; x<(X_size-1); x++) //32=64
+		{	if(HUB75_temp_screen_buf[y][(x+1)/32]&(0x1UL<<(x+1)%32)) {HUB75_temp_screen_buf[y][x/32] |=(1<<x%32); dot(y+Y_pos,x); } else {HUB75_temp_screen_buf[y][x/32] &=~(1<<x%32); no_dot(y+Y_pos,x);}	
+			if (x==(X_size-2)) 
+				{	if (y==0) 
+								{	if (HUB75_temp_buffet_update==0)
+										{	    if (HUB75_running_let==0) HUB75_running_let=str;
+											for (uint8_t x1=0; x1<5; x1++)
+											{	for (uint8_t y1=0; y1<8;y1++)
+												{if ( ((FontTable[*HUB75_running_let][x1]))&(1<<y1) ) HUB75_temp_buffer[y1]|=(1<<(6-x1));}
+											}
+											if (*HUB75_running_let!='\0')	 HUB75_running_let++; else HUB75_running_let=0;
+										}
+									if (HUB75_temp_buffet_update<5) HUB75_temp_buffet_update++; else HUB75_temp_buffet_update=0;	
+								}
+					
+					if (HUB75_temp_buffer[y]&(1<<7)) HUB75_temp_screen_buf[y][x/32] |=(1<<x%32); else HUB75_temp_screen_buf[y][x/32] &=~(1<<x%32); 
+					HUB75_temp_buffer[y]*=2; //сдвиг влево
+				}
+		}		
+	}
 
+}
 

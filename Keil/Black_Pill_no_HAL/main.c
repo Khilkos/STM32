@@ -68,6 +68,8 @@ key_scan();
 	if (clock_poz) 	line(8,17+18*clock_poz,8,28+18*clock_poz);	
 	
 	sprintf(String,"Prediv_A/S %d/%d",(RTC->PRER & 0x7f0000)>>16, RTC->PRER & 0x7fff);
+	//ST7920_running_line((uint8_t*)&String, 32);
+	//delay_ms(170);
 	LCD_string(32,0,(uint8_t*)String);
 	
 	sprintf(String,"DC_calibr %d", (0x1f&RTC->CALIBR));
