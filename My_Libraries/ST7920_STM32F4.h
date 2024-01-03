@@ -3,6 +3,7 @@
 
 #include "stm32f411xe.h"
 #include <math.h>
+#include "Font_table.h"
 //#include "stdint.h"
 //#include "cmsis_armclang.h" 
 //#include "core_cm4.h"
@@ -28,6 +29,7 @@ void line (int y1, int x1, int y2, int x2); //отрисовка линий функция line агуме
 //
 extern void delay_us(uint32_t time_delay_us);
 void ST7920_running_line(uint8_t *str, uint8_t Y_pos);
+void LCD_string_font_10x16 (int y, int x, uint8_t *str);
 
 
 #endif

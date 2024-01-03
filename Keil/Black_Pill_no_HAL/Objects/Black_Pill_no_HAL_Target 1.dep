@@ -1,6 +1,6 @@
 Dependencies for Project 'Black_Pill_no_HAL', Target 'Target 1': (DO NOT MODIFY !)
 CompilerVersion: 6190000::V6.19::ARMCLANG
-F (.\main.c)(0x658D76E6)(-xc -std=c11 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -Oz -ffunction-sections -Weverything -Wno-packed -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Black_Pill_no_HAL -I ../../My_Libraries -Wno-invalid-source-encoding -Wno-invalid-utf8 -Wno-gnu-binary-literal -Wno-vla-I./RTE/_Target_1-IC:/Users/Khilk/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IC:/Users/Khilk/AppData/Local/Arm/Packs/Keil/STM32F4xx_DFP/2.17.0/Drivers/CMSIS/Device/ST/STM32F4xx/Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32F411xE -D_RTE_-o ./objects/main.o -MD)
+F (.\main.c)(0x65956686)(-xc -std=c11 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -Oz -ffunction-sections -Weverything -Wno-packed -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Black_Pill_no_HAL -I ../../My_Libraries -Wno-invalid-source-encoding -Wno-invalid-utf8 -Wno-gnu-binary-literal -Wno-vla-I./RTE/_Target_1-IC:/Users/Khilk/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IC:/Users/Khilk/AppData/Local/Arm/Packs/Keil/STM32F4xx_DFP/2.17.0/Drivers/CMSIS/Device/ST/STM32F4xx/Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32F411xE -D_RTE_-o ./objects/main.o -MD)
 I (..\Black_Pill_no_HAL\main.h)(0x65263252)
 I (C:\Users\Khilk\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.17.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f411xe.h)(0x63749E4A)
 I (C:\Users\Khilk\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\core_cm4.h)(0x626F912E)
@@ -19,9 +19,9 @@ I (..\..\My_Libraries\Core_F411_init.h)(0x648C4365)
 I (..\..\My_Libraries\Timer_F411_init.h)(0x648C4D70)
 I (..\..\My_Libraries\EXTI_F411_init.h)(0x64B90CA4)
 I (..\..\My_Libraries\SPI_F411.h)(0x6490A107)
-I (..\..\My_Libraries\ST7920_STM32F4.h)(0x658D6719)
+I (..\..\My_Libraries\ST7920_STM32F4.h)(0x659561CD)
 I (C:\Keil_v5\ARM\ARMCLANG\include\math.h)(0x63888F58)
-I (..\..\My_Libraries\Font_table.h)(0x64A04CDC)
+I (..\..\My_Libraries\Font_table.h)(0x65955F76)
 I (..\Black_Pill_no_HAL\Board.h)(0x64DDB907)
 I (..\..\My_Libraries\RTC_F411.h)(0x64E83D07)
 I (..\..\My_Libraries\ADC_F411.h)(0x64E704AD)
@@ -104,8 +104,8 @@ I (C:\Users\Khilk\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cms
 I (C:\Users\Khilk\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_armclang.h)(0x626F912E)
 I (C:\Users\Khilk\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\mpu_armv7.h)(0x626F912E)
 I (C:\Users\Khilk\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.17.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include\system_stm32f4xx.h)(0x63749E4A)
-F (..\..\My_Libraries\ST7920_STM32F4.c)(0x658D75FB)(-xc -std=c11 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -Oz -ffunction-sections -Weverything -Wno-packed -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Black_Pill_no_HAL -I ../../My_Libraries -Wno-invalid-source-encoding -Wno-invalid-utf8 -Wno-gnu-binary-literal -Wno-vla-I./RTE/_Target_1-IC:/Users/Khilk/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IC:/Users/Khilk/AppData/Local/Arm/Packs/Keil/STM32F4xx_DFP/2.17.0/Drivers/CMSIS/Device/ST/STM32F4xx/Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32F411xE -D_RTE_-o ./objects/st7920_stm32f4.o -MD)
-I (..\..\My_Libraries\ST7920_STM32F4.h)(0x658D6719)
+F (..\..\My_Libraries\ST7920_STM32F4.c)(0x6595628B)(-xc -std=c11 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -Oz -ffunction-sections -Weverything -Wno-packed -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Black_Pill_no_HAL -I ../../My_Libraries -Wno-invalid-source-encoding -Wno-invalid-utf8 -Wno-gnu-binary-literal -Wno-vla-I./RTE/_Target_1-IC:/Users/Khilk/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IC:/Users/Khilk/AppData/Local/Arm/Packs/Keil/STM32F4xx_DFP/2.17.0/Drivers/CMSIS/Device/ST/STM32F4xx/Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32F411xE -D_RTE_-o ./objects/st7920_stm32f4.o -MD)
+I (..\..\My_Libraries\ST7920_STM32F4.h)(0x659561CD)
 I (C:\Users\Khilk\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.17.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f411xe.h)(0x63749E4A)
 I (C:\Users\Khilk\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\core_cm4.h)(0x626F912E)
 I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x63888F58)
@@ -115,8 +115,9 @@ I (C:\Users\Khilk\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cms
 I (C:\Users\Khilk\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\mpu_armv7.h)(0x626F912E)
 I (C:\Users\Khilk\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.17.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include\system_stm32f4xx.h)(0x63749E4A)
 I (C:\Keil_v5\ARM\ARMCLANG\include\math.h)(0x63888F58)
-F (..\..\My_Libraries\Font_table.c)(0x64A01DD2)(-xc -std=c11 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -Oz -ffunction-sections -Weverything -Wno-packed -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Black_Pill_no_HAL -I ../../My_Libraries -Wno-invalid-source-encoding -Wno-invalid-utf8 -Wno-gnu-binary-literal -Wno-vla-I./RTE/_Target_1-IC:/Users/Khilk/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IC:/Users/Khilk/AppData/Local/Arm/Packs/Keil/STM32F4xx_DFP/2.17.0/Drivers/CMSIS/Device/ST/STM32F4xx/Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32F411xE -D_RTE_-o ./objects/font_table.o -MD)
-I (..\..\My_Libraries\Font_table.h)(0x64A04CDC)
+I (..\..\My_Libraries\Font_table.h)(0x65955F76)
+F (..\..\My_Libraries\Font_table.c)(0x659568AC)(-xc -std=c11 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -Oz -ffunction-sections -Weverything -Wno-packed -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Black_Pill_no_HAL -I ../../My_Libraries -Wno-invalid-source-encoding -Wno-invalid-utf8 -Wno-gnu-binary-literal -Wno-vla-I./RTE/_Target_1-IC:/Users/Khilk/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IC:/Users/Khilk/AppData/Local/Arm/Packs/Keil/STM32F4xx_DFP/2.17.0/Drivers/CMSIS/Device/ST/STM32F4xx/Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32F411xE -D_RTE_-o ./objects/font_table.o -MD)
+I (..\..\My_Libraries\Font_table.h)(0x65955F76)
 F (..\..\My_Libraries\RTC_F411.c)(0x64ED8FAD)(-xc -std=c11 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -Oz -ffunction-sections -Weverything -Wno-packed -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Black_Pill_no_HAL -I ../../My_Libraries -Wno-invalid-source-encoding -Wno-invalid-utf8 -Wno-gnu-binary-literal -Wno-vla-I./RTE/_Target_1-IC:/Users/Khilk/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IC:/Users/Khilk/AppData/Local/Arm/Packs/Keil/STM32F4xx_DFP/2.17.0/Drivers/CMSIS/Device/ST/STM32F4xx/Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32F411xE -D_RTE_-o ./objects/rtc_f411.o -MD)
 I (..\..\My_Libraries\RTC_F411.h)(0x64E83D07)
 I (C:\Users\Khilk\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.17.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f411xe.h)(0x63749E4A)

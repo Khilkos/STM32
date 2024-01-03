@@ -333,3 +333,21 @@ void ST7920_running_line(uint8_t *str, uint8_t Y_pos)
 
 }
 
+//=========================================================
+//Вывод строки ASCII на экран 
+//=========================================================
+void LCD_string_font_10x16 (int y, int x, uint8_t *str)
+{	while (*str!='\0')
+	{	unsigned char    let=*str;
+		for (int k=0; k<10; k++)
+		{	int temp= font_10x16[let*10+k];//FontTable[let][k];
+			//int temp=pgm_read_byte(&FontTable[let][k]);
+			for ( int i=0; i<16; i++)
+				{if (temp&(1<<15)) dot(y+15-i,x+k); else no_dot(y+15-i,x+k);
+				temp=(temp<<1);}
+		}
+	x+=11;
+	str++;
+	}
+}
+//==================================

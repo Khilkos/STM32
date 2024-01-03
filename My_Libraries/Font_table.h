@@ -9,7 +9,7 @@
 #ifndef Font_table_H_
 #define Font_table_H_
 
-
+extern const unsigned short font_10x16[];
 extern const unsigned char FontTable[256][5];
 extern const unsigned char D_0[8];
 extern const unsigned char D_1[8];

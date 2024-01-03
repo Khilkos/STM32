@@ -67,13 +67,19 @@ key_scan();
 	LCD_string(0,0,(uint8_t*)String);	
 	if (clock_poz) 	line(8,17+18*clock_poz,8,28+18*clock_poz);	
 	
-	sprintf(String,"Prediv_A/S %d/%d",(RTC->PRER & 0x7f0000)>>16, RTC->PRER & 0x7fff);
+		
+	sprintf(String,"%02d:%02d:%02d",hour, minutes,seconds );
+	//sprintf(String,"1234567890");
+	LCD_string_font_10x16(32,0,(uint8_t*)String);
+/*	sprintf(String,"Prediv_A/S %d/%d",(RTC->PRER & 0x7f0000)>>16, RTC->PRER & 0x7fff);
 	//ST7920_running_line((uint8_t*)&String, 32);
 	//delay_ms(170);
 	LCD_string(32,0,(uint8_t*)String);
 	
 	sprintf(String,"DC_calibr %d", (0x1f&RTC->CALIBR));
 	LCD_string(40,0,(uint8_t*)String);
+*/
+
 	
 	sprintf(String,"ADC_ch0/1= %.2f/%.2fB", (double)ADC_ch0/1262, (double)ADC_ch1/1262 );
 	LCD_string (48,0, (uint8_t*)String);
