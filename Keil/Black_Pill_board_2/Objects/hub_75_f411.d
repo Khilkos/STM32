@@ -10,4 +10,5 @@
   C:\Users\dasha\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS\Device\ST\STM32F4xx\Include\system_stm32f4xx.h \
   C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\stdio.h \
   ..\..\My_Libraries\Delay.h ..\..\My_Libraries\DS3231_F411.h \
-  ..\..\My_Libraries\I2C_F411.h ..\..\My_Libraries\Font_table.h
+  ..\..\My_Libraries\I2C_F411.h ..\..\My_Libraries\Font_table.h \
+  ..\Black_Pill_board_2\Board.h

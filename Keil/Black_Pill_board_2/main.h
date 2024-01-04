@@ -7,6 +7,8 @@
 #include "Font_table.h"
 #include "HUB_08_F411.h"
 #include "HUB_75_F411.h"
+#include "Board.h"
+#include "DS3231_F411.h"
 
 
 
