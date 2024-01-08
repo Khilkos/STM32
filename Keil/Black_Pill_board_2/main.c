@@ -3,7 +3,7 @@
 int main (void)
 	
 {
-// uint8_t String[300]="123";
+ char String[300];
 	RCC->AHB1ENR |= ( RCC_AHB1ENR_GPIOAEN | RCC_AHB1ENR_GPIOBEN  ); // enable portA and portB clock
 
 	
@@ -31,27 +31,29 @@ GPIO_DI_setup(GPIOB,2,Pull_down);
 	
 GPIO_Alternate(GPIOB,6,Open_drain,High,Pull_up,AF4);
 GPIO_Alternate(GPIOB,7,Open_drain,High,Pull_up,AF4);
-	
+GPIO_Alternate(GPIOA,2,Open_drain,High,Pull_up,AF7);// USART2 TX2
+GPIO_Alternate(GPIOA,3,Open_drain,High,Pull_up,AF7);// USART2 RX2	
 	
 	
 Core_F411_init();
 SysTick_Init();
+Timer_F411_init();
 I2C_F411_init();
 LCD1602_init_via_I2C();
-	
-//Draw_String(0,(uint8_t*)"123");	
-	
+DMA_F411_init();
+USART_F411_init();
 	
 while (1)
 {
-key_scan();
-	DS3231_F411_get_time();
-if (GPIOB->IDR&1<<12) GPIOB->BSRR=1<<(12+res); else GPIOB->BSRR=1<<12;
-delay_us(500);
-//Draw_String(0,(uint8_t*)"123");	
-//Draw_String(0x40, (uint8_t*)"Temperature=");
+//key_scan();
+//	DS3231_F411_get_time();
+//if (GPIOB->IDR&1<<12) GPIOB->BSRR=1<<(12+res); else GPIOB->BSRR=1<<12;
+delay_us(30000);
+Draw_String(0,(uint8_t*)"123");	
+sprintf(String,"Temper. %.1fC", (DS18B20_read_temperatur_via_DMA()*0.1));
+Draw_String(0x40, (uint8_t*)String);
 
-HUB75_Send();
+
 
 
 }

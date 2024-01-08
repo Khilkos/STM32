@@ -26,6 +26,8 @@ for (uint8_t y=0; y<32; y++)
 
 void HUB75_screen_buf_update(void)
 {
+	static _Bool screen_num;
+
 	HUB75_clear_screen_buf();
 
 	sprintf(String,"%02d",hour);
@@ -43,11 +45,22 @@ sprintf(String,"%02d",minutes);
 	sprintf(String,"%02d",seconds);
 	HUB75_LCD_string (8,52, (uint8_t*)String,0,1,0);	
 	
-	sprintf(String,"%02d/%02d/%02d",day,month,year+2000);
-	HUB75_LCD_string (16,3, (uint8_t*)String,1,1,0);		
-
-sprintf((char*)String,"Здесь могла быть Ваша реклама        ");
+	if (!HUB75_screen_delay)
+	{
+		screen_num=!screen_num;
+		HUB75_screen_delay=5000;
+	}
+	
+	if (screen_num || clock_poz) 	sprintf(String,"%02d/%02d/%02d",day,month,year+2000);
+		else sprintf(String,"Темп.%.1fC", (DS18B20_read_temperatur_via_DMA_timer()*0.1));
+		
+	HUB75_LCD_string (16,3, (uint8_t*)String,1,1,0);			
+if (!HUB75_line_run_delay) 
+	{ 
+		HUB75_line_run_delay=5;
+sprintf((char*)String,"Акционерное общество \"Пивобезалкогольный комбинат \"Крым\" / Энерго-Механическая служба        ");
 HUB75_running_line((uint8_t*)&String,24);
+	}
 
 if (clock_poz==1) HUB75_h_line (15,4,17,0,0,1);
 if (clock_poz==2) HUB75_h_line (15,29,17,0,0,1);

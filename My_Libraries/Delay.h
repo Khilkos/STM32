@@ -14,8 +14,7 @@ need degined in mail programm SysTick();
 #include "DS3231_F411.h"
 
 static uint32_t count=0;
-extern uint32_t key_delay;
-extern uint32_t select_delay;
+
 
 void delay_us(uint32_t);
 void delay_ms(uint32_t);

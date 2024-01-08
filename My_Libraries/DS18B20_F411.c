@@ -154,7 +154,53 @@ return DS18B20_temperature;
 }
 
 //======================================================================
+//===================================================
+uint16_t DS18B20_read_temperatur_via_DMA_timer (void)
+{
+	_Bool temp_bit=0;
+	_Bool Sensor_OK=0;
 
+	if (read_temperature_stage==0&& !DMA_busy) 
+		{	
+			Sensor_OK=DS18B20_Reset_single();
+			if (!Sensor_OK) return 0;
+			DMA_F411_DS18B20_convert_T();
+			DMA_busy=1;
+			read_temperature_stage=1;
+			DS18B20_delay=5000;
+			//	GPIOB->BSRR =1<<14;
+		}
+
+	if (read_temperature_stage==1 && !DMA_busy)
+		{
+			if (!DS18B20_delay) read_temperature_stage=2;		
+		}
+
+	if (read_temperature_stage==2 && !DMA_busy)
+		{
+			Sensor_OK=DS18B20_Reset_single();
+		if (!Sensor_OK)	return 0;
+			DMA_busy=1;
+			DMA_F411_DS18B20_read_scratch();
+			
+			read_temperature_stage=3;
+		}
+	if (read_temperature_stage==3 && !DMA_busy)
+		{		
+			DS18B20_temperature=0;
+			for (uint8_t i=0; i<16; i++)
+				{	
+					if (DMA_read_temp[i+16]==0xff) temp_bit=1; else temp_bit=0;
+					DS18B20_temperature|= temp_bit<<i;
+				}
+				read_temperature_stage=0;
+			DS18B20_temperature=(DS18B20_temperature/16*10)+(uint16_t)((DS18B20_temperature&0b00001111)*0.625);
+			}
+		
+return DS18B20_temperature;
+}
+
+//======================================================================
 
 
 

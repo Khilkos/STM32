@@ -1,15 +1,13 @@
 #include "Delay.h"
 
-uint32_t key_delay=0;
-uint32_t select_delay=0;
+
 
 
 void SysTick_Handler(void)
 {
 
 if (count>0)	count--; else count=0;	
-if (key_delay>0) key_delay--; else key_delay=0;
-if (select_delay>0) select_delay--; else select_delay=0;	
+
 //if (GPIOB->IDR & 1<<12) GPIOB->BSRR=1<<(12+res); else GPIOB->BSRR=1<<12;
 }
 //---------------------------------------------------------
