@@ -40,7 +40,7 @@ I2C_F411_address_write(LCD_1602_adress);
 	
 	delay_us(150);
 	
-	LCD1602_send_command_via_I2C(0x0F);
+	LCD1602_send_command_via_I2C(0x0C);//0x0F включение мерцающего курсора
 	//включаем отображение мерцающего курсора
 	
 	delay_us(150);
