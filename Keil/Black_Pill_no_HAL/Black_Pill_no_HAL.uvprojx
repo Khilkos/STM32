@@ -450,11 +450,6 @@
               <FilePath>..\..\My_Libraries\ADC_F411.c</FilePath>
             </File>
             <File>
-              <FileName>DS3131_F411.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\My_Libraries\DS3131_F411.c</FilePath>
-            </File>
-            <File>
               <FileName>I2C_F411.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\My_Libraries\I2C_F411.c</FilePath>
@@ -473,6 +468,11 @@
               <FileName>USART_F411.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\My_Libraries\USART_F411.c</FilePath>
+            </File>
+            <File>
+              <FileName>DS3231_F411.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\My_Libraries\DS3231_F411.c</FilePath>
             </File>
           </Files>
         </Group>
