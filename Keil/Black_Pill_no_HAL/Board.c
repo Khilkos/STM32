@@ -3,8 +3,8 @@
 
 uint8_t clock_poz =0;
 uint8_t clock_poz_1 =0;
-#define key_delay_val 520000
-#define select_delay_val 10000000
+#define key_delay_val 520
+#define select_delay_val 10000
 
 
 void key_scan (void)

@@ -12,7 +12,7 @@ void Timer_F411_init(void)
 RCC->APB2ENR |=RCC_APB2ENR_TIM1EN; //enable clock for Timer 1
 	TIM1->CR1 =0;
 	TIM1->DIER |=TIM_DIER_UIE; //enable update interrupt for timer1
-	TIM1->PSC =186;
+	TIM1->PSC =374;
 	TIM1->ARR = 0xFF;
 	NVIC->ISER[0] |=1<<25; //enable timer1 update interrupt for NVIC
 	//TIM1->CR1 |=TIM_CR1_URS;
