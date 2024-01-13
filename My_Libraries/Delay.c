@@ -8,7 +8,7 @@ void SysTick_Handler(void)
 
 if (count>0)	count--; else count=0;  	
 
-//if (GPIOB->IDR & 1<<12) GPIOB->BSRR=1<<(12+res); else GPIOB->BSRR=1<<12;
+if (GPIOB->IDR & 1<<15) GPIOB->BSRR=1<<(15+res); else GPIOB->BSRR=1<<15;
 }
 //---------------------------------------------------------
 void delay_us(uint32_t time_delay_us)

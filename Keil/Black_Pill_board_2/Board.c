@@ -5,10 +5,29 @@ uint8_t clock_poz =0;
 uint8_t clock_poz_1 =0;
 #define key_delay_val 520
 #define select_delay_val 10000
+uint16_t encoder_data=100;	
 
 
 void key_scan (void)
 {
+	
+static uint8_t encoder_state;
+uint8_t pin_state=0;
+	if (GPIOA->IDR & 1<<11) pin_state |=1<<0;
+	if (GPIOA->IDR & 1<<10) pin_state |=1<<1;	
+	
+	if (encoder_state==3)
+					{
+						if (pin_state==2) encoder_data++;
+						if (pin_state==1) encoder_data--;
+						
+					}
+					
+	encoder_state=pin_state;
+		
+		
+		
+	/*
 if (!select_delay) {clock_poz=0; clock_poz_1=0;}	
 	
 if (!key_delay) 
@@ -119,6 +138,6 @@ if (!key_delay)
 							}
 					}
 								
-	}
+	}*/
 }
 

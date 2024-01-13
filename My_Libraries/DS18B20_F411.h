@@ -13,6 +13,7 @@
 #define skip_rom 0xCC
 #define convert_t 0x44
 #define read_scratchpad 0xBE
+#define read_ROM 0x33
 
 
 extern const uint8_t convert_T[];
@@ -20,6 +21,8 @@ extern const uint8_t read_scratch[];
 extern volatile uint16_t DS18B20_temperature;
 extern _Bool DMA_busy;
 extern uint8_t DMA_read_temp[32];
+extern uint8_t ROM[8];
+
 
 _Bool DS18B20_Reset_single (void);
 void DS18B20_write_bit(_Bool);
@@ -29,5 +32,6 @@ uint8_t DS18B20_read_byte (void);
 uint16_t DS18B20_read_temperatur (void);
 uint16_t DS18B20_read_temperatur_via_DMA (void);
 uint16_t DS18B20_read_temperatur_via_DMA_timer (void);
+void DS18B20_read_ROM (void);
 
 #endif

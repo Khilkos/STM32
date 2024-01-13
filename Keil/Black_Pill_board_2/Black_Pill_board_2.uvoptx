@@ -153,12 +153,12 @@
         <Ww>
           <count>0</count>
           <WinNumber>1</WinNumber>
-          <ItemText>key_delay</ItemText>
+          <ItemText>ROM1[8]</ItemText>
         </Ww>
         <Ww>
           <count>1</count>
           <WinNumber>1</WinNumber>
-          <ItemText>select_delay</ItemText>
+          <ItemText>ROM1[i]</ItemText>
         </Ww>
       </WatchWindow1>
       <MemoryWindow1>

@@ -29,7 +29,7 @@ I2C_F411_data_write(data_Lo|0x08|0x01);
 
 void LCD1602_init_via_I2C(void)
 {
-delay_ms(300);
+delay_ms(800);
 	
 I2C_F411_Start();
 I2C_F411_address_write(LCD_1602_adress);

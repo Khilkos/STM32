@@ -30,7 +30,7 @@ if (select_delay>0) select_delay--; else select_delay=0;
 if (DS18B20_delay>0) DS18B20_delay--; else DS18B20_delay=0;	
 if (HUB75_line_run_delay>0) HUB75_line_run_delay--; else HUB75_line_run_delay=0;	
 if (HUB75_screen_delay>0) HUB75_screen_delay--; else HUB75_screen_delay=0;	
-if (GPIOB->IDR & (1<<12)) GPIOB->BSRR=1U<<(12+res); else GPIOB->BSRR=1U<<12;
+//if (GPIOB->IDR & (1<<12)) GPIOB->BSRR=1U<<(12+res); else GPIOB->BSRR=1U<<12;
 	}
 
 }

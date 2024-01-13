@@ -14,7 +14,7 @@
 extern uint8_t clock_poz;
 extern uint8_t clock_poz_1;
 void key_scan (void);
-
+extern uint16_t encoder_data;	
 
 #endif
 

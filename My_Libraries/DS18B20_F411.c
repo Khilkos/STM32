@@ -4,9 +4,17 @@ static volatile uint8_t read_temperature_stage=0;
 volatile uint16_t DS18B20_temperature=0;
 _Bool DMA_busy=0;
 
+uint8_t ROM[8];
+
+//static uint8_t ROM_[8]={0x,0x,0x,0x,0x,0x,0x,0x};
+static uint8_t ROM1[8]={0x29,0xe4,0xbc,0x75,0xd0,0x01,0x3c,0x6c};
+static uint8_t ROM2[8]={0x29,0x69,0x0c,0x75,0xd0,0x01,0x3c,0x83};
+static uint8_t ROM3[8]={0x29,0x4d,0xb0,0x75,0xd0,0x01,0x3c,0x87};
+
 #define OW_0    0x00
 #define OW_1    0xff
 #define OW_R    0xff
+
 
 
 const uint8_t convert_T[16] = {
@@ -78,6 +86,18 @@ for (uint8_t i=0; i<8; i++)
 	return temp;
 }
 
+//==================================================
+void DS18B20_read_ROM (void)
+{
+	DS18B20_Reset_single();
+	DS18B20_write_byte(read_ROM);
+	for (uint8_t i=0; i<8;i++)
+	{
+	ROM[i] = DS18B20_read_byte();	
+	}
+
+	
+	}
 //==================================================
 uint16_t DS18B20_read_temperatur (void)
 {
