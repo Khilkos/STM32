@@ -54,6 +54,7 @@ USART_F411_init();
 delay_ms(100);
 LCD_init();
 
+DS18B20_read_ROM();
 	
 while(1)
 {
@@ -62,8 +63,8 @@ key_scan();
 	RTC_F411_read_time_date();
 	DS3231_F411_get_time();
 	
-		
-	sprintf(String,"Время %02d:%02d:%02d DS3231",hour, minutes,seconds );
+	sprintf(String,"%02x%02x%02x%02x%02x%02x%02x%02x",ROM[7],ROM[6],ROM[5],ROM[4],ROM[3],ROM[2],ROM[1],ROM[0] );	
+//	sprintf(String,"Время %02d:%02d:%02d DS3231",hour, minutes,seconds );
 	LCD_string(0,0,(uint8_t*)String);	
 	if (clock_poz) 	line(8,17+18*clock_poz,8,28+18*clock_poz);	
 	
