@@ -48,7 +48,7 @@ sprintf(String,"%02d",minutes);
 	if (!HUB75_screen_delay)
 	{
 		screen_num=!screen_num;
-		HUB75_screen_delay=5000;
+		HUB75_screen_delay=2500;
 	}
 	
 	if (screen_num || clock_poz) 	sprintf(String,"%02d/%02d/%02d",day,month,year+2000);
@@ -57,7 +57,7 @@ sprintf(String,"%02d",minutes);
 	HUB75_LCD_string (16,3, (uint8_t*)String,1,1,0);			
 if (!HUB75_line_run_delay) 
 	{ 
-		HUB75_line_run_delay=5;
+		HUB75_line_run_delay=13;
 sprintf((char*)String,"Акционерное общество \"Пивобезалкогольный комбинат \"Крым\" / Энерго-Механическая служба        ");
 HUB75_running_line((uint8_t*)&String,24);
 	}
