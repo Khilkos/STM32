@@ -27,7 +27,21 @@ Project File Date:  01/09/2024
 <h2>Output:</h2>
 *** Using Compiler 'V6.19', folder: 'C:\Keil_v5\ARM\ARMCLANG\Bin'
 Build target 'Target 1'
-".\Objects\Black_Pill_no_HAL.axf" - 0 Error(s), 0 Warning(s).
+../../My_Libraries/DS18B20_F411.c(10): warning: unused variable 'ROM1' [-Wunused-variable]
+static uint8_t ROM1[8]={0x28,0xe4,0xbc,0x75,0xd0,0x01,0x3c,0x6c};
+               ^
+../../My_Libraries/DS18B20_F411.c(11): warning: unused variable 'ROM2' [-Wunused-variable]
+static uint8_t ROM2[8]={0x28,0x69,0x0c,0x75,0xd0,0x01,0x3c,0x83};
+               ^
+../../My_Libraries/DS18B20_F411.c(12): warning: unused variable 'ROM3' [-Wunused-variable]
+static uint8_t ROM3[8]={0x28,0x4d,0xb0,0x75,0xd0,0x01,0x3c,0x87};
+               ^
+3 warnings generated.
+compiling DS18B20_F411.c...
+linking...
+Program Size: Code=13922 RO-data=7074 RW-data=24 ZI-data=2880  
+FromELF: creating hex file...
+".\Objects\Black_Pill_no_HAL.axf" - 0 Error(s), 3 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -53,9 +67,9 @@ Package Vendor: Keil
    * Component: ARM::CMSIS:CORE:5.6.0
 
    * Component: Keil::Device:Startup:2.6.3
-      Source file:   MDK/Device/Source/ARM/STM32F4xx_OTP.s
-      Source file:   Drivers/CMSIS/Device/ST/STM32F4xx/Source/Templates/arm/startup_stm32f411xe.s
       Source file:   MDK/Device/Source/ARM/STM32F411xx_OPT.s
+      Source file:   Drivers/CMSIS/Device/ST/STM32F4xx/Source/Templates/arm/startup_stm32f411xe.s
+      Source file:   MDK/Device/Source/ARM/STM32F4xx_OTP.s
       Include file:  Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h
       Source file:   Drivers/CMSIS/Device/ST/STM32F4xx/Source/Templates/system_stm32f4xx.c
 Build Time Elapsed:  00:00:00

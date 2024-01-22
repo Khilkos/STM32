@@ -4,12 +4,14 @@ static volatile uint8_t read_temperature_stage=0;
 volatile uint16_t DS18B20_temperature=0;
 _Bool DMA_busy=0;
 
+uint16_t DS18B20_temperature_of_sensor[2]={0,0};
 uint8_t ROM[8];
-
 //static uint8_t ROM_[8]={0x,0x,0x,0x,0x,0x,0x,0x};
 static uint8_t ROM1[8]={0x28,0xe4,0xbc,0x75,0xd0,0x01,0x3c,0x6c};
 static uint8_t ROM2[8]={0x28,0x69,0x0c,0x75,0xd0,0x01,0x3c,0x83};
 static uint8_t ROM3[8]={0x28,0x4d,0xb0,0x75,0xd0,0x01,0x3c,0x87};
+static uint8_t ROM_work[8]={0x28,0x7a,0x19,0xc7,0x0e,0x00,0x00,0x8d};
+static uint8_t ROM_work_1[8]={0x28,0xd9,0xf1,0x75,0xd0,0x01,0x3c,0xce};
 
 #define OW_0    0x00
 #define OW_1    0xff
@@ -111,10 +113,12 @@ uint16_t DS18B20_read_temperatur (void)
 			DS18B20_write_byte(skip_rom);
 			DS18B20_write_byte(convert_t);
 			read_temperature_stage=1;
+			DS18B20_delay=1000;
 		}
 	if (read_temperature_stage==1)
 		{
 			if (DS18B20_read_bit()) read_temperature_stage=2;		
+			//if (DS18B20_read_bit()) read_temperature_stage=2;		
 		}
 	if (read_temperature_stage==2)
 		{
@@ -129,6 +133,60 @@ uint16_t DS18B20_read_temperatur (void)
 return DS18B20_temperature;
 }
 
+//==================================================
+_Bool DS18B20_read_temperatur_of_sensor (void)
+{
+	_Bool Sensor_OK=0;
+	
+	if (read_temperature_stage==0) 
+		{
+			Sensor_OK=DS18B20_Reset_single();
+			if (!Sensor_OK) return 0;
+			DS18B20_write_byte(skip_rom);
+			DS18B20_write_byte(convert_t);
+			read_temperature_stage=1;
+			DS18B20_delay=1000;
+		}
+	if (read_temperature_stage==1)
+		{
+			if (DS18B20_read_bit()) read_temperature_stage=2;		
+			//if (DS18B20_read_bit()) read_temperature_stage=2;		
+		}
+	if (read_temperature_stage==2)
+		{
+			//1 sensor
+			Sensor_OK=DS18B20_Reset_single();
+			if (!Sensor_OK)	return 0;
+			DS18B20_write_byte(match_ROM);
+			
+			for (uint8_t i=0; i<8; i++)
+				{
+				DS18B20_write_byte(ROM_work[i]);
+				}
+			DS18B20_write_byte(read_scratchpad);
+			DS18B20_temperature_of_sensor[0]=(uint16_t)(DS18B20_read_byte()) + (uint16_t)(DS18B20_read_byte()<<8);
+			DS18B20_temperature_of_sensor[0]=(DS18B20_temperature_of_sensor[0]/16*10)+(uint16_t)((DS18B20_temperature_of_sensor[0]&0b00001111)*0.625);
+			
+			//	2 sensor
+			Sensor_OK=DS18B20_Reset_single();
+			if (!Sensor_OK)	return 0;
+			DS18B20_write_byte(match_ROM);
+			
+			for (uint8_t i=0; i<8; i++)
+				{
+				DS18B20_write_byte(ROM_work_1[i]);
+				}
+			DS18B20_write_byte(read_scratchpad);
+			DS18B20_temperature_of_sensor[1]=(uint16_t)(DS18B20_read_byte()) + (uint16_t)(DS18B20_read_byte()<<8);
+			DS18B20_temperature_of_sensor[1]=(DS18B20_temperature_of_sensor[1]/16*10)+(uint16_t)((DS18B20_temperature_of_sensor[1]&0b00001111)*0.625);
+				
+				
+				
+				
+				read_temperature_stage=0;
+		}
+return 1;
+}
 //===================================================
 uint16_t DS18B20_read_temperatur_via_DMA (void)
 {
