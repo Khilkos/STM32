@@ -21,9 +21,9 @@ Section Cross References
     main.o(.text.main) refers to delay.o(.text.SysTick_Init) for SysTick_Init
     main.o(.text.main) refers to timer_f411_init.o(.text.Timer_F411_init) for Timer_F411_init
     main.o(.text.main) refers to i2c_f411.o(.text.I2C_F411_init) for I2C_F411_init
-    main.o(.text.main) refers to 1602_i2c.o(.text.LCD1602_init_via_I2C) for LCD1602_init_via_I2C
     main.o(.text.main) refers to dma_f411.o(.text.DMA_F411_init) for DMA_F411_init
     main.o(.text.main) refers to usart_f411.o(.text.USART_F411_init) for USART_F411_init
+    main.o(.text.main) refers to 1602_i2c.o(.text.LCD1602_init_via_I2C) for LCD1602_init_via_I2C
     main.o(.text.main) refers to ds18b20_f411.o(.text.DS18B20_read_ROM) for DS18B20_read_ROM
     main.o(.text.main) refers to board.o(.text.key_scan) for key_scan
     main.o(.text.main) refers to delay.o(.text.delay_us) for delay_us
@@ -615,7 +615,18 @@ Section Cross References
     ds18b20_f411.o(.text.DS18B20_read_temperatur) refers to ds18b20_f411.o(.text.OUTLINED_FUNCTION_2) for OUTLINED_FUNCTION_2
     ds18b20_f411.o(.text.DS18B20_read_temperatur) refers to dfix.o(x$fpl$dfix) for __aeabi_d2iz
     ds18b20_f411.o(.text.DS18B20_read_temperatur) refers to ds18b20_f411.o(.bss..L_MergedGlobals) for [Anonymous Symbol]
+    ds18b20_f411.o(.text.DS18B20_read_temperatur) refers to timer_f411_init.o(.bss..L_MergedGlobals) for DS18B20_delay
     ds18b20_f411.o(.ARM.exidx.text.DS18B20_read_temperatur) refers to ds18b20_f411.o(.text.DS18B20_read_temperatur) for [Anonymous Symbol]
+    ds18b20_f411.o(.text.DS18B20_read_temperatur_of_sensor) refers to ds18b20_f411.o(.text.DS18B20_Reset_single) for DS18B20_Reset_single
+    ds18b20_f411.o(.text.DS18B20_read_temperatur_of_sensor) refers to ds18b20_f411.o(.text.DS18B20_write_byte) for DS18B20_write_byte
+    ds18b20_f411.o(.text.DS18B20_read_temperatur_of_sensor) refers to ds18b20_f411.o(.text.DS18B20_read_bit) for DS18B20_read_bit
+    ds18b20_f411.o(.text.DS18B20_read_temperatur_of_sensor) refers to ds18b20_f411.o(.text.DS18B20_read_byte) for DS18B20_read_byte
+    ds18b20_f411.o(.text.DS18B20_read_temperatur_of_sensor) refers to dflt_clz.o(x$fpl$dflt) for __aeabi_i2d
+    ds18b20_f411.o(.text.DS18B20_read_temperatur_of_sensor) refers to dmul.o(x$fpl$dmul) for __aeabi_dmul
+    ds18b20_f411.o(.text.DS18B20_read_temperatur_of_sensor) refers to dfix.o(x$fpl$dfix) for __aeabi_d2iz
+    ds18b20_f411.o(.text.DS18B20_read_temperatur_of_sensor) refers to ds18b20_f411.o(.bss..L_MergedGlobals) for [Anonymous Symbol]
+    ds18b20_f411.o(.text.DS18B20_read_temperatur_of_sensor) refers to timer_f411_init.o(.bss..L_MergedGlobals) for DS18B20_delay
+    ds18b20_f411.o(.ARM.exidx.text.DS18B20_read_temperatur_of_sensor) refers to ds18b20_f411.o(.text.DS18B20_read_temperatur_of_sensor) for [Anonymous Symbol]
     ds18b20_f411.o(.text.DS18B20_read_temperatur_via_DMA) refers to ds18b20_f411.o(.text.DS18B20_Reset_single) for DS18B20_Reset_single
     ds18b20_f411.o(.text.DS18B20_read_temperatur_via_DMA) refers to dma_f411.o(.text.DMA_F411_DS18B20_convert_T) for DMA_F411_DS18B20_convert_T
     ds18b20_f411.o(.text.DS18B20_read_temperatur_via_DMA) refers to ds18b20_f411.o(.text.OUTLINED_FUNCTION_0) for OUTLINED_FUNCTION_0
@@ -1099,8 +1110,10 @@ Removing Unused input sections from the image.
     Removing ds18b20_f411.o(.ARM.exidx.text.DS18B20_read_bit), (8 bytes).
     Removing ds18b20_f411.o(.ARM.exidx.text.DS18B20_read_byte), (8 bytes).
     Removing ds18b20_f411.o(.ARM.exidx.text.DS18B20_read_ROM), (8 bytes).
-    Removing ds18b20_f411.o(.text.DS18B20_read_temperatur), (148 bytes).
+    Removing ds18b20_f411.o(.text.DS18B20_read_temperatur), (160 bytes).
     Removing ds18b20_f411.o(.ARM.exidx.text.DS18B20_read_temperatur), (8 bytes).
+    Removing ds18b20_f411.o(.text.DS18B20_read_temperatur_of_sensor), (288 bytes).
+    Removing ds18b20_f411.o(.ARM.exidx.text.DS18B20_read_temperatur_of_sensor), (8 bytes).
     Removing ds18b20_f411.o(.text.DS18B20_read_temperatur_via_DMA), (156 bytes).
     Removing ds18b20_f411.o(.ARM.exidx.text.DS18B20_read_temperatur_via_DMA), (8 bytes).
     Removing ds18b20_f411.o(.text.DS18B20_read_temperatur_via_DMA_timer), (168 bytes).
@@ -1166,7 +1179,7 @@ Removing Unused input sections from the image.
     Removing system_stm32f4xx.o(.rodata.AHBPrescTable), (16 bytes).
     Removing system_stm32f4xx.o(.rodata.APBPrescTable), (8 bytes).
 
-225 unused section(s) (total 13786 bytes) removed from the image.
+227 unused section(s) (total 14094 bytes) removed from the image.
 
 ==============================================================================
 
@@ -1391,92 +1404,93 @@ Image Symbol Table
     __arm_cp.5_0                             0x08000810   Number         4  ds18b20_f411.o(.text.DS18B20_read_ROM)
     [Anonymous Symbol]                       0x08000814   Section        0  ds18b20_f411.o(.text.DS18B20_read_bit)
     [Anonymous Symbol]                       0x08000834   Section        0  ds18b20_f411.o(.text.DS18B20_read_byte)
-    [Anonymous Symbol]                       0x08000850   Section        0  ds18b20_f411.o(.text.DS18B20_write_bit)
-    __arm_cp.1_0                             0x08000870   Number         4  ds18b20_f411.o(.text.DS18B20_write_bit)
-    [Anonymous Symbol]                       0x08000874   Section        0  ds18b20_f411.o(.text.DS18B20_write_byte)
-    [Anonymous Symbol]                       0x0800088e   Section        0  1602_i2c.o(.text.Draw_String)
-    [Anonymous Symbol]                       0x080008ba   Section        0  gpio_setup.o(.text.GPIO_Alternate)
-    [Anonymous Symbol]                       0x08000908   Section        0  gpio_setup.o(.text.GPIO_DI_setup)
-    [Anonymous Symbol]                       0x08000924   Section        0  gpio_setup.o(.text.GPIO_DO_setup)
-    [Anonymous Symbol]                       0x08000940   Section        0  i2c_f411.o(.text.I2C_F411_Start)
-    [Anonymous Symbol]                       0x08000958   Section        0  i2c_f411.o(.text.I2C_F411_Stop)
-    [Anonymous Symbol]                       0x08000964   Section        0  i2c_f411.o(.text.I2C_F411_address_write)
-    __arm_cp.4_0                             0x08000980   Number         4  i2c_f411.o(.text.I2C_F411_address_write)
-    [Anonymous Symbol]                       0x08000984   Section        0  i2c_f411.o(.text.I2C_F411_data_write)
-    __arm_cp.5_0                             0x0800099c   Number         4  i2c_f411.o(.text.I2C_F411_data_write)
-    [Anonymous Symbol]                       0x080009a0   Section        0  i2c_f411.o(.text.I2C_F411_init)
-    __arm_cp.0_1                             0x080009e4   Number         4  i2c_f411.o(.text.I2C_F411_init)
-    [Anonymous Symbol]                       0x080009e8   Section        0  1602_i2c.o(.text.LCD1602_init_via_I2C)
-    __arm_cp.2_0                             0x08000a30   Number         4  1602_i2c.o(.text.LCD1602_init_via_I2C)
-    __arm_cp.2_1                             0x08000a34   Number         4  1602_i2c.o(.text.LCD1602_init_via_I2C)
-    [Anonymous Symbol]                       0x08000a38   Section        0  1602_i2c.o(.text.LCD1602_send_command_via_I2C)
-    [Anonymous Symbol]                       0x08000a68   Section        0  1602_i2c.o(.text.LCD1602_send_data_via_I2C)
-    __arm_cp.1_0                             0x08000a98   Number         4  1602_i2c.o(.text.LCD1602_send_data_via_I2C)
-    OUTLINED_FUNCTION_0                      0x08000a9d   Thumb Code    10  main.o(.text.OUTLINED_FUNCTION_0)
-    [Anonymous Symbol]                       0x08000a9c   Section        0  main.o(.text.OUTLINED_FUNCTION_0)
-    OUTLINED_FUNCTION_0                      0x08000aa7   Thumb Code    10  delay.o(.text.OUTLINED_FUNCTION_0)
-    [Anonymous Symbol]                       0x08000aa6   Section        0  delay.o(.text.OUTLINED_FUNCTION_0)
-    OUTLINED_FUNCTION_0                      0x08000ab1   Thumb Code    12  i2c_f411.o(.text.OUTLINED_FUNCTION_0)
-    [Anonymous Symbol]                       0x08000ab0   Section        0  i2c_f411.o(.text.OUTLINED_FUNCTION_0)
-    OUTLINED_FUNCTION_0                      0x08000abd   Thumb Code    10  usart_f411.o(.text.OUTLINED_FUNCTION_0)
-    [Anonymous Symbol]                       0x08000abc   Section        0  usart_f411.o(.text.OUTLINED_FUNCTION_0)
-    [Anonymous Symbol]                       0x08000ac8   Section        0  delay.o(.text.SysTick_Handler)
-    __arm_cp.0_1                             0x08000ae8   Number         4  delay.o(.text.SysTick_Handler)
-    [Anonymous Symbol]                       0x08000aec   Section        0  delay.o(.text.SysTick_Init)
-    [Anonymous Symbol]                       0x08000b08   Section        0  system_stm32f4xx.o(.text.SystemInit)
-    __arm_cp.0_0                             0x08000b14   Number         4  system_stm32f4xx.o(.text.SystemInit)
-    [Anonymous Symbol]                       0x08000b18   Section        0  timer_f411_init.o(.text.TIM1_UP_TIM10_IRQHandler)
-    __arm_cp.1_0                             0x08000b5c   Number         4  timer_f411_init.o(.text.TIM1_UP_TIM10_IRQHandler)
-    __arm_cp.1_1                             0x08000b60   Number         4  timer_f411_init.o(.text.TIM1_UP_TIM10_IRQHandler)
-    [Anonymous Symbol]                       0x08000b64   Section        0  timer_f411_init.o(.text.Timer_F411_init)
-    __arm_cp.0_0                             0x08000b9c   Number         4  timer_f411_init.o(.text.Timer_F411_init)
-    __arm_cp.0_1                             0x08000ba0   Number         4  timer_f411_init.o(.text.Timer_F411_init)
-    __arm_cp.0_2                             0x08000ba4   Number         4  timer_f411_init.o(.text.Timer_F411_init)
-    [Anonymous Symbol]                       0x08000ba8   Section        0  usart_f411.o(.text.USART_F411_DMAR_OFF)
-    [Anonymous Symbol]                       0x08000bb0   Section        0  usart_f411.o(.text.USART_F411_DMAT_OFF)
-    __arm_cp.8_0                             0x08000bbc   Number         4  usart_f411.o(.text.USART_F411_DMAT_OFF)
-    [Anonymous Symbol]                       0x08000bc0   Section        0  usart_f411.o(.text.USART_F411_init)
-    __arm_cp.0_0                             0x08000bfc   Number         4  usart_f411.o(.text.USART_F411_init)
-    __arm_cp.0_1                             0x08000c00   Number         4  usart_f411.o(.text.USART_F411_init)
-    [Anonymous Symbol]                       0x08000c04   Section        0  usart_f411.o(.text.USART_F411_set_115200_baud)
-    [Anonymous Symbol]                       0x08000c1c   Section        0  usart_f411.o(.text.USART_F411_set_9600_baud)
-    __arm_cp.2_0                             0x08000c34   Number         4  usart_f411.o(.text.USART_F411_set_9600_baud)
-    [Anonymous Symbol]                       0x08000c38   Section        0  delay.o(.text.delay_ms)
-    [Anonymous Symbol]                       0x08000c58   Section        0  delay.o(.text.delay_us)
-    __arm_cp.1_0                             0x08000c74   Number         4  delay.o(.text.delay_us)
-    __arm_cp.1_1                             0x08000c78   Number         4  delay.o(.text.delay_us)
-    [Anonymous Symbol]                       0x08000c7c   Section        0  board.o(.text.key_scan)
-    __arm_cp.0_0                             0x08000cb4   Number         4  board.o(.text.key_scan)
-    __arm_cp.0_1                             0x08000cb8   Number         4  board.o(.text.key_scan)
-    [Anonymous Symbol]                       0x08000cbc   Section        0  main.o(.text.main)
-    __arm_cp.0_0                             0x08000de4   Number         4  main.o(.text.main)
-    __arm_cp.0_1                             0x08000de8   Number         4  main.o(.text.main)
-    __arm_cp.0_2                             0x08000dec   Number         4  main.o(.text.main)
-    __arm_cp.0_3                             0x08000df0   Number         4  main.o(.text.main)
-    __arm_cp.0_4                             0x08000df4   Number         4  main.o(.text.main)
-    __arm_cp.0_5                             0x08000df8   Number         4  main.o(.text.main)
-    __arm_cp.0_7                             0x08000e0c   Number         4  main.o(.text.main)
-    i._is_digit                              0x08000e34   Section        0  __printf_wp.o(i._is_digit)
-    $v0                                      0x08000e42   Number         0  fpinit.o(x$fpl$fpinit)
-    x$fpl$fpinit                             0x08000e42   Section       26  fpinit.o(x$fpl$fpinit)
-    uc_hextab                                0x08000e5c   Data          20  _printf_hex_int.o(.constdata)
-    .constdata                               0x08000e5c   Section       40  _printf_hex_int.o(.constdata)
-    lc_hextab                                0x08000e70   Data          20  _printf_hex_int.o(.constdata)
-    maptable                                 0x08000e84   Data          17  __printf_flags_wp.o(.constdata)
-    .constdata                               0x08000e84   Section       17  __printf_flags_wp.o(.constdata)
+    __arm_cp.4_0                             0x08000854   Number         4  ds18b20_f411.o(.text.DS18B20_read_byte)
+    [Anonymous Symbol]                       0x08000858   Section        0  ds18b20_f411.o(.text.DS18B20_write_bit)
+    __arm_cp.1_0                             0x08000878   Number         4  ds18b20_f411.o(.text.DS18B20_write_bit)
+    [Anonymous Symbol]                       0x0800087c   Section        0  ds18b20_f411.o(.text.DS18B20_write_byte)
+    [Anonymous Symbol]                       0x08000896   Section        0  1602_i2c.o(.text.Draw_String)
+    [Anonymous Symbol]                       0x080008c2   Section        0  gpio_setup.o(.text.GPIO_Alternate)
+    [Anonymous Symbol]                       0x08000910   Section        0  gpio_setup.o(.text.GPIO_DI_setup)
+    [Anonymous Symbol]                       0x0800092c   Section        0  gpio_setup.o(.text.GPIO_DO_setup)
+    [Anonymous Symbol]                       0x08000948   Section        0  i2c_f411.o(.text.I2C_F411_Start)
+    [Anonymous Symbol]                       0x08000960   Section        0  i2c_f411.o(.text.I2C_F411_Stop)
+    [Anonymous Symbol]                       0x0800096c   Section        0  i2c_f411.o(.text.I2C_F411_address_write)
+    __arm_cp.4_0                             0x08000988   Number         4  i2c_f411.o(.text.I2C_F411_address_write)
+    [Anonymous Symbol]                       0x0800098c   Section        0  i2c_f411.o(.text.I2C_F411_data_write)
+    __arm_cp.5_0                             0x080009a4   Number         4  i2c_f411.o(.text.I2C_F411_data_write)
+    [Anonymous Symbol]                       0x080009a8   Section        0  i2c_f411.o(.text.I2C_F411_init)
+    __arm_cp.0_1                             0x080009ec   Number         4  i2c_f411.o(.text.I2C_F411_init)
+    [Anonymous Symbol]                       0x080009f0   Section        0  1602_i2c.o(.text.LCD1602_init_via_I2C)
+    __arm_cp.2_0                             0x08000a3c   Number         4  1602_i2c.o(.text.LCD1602_init_via_I2C)
+    __arm_cp.2_1                             0x08000a40   Number         4  1602_i2c.o(.text.LCD1602_init_via_I2C)
+    [Anonymous Symbol]                       0x08000a44   Section        0  1602_i2c.o(.text.LCD1602_send_command_via_I2C)
+    [Anonymous Symbol]                       0x08000a74   Section        0  1602_i2c.o(.text.LCD1602_send_data_via_I2C)
+    __arm_cp.1_0                             0x08000aa4   Number         4  1602_i2c.o(.text.LCD1602_send_data_via_I2C)
+    OUTLINED_FUNCTION_0                      0x08000aa9   Thumb Code    10  main.o(.text.OUTLINED_FUNCTION_0)
+    [Anonymous Symbol]                       0x08000aa8   Section        0  main.o(.text.OUTLINED_FUNCTION_0)
+    OUTLINED_FUNCTION_0                      0x08000ab3   Thumb Code    10  delay.o(.text.OUTLINED_FUNCTION_0)
+    [Anonymous Symbol]                       0x08000ab2   Section        0  delay.o(.text.OUTLINED_FUNCTION_0)
+    OUTLINED_FUNCTION_0                      0x08000abd   Thumb Code    12  i2c_f411.o(.text.OUTLINED_FUNCTION_0)
+    [Anonymous Symbol]                       0x08000abc   Section        0  i2c_f411.o(.text.OUTLINED_FUNCTION_0)
+    OUTLINED_FUNCTION_0                      0x08000ac9   Thumb Code    10  usart_f411.o(.text.OUTLINED_FUNCTION_0)
+    [Anonymous Symbol]                       0x08000ac8   Section        0  usart_f411.o(.text.OUTLINED_FUNCTION_0)
+    [Anonymous Symbol]                       0x08000ad4   Section        0  delay.o(.text.SysTick_Handler)
+    __arm_cp.0_1                             0x08000af4   Number         4  delay.o(.text.SysTick_Handler)
+    [Anonymous Symbol]                       0x08000af8   Section        0  delay.o(.text.SysTick_Init)
+    [Anonymous Symbol]                       0x08000b14   Section        0  system_stm32f4xx.o(.text.SystemInit)
+    __arm_cp.0_0                             0x08000b20   Number         4  system_stm32f4xx.o(.text.SystemInit)
+    [Anonymous Symbol]                       0x08000b24   Section        0  timer_f411_init.o(.text.TIM1_UP_TIM10_IRQHandler)
+    __arm_cp.1_0                             0x08000b68   Number         4  timer_f411_init.o(.text.TIM1_UP_TIM10_IRQHandler)
+    __arm_cp.1_1                             0x08000b6c   Number         4  timer_f411_init.o(.text.TIM1_UP_TIM10_IRQHandler)
+    [Anonymous Symbol]                       0x08000b70   Section        0  timer_f411_init.o(.text.Timer_F411_init)
+    __arm_cp.0_0                             0x08000ba8   Number         4  timer_f411_init.o(.text.Timer_F411_init)
+    __arm_cp.0_1                             0x08000bac   Number         4  timer_f411_init.o(.text.Timer_F411_init)
+    __arm_cp.0_2                             0x08000bb0   Number         4  timer_f411_init.o(.text.Timer_F411_init)
+    [Anonymous Symbol]                       0x08000bb4   Section        0  usart_f411.o(.text.USART_F411_DMAR_OFF)
+    [Anonymous Symbol]                       0x08000bbc   Section        0  usart_f411.o(.text.USART_F411_DMAT_OFF)
+    __arm_cp.8_0                             0x08000bc8   Number         4  usart_f411.o(.text.USART_F411_DMAT_OFF)
+    [Anonymous Symbol]                       0x08000bcc   Section        0  usart_f411.o(.text.USART_F411_init)
+    __arm_cp.0_0                             0x08000c08   Number         4  usart_f411.o(.text.USART_F411_init)
+    __arm_cp.0_1                             0x08000c0c   Number         4  usart_f411.o(.text.USART_F411_init)
+    [Anonymous Symbol]                       0x08000c10   Section        0  usart_f411.o(.text.USART_F411_set_115200_baud)
+    [Anonymous Symbol]                       0x08000c28   Section        0  usart_f411.o(.text.USART_F411_set_9600_baud)
+    __arm_cp.2_0                             0x08000c40   Number         4  usart_f411.o(.text.USART_F411_set_9600_baud)
+    [Anonymous Symbol]                       0x08000c44   Section        0  delay.o(.text.delay_ms)
+    [Anonymous Symbol]                       0x08000c64   Section        0  delay.o(.text.delay_us)
+    __arm_cp.1_0                             0x08000c80   Number         4  delay.o(.text.delay_us)
+    __arm_cp.1_1                             0x08000c84   Number         4  delay.o(.text.delay_us)
+    [Anonymous Symbol]                       0x08000c88   Section        0  board.o(.text.key_scan)
+    __arm_cp.0_0                             0x08000cc0   Number         4  board.o(.text.key_scan)
+    __arm_cp.0_1                             0x08000cc4   Number         4  board.o(.text.key_scan)
+    [Anonymous Symbol]                       0x08000cc8   Section        0  main.o(.text.main)
+    __arm_cp.0_0                             0x08000df0   Number         4  main.o(.text.main)
+    __arm_cp.0_1                             0x08000df4   Number         4  main.o(.text.main)
+    __arm_cp.0_2                             0x08000df8   Number         4  main.o(.text.main)
+    __arm_cp.0_3                             0x08000dfc   Number         4  main.o(.text.main)
+    __arm_cp.0_4                             0x08000e00   Number         4  main.o(.text.main)
+    __arm_cp.0_5                             0x08000e04   Number         4  main.o(.text.main)
+    __arm_cp.0_7                             0x08000e18   Number         4  main.o(.text.main)
+    i._is_digit                              0x08000e40   Section        0  __printf_wp.o(i._is_digit)
+    $v0                                      0x08000e4e   Number         0  fpinit.o(x$fpl$fpinit)
+    x$fpl$fpinit                             0x08000e4e   Section       26  fpinit.o(x$fpl$fpinit)
+    uc_hextab                                0x08000e68   Data          20  _printf_hex_int.o(.constdata)
+    .constdata                               0x08000e68   Section       40  _printf_hex_int.o(.constdata)
+    lc_hextab                                0x08000e7c   Data          20  _printf_hex_int.o(.constdata)
+    maptable                                 0x08000e90   Data          17  __printf_flags_wp.o(.constdata)
+    .constdata                               0x08000e90   Section       17  __printf_flags_wp.o(.constdata)
     .bss                                     0x20000008   Section       96  libspace.o(.bss)
     [Anonymous Symbol]                       0x20000068   Section        0  ds18b20_f411.o(.bss..L_MergedGlobals)
     read_temperature_stage                   0x20000069   Data           1  ds18b20_f411.o(.bss..L_MergedGlobals)
-    [Anonymous Symbol]                       0x2000008c   Section        0  timer_f411_init.o(.bss..L_MergedGlobals)
-    count                                    0x200000c0   Data           4  delay.o(.bss.count)
-    [Anonymous Symbol]                       0x200000c0   Section        0  delay.o(.bss.count)
-    key_scan.encoder_state                   0x200000c4   Data           1  board.o(.bss.key_scan.encoder_state)
-    [Anonymous Symbol]                       0x200000c4   Section        0  board.o(.bss.key_scan.encoder_state)
-    Heap_Mem                                 0x200000c8   Data         512  startup_stm32f411xe.o(HEAP)
-    HEAP                                     0x200000c8   Section      512  startup_stm32f411xe.o(HEAP)
-    Stack_Mem                                0x200002c8   Data        1024  startup_stm32f411xe.o(STACK)
-    STACK                                    0x200002c8   Section     1024  startup_stm32f411xe.o(STACK)
-    __initial_sp                             0x200006c8   Data           0  startup_stm32f411xe.o(STACK)
+    [Anonymous Symbol]                       0x20000090   Section        0  timer_f411_init.o(.bss..L_MergedGlobals)
+    count                                    0x200000c4   Data           4  delay.o(.bss.count)
+    [Anonymous Symbol]                       0x200000c4   Section        0  delay.o(.bss.count)
+    key_scan.encoder_state                   0x200000c8   Data           1  board.o(.bss.key_scan.encoder_state)
+    [Anonymous Symbol]                       0x200000c8   Section        0  board.o(.bss.key_scan.encoder_state)
+    Heap_Mem                                 0x200000d0   Data         512  startup_stm32f411xe.o(HEAP)
+    HEAP                                     0x200000d0   Section      512  startup_stm32f411xe.o(HEAP)
+    Stack_Mem                                0x200002d0   Data        1024  startup_stm32f411xe.o(STACK)
+    STACK                                    0x200002d0   Section     1024  startup_stm32f411xe.o(STACK)
+    __initial_sp                             0x200006d0   Data           0  startup_stm32f411xe.o(STACK)
 
     Global Symbols
 
@@ -1665,59 +1679,60 @@ Image Symbol Table
     DS18B20_Reset_single                     0x080007c5   Thumb Code    44  ds18b20_f411.o(.text.DS18B20_Reset_single)
     DS18B20_read_ROM                         0x080007f1   Thumb Code    32  ds18b20_f411.o(.text.DS18B20_read_ROM)
     DS18B20_read_bit                         0x08000815   Thumb Code    32  ds18b20_f411.o(.text.DS18B20_read_bit)
-    DS18B20_read_byte                        0x08000835   Thumb Code    26  ds18b20_f411.o(.text.DS18B20_read_byte)
-    DS18B20_write_bit                        0x08000851   Thumb Code    32  ds18b20_f411.o(.text.DS18B20_write_bit)
-    DS18B20_write_byte                       0x08000875   Thumb Code    26  ds18b20_f411.o(.text.DS18B20_write_byte)
-    Draw_String                              0x0800088f   Thumb Code    44  1602_i2c.o(.text.Draw_String)
-    GPIO_Alternate                           0x080008bb   Thumb Code    78  gpio_setup.o(.text.GPIO_Alternate)
-    GPIO_DI_setup                            0x08000909   Thumb Code    28  gpio_setup.o(.text.GPIO_DI_setup)
-    GPIO_DO_setup                            0x08000925   Thumb Code    26  gpio_setup.o(.text.GPIO_DO_setup)
-    I2C_F411_Start                           0x08000941   Thumb Code    24  i2c_f411.o(.text.I2C_F411_Start)
-    I2C_F411_Stop                            0x08000959   Thumb Code    12  i2c_f411.o(.text.I2C_F411_Stop)
-    I2C_F411_address_write                   0x08000965   Thumb Code    28  i2c_f411.o(.text.I2C_F411_address_write)
-    I2C_F411_data_write                      0x08000985   Thumb Code    24  i2c_f411.o(.text.I2C_F411_data_write)
-    I2C_F411_init                            0x080009a1   Thumb Code    68  i2c_f411.o(.text.I2C_F411_init)
-    LCD1602_init_via_I2C                     0x080009e9   Thumb Code    72  1602_i2c.o(.text.LCD1602_init_via_I2C)
-    LCD1602_send_command_via_I2C             0x08000a39   Thumb Code    48  1602_i2c.o(.text.LCD1602_send_command_via_I2C)
-    LCD1602_send_data_via_I2C                0x08000a69   Thumb Code    48  1602_i2c.o(.text.LCD1602_send_data_via_I2C)
-    SysTick_Handler                          0x08000ac9   Thumb Code    32  delay.o(.text.SysTick_Handler)
-    SysTick_Init                             0x08000aed   Thumb Code    28  delay.o(.text.SysTick_Init)
-    SystemInit                               0x08000b09   Thumb Code    12  system_stm32f4xx.o(.text.SystemInit)
-    TIM1_UP_TIM10_IRQHandler                 0x08000b19   Thumb Code    68  timer_f411_init.o(.text.TIM1_UP_TIM10_IRQHandler)
-    Timer_F411_init                          0x08000b65   Thumb Code    56  timer_f411_init.o(.text.Timer_F411_init)
-    USART_F411_DMAR_OFF                      0x08000ba9   Thumb Code     8  usart_f411.o(.text.USART_F411_DMAR_OFF)
-    USART_F411_DMAT_OFF                      0x08000bb1   Thumb Code    12  usart_f411.o(.text.USART_F411_DMAT_OFF)
-    USART_F411_init                          0x08000bc1   Thumb Code    60  usart_f411.o(.text.USART_F411_init)
-    USART_F411_set_115200_baud               0x08000c05   Thumb Code    24  usart_f411.o(.text.USART_F411_set_115200_baud)
-    USART_F411_set_9600_baud                 0x08000c1d   Thumb Code    24  usart_f411.o(.text.USART_F411_set_9600_baud)
-    delay_ms                                 0x08000c39   Thumb Code    32  delay.o(.text.delay_ms)
-    delay_us                                 0x08000c59   Thumb Code    28  delay.o(.text.delay_us)
-    key_scan                                 0x08000c7d   Thumb Code    56  board.o(.text.key_scan)
-    main                                     0x08000cbd   Thumb Code   296  main.o(.text.main)
-    _is_digit                                0x08000e35   Thumb Code    14  __printf_wp.o(i._is_digit)
-    _fp_init                                 0x08000e43   Thumb Code    26  fpinit.o(x$fpl$fpinit)
-    __fplib_config_fpu_vfp                   0x08000e5b   Thumb Code     0  fpinit.o(x$fpl$fpinit)
-    __fplib_config_pureend_doubles           0x08000e5b   Thumb Code     0  fpinit.o(x$fpl$fpinit)
-    Region$$Table$$Base                      0x08000e98   Number         0  anon$$obj.o(Region$$Table)
-    Region$$Table$$Limit                     0x08000eb8   Number         0  anon$$obj.o(Region$$Table)
+    DS18B20_read_byte                        0x08000835   Thumb Code    32  ds18b20_f411.o(.text.DS18B20_read_byte)
+    DS18B20_write_bit                        0x08000859   Thumb Code    32  ds18b20_f411.o(.text.DS18B20_write_bit)
+    DS18B20_write_byte                       0x0800087d   Thumb Code    26  ds18b20_f411.o(.text.DS18B20_write_byte)
+    Draw_String                              0x08000897   Thumb Code    44  1602_i2c.o(.text.Draw_String)
+    GPIO_Alternate                           0x080008c3   Thumb Code    78  gpio_setup.o(.text.GPIO_Alternate)
+    GPIO_DI_setup                            0x08000911   Thumb Code    28  gpio_setup.o(.text.GPIO_DI_setup)
+    GPIO_DO_setup                            0x0800092d   Thumb Code    26  gpio_setup.o(.text.GPIO_DO_setup)
+    I2C_F411_Start                           0x08000949   Thumb Code    24  i2c_f411.o(.text.I2C_F411_Start)
+    I2C_F411_Stop                            0x08000961   Thumb Code    12  i2c_f411.o(.text.I2C_F411_Stop)
+    I2C_F411_address_write                   0x0800096d   Thumb Code    28  i2c_f411.o(.text.I2C_F411_address_write)
+    I2C_F411_data_write                      0x0800098d   Thumb Code    24  i2c_f411.o(.text.I2C_F411_data_write)
+    I2C_F411_init                            0x080009a9   Thumb Code    68  i2c_f411.o(.text.I2C_F411_init)
+    LCD1602_init_via_I2C                     0x080009f1   Thumb Code    76  1602_i2c.o(.text.LCD1602_init_via_I2C)
+    LCD1602_send_command_via_I2C             0x08000a45   Thumb Code    48  1602_i2c.o(.text.LCD1602_send_command_via_I2C)
+    LCD1602_send_data_via_I2C                0x08000a75   Thumb Code    48  1602_i2c.o(.text.LCD1602_send_data_via_I2C)
+    SysTick_Handler                          0x08000ad5   Thumb Code    32  delay.o(.text.SysTick_Handler)
+    SysTick_Init                             0x08000af9   Thumb Code    28  delay.o(.text.SysTick_Init)
+    SystemInit                               0x08000b15   Thumb Code    12  system_stm32f4xx.o(.text.SystemInit)
+    TIM1_UP_TIM10_IRQHandler                 0x08000b25   Thumb Code    68  timer_f411_init.o(.text.TIM1_UP_TIM10_IRQHandler)
+    Timer_F411_init                          0x08000b71   Thumb Code    56  timer_f411_init.o(.text.Timer_F411_init)
+    USART_F411_DMAR_OFF                      0x08000bb5   Thumb Code     8  usart_f411.o(.text.USART_F411_DMAR_OFF)
+    USART_F411_DMAT_OFF                      0x08000bbd   Thumb Code    12  usart_f411.o(.text.USART_F411_DMAT_OFF)
+    USART_F411_init                          0x08000bcd   Thumb Code    60  usart_f411.o(.text.USART_F411_init)
+    USART_F411_set_115200_baud               0x08000c11   Thumb Code    24  usart_f411.o(.text.USART_F411_set_115200_baud)
+    USART_F411_set_9600_baud                 0x08000c29   Thumb Code    24  usart_f411.o(.text.USART_F411_set_9600_baud)
+    delay_ms                                 0x08000c45   Thumb Code    32  delay.o(.text.delay_ms)
+    delay_us                                 0x08000c65   Thumb Code    28  delay.o(.text.delay_us)
+    key_scan                                 0x08000c89   Thumb Code    56  board.o(.text.key_scan)
+    main                                     0x08000cc9   Thumb Code   296  main.o(.text.main)
+    _is_digit                                0x08000e41   Thumb Code    14  __printf_wp.o(i._is_digit)
+    _fp_init                                 0x08000e4f   Thumb Code    26  fpinit.o(x$fpl$fpinit)
+    __fplib_config_fpu_vfp                   0x08000e67   Thumb Code     0  fpinit.o(x$fpl$fpinit)
+    __fplib_config_pureend_doubles           0x08000e67   Thumb Code     0  fpinit.o(x$fpl$fpinit)
+    Region$$Table$$Base                      0x08000ea4   Number         0  anon$$obj.o(Region$$Table)
+    Region$$Table$$Limit                     0x08000ec4   Number         0  anon$$obj.o(Region$$Table)
     encoder_data                             0x20000000   Data           2  board.o(.data.encoder_data)
     __libspace_start                         0x20000008   Data          96  libspace.o(.bss)
     DMA_busy                                 0x20000068   Data           1  ds18b20_f411.o(.bss..L_MergedGlobals)
     __temporary_stack_top$libspace           0x20000068   Data           0  libspace.o(.bss)
     DS18B20_temperature                      0x2000006a   Data           2  ds18b20_f411.o(.bss..L_MergedGlobals)
-    DMA_read_temp                            0x2000006c   Data          32  ds18b20_f411.o(.bss..L_MergedGlobals)
-    key_delay                                0x2000008c   Data           4  timer_f411_init.o(.bss..L_MergedGlobals)
-    select_delay                             0x20000090   Data           4  timer_f411_init.o(.bss..L_MergedGlobals)
-    DS18B20_delay                            0x20000094   Data           4  timer_f411_init.o(.bss..L_MergedGlobals)
-    HUB75_line_run_delay                     0x20000098   Data           4  timer_f411_init.o(.bss..L_MergedGlobals)
-    HUB75_screen_delay                       0x2000009c   Data           4  timer_f411_init.o(.bss..L_MergedGlobals)
-    ADC_DMA_val                              0x200000a0   Data           4  dma_f411.o(.bss.ADC_DMA_val)
-    ADC_ch0                                  0x200000a4   Data           4  adc_f411.o(.bss.ADC_ch0)
-    ADC_ch0_summ                             0x200000a8   Data           4  adc_f411.o(.bss.ADC_ch0_summ)
-    ADC_ch1                                  0x200000ac   Data           4  adc_f411.o(.bss.ADC_ch1)
-    ADC_ch1_summ                             0x200000b0   Data           4  adc_f411.o(.bss.ADC_ch1_summ)
-    ADC_main_count                           0x200000b4   Data           4  adc_f411.o(.bss.ADC_main_count)
-    ROM                                      0x200000b8   Data           8  ds18b20_f411.o(.bss.ROM)
+    DS18B20_temperature_of_sensor            0x2000006c   Data           4  ds18b20_f411.o(.bss..L_MergedGlobals)
+    DMA_read_temp                            0x20000070   Data          32  ds18b20_f411.o(.bss..L_MergedGlobals)
+    key_delay                                0x20000090   Data           4  timer_f411_init.o(.bss..L_MergedGlobals)
+    select_delay                             0x20000094   Data           4  timer_f411_init.o(.bss..L_MergedGlobals)
+    DS18B20_delay                            0x20000098   Data           4  timer_f411_init.o(.bss..L_MergedGlobals)
+    HUB75_line_run_delay                     0x2000009c   Data           4  timer_f411_init.o(.bss..L_MergedGlobals)
+    HUB75_screen_delay                       0x200000a0   Data           4  timer_f411_init.o(.bss..L_MergedGlobals)
+    ADC_DMA_val                              0x200000a4   Data           4  dma_f411.o(.bss.ADC_DMA_val)
+    ADC_ch0                                  0x200000a8   Data           4  adc_f411.o(.bss.ADC_ch0)
+    ADC_ch0_summ                             0x200000ac   Data           4  adc_f411.o(.bss.ADC_ch0_summ)
+    ADC_ch1                                  0x200000b0   Data           4  adc_f411.o(.bss.ADC_ch1)
+    ADC_ch1_summ                             0x200000b4   Data           4  adc_f411.o(.bss.ADC_ch1_summ)
+    ADC_main_count                           0x200000b8   Data           4  adc_f411.o(.bss.ADC_main_count)
+    ROM                                      0x200000bc   Data           8  ds18b20_f411.o(.bss.ROM)
 
 
 
@@ -1727,162 +1742,161 @@ Memory Map of the image
 
   Image Entry point : 0x08000249
 
-  Load Region LR_1 (Base: 0x08000000, Size: 0x00000ebc, Max: 0xffffffff, ABSOLUTE)
+  Load Region LR_1 (Base: 0x08000000, Size: 0x00000ec8, Max: 0xffffffff, ABSOLUTE)
 
-    Execution Region ER_RO (Exec base: 0x08000000, Load base: 0x08000000, Size: 0x00000eb8, Max: 0xffffffff, ABSOLUTE)
+    Execution Region ER_RO (Exec base: 0x08000000, Load base: 0x08000000, Size: 0x00000ec4, Max: 0xffffffff, ABSOLUTE)
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
-    0x08000000   0x08000000   0x00000198   Data   RO          375    RESET               startup_stm32f411xe.o
-    0x08000198   0x08000198   0x00000008   Code   RO          458  * !!!main             c_w.l(__main.o)
-    0x080001a0   0x080001a0   0x00000034   Code   RO          704    !!!scatter          c_w.l(__scatter.o)
-    0x080001d4   0x080001d4   0x0000001a   Code   RO          706    !!handler_copy      c_w.l(__scatter_copy.o)
+    0x08000000   0x08000000   0x00000198   Data   RO          377    RESET               startup_stm32f411xe.o
+    0x08000198   0x08000198   0x00000008   Code   RO          460  * !!!main             c_w.l(__main.o)
+    0x080001a0   0x080001a0   0x00000034   Code   RO          706    !!!scatter          c_w.l(__scatter.o)
+    0x080001d4   0x080001d4   0x0000001a   Code   RO          708    !!handler_copy      c_w.l(__scatter_copy.o)
     0x080001ee   0x080001ee   0x00000002   PAD
-    0x080001f0   0x080001f0   0x0000001c   Code   RO          708    !!handler_zi        c_w.l(__scatter_zi.o)
-    0x0800020c   0x0800020c   0x00000000   Code   RO          453    .ARM.Collect$$_printf_percent$$00000000  c_w.l(_printf_percent.o)
-    0x0800020c   0x0800020c   0x00000006   Code   RO          451    .ARM.Collect$$_printf_percent$$00000009  c_w.l(_printf_d.o)
-    0x08000212   0x08000212   0x00000006   Code   RO          450    .ARM.Collect$$_printf_percent$$0000000C  c_w.l(_printf_x.o)
-    0x08000218   0x08000218   0x00000004   Code   RO          485    .ARM.Collect$$_printf_percent$$00000017  c_w.l(_printf_percent_end.o)
-    0x0800021c   0x0800021c   0x00000002   Code   RO          567    .ARM.Collect$$libinit$$00000000  c_w.l(libinit.o)
-    0x0800021e   0x0800021e   0x00000004   Code   RO          568    .ARM.Collect$$libinit$$00000001  c_w.l(libinit2.o)
-    0x08000222   0x08000222   0x00000000   Code   RO          571    .ARM.Collect$$libinit$$00000004  c_w.l(libinit2.o)
-    0x08000222   0x08000222   0x00000000   Code   RO          573    .ARM.Collect$$libinit$$00000006  c_w.l(libinit2.o)
-    0x08000222   0x08000222   0x00000000   Code   RO          576    .ARM.Collect$$libinit$$0000000C  c_w.l(libinit2.o)
-    0x08000222   0x08000222   0x00000000   Code   RO          578    .ARM.Collect$$libinit$$0000000E  c_w.l(libinit2.o)
-    0x08000222   0x08000222   0x00000000   Code   RO          580    .ARM.Collect$$libinit$$00000010  c_w.l(libinit2.o)
-    0x08000222   0x08000222   0x00000000   Code   RO          583    .ARM.Collect$$libinit$$00000013  c_w.l(libinit2.o)
-    0x08000222   0x08000222   0x00000000   Code   RO          585    .ARM.Collect$$libinit$$00000015  c_w.l(libinit2.o)
-    0x08000222   0x08000222   0x00000000   Code   RO          587    .ARM.Collect$$libinit$$00000017  c_w.l(libinit2.o)
-    0x08000222   0x08000222   0x00000000   Code   RO          589    .ARM.Collect$$libinit$$00000019  c_w.l(libinit2.o)
-    0x08000222   0x08000222   0x00000000   Code   RO          591    .ARM.Collect$$libinit$$0000001B  c_w.l(libinit2.o)
-    0x08000222   0x08000222   0x00000000   Code   RO          593    .ARM.Collect$$libinit$$0000001D  c_w.l(libinit2.o)
-    0x08000222   0x08000222   0x00000000   Code   RO          595    .ARM.Collect$$libinit$$0000001F  c_w.l(libinit2.o)
-    0x08000222   0x08000222   0x00000000   Code   RO          597    .ARM.Collect$$libinit$$00000021  c_w.l(libinit2.o)
-    0x08000222   0x08000222   0x00000000   Code   RO          599    .ARM.Collect$$libinit$$00000023  c_w.l(libinit2.o)
-    0x08000222   0x08000222   0x00000000   Code   RO          601    .ARM.Collect$$libinit$$00000025  c_w.l(libinit2.o)
-    0x08000222   0x08000222   0x00000000   Code   RO          603    .ARM.Collect$$libinit$$00000027  c_w.l(libinit2.o)
-    0x08000222   0x08000222   0x00000000   Code   RO          607    .ARM.Collect$$libinit$$0000002E  c_w.l(libinit2.o)
-    0x08000222   0x08000222   0x00000000   Code   RO          609    .ARM.Collect$$libinit$$00000030  c_w.l(libinit2.o)
-    0x08000222   0x08000222   0x00000000   Code   RO          611    .ARM.Collect$$libinit$$00000032  c_w.l(libinit2.o)
-    0x08000222   0x08000222   0x00000000   Code   RO          613    .ARM.Collect$$libinit$$00000034  c_w.l(libinit2.o)
-    0x08000222   0x08000222   0x00000002   Code   RO          614    .ARM.Collect$$libinit$$00000035  c_w.l(libinit2.o)
-    0x08000224   0x08000224   0x00000002   Code   RO          650    .ARM.Collect$$libshutdown$$00000000  c_w.l(libshutdown.o)
-    0x08000226   0x08000226   0x00000000   Code   RO          661    .ARM.Collect$$libshutdown$$00000002  c_w.l(libshutdown2.o)
-    0x08000226   0x08000226   0x00000000   Code   RO          663    .ARM.Collect$$libshutdown$$00000004  c_w.l(libshutdown2.o)
-    0x08000226   0x08000226   0x00000000   Code   RO          666    .ARM.Collect$$libshutdown$$00000007  c_w.l(libshutdown2.o)
-    0x08000226   0x08000226   0x00000000   Code   RO          669    .ARM.Collect$$libshutdown$$0000000A  c_w.l(libshutdown2.o)
-    0x08000226   0x08000226   0x00000000   Code   RO          671    .ARM.Collect$$libshutdown$$0000000C  c_w.l(libshutdown2.o)
-    0x08000226   0x08000226   0x00000000   Code   RO          674    .ARM.Collect$$libshutdown$$0000000F  c_w.l(libshutdown2.o)
-    0x08000226   0x08000226   0x00000002   Code   RO          675    .ARM.Collect$$libshutdown$$00000010  c_w.l(libshutdown2.o)
-    0x08000228   0x08000228   0x00000000   Code   RO          474    .ARM.Collect$$rtentry$$00000000  c_w.l(__rtentry.o)
-    0x08000228   0x08000228   0x00000000   Code   RO          492    .ARM.Collect$$rtentry$$00000002  c_w.l(__rtentry2.o)
-    0x08000228   0x08000228   0x00000006   Code   RO          504    .ARM.Collect$$rtentry$$00000004  c_w.l(__rtentry4.o)
-    0x0800022e   0x0800022e   0x00000000   Code   RO          494    .ARM.Collect$$rtentry$$00000009  c_w.l(__rtentry2.o)
-    0x0800022e   0x0800022e   0x00000004   Code   RO          495    .ARM.Collect$$rtentry$$0000000A  c_w.l(__rtentry2.o)
-    0x08000232   0x08000232   0x00000000   Code   RO          497    .ARM.Collect$$rtentry$$0000000C  c_w.l(__rtentry2.o)
-    0x08000232   0x08000232   0x00000008   Code   RO          498    .ARM.Collect$$rtentry$$0000000D  c_w.l(__rtentry2.o)
-    0x0800023a   0x0800023a   0x00000002   Code   RO          615    .ARM.Collect$$rtexit$$00000000  c_w.l(rtexit.o)
-    0x0800023c   0x0800023c   0x00000000   Code   RO          624    .ARM.Collect$$rtexit$$00000002  c_w.l(rtexit2.o)
-    0x0800023c   0x0800023c   0x00000004   Code   RO          625    .ARM.Collect$$rtexit$$00000003  c_w.l(rtexit2.o)
-    0x08000240   0x08000240   0x00000006   Code   RO          626    .ARM.Collect$$rtexit$$00000004  c_w.l(rtexit2.o)
+    0x080001f0   0x080001f0   0x0000001c   Code   RO          710    !!handler_zi        c_w.l(__scatter_zi.o)
+    0x0800020c   0x0800020c   0x00000000   Code   RO          455    .ARM.Collect$$_printf_percent$$00000000  c_w.l(_printf_percent.o)
+    0x0800020c   0x0800020c   0x00000006   Code   RO          453    .ARM.Collect$$_printf_percent$$00000009  c_w.l(_printf_d.o)
+    0x08000212   0x08000212   0x00000006   Code   RO          452    .ARM.Collect$$_printf_percent$$0000000C  c_w.l(_printf_x.o)
+    0x08000218   0x08000218   0x00000004   Code   RO          487    .ARM.Collect$$_printf_percent$$00000017  c_w.l(_printf_percent_end.o)
+    0x0800021c   0x0800021c   0x00000002   Code   RO          569    .ARM.Collect$$libinit$$00000000  c_w.l(libinit.o)
+    0x0800021e   0x0800021e   0x00000004   Code   RO          570    .ARM.Collect$$libinit$$00000001  c_w.l(libinit2.o)
+    0x08000222   0x08000222   0x00000000   Code   RO          573    .ARM.Collect$$libinit$$00000004  c_w.l(libinit2.o)
+    0x08000222   0x08000222   0x00000000   Code   RO          575    .ARM.Collect$$libinit$$00000006  c_w.l(libinit2.o)
+    0x08000222   0x08000222   0x00000000   Code   RO          578    .ARM.Collect$$libinit$$0000000C  c_w.l(libinit2.o)
+    0x08000222   0x08000222   0x00000000   Code   RO          580    .ARM.Collect$$libinit$$0000000E  c_w.l(libinit2.o)
+    0x08000222   0x08000222   0x00000000   Code   RO          582    .ARM.Collect$$libinit$$00000010  c_w.l(libinit2.o)
+    0x08000222   0x08000222   0x00000000   Code   RO          585    .ARM.Collect$$libinit$$00000013  c_w.l(libinit2.o)
+    0x08000222   0x08000222   0x00000000   Code   RO          587    .ARM.Collect$$libinit$$00000015  c_w.l(libinit2.o)
+    0x08000222   0x08000222   0x00000000   Code   RO          589    .ARM.Collect$$libinit$$00000017  c_w.l(libinit2.o)
+    0x08000222   0x08000222   0x00000000   Code   RO          591    .ARM.Collect$$libinit$$00000019  c_w.l(libinit2.o)
+    0x08000222   0x08000222   0x00000000   Code   RO          593    .ARM.Collect$$libinit$$0000001B  c_w.l(libinit2.o)
+    0x08000222   0x08000222   0x00000000   Code   RO          595    .ARM.Collect$$libinit$$0000001D  c_w.l(libinit2.o)
+    0x08000222   0x08000222   0x00000000   Code   RO          597    .ARM.Collect$$libinit$$0000001F  c_w.l(libinit2.o)
+    0x08000222   0x08000222   0x00000000   Code   RO          599    .ARM.Collect$$libinit$$00000021  c_w.l(libinit2.o)
+    0x08000222   0x08000222   0x00000000   Code   RO          601    .ARM.Collect$$libinit$$00000023  c_w.l(libinit2.o)
+    0x08000222   0x08000222   0x00000000   Code   RO          603    .ARM.Collect$$libinit$$00000025  c_w.l(libinit2.o)
+    0x08000222   0x08000222   0x00000000   Code   RO          605    .ARM.Collect$$libinit$$00000027  c_w.l(libinit2.o)
+    0x08000222   0x08000222   0x00000000   Code   RO          609    .ARM.Collect$$libinit$$0000002E  c_w.l(libinit2.o)
+    0x08000222   0x08000222   0x00000000   Code   RO          611    .ARM.Collect$$libinit$$00000030  c_w.l(libinit2.o)
+    0x08000222   0x08000222   0x00000000   Code   RO          613    .ARM.Collect$$libinit$$00000032  c_w.l(libinit2.o)
+    0x08000222   0x08000222   0x00000000   Code   RO          615    .ARM.Collect$$libinit$$00000034  c_w.l(libinit2.o)
+    0x08000222   0x08000222   0x00000002   Code   RO          616    .ARM.Collect$$libinit$$00000035  c_w.l(libinit2.o)
+    0x08000224   0x08000224   0x00000002   Code   RO          652    .ARM.Collect$$libshutdown$$00000000  c_w.l(libshutdown.o)
+    0x08000226   0x08000226   0x00000000   Code   RO          663    .ARM.Collect$$libshutdown$$00000002  c_w.l(libshutdown2.o)
+    0x08000226   0x08000226   0x00000000   Code   RO          665    .ARM.Collect$$libshutdown$$00000004  c_w.l(libshutdown2.o)
+    0x08000226   0x08000226   0x00000000   Code   RO          668    .ARM.Collect$$libshutdown$$00000007  c_w.l(libshutdown2.o)
+    0x08000226   0x08000226   0x00000000   Code   RO          671    .ARM.Collect$$libshutdown$$0000000A  c_w.l(libshutdown2.o)
+    0x08000226   0x08000226   0x00000000   Code   RO          673    .ARM.Collect$$libshutdown$$0000000C  c_w.l(libshutdown2.o)
+    0x08000226   0x08000226   0x00000000   Code   RO          676    .ARM.Collect$$libshutdown$$0000000F  c_w.l(libshutdown2.o)
+    0x08000226   0x08000226   0x00000002   Code   RO          677    .ARM.Collect$$libshutdown$$00000010  c_w.l(libshutdown2.o)
+    0x08000228   0x08000228   0x00000000   Code   RO          476    .ARM.Collect$$rtentry$$00000000  c_w.l(__rtentry.o)
+    0x08000228   0x08000228   0x00000000   Code   RO          494    .ARM.Collect$$rtentry$$00000002  c_w.l(__rtentry2.o)
+    0x08000228   0x08000228   0x00000006   Code   RO          506    .ARM.Collect$$rtentry$$00000004  c_w.l(__rtentry4.o)
+    0x0800022e   0x0800022e   0x00000000   Code   RO          496    .ARM.Collect$$rtentry$$00000009  c_w.l(__rtentry2.o)
+    0x0800022e   0x0800022e   0x00000004   Code   RO          497    .ARM.Collect$$rtentry$$0000000A  c_w.l(__rtentry2.o)
+    0x08000232   0x08000232   0x00000000   Code   RO          499    .ARM.Collect$$rtentry$$0000000C  c_w.l(__rtentry2.o)
+    0x08000232   0x08000232   0x00000008   Code   RO          500    .ARM.Collect$$rtentry$$0000000D  c_w.l(__rtentry2.o)
+    0x0800023a   0x0800023a   0x00000002   Code   RO          617    .ARM.Collect$$rtexit$$00000000  c_w.l(rtexit.o)
+    0x0800023c   0x0800023c   0x00000000   Code   RO          626    .ARM.Collect$$rtexit$$00000002  c_w.l(rtexit2.o)
+    0x0800023c   0x0800023c   0x00000004   Code   RO          627    .ARM.Collect$$rtexit$$00000003  c_w.l(rtexit2.o)
+    0x08000240   0x08000240   0x00000006   Code   RO          628    .ARM.Collect$$rtexit$$00000004  c_w.l(rtexit2.o)
     0x08000246   0x08000246   0x00000002   PAD
-    0x08000248   0x08000248   0x00000040   Code   RO          376  * .text               startup_stm32f411xe.o
-    0x08000288   0x08000288   0x00000028   Code   RO          401    .text               c_w.l(noretval__2sprintf.o)
-    0x080002b0   0x080002b0   0x0000004e   Code   RO          405    .text               c_w.l(_printf_pad.o)
+    0x08000248   0x08000248   0x00000040   Code   RO          378  * .text               startup_stm32f411xe.o
+    0x08000288   0x08000288   0x00000028   Code   RO          403    .text               c_w.l(noretval__2sprintf.o)
+    0x080002b0   0x080002b0   0x0000004e   Code   RO          407    .text               c_w.l(_printf_pad.o)
     0x080002fe   0x080002fe   0x00000002   PAD
-    0x08000300   0x08000300   0x00000078   Code   RO          407    .text               c_w.l(_printf_dec.o)
-    0x08000378   0x08000378   0x00000058   Code   RO          412    .text               c_w.l(_printf_hex_int.o)
-    0x080003d0   0x080003d0   0x00000138   Code   RO          442    .text               c_w.l(__printf_flags_wp.o)
-    0x08000508   0x08000508   0x00000006   Code   RO          456    .text               c_w.l(heapauxi.o)
-    0x0800050e   0x0800050e   0x000000b2   Code   RO          475    .text               c_w.l(_printf_intcommon.o)
-    0x080005c0   0x080005c0   0x00000030   Code   RO          481    .text               c_w.l(_printf_char_common.o)
-    0x080005f0   0x080005f0   0x0000000a   Code   RO          483    .text               c_w.l(_sputc.o)
+    0x08000300   0x08000300   0x00000078   Code   RO          409    .text               c_w.l(_printf_dec.o)
+    0x08000378   0x08000378   0x00000058   Code   RO          414    .text               c_w.l(_printf_hex_int.o)
+    0x080003d0   0x080003d0   0x00000138   Code   RO          444    .text               c_w.l(__printf_flags_wp.o)
+    0x08000508   0x08000508   0x00000006   Code   RO          458    .text               c_w.l(heapauxi.o)
+    0x0800050e   0x0800050e   0x000000b2   Code   RO          477    .text               c_w.l(_printf_intcommon.o)
+    0x080005c0   0x080005c0   0x00000030   Code   RO          483    .text               c_w.l(_printf_char_common.o)
+    0x080005f0   0x080005f0   0x0000000a   Code   RO          485    .text               c_w.l(_sputc.o)
     0x080005fa   0x080005fa   0x00000002   PAD
-    0x080005fc   0x080005fc   0x00000008   Code   RO          551    .text               c_w.l(libspace.o)
-    0x08000604   0x08000604   0x0000004a   Code   RO          554    .text               c_w.l(sys_stackheap_outer.o)
-    0x0800064e   0x0800064e   0x00000012   Code   RO          558    .text               c_w.l(exit.o)
-    0x08000660   0x08000660   0x0000000c   Code   RO          636    .text               c_w.l(sys_exit.o)
-    0x0800066c   0x0800066c   0x00000002   Code   RO          651    .text               c_w.l(use_no_semi.o)
-    0x0800066e   0x0800066e   0x00000000   Code   RO          653    .text               c_w.l(indicate_semi.o)
-    0x0800066e   0x0800066e   0x00000002   Code   RO          343    .text.ADC_IRQHandler  adc_f411.o
+    0x080005fc   0x080005fc   0x00000008   Code   RO          553    .text               c_w.l(libspace.o)
+    0x08000604   0x08000604   0x0000004a   Code   RO          556    .text               c_w.l(sys_stackheap_outer.o)
+    0x0800064e   0x0800064e   0x00000012   Code   RO          560    .text               c_w.l(exit.o)
+    0x08000660   0x08000660   0x0000000c   Code   RO          638    .text               c_w.l(sys_exit.o)
+    0x0800066c   0x0800066c   0x00000002   Code   RO          653    .text               c_w.l(use_no_semi.o)
+    0x0800066e   0x0800066e   0x00000000   Code   RO          655    .text               c_w.l(indicate_semi.o)
+    0x0800066e   0x0800066e   0x00000002   Code   RO          345    .text.ADC_IRQHandler  adc_f411.o
     0x08000670   0x08000670   0x0000005c   Code   RO           27    .text.Core_F411_init  core_f411_init.o
-    0x080006cc   0x080006cc   0x00000028   Code   RO          331    .text.DMA1_Stream5_IRQHandler  dma_f411.o
-    0x080006f4   0x080006f4   0x00000044   Code   RO          327    .text.DMA1_Stream6_IRQHandler  dma_f411.o
-    0x08000738   0x08000738   0x0000007c   Code   RO          323    .text.DMA2_Stream0_IRQHandler  dma_f411.o
-    0x080007b4   0x080007b4   0x00000010   Code   RO          319    .text.DMA_F411_init  dma_f411.o
+    0x080006cc   0x080006cc   0x00000028   Code   RO          333    .text.DMA1_Stream5_IRQHandler  dma_f411.o
+    0x080006f4   0x080006f4   0x00000044   Code   RO          329    .text.DMA1_Stream6_IRQHandler  dma_f411.o
+    0x08000738   0x08000738   0x0000007c   Code   RO          325    .text.DMA2_Stream0_IRQHandler  dma_f411.o
+    0x080007b4   0x080007b4   0x00000010   Code   RO          321    .text.DMA_F411_init  dma_f411.o
     0x080007c4   0x080007c4   0x0000002c   Code   RO          249    .text.DS18B20_Reset_single  ds18b20_f411.o
     0x080007f0   0x080007f0   0x00000024   Code   RO          259    .text.DS18B20_read_ROM  ds18b20_f411.o
     0x08000814   0x08000814   0x00000020   Code   RO          255    .text.DS18B20_read_bit  ds18b20_f411.o
-    0x08000834   0x08000834   0x0000001a   Code   RO          257    .text.DS18B20_read_byte  ds18b20_f411.o
-    0x0800084e   0x0800084e   0x00000002   PAD
-    0x08000850   0x08000850   0x00000024   Code   RO          251    .text.DS18B20_write_bit  ds18b20_f411.o
-    0x08000874   0x08000874   0x0000001a   Code   RO          253    .text.DS18B20_write_byte  ds18b20_f411.o
-    0x0800088e   0x0800088e   0x0000002c   Code   RO          105    .text.Draw_String   1602_i2c.o
-    0x080008ba   0x080008ba   0x0000004e   Code   RO           58    .text.GPIO_Alternate  gpio_setup.o
-    0x08000908   0x08000908   0x0000001c   Code   RO           56    .text.GPIO_DI_setup  gpio_setup.o
-    0x08000924   0x08000924   0x0000001a   Code   RO           54    .text.GPIO_DO_setup  gpio_setup.o
-    0x0800093e   0x0800093e   0x00000002   PAD
-    0x08000940   0x08000940   0x00000018   Code   RO           72    .text.I2C_F411_Start  i2c_f411.o
-    0x08000958   0x08000958   0x0000000c   Code   RO           74    .text.I2C_F411_Stop  i2c_f411.o
-    0x08000964   0x08000964   0x00000020   Code   RO           78    .text.I2C_F411_address_write  i2c_f411.o
-    0x08000984   0x08000984   0x0000001c   Code   RO           80    .text.I2C_F411_data_write  i2c_f411.o
-    0x080009a0   0x080009a0   0x00000048   Code   RO           70    .text.I2C_F411_init  i2c_f411.o
-    0x080009e8   0x080009e8   0x00000050   Code   RO          103    .text.LCD1602_init_via_I2C  1602_i2c.o
-    0x08000a38   0x08000a38   0x00000030   Code   RO           99    .text.LCD1602_send_command_via_I2C  1602_i2c.o
-    0x08000a68   0x08000a68   0x00000034   Code   RO          101    .text.LCD1602_send_data_via_I2C  1602_i2c.o
-    0x08000a9c   0x08000a9c   0x0000000a   Code   RO            4    .text.OUTLINED_FUNCTION_0  main.o
-    0x08000aa6   0x08000aa6   0x0000000a   Code   RO           43    .text.OUTLINED_FUNCTION_0  delay.o
-    0x08000ab0   0x08000ab0   0x0000000c   Code   RO           88    .text.OUTLINED_FUNCTION_0  i2c_f411.o
-    0x08000abc   0x08000abc   0x0000000a   Code   RO          307    .text.OUTLINED_FUNCTION_0  usart_f411.o
-    0x08000ac6   0x08000ac6   0x00000002   PAD
-    0x08000ac8   0x08000ac8   0x00000024   Code   RO           35    .text.SysTick_Handler  delay.o
-    0x08000aec   0x08000aec   0x0000001c   Code   RO           41    .text.SysTick_Init  delay.o
-    0x08000b08   0x08000b08   0x00000010   Code   RO          383    .text.SystemInit    system_stm32f4xx.o
-    0x08000b18   0x08000b18   0x0000004c   Code   RO          364    .text.TIM1_UP_TIM10_IRQHandler  timer_f411_init.o
-    0x08000b64   0x08000b64   0x00000044   Code   RO          362    .text.Timer_F411_init  timer_f411_init.o
-    0x08000ba8   0x08000ba8   0x00000008   Code   RO          301    .text.USART_F411_DMAR_OFF  usart_f411.o
-    0x08000bb0   0x08000bb0   0x00000010   Code   RO          303    .text.USART_F411_DMAT_OFF  usart_f411.o
-    0x08000bc0   0x08000bc0   0x00000044   Code   RO          287    .text.USART_F411_init  usart_f411.o
-    0x08000c04   0x08000c04   0x00000018   Code   RO          289    .text.USART_F411_set_115200_baud  usart_f411.o
-    0x08000c1c   0x08000c1c   0x0000001c   Code   RO          291    .text.USART_F411_set_9600_baud  usart_f411.o
-    0x08000c38   0x08000c38   0x00000020   Code   RO           39    .text.delay_ms      delay.o
-    0x08000c58   0x08000c58   0x00000024   Code   RO           37    .text.delay_us      delay.o
-    0x08000c7c   0x08000c7c   0x00000040   Code   RO           14    .text.key_scan      board.o
-    0x08000cbc   0x08000cbc   0x00000178   Code   RO            2    .text.main          main.o
-    0x08000e34   0x08000e34   0x0000000e   Code   RO          440    i._is_digit         c_w.l(__printf_wp.o)
-    0x08000e42   0x08000e42   0x0000001a   Code   RO          621    x$fpl$fpinit        fz_wm.l(fpinit.o)
-    0x08000e5c   0x08000e5c   0x00000028   Data   RO          413    .constdata          c_w.l(_printf_hex_int.o)
-    0x08000e84   0x08000e84   0x00000011   Data   RO          443    .constdata          c_w.l(__printf_flags_wp.o)
-    0x08000e95   0x08000e95   0x00000003   PAD
-    0x08000e98   0x08000e98   0x00000020   Data   RO          703    Region$$Table       anon$$obj.o
+    0x08000834   0x08000834   0x00000024   Code   RO          257    .text.DS18B20_read_byte  ds18b20_f411.o
+    0x08000858   0x08000858   0x00000024   Code   RO          251    .text.DS18B20_write_bit  ds18b20_f411.o
+    0x0800087c   0x0800087c   0x0000001a   Code   RO          253    .text.DS18B20_write_byte  ds18b20_f411.o
+    0x08000896   0x08000896   0x0000002c   Code   RO          105    .text.Draw_String   1602_i2c.o
+    0x080008c2   0x080008c2   0x0000004e   Code   RO           58    .text.GPIO_Alternate  gpio_setup.o
+    0x08000910   0x08000910   0x0000001c   Code   RO           56    .text.GPIO_DI_setup  gpio_setup.o
+    0x0800092c   0x0800092c   0x0000001a   Code   RO           54    .text.GPIO_DO_setup  gpio_setup.o
+    0x08000946   0x08000946   0x00000002   PAD
+    0x08000948   0x08000948   0x00000018   Code   RO           72    .text.I2C_F411_Start  i2c_f411.o
+    0x08000960   0x08000960   0x0000000c   Code   RO           74    .text.I2C_F411_Stop  i2c_f411.o
+    0x0800096c   0x0800096c   0x00000020   Code   RO           78    .text.I2C_F411_address_write  i2c_f411.o
+    0x0800098c   0x0800098c   0x0000001c   Code   RO           80    .text.I2C_F411_data_write  i2c_f411.o
+    0x080009a8   0x080009a8   0x00000048   Code   RO           70    .text.I2C_F411_init  i2c_f411.o
+    0x080009f0   0x080009f0   0x00000054   Code   RO          103    .text.LCD1602_init_via_I2C  1602_i2c.o
+    0x08000a44   0x08000a44   0x00000030   Code   RO           99    .text.LCD1602_send_command_via_I2C  1602_i2c.o
+    0x08000a74   0x08000a74   0x00000034   Code   RO          101    .text.LCD1602_send_data_via_I2C  1602_i2c.o
+    0x08000aa8   0x08000aa8   0x0000000a   Code   RO            4    .text.OUTLINED_FUNCTION_0  main.o
+    0x08000ab2   0x08000ab2   0x0000000a   Code   RO           43    .text.OUTLINED_FUNCTION_0  delay.o
+    0x08000abc   0x08000abc   0x0000000c   Code   RO           88    .text.OUTLINED_FUNCTION_0  i2c_f411.o
+    0x08000ac8   0x08000ac8   0x0000000a   Code   RO          309    .text.OUTLINED_FUNCTION_0  usart_f411.o
+    0x08000ad2   0x08000ad2   0x00000002   PAD
+    0x08000ad4   0x08000ad4   0x00000024   Code   RO           35    .text.SysTick_Handler  delay.o
+    0x08000af8   0x08000af8   0x0000001c   Code   RO           41    .text.SysTick_Init  delay.o
+    0x08000b14   0x08000b14   0x00000010   Code   RO          385    .text.SystemInit    system_stm32f4xx.o
+    0x08000b24   0x08000b24   0x0000004c   Code   RO          366    .text.TIM1_UP_TIM10_IRQHandler  timer_f411_init.o
+    0x08000b70   0x08000b70   0x00000044   Code   RO          364    .text.Timer_F411_init  timer_f411_init.o
+    0x08000bb4   0x08000bb4   0x00000008   Code   RO          303    .text.USART_F411_DMAR_OFF  usart_f411.o
+    0x08000bbc   0x08000bbc   0x00000010   Code   RO          305    .text.USART_F411_DMAT_OFF  usart_f411.o
+    0x08000bcc   0x08000bcc   0x00000044   Code   RO          289    .text.USART_F411_init  usart_f411.o
+    0x08000c10   0x08000c10   0x00000018   Code   RO          291    .text.USART_F411_set_115200_baud  usart_f411.o
+    0x08000c28   0x08000c28   0x0000001c   Code   RO          293    .text.USART_F411_set_9600_baud  usart_f411.o
+    0x08000c44   0x08000c44   0x00000020   Code   RO           39    .text.delay_ms      delay.o
+    0x08000c64   0x08000c64   0x00000024   Code   RO           37    .text.delay_us      delay.o
+    0x08000c88   0x08000c88   0x00000040   Code   RO           14    .text.key_scan      board.o
+    0x08000cc8   0x08000cc8   0x00000178   Code   RO            2    .text.main          main.o
+    0x08000e40   0x08000e40   0x0000000e   Code   RO          442    i._is_digit         c_w.l(__printf_wp.o)
+    0x08000e4e   0x08000e4e   0x0000001a   Code   RO          623    x$fpl$fpinit        fz_wm.l(fpinit.o)
+    0x08000e68   0x08000e68   0x00000028   Data   RO          415    .constdata          c_w.l(_printf_hex_int.o)
+    0x08000e90   0x08000e90   0x00000011   Data   RO          445    .constdata          c_w.l(__printf_flags_wp.o)
+    0x08000ea1   0x08000ea1   0x00000003   PAD
+    0x08000ea4   0x08000ea4   0x00000020   Data   RO          705    Region$$Table       anon$$obj.o
 
 
-    Execution Region ER_RW (Exec base: 0x20000000, Load base: 0x08000eb8, Size: 0x00000004, Max: 0xffffffff, ABSOLUTE)
-
-    Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
-
-    0x20000000   0x08000eb8   0x00000002   Data   RW           18    .data.encoder_data  board.o
-
-
-    Execution Region ER_ZI (Exec base: 0x20000008, Load base: 0x08000ebc, Size: 0x000006c0, Max: 0xffffffff, ABSOLUTE)
+    Execution Region ER_RW (Exec base: 0x20000000, Load base: 0x08000ec4, Size: 0x00000004, Max: 0xffffffff, ABSOLUTE)
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
-    0x20000008        -       0x00000060   Zero   RW          552    .bss                c_w.l(libspace.o)
-    0x20000068        -       0x00000024   Zero   RW          278    .bss..L_MergedGlobals  ds18b20_f411.o
-    0x2000008c        -       0x00000014   Zero   RW          366    .bss..L_MergedGlobals  timer_f411_init.o
-    0x200000a0        -       0x00000004   Zero   RW          333    .bss.ADC_DMA_val    dma_f411.o
-    0x200000a4        -       0x00000004   Zero   RW          346    .bss.ADC_ch0        adc_f411.o
-    0x200000a8        -       0x00000004   Zero   RW          347    .bss.ADC_ch0_summ   adc_f411.o
-    0x200000ac        -       0x00000004   Zero   RW          349    .bss.ADC_ch1        adc_f411.o
-    0x200000b0        -       0x00000004   Zero   RW          350    .bss.ADC_ch1_summ   adc_f411.o
-    0x200000b4        -       0x00000004   Zero   RW          345    .bss.ADC_main_count  adc_f411.o
-    0x200000b8        -       0x00000008   Zero   RW          277    .bss.ROM            ds18b20_f411.o
-    0x200000c0        -       0x00000004   Zero   RW           45    .bss.count          delay.o
-    0x200000c4        -       0x00000001   Zero   RW           19    .bss.key_scan.encoder_state  board.o
-    0x200000c5   0x08000ebc   0x00000003   PAD
-    0x200000c8        -       0x00000200   Zero   RW          374    HEAP                startup_stm32f411xe.o
-    0x200002c8        -       0x00000400   Zero   RW          373    STACK               startup_stm32f411xe.o
+    0x20000000   0x08000ec4   0x00000002   Data   RW           18    .data.encoder_data  board.o
+
+
+    Execution Region ER_ZI (Exec base: 0x20000008, Load base: 0x08000ec8, Size: 0x000006c8, Max: 0xffffffff, ABSOLUTE)
+
+    Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
+
+    0x20000008        -       0x00000060   Zero   RW          554    .bss                c_w.l(libspace.o)
+    0x20000068        -       0x00000028   Zero   RW          280    .bss..L_MergedGlobals  ds18b20_f411.o
+    0x20000090        -       0x00000014   Zero   RW          368    .bss..L_MergedGlobals  timer_f411_init.o
+    0x200000a4        -       0x00000004   Zero   RW          335    .bss.ADC_DMA_val    dma_f411.o
+    0x200000a8        -       0x00000004   Zero   RW          348    .bss.ADC_ch0        adc_f411.o
+    0x200000ac        -       0x00000004   Zero   RW          349    .bss.ADC_ch0_summ   adc_f411.o
+    0x200000b0        -       0x00000004   Zero   RW          351    .bss.ADC_ch1        adc_f411.o
+    0x200000b4        -       0x00000004   Zero   RW          352    .bss.ADC_ch1_summ   adc_f411.o
+    0x200000b8        -       0x00000004   Zero   RW          347    .bss.ADC_main_count  adc_f411.o
+    0x200000bc        -       0x00000008   Zero   RW          279    .bss.ROM            ds18b20_f411.o
+    0x200000c4        -       0x00000004   Zero   RW           45    .bss.count          delay.o
+    0x200000c8        -       0x00000001   Zero   RW           19    .bss.key_scan.encoder_state  board.o
+    0x200000c9   0x08000ec8   0x00000007   PAD
+    0x200000d0        -       0x00000200   Zero   RW          376    HEAP                startup_stm32f411xe.o
+    0x200002d0        -       0x00000400   Zero   RW          375    STACK               startup_stm32f411xe.o
 
 
 ==============================================================================
@@ -1892,13 +1906,13 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   Object Name
 
-       224         12          0          0          0       1698   1602_i2c.o
+       228         12          0          0          0       1698   1602_i2c.o
          2          0          0          0         20       2394   adc_f411.o
         64          8          0          2          1       1266   board.o
         92          8          0          0          0       1728   core_f411_init.o
        142         12          0          0          4       2555   delay.o
        248         44          0          0          4       3977   dma_f411.o
-       200          8          0          0         44       4059   ds18b20_f411.o
+       210         12          0          0         48       4642   ds18b20_f411.o
        132          0          0          0          0       1964   gpio_setup.o
        180         12          0          0          0       3427   i2c_f411.o
        386         80          0          0          0       2050   main.o
@@ -1908,9 +1922,9 @@ Image component sizes
        154         16          0          0          0       2702   usart_f411.o
 
     ----------------------------------------------------------------------
-      2054        250        440          4       1632      34341   Object Totals
+      2066        254        440          4       1640      34924   Object Totals
          0          0         32          0          0          0   (incl. Generated)
-         6          0          0          2          3          0   (incl. Padding)
+         4          0          0          2          7          0   (incl. Padding)
 
     ----------------------------------------------------------------------
 
@@ -1972,15 +1986,15 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   
 
-      3268        302        500          4       1728      34961   Grand Totals
-      3268        302        500          4       1728      34961   ELF Image Totals
-      3268        302        500          4          0          0   ROM Totals
+      3280        306        500          4       1736      35544   Grand Totals
+      3280        306        500          4       1736      35544   ELF Image Totals
+      3280        306        500          4          0          0   ROM Totals
 
 ==============================================================================
 
-    Total RO  Size (Code + RO Data)                 3768 (   3.68kB)
-    Total RW  Size (RW Data + ZI Data)              1732 (   1.69kB)
-    Total ROM Size (Code + RO Data + RW Data)       3772 (   3.68kB)
+    Total RO  Size (Code + RO Data)                 3780 (   3.69kB)
+    Total RW  Size (RW Data + ZI Data)              1740 (   1.70kB)
+    Total ROM Size (Code + RO Data + RW Data)       3784 (   3.70kB)
 
 ==============================================================================
 

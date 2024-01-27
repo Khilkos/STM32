@@ -38,10 +38,11 @@ Core_F411_init();
 SysTick_Init();
 Timer_F411_init();
 I2C_F411_init();
-LCD1602_init_via_I2C();
+//delay_ms(1000);
+
 DMA_F411_init();
 USART_F411_init();
-
+LCD1602_init_via_I2C();
 
 DS18B20_read_ROM();
 
