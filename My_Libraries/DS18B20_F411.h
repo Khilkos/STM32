@@ -18,7 +18,7 @@
 
 
 
-extern const uint8_t convert_T[];
+extern uint8_t convert_T[];
 extern const uint8_t read_scratch[];
 extern volatile uint16_t DS18B20_temperature;
 extern _Bool DMA_busy;
@@ -36,5 +36,7 @@ uint16_t DS18B20_read_temperatur_via_DMA (void);
 uint16_t DS18B20_read_temperatur_via_DMA_timer (void);
 void DS18B20_read_ROM (void);
 _Bool DS18B20_read_temperatur_of_sensor (void);
+void DMA_F411_One_Wire_Send (uint8_t size_buf, uint8_t* send_buf);
+
 
 #endif
