@@ -186,7 +186,8 @@ void DMA1_Stream5_IRQHandler(void)
 			DMA_busy=0;
 			USART_F411_DMAR_OFF();
 		}
-//	GPIOB->BSRR=1<<14;	
+		if (GPIOB->IDR & (1<<13)) GPIOB->BSRR=1U<<(13+res); else GPIOB->BSRR=1U<<13;
+	//GPIOB->BSRR=1<<13;	
 }	
 
 

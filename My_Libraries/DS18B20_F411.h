@@ -37,6 +37,7 @@ uint16_t DS18B20_read_temperatur_via_DMA_timer (void);
 void DS18B20_read_ROM (void);
 _Bool DS18B20_read_temperatur_of_sensor (void);
 void DMA_F411_One_Wire_Send (uint8_t size_buf, uint8_t* send_buf);
+void DMA_F411_One_Wire_Recive (uint8_t size_buf, uint8_t* recive_buf);
 
 
 #endif

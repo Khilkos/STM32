@@ -12,7 +12,9 @@ static uint8_t ROM2[8]={0x28,0x69,0x0c,0x75,0xd0,0x01,0x3c,0x83};
 static uint8_t ROM3[8]={0x28,0x4d,0xb0,0x75,0xd0,0x01,0x3c,0x87};
 static uint8_t ROM_work[8]={0x28,0x7a,0x19,0xc7,0x0e,0x00,0x00,0x8d};
 static uint8_t ROM_work_1[8]={0x28,0xd9,0xf1,0x75,0xd0,0x01,0x3c,0xce};
-	static uint8_t temp_send_buf[64];
+//	static uint8_t temp_send_buf[64];
+static uint8_t One_wire_recive_buf[64];
+	static uint8_t temp_recive_buf[64];
 
 #define OW_0    0x00
 #define OW_1    0xff
@@ -139,6 +141,8 @@ _Bool DS18B20_read_temperatur_of_sensor (void)
 {
 	_Bool Sensor_OK=0;
 	uint8_t temp=0;
+	_Bool temp_bit=0;
+	uint16_t temp16=0;
 	
 	if (read_temperature_stage==0) 
 		{
@@ -179,7 +183,6 @@ _Bool DS18B20_read_temperatur_of_sensor (void)
 		{
 			temp=match_ROM;
 			DMA_F411_One_Wire_Send (1, &temp);
-			//DS18B20_write_byte(match_ROM);
 			read_temperature_stage=7;
 			DMA_busy=1;
 		}
@@ -191,26 +194,49 @@ _Bool DS18B20_read_temperatur_of_sensor (void)
 		}
 	if (read_temperature_stage==8 && !DMA_busy)			
 		{
-		//	for (uint8_t i=0; i<8; i++)
-			//	{
-			//	DS18B20_write_byte(ROM_work[i]);
-			//	}
 			temp=read_scratchpad;
 			DMA_F411_One_Wire_Send (1, &temp);
-			delay_ms(100);	
-			DS18B20_temperature_of_sensor[0]=(uint16_t)(DS18B20_read_byte()) + (uint16_t)(DS18B20_read_byte()<<8);
+			read_temperature_stage=9;
+			DMA_busy=1;
+		}
+	if (read_temperature_stage==9 && !DMA_busy)				
+		{	DMA_busy=1;
+			DMA_F411_One_Wire_Recive(2,One_wire_recive_buf);
+			read_temperature_stage=10;
+		}
+	if (read_temperature_stage==10 && !DMA_busy)				
+		{
+				for (uint8_t i=0; i<16; i++)
+				{	
+					if (One_wire_recive_buf[i]==0xff) temp_bit=1; else temp_bit=0;
+					temp16|= temp_bit<<i;
+				}
+			DS18B20_temperature_of_sensor[0]=temp16;
 			DS18B20_temperature_of_sensor[0]=(DS18B20_temperature_of_sensor[0]/16*10)+(uint16_t)((DS18B20_temperature_of_sensor[0]&0b00001111)*0.625);
 			if 	(DS18B20_temperature_of_sensor[0]>2000) DS18B20_temperature_of_sensor[0]=0;
-			
-			//	2 sensor
+			read_temperature_stage=11;
+			}
+	if (read_temperature_stage==11)		
+			{			//	2 sensor
 			Sensor_OK=DS18B20_Reset_single();
 			if (!Sensor_OK)	return 0;
-			DS18B20_write_byte(match_ROM);
-			
-			for (uint8_t i=0; i<8; i++)
-				{
-				DS18B20_write_byte(ROM_work_1[i]);
-				}
+			read_temperature_stage=12;	
+			}
+	if (read_temperature_stage==12)	
+			{			
+			temp=match_ROM;
+			DMA_F411_One_Wire_Send (1, &temp);
+			read_temperature_stage=13;
+			DMA_busy=1;
+			}
+	if (read_temperature_stage==13 && !DMA_busy)				
+			{
+			DMA_F411_One_Wire_Send (8, ROM_work_1);
+			read_temperature_stage=14;
+			DMA_busy=1;
+			}
+	if (read_temperature_stage==14 && !DMA_busy)			
+			{
 			temp=read_scratchpad;
 			DMA_F411_One_Wire_Send (1, &temp);
 delay_ms(100);			
@@ -321,6 +347,8 @@ return DS18B20_temperature;
 //=================================================
 void DMA_F411_One_Wire_Send (uint8_t size_buf, uint8_t* send_buf)
 {	uint8_t temp=0;
+	static uint8_t temp_send_buf[64];
+		USART_F411_set_115200_baud();
 	for (uint8_t i=0; i<size_buf;i++)
 		{	temp=*(send_buf+i);
 			for (uint8_t k=0; k<8; k++)
@@ -359,3 +387,77 @@ DMA1_Stream6->CR |=DMA_SxCR_EN; //включение ДМА
 
 //===================================================
 
+//===================================================
+void DMA_F411_One_Wire_Recive (uint8_t size_buf, uint8_t* recive_buf)
+{
+		USART_F411_set_115200_baud();
+//	static uint8_t temp_recive_buf[64];
+	for (uint8_t i=0; i<size_buf*8; i++)
+		{ temp_recive_buf[i]=0xff;}
+		
+if (DMA1_Stream5->CR & DMA_SxCR_EN)
+	{
+		DMA1_Stream5->CR &= ~(DMA_SxCR_EN);
+		while (DMA1_Stream5->CR & DMA_SxCR_EN) __NOP();
+	}	
+	if (GPIOB->IDR & (1<<14)) GPIOB->BSRR=1U<<(14+res); else GPIOB->BSRR=1U<<14;
+	//GPIOB->BSRR=1<<14;	
+	USART2->DR;
+	USART2->DR;
+DMA1_Stream5->CR=0;
+	
+DMA1->HIFCR |=DMA_HIFCR_CTCIF5;//сброс флага прерывания - завершение передачи
+DMA1_Stream5->PAR = (uint32_t)&USART2->DR;	//адрес перефирии
+DMA1_Stream5->M0AR = (uint32_t)recive_buf;		//адрес памяти
+DMA1_Stream5->NDTR = size_buf*8;	//количество данный передаваемых в ДМА
+DMA1_Stream5->CR |= (0x4UL<<DMA_SxCR_CHSEL_Pos); //выбор 4 канала ДМА
+DMA1_Stream5->CR |= 0x3UL<<DMA_SxCR_PL_Pos; //высокий приоритет потока
+DMA1_Stream5->FCR  &= ~(DMA_SxFCR_DMDIS); //прямой домтуп без измользования FIFO
+DMA1_Stream5->CR &= ~(0x3UL<<DMA_SxCR_DIR_Pos); //направление потока данных из перефирии в память
+DMA1_Stream5->CR |= DMA_SxCR_MINC; //инкремент памяти включить
+DMA1_Stream5->CR &= ~DMA_SxCR_PINC; //инкремент перефирии отключить
+DMA1_Stream5->CR &= ~(0x3UL<<DMA_SxCR_PSIZE_Pos); //размер потока перефирии 8 бит
+DMA1_Stream5->CR &= ~(0x3UL<<DMA_SxCR_MSIZE_Pos); //размер потока памяти 8 бит
+DMA1_Stream5->CR &= ~DMA_SxCR_CIRC;	//кольцевой режим выключен	
+DMA1_Stream5->CR |= DMA_SxCR_TCIE; //включение прерываний при завершении передачи
+NVIC->ISER[0]=( 1<<16);	//включение прерывания ДМА1 поток 6
+//DMA1_Stream5->CR |=DMA_SxCR_EN; //включение ДМА	
+
+	
+if (DMA1_Stream6->CR & DMA_SxCR_EN)
+	{
+		DMA1_Stream6->CR &= ~(DMA_SxCR_EN);
+		while (DMA1_Stream6->CR & DMA_SxCR_EN) __NOP();
+	}
+
+DMA1_Stream6->CR=0;	
+	
+DMA1->HIFCR |=DMA_HIFCR_CTCIF6;//сброс флага прерывания - завершение передачи
+DMA1_Stream6->PAR = (uint32_t)&USART2->DR;	//адрес перефирии
+DMA1_Stream6->M0AR = (uint32_t)temp_recive_buf;		//адрес памяти
+DMA1_Stream6->NDTR = size_buf*8;	//количество данный передаваемых в ДМА
+DMA1_Stream6->CR |= (0x4UL<<DMA_SxCR_CHSEL_Pos); //выбор 4 канала ДМА
+DMA1_Stream6->CR |= 0x1UL<<DMA_SxCR_PL_Pos; //низкий приоритет потока
+DMA1_Stream6->FCR  &= ~(DMA_SxFCR_DMDIS); //прямой домтуп без измользования FIFO
+DMA1_Stream6->CR |= (0x1UL<<DMA_SxCR_DIR_Pos); //направление потока данных из памяти в перефирию
+DMA1_Stream6->CR |= DMA_SxCR_MINC; //инкремент памяти включить
+DMA1_Stream6->CR &= ~DMA_SxCR_PINC; //инкремент перефирии отключить
+DMA1_Stream6->CR &= ~(0x3UL<<DMA_SxCR_PSIZE_Pos); //размер потока перефирии 8 бит
+DMA1_Stream6->CR &= ~(0x3UL<<DMA_SxCR_MSIZE_Pos); //размер потока памяти 8 бит
+DMA1_Stream6->CR &= ~DMA_SxCR_CIRC;	//кольцевой режим выключен	
+DMA1_Stream6->CR |= DMA_SxCR_TCIE; //включение прерываний при завершении передачи
+NVIC->ISER[0]=( 1<<17);	//включение прерывания ДМА1 поток 6
+USART2->SR &=~USART_SR_TC;
+USART2->SR &=~USART_SR_RXNE;
+
+USART_F411_DMA_ON();	
+//USART_F411_restart();		
+
+	DMA1_Stream5->CR |=DMA_SxCR_EN; //включение ДМА	
+	//delay_ms(10);
+	DMA1_Stream6->CR |=DMA_SxCR_EN; //включение ДМА
+}
+
+
+
+//===================================================
