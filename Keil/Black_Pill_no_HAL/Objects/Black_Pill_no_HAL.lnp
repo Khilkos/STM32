@@ -16,6 +16,7 @@
 ".\objects\ds18b20_f411.o"
 ".\objects\usart_f411.o"
 ".\objects\ds3231_f411.o"
+".\objects\one_wire_f411.o"
 ".\objects\startup_stm32f411xe.o"
 ".\objects\system_stm32f4xx.o"
 --strict --scatter ".\Objects\Black_Pill_no_HAL.sct"

@@ -10,4 +10,5 @@
   C:\Users\Khilk\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.17.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include\system_stm32f4xx.h \
   ..\..\My_Libraries\ADC_F411.h ..\..\My_Libraries\DS18B20_F411.h \
   ..\..\My_Libraries\USART_F411.h ..\..\My_Libraries\Delay.h \
-  ..\..\My_Libraries\Timer_F411_init.h
+  ..\..\My_Libraries\Timer_F411_init.h \
+  ..\..\My_Libraries\One_Wire_F411.h

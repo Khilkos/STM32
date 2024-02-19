@@ -90,23 +90,6 @@ DMA1_Stream6->CR |=DMA_SxCR_EN; //включение ДМА
 
 }
 
-
-//===================================================
-void DMA1_Stream6_IRQHandler(void)
-{
-	if (DMA1->HISR & DMA_HISR_TCIF6)
-		{
-			DMA1->HIFCR |= DMA_HIFCR_CTCIF6;
-			while (!(USART2->SR & USART_SR_TC)) __NOP();
-			DMA1_Stream6->CR &= ~(DMA_SxCR_EN);
-			if (!(DMA1_Stream5->CR & DMA_SxCR_EN)) DMA_busy=0;
-				
-			USART_F411_DMAT_OFF();
-			
-			
-		}
-}	
-
 //===================================================
 void DMA_F411_DS18B20_read_scratch (void)
 {
@@ -170,25 +153,9 @@ USART_F411_DMA_ON();
 	//delay_ms(10);
 	DMA1_Stream6->CR |=DMA_SxCR_EN; //включение ДМА
 }
+//==========================================================================
 
 
-
-//===================================================
-void DMA1_Stream5_IRQHandler(void)
-{
-	if (DMA1->HISR & DMA_HISR_TCIF5)
-		{
-			DMA1->HIFCR |= DMA_HIFCR_CTCIF5;
-//			DMA1_Stream5->CR=0;
-			DMA1_Stream5->CR &= ~(DMA_SxCR_EN);
-	//		DMA1_Stream6->CR &= ~(DMA_SxCR_EN);
-	
-			DMA_busy=0;
-			USART_F411_DMAR_OFF();
-		}
-		if (GPIOB->IDR & (1<<13)) GPIOB->BSRR=1U<<(13+res); else GPIOB->BSRR=1U<<13;
-	//GPIOB->BSRR=1<<13;	
-}	
 
 
 

@@ -18,9 +18,7 @@ void DMA_F411_init (void);
 void DMA_F411_ADC_init (void);
 void DMA2_Stream0_IRQHandler(void);
 void DMA_F411_DS18B20_convert_T (void);
-void DMA1_Stream6_IRQHandler(void);
 void DMA_F411_DS18B20_read_scratch (void);
-void DMA1_Stream5_IRQHandler(void);
 
 
 #endif

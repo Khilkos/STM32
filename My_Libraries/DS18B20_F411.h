@@ -10,6 +10,7 @@
 #include "DMA_F411.h"
 #include "Delay.h"
 #include "Timer_F411_init.h"
+#include "One_Wire_F411.h"
 #define skip_rom 0xCC
 #define convert_t 0x44
 #define read_scratchpad 0xBE
@@ -36,8 +37,7 @@ uint16_t DS18B20_read_temperatur_via_DMA (void);
 uint16_t DS18B20_read_temperatur_via_DMA_timer (void);
 void DS18B20_read_ROM (void);
 _Bool DS18B20_read_temperatur_of_sensor (void);
-void DMA_F411_One_Wire_Send (uint8_t size_buf, uint8_t* send_buf);
-void DMA_F411_One_Wire_Recive (uint8_t size_buf, uint8_t* recive_buf);
+
 
 
 #endif
