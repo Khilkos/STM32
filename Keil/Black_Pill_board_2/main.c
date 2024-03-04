@@ -52,12 +52,13 @@ while (1)
 key_scan();
 //	DS3231_F411_get_time();
 if (GPIOB->IDR&1<<12) GPIOB->BSRR=1<<(12+res); else GPIOB->BSRR=1<<12;
-delay_us(100);
-sprintf(String,"Encoder = %3d",encoder_data);
+//delay_us(100);
+sprintf(String,"Encoder = %02d",encoder_data);
 Draw_String(0,(uint8_t*)String);	
 	
-//sprintf(String,"Temper. %.1fC", (DS18B20_read_temperatur_via_DMA()*0.1));
-sprintf(String,"%02x%02x%02x%02x%02x%02x%02x%02x",ROM[7],ROM[6],ROM[5],ROM[4],ROM[3],ROM[2],ROM[1],ROM[0] );
+DS18B20_read_temperatur_of_2_sensor(ROM1,ROM2,DS18B20_temperature_of_2_sensor);	
+sprintf(String,"Temp. %04.1f/%04.1f",DS18B20_temperature_of_2_sensor[0]*0.1, DS18B20_temperature_of_2_sensor[1]*0.1);
+//sprintf(String,"%02x%02x%02x%02x%02x%02x%02x%02x",ROM[7],ROM[6],ROM[5],ROM[4],ROM[3],ROM[2],ROM[1],ROM[0] );
 
 Draw_String(0x40, (uint8_t*)String);
 

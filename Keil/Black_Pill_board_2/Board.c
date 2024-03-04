@@ -5,7 +5,7 @@ uint8_t clock_poz =0;
 uint8_t clock_poz_1 =0;
 #define key_delay_val 520
 #define select_delay_val 10000
-uint16_t encoder_data=100;	
+uint16_t encoder_data=10;	
 
 
 void key_scan (void)
@@ -18,8 +18,8 @@ uint8_t pin_state=0;
 	
 	if (encoder_state==3)
 					{
-						if (pin_state==2) encoder_data++;
-						if (pin_state==1) encoder_data--;
+						if (pin_state==2 && encoder_data<20) encoder_data++;
+						if (pin_state==1 && encoder_data) encoder_data--;
 						
 					}
 					

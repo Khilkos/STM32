@@ -4,15 +4,14 @@ static volatile uint8_t read_temperature_stage=0;
 volatile uint16_t DS18B20_temperature=0;
 _Bool DMA_busy=0;
 
-uint16_t DS18B20_temperature_of_sensor[2]={0,0};
+uint16_t DS18B20_temperature_of_2_sensor[2]={0,0};
 uint8_t ROM[8];
-//static uint8_t ROM_[8]={0x,0x,0x,0x,0x,0x,0x,0x};
-static uint8_t ROM1[8]={0x28,0xe4,0xbc,0x75,0xd0,0x01,0x3c,0x6c};
-static uint8_t ROM2[8]={0x28,0x69,0x0c,0x75,0xd0,0x01,0x3c,0x83};
-static uint8_t ROM3[8]={0x28,0x4d,0xb0,0x75,0xd0,0x01,0x3c,0x87};
-static uint8_t ROM_work[8]={0x28,0x7a,0x19,0xc7,0x0e,0x00,0x00,0x8d};
-static uint8_t ROM_work_1[8]={0x28,0xd9,0xf1,0x75,0xd0,0x01,0x3c,0xce};
-//	static uint8_t temp_send_buf[64];
+
+uint8_t ROM1[8]={0x28,0xe4,0xbc,0x75,0xd0,0x01,0x3c,0x6c};
+uint8_t ROM2[8]={0x28,0x69,0x0c,0x75,0xd0,0x01,0x3c,0x83};
+uint8_t ROM3[8]={0x28,0x4d,0xb0,0x75,0xd0,0x01,0x3c,0x87};
+uint8_t ROM_work[8]={0x28,0x7a,0x19,0xc7,0x0e,0x00,0x00,0x8d};
+uint8_t ROM_work_1[8]={0x28,0xd9,0xf1,0x75,0xd0,0x01,0x3c,0xce};
 
 
 #define OW_0    0x00
@@ -136,7 +135,7 @@ return DS18B20_temperature;
 }
 
 //==================================================
-_Bool DS18B20_read_temperatur_of_sensor (void)
+_Bool DS18B20_read_temperatur_of_2_sensor (uint8_t* _ROM_1, uint8_t* _ROM_2,uint16_t* _temperature_of_2_sensor)
 {
 	uint8_t temp=0;
 	_Bool temp_bit=0;
@@ -186,7 +185,7 @@ _Bool DS18B20_read_temperatur_of_sensor (void)
 			DMA_busy=1;
 		}
 	if (read_temperature_stage==7 && !DMA_busy)		
-		{	DMA_F411_One_Wire_Send (8, ROM_work);
+		{	DMA_F411_One_Wire_Send (8, _ROM_1);
 			read_temperature_stage=8;
 			DMA_busy=1;
 		}
@@ -209,9 +208,9 @@ _Bool DS18B20_read_temperatur_of_sensor (void)
 					if (One_wire_recive_buf[i]==0xff) temp_bit=1; else temp_bit=0;
 					temp16|= temp_bit<<i;
 				}
-			DS18B20_temperature_of_sensor[0]=temp16;
-			DS18B20_temperature_of_sensor[0]=(DS18B20_temperature_of_sensor[0]/16*10)+(uint16_t)((DS18B20_temperature_of_sensor[0]&0b00001111)*0.625);
-			if 	(DS18B20_temperature_of_sensor[0]>2000) DS18B20_temperature_of_sensor[0]=0;
+			*_temperature_of_2_sensor=temp16;
+			*_temperature_of_2_sensor=(*_temperature_of_2_sensor/16*10)+(uint16_t)((*_temperature_of_2_sensor&0b00001111)*0.625);
+			if 	(*_temperature_of_2_sensor>2000) *_temperature_of_2_sensor=0;
 			read_temperature_stage=11;
 		}
 	if (read_temperature_stage==11)		
@@ -227,7 +226,7 @@ _Bool DS18B20_read_temperatur_of_sensor (void)
 			DMA_busy=1;
 		}
 	if (read_temperature_stage==13 && !DMA_busy)				
-		{	DMA_F411_One_Wire_Send (8, ROM_work_1);
+		{	DMA_F411_One_Wire_Send (8, _ROM_2);
 			read_temperature_stage=14;
 			DMA_busy=1;
 		}
@@ -249,9 +248,9 @@ _Bool DS18B20_read_temperatur_of_sensor (void)
 					if (One_wire_recive_buf[i]==0xff) temp_bit=1; else temp_bit=0;
 					temp16|= temp_bit<<i;
 				}
-			DS18B20_temperature_of_sensor[1]=temp16;
-			DS18B20_temperature_of_sensor[1]=(DS18B20_temperature_of_sensor[1]/16*10)+(uint16_t)((DS18B20_temperature_of_sensor[1]&0b00001111)*0.625);
-			if 	(DS18B20_temperature_of_sensor[1]>2000) DS18B20_temperature_of_sensor[1]=0;
+			*(_temperature_of_2_sensor+1)=temp16;
+			*(_temperature_of_2_sensor+1)=(*(_temperature_of_2_sensor+1)/16*10)+(uint16_t)((*(_temperature_of_2_sensor+1)&0b00001111)*0.625);
+			if 	(*(_temperature_of_2_sensor+1)>2000) *(_temperature_of_2_sensor+1)=0;
 			read_temperature_stage=17;
 		}
 	if (read_temperature_stage==17)			

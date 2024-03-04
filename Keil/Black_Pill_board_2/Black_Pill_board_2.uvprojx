@@ -435,11 +435,6 @@
               <FilePath>..\..\My_Libraries\HUB_08_F411.c</FilePath>
             </File>
             <File>
-              <FileName>HUB_08_F411.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\..\My_Libraries\HUB_08_F411.h</FilePath>
-            </File>
-            <File>
               <FileName>Font_table.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\My_Libraries\Font_table.c</FilePath>
@@ -448,11 +443,6 @@
               <FileName>HUB_75_F411.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\My_Libraries\HUB_75_F411.c</FilePath>
-            </File>
-            <File>
-              <FileName>HUB_75_F411.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\..\My_Libraries\HUB_75_F411.h</FilePath>
             </File>
             <File>
               <FileName>DS3231_F411.c</FileName>
@@ -483,6 +473,11 @@
               <FileName>Timer_F411_init.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\My_Libraries\Timer_F411_init.c</FilePath>
+            </File>
+            <File>
+              <FileName>One_Wire_F411.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\My_Libraries\One_Wire_F411.c</FilePath>
             </File>
           </Files>
         </Group>
