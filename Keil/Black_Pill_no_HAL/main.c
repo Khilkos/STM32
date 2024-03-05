@@ -84,9 +84,10 @@ key_scan();
 	
 	sprintf(String,"ADC_ch0/1= %.2f/%.2fB", (double)ADC_ch0/1262, (double)ADC_ch1/1262 );
 	LCD_string (48,0, (uint8_t*)String);
-  DS18B20_read_temperatur_of_sensor();
-	sprintf(String,"Темпер. %.1f / %.1f",DS18B20_temperature_of_sensor[0]*0.1, DS18B20_temperature_of_sensor[1]*0.1 );
+  DS18B20_read_temperatur_of_2_sensor(ROM_work, ROM_work_1,DS18B20_temperature_of_2_sensor);
+	sprintf(String,"Темпер. %.1f / %.1f",DS18B20_temperature_of_2_sensor[0]*0.1, DS18B20_temperature_of_2_sensor[1]*0.1 );
 	LCD_string (56,0, (uint8_t*)String);
+	
 //	sprintf(String,"clock_poz %d", clock_poz);
 //	LCD_string(48,0,(uint8_t*)String);
 	
