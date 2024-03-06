@@ -405,11 +405,6 @@
           <GroupName>Library_code</GroupName>
           <Files>
             <File>
-              <FileName>Core_F411_init.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\My_Libraries\Core_F411_init.c</FilePath>
-            </File>
-            <File>
               <FileName>Delay.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\My_Libraries\Delay.c</FilePath>
@@ -478,6 +473,11 @@
               <FileName>One_Wire_F411.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\My_Libraries\One_Wire_F411.c</FilePath>
+            </File>
+            <File>
+              <FileName>Core_init.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\My_Libraries\Core_init.c</FilePath>
             </File>
           </Files>
         </Group>
