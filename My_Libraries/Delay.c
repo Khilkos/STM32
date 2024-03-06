@@ -8,24 +8,24 @@ void SysTick_Handler(void)
 
 if (count>0)	count--; else count=0;  	
 
-if (GPIOB->IDR & 1<<15) GPIOB->BSRR=1<<(15+res); else GPIOB->BSRR=1<<15;
+//if (GPIOB->IDR & 1<<15) GPIOB->BSRR=1<<(15+res); else GPIOB->BSRR=1<<15;
 }
 //---------------------------------------------------------
 void delay_us(uint32_t time_delay_us)
 {
-	SysTick->CTRL |=(1U<<0);
+	SysTick->CTRL |=(1U<<SysTick_CTRL_ENABLE_Pos);
 	count=time_delay_us;
 	while (count) __NOP();
-	SysTick->CTRL &=~(1U<<0);
+	SysTick->CTRL &=~(1U<<SysTick_CTRL_ENABLE_Pos);
 }
 
 
 void delay_ms(uint32_t delay_time_ms)
 {
-	SysTick->CTRL |=(1U<<0);
+	SysTick->CTRL |=(1U<<SysTick_CTRL_ENABLE_Pos);
 	count=delay_time_ms*1000;
 	while (count) __NOP();
-	SysTick->CTRL &=~(1U<<0);
+	SysTick->CTRL &=~(1U<<SysTick_CTRL_ENABLE_Pos);
 }
 
 void SysTick_Init(void)
@@ -37,4 +37,10 @@ SysTick->LOAD =(HCLK-1);
 SysTick->CTRL |= 1<<2 | 1<<1 ;//| 1<<0 ;
 }
 
-
+void SysTick_F4_Init(uint8_t CPU_AHB_MHz_frequency) //frequency AHB bus in MHz
+{	
+RCC->APB2ENR |= RCC_APB2ENR_SYSCFGEN;
+			
+SysTick->LOAD =(CPU_AHB_MHz_frequency-1); //enable Systick on 1 us takt
+SysTick->CTRL |= 1<<SysTick_CTRL_CLKSOURCE_Pos | 1<<SysTick_CTRL_TICKINT_Pos;
+}

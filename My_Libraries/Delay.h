@@ -20,6 +20,7 @@ void delay_us(uint32_t);
 void delay_ms(uint32_t);
 void SysTick_Handler(void);
 void SysTick_Init(void);
+void SysTick_F4_Init(uint8_t CPU_AHB_MHz_frequency);
 
 #endif
 
