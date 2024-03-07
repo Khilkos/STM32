@@ -1,6 +1,6 @@
 #include "main.h"
 
-
+#define led_delay 50
 
 
 
@@ -19,10 +19,10 @@ GPIO_DO_setup(GPIOA,4,High);
 	
 		GPIOA->BSRR = 1<<(5);
 		GPIOA->BSRR = 1<<(4);
-		delay_ms(500);
+		delay_ms(led_delay);
 		GPIOA->BSRR = 1<<(5+16);
 		GPIOA->BSRR = 1<<(4+16);
-		delay_ms(500);
+		delay_ms(led_delay);
 	
 	
 		
