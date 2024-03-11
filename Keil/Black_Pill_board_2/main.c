@@ -70,7 +70,7 @@ sprintf(String,"Temp. %04.1f/%04.1f",DS18B20_temperature_of_2_sensor[0]*0.1, DS1
 Draw_String(0x40, (uint8_t*)String);
 
 //SPI1->CR1 |= SPI_CR1_SPE;
-SPI1->DR=0b10101010;
+SPI1->DR=0xAAAA;
 while (!(SPI1->SR&SPI_SR_TXE)) {__NOP();}
 //SPI1->CR1 &= ~SPI_CR1_SPE;
 
