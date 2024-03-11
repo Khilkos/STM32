@@ -12,6 +12,12 @@ GPIO_DO_setup(GPIOB,12,High);
 GPIO_DO_setup(GPIOB,13,High);	
 GPIO_DO_setup(GPIOB,14,High);	
 GPIO_DO_setup(GPIOB,15,High);	
+//GPIO_DO_setup(GPIOA,4,High);	
+	
+GPIO_Alternate(GPIOA,7,Push_pull,High,No_pull,AF5);// SPI MOSI_1
+GPIO_Alternate(GPIOA,5,Push_pull,High,No_pull,AF5);// SPI CLK_1
+//GPIO_Alternate(GPIOA,4,Push_pull,High,Pull_up,AF5);// SPI NSS_1
+
 
 /*
 GPIO_DI_setup(GPIOA,15,No_pull);//отключение jtag
@@ -43,9 +49,10 @@ I2C_F411_init();
 DMA_F411_init();
 USART_F411_init();
 LCD1602_init_via_I2C();
-
-DS18B20_read_ROM();
-
+SPI_F411_init();
+//DS18B20_read_ROM();
+//SPI1->CR1 &=~SPI_CR1_SSM;
+//SPI1->CR2 |=SPI_CR2_SSOE;
 
 while (1)
 {
@@ -62,7 +69,10 @@ sprintf(String,"Temp. %04.1f/%04.1f",DS18B20_temperature_of_2_sensor[0]*0.1, DS1
 
 Draw_String(0x40, (uint8_t*)String);
 
-
+//SPI1->CR1 |= SPI_CR1_SPE;
+SPI1->DR=0b10101010;
+while (!(SPI1->SR&SPI_SR_TXE)) {__NOP();}
+//SPI1->CR1 &= ~SPI_CR1_SPE;
 
 }
 }

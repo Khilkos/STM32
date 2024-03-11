@@ -1,5 +1,5 @@
-#ifndef __SPI_F411_H
-#define __SPI_F411_H
+#ifndef __SPI_H
+#define __SPI_H
 
 #include "stm32f411xe.h"
 //#include "stdint.h"
