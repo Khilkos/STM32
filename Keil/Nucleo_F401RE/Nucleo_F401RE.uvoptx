@@ -277,7 +277,7 @@
       <GroupNumber>2</GroupNumber>
       <FileNumber>5</FileNumber>
       <FileType>1</FileType>
-      <tvExp>1</tvExp>
+      <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
       <PathWithFileName>..\..\My_Libraries\Delay.c</PathWithFileName>
@@ -306,6 +306,30 @@
       <bDave2>0</bDave2>
       <PathWithFileName>..\..\My_Libraries\Core_init.h</PathWithFileName>
       <FilenameWithoutPath>Core_init.h</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
+    </File>
+    <File>
+      <GroupNumber>2</GroupNumber>
+      <FileNumber>8</FileNumber>
+      <FileType>1</FileType>
+      <tvExp>0</tvExp>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <bDave2>0</bDave2>
+      <PathWithFileName>..\..\My_Libraries\SPI.c</PathWithFileName>
+      <FilenameWithoutPath>SPI.c</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
+    </File>
+    <File>
+      <GroupNumber>2</GroupNumber>
+      <FileNumber>9</FileNumber>
+      <FileType>5</FileType>
+      <tvExp>0</tvExp>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <bDave2>0</bDave2>
+      <PathWithFileName>..\..\My_Libraries\SPI.h</PathWithFileName>
+      <FilenameWithoutPath>SPI.h</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
