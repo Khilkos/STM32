@@ -434,6 +434,16 @@
               <FileType>5</FileType>
               <FilePath>..\..\My_Libraries\SPI.h</FilePath>
             </File>
+            <File>
+              <FileName>Nokia_5110_LCD.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\My_Libraries\Nokia_5110_LCD.c</FilePath>
+            </File>
+            <File>
+              <FileName>Nokia_5110_LCD.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\..\My_Libraries\Nokia_5110_LCD.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

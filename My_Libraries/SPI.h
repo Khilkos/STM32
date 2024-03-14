@@ -9,7 +9,7 @@
 #define res 16
 
 void SPI_F411_init(void);
-
+void SPI_F4_init(uint8_t SPI_speed);
 
 #endif
 

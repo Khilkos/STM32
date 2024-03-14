@@ -1,7 +1,14 @@
 #include "main.h"
 
 #define led_delay 50
-
+#define GREEN_ON 	GPIOC->BSRR = 1<<(5)
+#define GREEN_OFF GPIOC->BSRR = 1<<(5+16)
+#define RED_ON 	GPIOC->BSRR = 1<<(6)
+#define RED_OFF GPIOC->BSRR = 1<<(6+16)
+#define WHITE_ON 	GPIOC->BSRR = 1<<(8)
+#define WHITE_OFF GPIOC->BSRR = 1<<(8+16)
+#define YELLOW_ON 	GPIOC->BSRR = 1<<(9)
+#define YELLOW_OFF GPIOC->BSRR = 1<<(9+16)
 
 
 int main(void)
@@ -11,12 +18,14 @@ SysTick_F4_Init (84);
 	
 RCC->AHB1ENR = RCC_AHB1ENR_GPIOAEN | RCC_AHB1ENR_GPIOBEN | RCC_AHB1ENR_GPIOCEN ;
 
-GPIO_DO_setup(GPIOA,5,High);
-GPIO_DO_setup(GPIOC,10,High);
-GPIO_DO_setup(GPIOC,11,High);
-GPIO_DO_setup(GPIOC,12,High);
-GPIO_DO_setup(GPIOC,2,High);
-GPIO_DO_setup(GPIOC,3,High);
+GPIO_Alternate(GPIOA,7,Push_pull,High,No_pull,AF5);// SPI MOSI_1
+GPIO_Alternate(GPIOA,5,Push_pull,High,No_pull,AF5);// SPI CLK_1	
+	
+//GPIO_DO_setup(GPIOA,5,High);
+GPIO_DO_setup(GPIOC,5,High);
+GPIO_DO_setup(GPIOC,6,High);
+GPIO_DO_setup(GPIOC,8,High);
+GPIO_DO_setup(GPIOC,9,High);
 
 	GPIO_DI_setup(GPIOA,10,No_pull);// A
 	GPIO_DI_setup(GPIOB,3,No_pull);// B
@@ -27,20 +36,22 @@ GPIO_DO_setup(GPIOC,3,High);
 	GPIO_DI_setup(GPIOA,9,No_pull);// Key
 
 
+SPI_F4_init(5);
+Nokia_5110_init();
 
-
+Nokia_5110_send_command(0x09);
 	
 	while (1)
 	{
 	
-		GPIOA->BSRR = 1<<(5);
-		GPIOC->BSRR = 1<<(10);
+//		GPIOA->BSRR = 1<<(5);
+		GREEN_ON;
 			delay_ms(led_delay);
-		GPIOA->BSRR = 1<<(5+16);
-		GPIOC->BSRR = 1<<(10+16);
+//		GPIOA->BSRR = 1<<(5+16);
+		GREEN_OFF;
 				delay_ms(led_delay);
 	
-	if (!(GPIOA->IDR & 1<<10)) GPIOC->BSRR |=1<<11; else GPIOC->BSRR |=1<<(11+16);
+	if (!(GPIOA->IDR & 1<<10)) RED_ON; else RED_OFF;
 		
 	
 	
