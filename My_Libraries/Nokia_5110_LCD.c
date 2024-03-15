@@ -11,16 +11,16 @@
 void Nokia_5110_init (void)
 {
 Nokia_5110_CE_1;
-delay_ms(30);
+delay_ms(50);
 Nokia_5110_Reset_0;
-delay_ms(120);
+delay_ms(150);
 Nokia_5110_Reset_1;
-Nokia_5110_send_command(0x21);
-Nokia_5110_send_command(0xBA);
-Nokia_5110_send_command(0x04);
-Nokia_5110_send_command(0x13);
+Nokia_5110_send_command(0b00100001); //use extetdet instruction set
+Nokia_5110_send_command(0b10000100); //set v0
+Nokia_5110_send_command(0b00000100); //set temperature 
+Nokia_5110_send_command(0b00010011);//bias voltage
 Nokia_5110_send_command(0x20);
-Nokia_5110_send_command(0x09);	
+Nokia_5110_send_command(0b00001100);	
 	
 }
 //===========================================
@@ -28,11 +28,14 @@ Nokia_5110_send_command(0x09);
 void Nokia_5110_send_command (uint8_t command)
 {
 	Nokia_5110_CE_0;
-	delay_us(100);
+//	delay_us(100);
 	Nokia_5110_Command;
 	SPI1->DR=command;
 while (!(SPI1->SR&SPI_SR_TXE)) {__NOP();}
+while ((SPI1->SR&SPI_SR_BSY)) {__NOP();}
+delay_us(1);
 	Nokia_5110_CE_1;
+delay_us(1);
 }
 //============================================	
 
@@ -42,5 +45,8 @@ void Nokia_5110_send_data (uint8_t data)
 	Nokia_5110_Data;
 	SPI1->DR=data;
 while (!(SPI1->SR&SPI_SR_TXE)) {__NOP();}
+while ((SPI1->SR&SPI_SR_BSY)) {__NOP();}
+delay_us(1);
 	Nokia_5110_CE_1;
+delay_us(1);
 }
