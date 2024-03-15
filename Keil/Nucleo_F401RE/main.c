@@ -36,10 +36,10 @@ GPIO_DO_setup(GPIOC,9,High);
 	GPIO_DI_setup(GPIOA,9,No_pull);// Key
 
 
-SPI_F4_init(5);
+SPI_F4_init(6);
 Nokia_5110_init();
 
-Nokia_5110_send_command(0x09);
+//Nokia_5110_send_command(0x09);
 	
 	while (1)
 	{
@@ -52,7 +52,7 @@ Nokia_5110_send_command(0x09);
 				delay_ms(led_delay);
 	
 	if (!(GPIOA->IDR & 1<<10)) RED_ON; else RED_OFF;
-		
+	//Nokia_5110_send_command(0x09);	
 	
 	
 	

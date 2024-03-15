@@ -18,9 +18,9 @@ Nokia_5110_Reset_1;
 Nokia_5110_send_command(0x21);
 Nokia_5110_send_command(0xBA);
 Nokia_5110_send_command(0x04);
-Nokia_5110_send_command(0x14);
+Nokia_5110_send_command(0x13);
 Nokia_5110_send_command(0x20);
-Nokia_5110_send_command(0x0C);	
+Nokia_5110_send_command(0x09);	
 	
 }
 //===========================================
@@ -28,6 +28,7 @@ Nokia_5110_send_command(0x0C);
 void Nokia_5110_send_command (uint8_t command)
 {
 	Nokia_5110_CE_0;
+	delay_us(100);
 	Nokia_5110_Command;
 	SPI1->DR=command;
 while (!(SPI1->SR&SPI_SR_TXE)) {__NOP();}
