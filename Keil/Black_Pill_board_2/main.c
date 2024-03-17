@@ -73,8 +73,8 @@ sprintf(String,"Temp. %04.1f/%04.1f",DS18B20_temperature_of_2_sensor[0]*0.1, DS1
 Draw_String(0x40, (uint8_t*)String);
 
 //SPI1->CR1 |= SPI_CR1_SPE;
-Nokia_5110_send_command(0b01000000);
-Nokia_5110_send_command(0b10000000);
+Nokia_5110_send_command(0b01000001);
+Nokia_5110_send_command(0b10000001);
 Nokia_5110_send_data(0xf0);	
 //SPI1->CR1 &= ~SPI_CR1_SPE;
 

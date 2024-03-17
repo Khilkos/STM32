@@ -16,7 +16,7 @@ Nokia_5110_Reset_0;
 delay_ms(150);
 Nokia_5110_Reset_1;
 Nokia_5110_send_command(0b00100001); //use extetdet instruction set
-Nokia_5110_send_command(0b10000100); //set v0
+Nokia_5110_send_command(128+2); //set v0
 Nokia_5110_send_command(0b00000100); //set temperature 
 Nokia_5110_send_command(0b00010011);//bias voltage
 Nokia_5110_send_command(0x20);
