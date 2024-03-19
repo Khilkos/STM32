@@ -10,7 +10,7 @@
 void Nokia_5110_init (void);
 void Nokia_5110_send_command (uint8_t command);
 void Nokia_5110_send_data (uint8_t data);
-
+void Nokia_5110_clear_LCD(void);
 
 
 

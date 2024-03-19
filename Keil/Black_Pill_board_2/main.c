@@ -15,7 +15,8 @@ GPIO_DO_setup(GPIOB,15,High);
 GPIO_DO_setup(GPIOB,8,High); //Nokia 5110_RST	
 GPIO_DO_setup(GPIOB,9,High); //nokia 5110_CE
 GPIO_DO_setup(GPIOA,6,High); //Nokia 5110_D/C
-	
+
+//GPIOB->BSRR|=1<<8;	
 //GPIO_DO_setup(GPIOA,4,High);	
 	
 GPIO_Alternate(GPIOA,7,Push_pull,High,No_pull,AF5);// SPI MOSI_1
@@ -53,7 +54,7 @@ I2C_F411_init();
 DMA_F411_init();
 USART_F411_init();
 LCD1602_init_via_I2C();
-SPI_F4_init(5);
+SPI_F4_init(4);
 Nokia_5110_init();
 //DS18B20_read_ROM();
 
@@ -73,9 +74,15 @@ sprintf(String,"Temp. %04.1f/%04.1f",DS18B20_temperature_of_2_sensor[0]*0.1, DS1
 Draw_String(0x40, (uint8_t*)String);
 
 //SPI1->CR1 |= SPI_CR1_SPE;
-Nokia_5110_send_command(0b01000001);
-Nokia_5110_send_command(0b10000001);
-Nokia_5110_send_data(0xf0);	
+Nokia_5110_send_command(0b10000000);	
+Nokia_5110_send_command(0b01000000);
+
+
+Nokia_5110_send_data(0xff);	
+//Nokia_5110_send_data(0xff);	
+//	Nokia_5110_send_data(0xff);	
+//	Nokia_5110_send_data(0xff);	
+//	Nokia_5110_send_data(0xff);	
 //SPI1->CR1 &= ~SPI_CR1_SPE;
 
 }
