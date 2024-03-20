@@ -10,8 +10,10 @@ Section Cross References
     main.o(.text.main) refers to spi.o(.text.SPI_F4_init) for SPI_F4_init
     main.o(.text.main) refers to nokia_5110_lcd.o(.text.Nokia_5110_init) for Nokia_5110_init
     main.o(.text.main) refers to delay.o(.text.delay_ms) for delay_ms
+    main.o(.text.main) refers to nokia_5110_lcd.o(.text.Nokia_5110_send_command) for Nokia_5110_send_command
     main.o(.text.main) refers to gpio_setup.o(.text.GPIO_DO_setup) for GPIO_DO_setup
     main.o(.text.main) refers to gpio_setup.o(.text.GPIO_DI_setup) for GPIO_DI_setup
+    main.o(.text.main) refers to nokia_5110_lcd.o(.text.Nokia_5110_send_data) for Nokia_5110_send_data
     main.o(.ARM.exidx.text.main) refers to main.o(.text.main) for [Anonymous Symbol]
     gpio_setup.o(.ARM.exidx.text.GPIO_DO_setup) refers to gpio_setup.o(.text.GPIO_DO_setup) for [Anonymous Symbol]
     gpio_setup.o(.ARM.exidx.text.GPIO_DI_setup) refers to gpio_setup.o(.text.GPIO_DI_setup) for [Anonymous Symbol]
@@ -33,11 +35,17 @@ Section Cross References
     spi.o(.ARM.exidx.text.SPI_F411_init) refers to spi.o(.text.SPI_F411_init) for [Anonymous Symbol]
     spi.o(.ARM.exidx.text.SPI_F4_init) refers to spi.o(.text.SPI_F4_init) for [Anonymous Symbol]
     nokia_5110_lcd.o(.text.Nokia_5110_init) refers to delay.o(.text.delay_ms) for delay_ms
+    nokia_5110_lcd.o(.text.Nokia_5110_init) refers to nokia_5110_lcd.o(.text.Nokia_5110_clear_LCD) for Nokia_5110_clear_LCD
     nokia_5110_lcd.o(.text.Nokia_5110_init) refers to nokia_5110_lcd.o(.text.Nokia_5110_send_command) for Nokia_5110_send_command
     nokia_5110_lcd.o(.ARM.exidx.text.Nokia_5110_init) refers to nokia_5110_lcd.o(.text.Nokia_5110_init) for [Anonymous Symbol]
-    nokia_5110_lcd.o(.text.Nokia_5110_send_command) refers to delay.o(.text.delay_us) for delay_us
+    nokia_5110_lcd.o(.text.Nokia_5110_send_command) refers to nokia_5110_lcd.o(.text.OUTLINED_FUNCTION_0) for OUTLINED_FUNCTION_0
     nokia_5110_lcd.o(.ARM.exidx.text.Nokia_5110_send_command) refers to nokia_5110_lcd.o(.text.Nokia_5110_send_command) for [Anonymous Symbol]
+    nokia_5110_lcd.o(.text.Nokia_5110_clear_LCD) refers to nokia_5110_lcd.o(.text.Nokia_5110_send_command) for Nokia_5110_send_command
+    nokia_5110_lcd.o(.text.Nokia_5110_clear_LCD) refers to nokia_5110_lcd.o(.text.Nokia_5110_send_data) for Nokia_5110_send_data
+    nokia_5110_lcd.o(.ARM.exidx.text.Nokia_5110_clear_LCD) refers to nokia_5110_lcd.o(.text.Nokia_5110_clear_LCD) for [Anonymous Symbol]
+    nokia_5110_lcd.o(.text.Nokia_5110_send_data) refers to nokia_5110_lcd.o(.text.OUTLINED_FUNCTION_0) for OUTLINED_FUNCTION_0
     nokia_5110_lcd.o(.ARM.exidx.text.Nokia_5110_send_data) refers to nokia_5110_lcd.o(.text.Nokia_5110_send_data) for [Anonymous Symbol]
+    nokia_5110_lcd.o(.ARM.exidx.text.OUTLINED_FUNCTION_0) refers to nokia_5110_lcd.o(.text.OUTLINED_FUNCTION_0) for [Anonymous Symbol]
     startup_stm32f401xe.o(STACK) refers (Special) to heapauxi.o(.text) for __use_two_region_memory
     startup_stm32f401xe.o(HEAP) refers (Special) to heapauxi.o(.text) for __use_two_region_memory
     startup_stm32f401xe.o(RESET) refers (Special) to heapauxi.o(.text) for __use_two_region_memory
@@ -176,6 +184,7 @@ Removing Unused input sections from the image.
     Removing gpio_setup.o(.ARM.exidx.text.GPIO_Analog_setup), (8 bytes).
     Removing delay.o(.text), (0 bytes).
     Removing delay.o(.ARM.exidx.text.SysTick_Handler), (8 bytes).
+    Removing delay.o(.text.delay_us), (36 bytes).
     Removing delay.o(.ARM.exidx.text.delay_us), (8 bytes).
     Removing delay.o(.ARM.exidx.text.delay_ms), (8 bytes).
     Removing delay.o(.text.SysTick_Init), (36 bytes).
@@ -193,8 +202,9 @@ Removing Unused input sections from the image.
     Removing nokia_5110_lcd.o(.text), (0 bytes).
     Removing nokia_5110_lcd.o(.ARM.exidx.text.Nokia_5110_init), (8 bytes).
     Removing nokia_5110_lcd.o(.ARM.exidx.text.Nokia_5110_send_command), (8 bytes).
-    Removing nokia_5110_lcd.o(.text.Nokia_5110_send_data), (56 bytes).
+    Removing nokia_5110_lcd.o(.ARM.exidx.text.Nokia_5110_clear_LCD), (8 bytes).
     Removing nokia_5110_lcd.o(.ARM.exidx.text.Nokia_5110_send_data), (8 bytes).
+    Removing nokia_5110_lcd.o(.ARM.exidx.text.OUTLINED_FUNCTION_0), (8 bytes).
     Removing system_stm32f4xx.o(.text), (0 bytes).
     Removing system_stm32f4xx.o(.ARM.exidx.text.SystemInit), (8 bytes).
     Removing system_stm32f4xx.o(.text.SystemCoreClockUpdate), (108 bytes).
@@ -203,7 +213,7 @@ Removing Unused input sections from the image.
     Removing system_stm32f4xx.o(.rodata.AHBPrescTable), (16 bytes).
     Removing system_stm32f4xx.o(.rodata.APBPrescTable), (8 bytes).
 
-37 unused section(s) (total 544 bytes) removed from the image.
+39 unused section(s) (total 540 bytes) removed from the image.
 
 ==============================================================================
 
@@ -332,33 +342,37 @@ Image Symbol Table
     [Anonymous Symbol]                       0x08000350   Section        0  gpio_setup.o(.text.GPIO_Alternate)
     [Anonymous Symbol]                       0x0800039e   Section        0  gpio_setup.o(.text.GPIO_DI_setup)
     [Anonymous Symbol]                       0x080003ba   Section        0  gpio_setup.o(.text.GPIO_DO_setup)
-    [Anonymous Symbol]                       0x080003d4   Section        0  nokia_5110_lcd.o(.text.Nokia_5110_init)
-    __arm_cp.0_1                             0x0800041c   Number         4  nokia_5110_lcd.o(.text.Nokia_5110_init)
-    [Anonymous Symbol]                       0x08000420   Section        0  nokia_5110_lcd.o(.text.Nokia_5110_send_command)
-    __arm_cp.1_0                             0x08000458   Number         4  nokia_5110_lcd.o(.text.Nokia_5110_send_command)
-    __arm_cp.1_1                             0x0800045c   Number         4  nokia_5110_lcd.o(.text.Nokia_5110_send_command)
-    __arm_cp.1_2                             0x08000460   Number         4  nokia_5110_lcd.o(.text.Nokia_5110_send_command)
-    OUTLINED_FUNCTION_0                      0x08000465   Thumb Code    10  delay.o(.text.OUTLINED_FUNCTION_0)
-    [Anonymous Symbol]                       0x08000464   Section        0  delay.o(.text.OUTLINED_FUNCTION_0)
-    [Anonymous Symbol]                       0x08000470   Section        0  spi.o(.text.SPI_F4_init)
-    __arm_cp.1_1                             0x0800049c   Number         4  spi.o(.text.SPI_F4_init)
-    [Anonymous Symbol]                       0x080004a0   Section        0  delay.o(.text.SysTick_F4_Init)
-    __arm_cp.4_0                             0x080004bc   Number         4  delay.o(.text.SysTick_F4_Init)
-    [Anonymous Symbol]                       0x080004c0   Section        0  delay.o(.text.SysTick_Handler)
-    [Anonymous Symbol]                       0x080004d0   Section        0  system_stm32f4xx.o(.text.SystemInit)
-    __arm_cp.0_0                             0x080004dc   Number         4  system_stm32f4xx.o(.text.SystemInit)
-    [Anonymous Symbol]                       0x080004e0   Section        0  delay.o(.text.delay_ms)
-    [Anonymous Symbol]                       0x08000500   Section        0  delay.o(.text.delay_us)
-    __arm_cp.1_0                             0x0800051c   Number         4  delay.o(.text.delay_us)
-    __arm_cp.1_1                             0x08000520   Number         4  delay.o(.text.delay_us)
-    [Anonymous Symbol]                       0x08000524   Section        0  main.o(.text.main)
-    __arm_cp.0_0                             0x080005fc   Number         4  main.o(.text.main)
-    __arm_cp.0_1                             0x08000600   Number         4  main.o(.text.main)
-    __arm_cp.0_2                             0x08000604   Number         4  main.o(.text.main)
-    __arm_cp.0_3                             0x08000608   Number         4  main.o(.text.main)
-    __arm_cp.0_4                             0x0800060c   Number         4  main.o(.text.main)
-    $v0                                      0x08000610   Number         0  fpinit.o(x$fpl$fpinit)
-    x$fpl$fpinit                             0x08000610   Section       26  fpinit.o(x$fpl$fpinit)
+    [Anonymous Symbol]                       0x080003d4   Section        0  nokia_5110_lcd.o(.text.Nokia_5110_clear_LCD)
+    [Anonymous Symbol]                       0x080003f8   Section        0  nokia_5110_lcd.o(.text.Nokia_5110_init)
+    __arm_cp.0_1                             0x08000448   Number         4  nokia_5110_lcd.o(.text.Nokia_5110_init)
+    [Anonymous Symbol]                       0x0800044c   Section        0  nokia_5110_lcd.o(.text.Nokia_5110_send_command)
+    [Anonymous Symbol]                       0x0800047c   Section        0  nokia_5110_lcd.o(.text.Nokia_5110_send_data)
+    __arm_cp.3_0                             0x080004ac   Number         4  nokia_5110_lcd.o(.text.Nokia_5110_send_data)
+    __arm_cp.3_1                             0x080004b0   Number         4  nokia_5110_lcd.o(.text.Nokia_5110_send_data)
+    __arm_cp.3_2                             0x080004b4   Number         4  nokia_5110_lcd.o(.text.Nokia_5110_send_data)
+    OUTLINED_FUNCTION_0                      0x080004b9   Thumb Code    10  delay.o(.text.OUTLINED_FUNCTION_0)
+    [Anonymous Symbol]                       0x080004b8   Section        0  delay.o(.text.OUTLINED_FUNCTION_0)
+    OUTLINED_FUNCTION_0                      0x080004c3   Thumb Code    10  nokia_5110_lcd.o(.text.OUTLINED_FUNCTION_0)
+    [Anonymous Symbol]                       0x080004c2   Section        0  nokia_5110_lcd.o(.text.OUTLINED_FUNCTION_0)
+    [Anonymous Symbol]                       0x080004cc   Section        0  spi.o(.text.SPI_F4_init)
+    __arm_cp.1_1                             0x080004f4   Number         4  spi.o(.text.SPI_F4_init)
+    [Anonymous Symbol]                       0x080004f8   Section        0  delay.o(.text.SysTick_F4_Init)
+    __arm_cp.4_0                             0x08000514   Number         4  delay.o(.text.SysTick_F4_Init)
+    [Anonymous Symbol]                       0x08000518   Section        0  delay.o(.text.SysTick_Handler)
+    [Anonymous Symbol]                       0x08000528   Section        0  system_stm32f4xx.o(.text.SystemInit)
+    __arm_cp.0_0                             0x08000534   Number         4  system_stm32f4xx.o(.text.SystemInit)
+    [Anonymous Symbol]                       0x08000538   Section        0  delay.o(.text.delay_ms)
+    __arm_cp.2_0                             0x08000558   Number         4  delay.o(.text.delay_ms)
+    __arm_cp.2_1                             0x0800055c   Number         4  delay.o(.text.delay_ms)
+    [Anonymous Symbol]                       0x08000560   Section        0  main.o(.text.main)
+    __arm_cp.0_0                             0x08000670   Number         4  main.o(.text.main)
+    __arm_cp.0_1                             0x08000674   Number         4  main.o(.text.main)
+    __arm_cp.0_2                             0x08000678   Number         4  main.o(.text.main)
+    __arm_cp.0_3                             0x0800067c   Number         4  main.o(.text.main)
+    __arm_cp.0_4                             0x08000680   Number         4  main.o(.text.main)
+    __arm_cp.0_5                             0x08000684   Number         4  main.o(.text.main)
+    $v0                                      0x08000688   Number         0  fpinit.o(x$fpl$fpinit)
+    x$fpl$fpinit                             0x08000688   Section       26  fpinit.o(x$fpl$fpinit)
     .bss                                     0x20000000   Section       96  libspace.o(.bss)
     count                                    0x20000060   Data           4  delay.o(.bss.count)
     [Anonymous Symbol]                       0x20000060   Section        0  delay.o(.bss.count)
@@ -535,20 +549,21 @@ Image Symbol Table
     GPIO_Alternate                           0x08000351   Thumb Code    78  gpio_setup.o(.text.GPIO_Alternate)
     GPIO_DI_setup                            0x0800039f   Thumb Code    28  gpio_setup.o(.text.GPIO_DI_setup)
     GPIO_DO_setup                            0x080003bb   Thumb Code    26  gpio_setup.o(.text.GPIO_DO_setup)
-    Nokia_5110_init                          0x080003d5   Thumb Code    72  nokia_5110_lcd.o(.text.Nokia_5110_init)
-    Nokia_5110_send_command                  0x08000421   Thumb Code    56  nokia_5110_lcd.o(.text.Nokia_5110_send_command)
-    SPI_F4_init                              0x08000471   Thumb Code    44  spi.o(.text.SPI_F4_init)
-    SysTick_F4_Init                          0x080004a1   Thumb Code    28  delay.o(.text.SysTick_F4_Init)
-    SysTick_Handler                          0x080004c1   Thumb Code    16  delay.o(.text.SysTick_Handler)
-    SystemInit                               0x080004d1   Thumb Code    12  system_stm32f4xx.o(.text.SystemInit)
-    delay_ms                                 0x080004e1   Thumb Code    32  delay.o(.text.delay_ms)
-    delay_us                                 0x08000501   Thumb Code    28  delay.o(.text.delay_us)
-    main                                     0x08000525   Thumb Code   216  main.o(.text.main)
-    _fp_init                                 0x08000611   Thumb Code    26  fpinit.o(x$fpl$fpinit)
-    __fplib_config_fpu_vfp                   0x08000629   Thumb Code     0  fpinit.o(x$fpl$fpinit)
-    __fplib_config_pureend_doubles           0x08000629   Thumb Code     0  fpinit.o(x$fpl$fpinit)
-    Region$$Table$$Base                      0x0800062c   Number         0  anon$$obj.o(Region$$Table)
-    Region$$Table$$Limit                     0x0800063c   Number         0  anon$$obj.o(Region$$Table)
+    Nokia_5110_clear_LCD                     0x080003d5   Thumb Code    34  nokia_5110_lcd.o(.text.Nokia_5110_clear_LCD)
+    Nokia_5110_init                          0x080003f9   Thumb Code    80  nokia_5110_lcd.o(.text.Nokia_5110_init)
+    Nokia_5110_send_command                  0x0800044d   Thumb Code    48  nokia_5110_lcd.o(.text.Nokia_5110_send_command)
+    Nokia_5110_send_data                     0x0800047d   Thumb Code    48  nokia_5110_lcd.o(.text.Nokia_5110_send_data)
+    SPI_F4_init                              0x080004cd   Thumb Code    40  spi.o(.text.SPI_F4_init)
+    SysTick_F4_Init                          0x080004f9   Thumb Code    28  delay.o(.text.SysTick_F4_Init)
+    SysTick_Handler                          0x08000519   Thumb Code    16  delay.o(.text.SysTick_Handler)
+    SystemInit                               0x08000529   Thumb Code    12  system_stm32f4xx.o(.text.SystemInit)
+    delay_ms                                 0x08000539   Thumb Code    32  delay.o(.text.delay_ms)
+    main                                     0x08000561   Thumb Code   272  main.o(.text.main)
+    _fp_init                                 0x08000689   Thumb Code    26  fpinit.o(x$fpl$fpinit)
+    __fplib_config_fpu_vfp                   0x080006a1   Thumb Code     0  fpinit.o(x$fpl$fpinit)
+    __fplib_config_pureend_doubles           0x080006a1   Thumb Code     0  fpinit.o(x$fpl$fpinit)
+    Region$$Table$$Base                      0x080006a4   Number         0  anon$$obj.o(Region$$Table)
+    Region$$Table$$Limit                     0x080006b4   Number         0  anon$$obj.o(Region$$Table)
     __libspace_start                         0x20000000   Data          96  libspace.o(.bss)
     __temporary_stack_top$libspace           0x20000060   Data           0  libspace.o(.bss)
 
@@ -560,98 +575,100 @@ Memory Map of the image
 
   Image Entry point : 0x08000195
 
-  Load Region LR_IROM1 (Base: 0x08000000, Size: 0x0000063c, Max: 0x00080000, ABSOLUTE)
+  Load Region LR_IROM1 (Base: 0x08000000, Size: 0x000006b4, Max: 0x00080000, ABSOLUTE)
 
-    Execution Region ER_IROM1 (Exec base: 0x08000000, Load base: 0x08000000, Size: 0x0000063c, Max: 0x00080000, ABSOLUTE)
+    Execution Region ER_IROM1 (Exec base: 0x08000000, Load base: 0x08000000, Size: 0x000006b4, Max: 0x00080000, ABSOLUTE)
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
-    0x08000000   0x08000000   0x00000194   Data   RO           87    RESET               startup_stm32f401xe.o
-    0x08000194   0x08000194   0x00000008   Code   RO          113  * !!!main             c_w.l(__main.o)
-    0x0800019c   0x0800019c   0x00000034   Code   RO          278    !!!scatter          c_w.l(__scatter.o)
-    0x080001d0   0x080001d0   0x0000001c   Code   RO          280    !!handler_zi        c_w.l(__scatter_zi.o)
-    0x080001ec   0x080001ec   0x00000002   Code   RO          140    .ARM.Collect$$libinit$$00000000  c_w.l(libinit.o)
-    0x080001ee   0x080001ee   0x00000004   Code   RO          146    .ARM.Collect$$libinit$$00000001  c_w.l(libinit2.o)
-    0x080001f2   0x080001f2   0x00000000   Code   RO          149    .ARM.Collect$$libinit$$00000004  c_w.l(libinit2.o)
-    0x080001f2   0x080001f2   0x00000000   Code   RO          151    .ARM.Collect$$libinit$$00000006  c_w.l(libinit2.o)
-    0x080001f2   0x080001f2   0x00000000   Code   RO          154    .ARM.Collect$$libinit$$0000000C  c_w.l(libinit2.o)
-    0x080001f2   0x080001f2   0x00000000   Code   RO          156    .ARM.Collect$$libinit$$0000000E  c_w.l(libinit2.o)
-    0x080001f2   0x080001f2   0x00000000   Code   RO          158    .ARM.Collect$$libinit$$00000010  c_w.l(libinit2.o)
-    0x080001f2   0x080001f2   0x00000000   Code   RO          161    .ARM.Collect$$libinit$$00000013  c_w.l(libinit2.o)
-    0x080001f2   0x080001f2   0x00000000   Code   RO          163    .ARM.Collect$$libinit$$00000015  c_w.l(libinit2.o)
-    0x080001f2   0x080001f2   0x00000000   Code   RO          165    .ARM.Collect$$libinit$$00000017  c_w.l(libinit2.o)
-    0x080001f2   0x080001f2   0x00000000   Code   RO          167    .ARM.Collect$$libinit$$00000019  c_w.l(libinit2.o)
-    0x080001f2   0x080001f2   0x00000000   Code   RO          169    .ARM.Collect$$libinit$$0000001B  c_w.l(libinit2.o)
-    0x080001f2   0x080001f2   0x00000000   Code   RO          171    .ARM.Collect$$libinit$$0000001D  c_w.l(libinit2.o)
-    0x080001f2   0x080001f2   0x00000000   Code   RO          173    .ARM.Collect$$libinit$$0000001F  c_w.l(libinit2.o)
-    0x080001f2   0x080001f2   0x00000000   Code   RO          175    .ARM.Collect$$libinit$$00000021  c_w.l(libinit2.o)
-    0x080001f2   0x080001f2   0x00000000   Code   RO          177    .ARM.Collect$$libinit$$00000023  c_w.l(libinit2.o)
-    0x080001f2   0x080001f2   0x00000000   Code   RO          179    .ARM.Collect$$libinit$$00000025  c_w.l(libinit2.o)
-    0x080001f2   0x080001f2   0x00000000   Code   RO          181    .ARM.Collect$$libinit$$00000027  c_w.l(libinit2.o)
-    0x080001f2   0x080001f2   0x00000000   Code   RO          185    .ARM.Collect$$libinit$$0000002E  c_w.l(libinit2.o)
-    0x080001f2   0x080001f2   0x00000000   Code   RO          187    .ARM.Collect$$libinit$$00000030  c_w.l(libinit2.o)
-    0x080001f2   0x080001f2   0x00000000   Code   RO          189    .ARM.Collect$$libinit$$00000032  c_w.l(libinit2.o)
-    0x080001f2   0x080001f2   0x00000000   Code   RO          191    .ARM.Collect$$libinit$$00000034  c_w.l(libinit2.o)
-    0x080001f2   0x080001f2   0x00000002   Code   RO          192    .ARM.Collect$$libinit$$00000035  c_w.l(libinit2.o)
-    0x080001f4   0x080001f4   0x00000002   Code   RO          214    .ARM.Collect$$libshutdown$$00000000  c_w.l(libshutdown.o)
-    0x080001f6   0x080001f6   0x00000000   Code   RO          229    .ARM.Collect$$libshutdown$$00000002  c_w.l(libshutdown2.o)
-    0x080001f6   0x080001f6   0x00000000   Code   RO          231    .ARM.Collect$$libshutdown$$00000004  c_w.l(libshutdown2.o)
-    0x080001f6   0x080001f6   0x00000000   Code   RO          234    .ARM.Collect$$libshutdown$$00000007  c_w.l(libshutdown2.o)
-    0x080001f6   0x080001f6   0x00000000   Code   RO          237    .ARM.Collect$$libshutdown$$0000000A  c_w.l(libshutdown2.o)
-    0x080001f6   0x080001f6   0x00000000   Code   RO          239    .ARM.Collect$$libshutdown$$0000000C  c_w.l(libshutdown2.o)
-    0x080001f6   0x080001f6   0x00000000   Code   RO          242    .ARM.Collect$$libshutdown$$0000000F  c_w.l(libshutdown2.o)
-    0x080001f6   0x080001f6   0x00000002   Code   RO          243    .ARM.Collect$$libshutdown$$00000010  c_w.l(libshutdown2.o)
-    0x080001f8   0x080001f8   0x00000000   Code   RO          115    .ARM.Collect$$rtentry$$00000000  c_w.l(__rtentry.o)
-    0x080001f8   0x080001f8   0x00000000   Code   RO          117    .ARM.Collect$$rtentry$$00000002  c_w.l(__rtentry2.o)
-    0x080001f8   0x080001f8   0x00000006   Code   RO          129    .ARM.Collect$$rtentry$$00000004  c_w.l(__rtentry4.o)
-    0x080001fe   0x080001fe   0x00000000   Code   RO          119    .ARM.Collect$$rtentry$$00000009  c_w.l(__rtentry2.o)
-    0x080001fe   0x080001fe   0x00000004   Code   RO          120    .ARM.Collect$$rtentry$$0000000A  c_w.l(__rtentry2.o)
-    0x08000202   0x08000202   0x00000000   Code   RO          122    .ARM.Collect$$rtentry$$0000000C  c_w.l(__rtentry2.o)
-    0x08000202   0x08000202   0x00000008   Code   RO          123    .ARM.Collect$$rtentry$$0000000D  c_w.l(__rtentry2.o)
-    0x0800020a   0x0800020a   0x00000002   Code   RO          144    .ARM.Collect$$rtexit$$00000000  c_w.l(rtexit.o)
-    0x0800020c   0x0800020c   0x00000000   Code   RO          194    .ARM.Collect$$rtexit$$00000002  c_w.l(rtexit2.o)
-    0x0800020c   0x0800020c   0x00000004   Code   RO          195    .ARM.Collect$$rtexit$$00000003  c_w.l(rtexit2.o)
-    0x08000210   0x08000210   0x00000006   Code   RO          196    .ARM.Collect$$rtexit$$00000004  c_w.l(rtexit2.o)
+    0x08000000   0x08000000   0x00000194   Data   RO           91    RESET               startup_stm32f401xe.o
+    0x08000194   0x08000194   0x00000008   Code   RO          117  * !!!main             c_w.l(__main.o)
+    0x0800019c   0x0800019c   0x00000034   Code   RO          282    !!!scatter          c_w.l(__scatter.o)
+    0x080001d0   0x080001d0   0x0000001c   Code   RO          284    !!handler_zi        c_w.l(__scatter_zi.o)
+    0x080001ec   0x080001ec   0x00000002   Code   RO          144    .ARM.Collect$$libinit$$00000000  c_w.l(libinit.o)
+    0x080001ee   0x080001ee   0x00000004   Code   RO          150    .ARM.Collect$$libinit$$00000001  c_w.l(libinit2.o)
+    0x080001f2   0x080001f2   0x00000000   Code   RO          153    .ARM.Collect$$libinit$$00000004  c_w.l(libinit2.o)
+    0x080001f2   0x080001f2   0x00000000   Code   RO          155    .ARM.Collect$$libinit$$00000006  c_w.l(libinit2.o)
+    0x080001f2   0x080001f2   0x00000000   Code   RO          158    .ARM.Collect$$libinit$$0000000C  c_w.l(libinit2.o)
+    0x080001f2   0x080001f2   0x00000000   Code   RO          160    .ARM.Collect$$libinit$$0000000E  c_w.l(libinit2.o)
+    0x080001f2   0x080001f2   0x00000000   Code   RO          162    .ARM.Collect$$libinit$$00000010  c_w.l(libinit2.o)
+    0x080001f2   0x080001f2   0x00000000   Code   RO          165    .ARM.Collect$$libinit$$00000013  c_w.l(libinit2.o)
+    0x080001f2   0x080001f2   0x00000000   Code   RO          167    .ARM.Collect$$libinit$$00000015  c_w.l(libinit2.o)
+    0x080001f2   0x080001f2   0x00000000   Code   RO          169    .ARM.Collect$$libinit$$00000017  c_w.l(libinit2.o)
+    0x080001f2   0x080001f2   0x00000000   Code   RO          171    .ARM.Collect$$libinit$$00000019  c_w.l(libinit2.o)
+    0x080001f2   0x080001f2   0x00000000   Code   RO          173    .ARM.Collect$$libinit$$0000001B  c_w.l(libinit2.o)
+    0x080001f2   0x080001f2   0x00000000   Code   RO          175    .ARM.Collect$$libinit$$0000001D  c_w.l(libinit2.o)
+    0x080001f2   0x080001f2   0x00000000   Code   RO          177    .ARM.Collect$$libinit$$0000001F  c_w.l(libinit2.o)
+    0x080001f2   0x080001f2   0x00000000   Code   RO          179    .ARM.Collect$$libinit$$00000021  c_w.l(libinit2.o)
+    0x080001f2   0x080001f2   0x00000000   Code   RO          181    .ARM.Collect$$libinit$$00000023  c_w.l(libinit2.o)
+    0x080001f2   0x080001f2   0x00000000   Code   RO          183    .ARM.Collect$$libinit$$00000025  c_w.l(libinit2.o)
+    0x080001f2   0x080001f2   0x00000000   Code   RO          185    .ARM.Collect$$libinit$$00000027  c_w.l(libinit2.o)
+    0x080001f2   0x080001f2   0x00000000   Code   RO          189    .ARM.Collect$$libinit$$0000002E  c_w.l(libinit2.o)
+    0x080001f2   0x080001f2   0x00000000   Code   RO          191    .ARM.Collect$$libinit$$00000030  c_w.l(libinit2.o)
+    0x080001f2   0x080001f2   0x00000000   Code   RO          193    .ARM.Collect$$libinit$$00000032  c_w.l(libinit2.o)
+    0x080001f2   0x080001f2   0x00000000   Code   RO          195    .ARM.Collect$$libinit$$00000034  c_w.l(libinit2.o)
+    0x080001f2   0x080001f2   0x00000002   Code   RO          196    .ARM.Collect$$libinit$$00000035  c_w.l(libinit2.o)
+    0x080001f4   0x080001f4   0x00000002   Code   RO          218    .ARM.Collect$$libshutdown$$00000000  c_w.l(libshutdown.o)
+    0x080001f6   0x080001f6   0x00000000   Code   RO          233    .ARM.Collect$$libshutdown$$00000002  c_w.l(libshutdown2.o)
+    0x080001f6   0x080001f6   0x00000000   Code   RO          235    .ARM.Collect$$libshutdown$$00000004  c_w.l(libshutdown2.o)
+    0x080001f6   0x080001f6   0x00000000   Code   RO          238    .ARM.Collect$$libshutdown$$00000007  c_w.l(libshutdown2.o)
+    0x080001f6   0x080001f6   0x00000000   Code   RO          241    .ARM.Collect$$libshutdown$$0000000A  c_w.l(libshutdown2.o)
+    0x080001f6   0x080001f6   0x00000000   Code   RO          243    .ARM.Collect$$libshutdown$$0000000C  c_w.l(libshutdown2.o)
+    0x080001f6   0x080001f6   0x00000000   Code   RO          246    .ARM.Collect$$libshutdown$$0000000F  c_w.l(libshutdown2.o)
+    0x080001f6   0x080001f6   0x00000002   Code   RO          247    .ARM.Collect$$libshutdown$$00000010  c_w.l(libshutdown2.o)
+    0x080001f8   0x080001f8   0x00000000   Code   RO          119    .ARM.Collect$$rtentry$$00000000  c_w.l(__rtentry.o)
+    0x080001f8   0x080001f8   0x00000000   Code   RO          121    .ARM.Collect$$rtentry$$00000002  c_w.l(__rtentry2.o)
+    0x080001f8   0x080001f8   0x00000006   Code   RO          133    .ARM.Collect$$rtentry$$00000004  c_w.l(__rtentry4.o)
+    0x080001fe   0x080001fe   0x00000000   Code   RO          123    .ARM.Collect$$rtentry$$00000009  c_w.l(__rtentry2.o)
+    0x080001fe   0x080001fe   0x00000004   Code   RO          124    .ARM.Collect$$rtentry$$0000000A  c_w.l(__rtentry2.o)
+    0x08000202   0x08000202   0x00000000   Code   RO          126    .ARM.Collect$$rtentry$$0000000C  c_w.l(__rtentry2.o)
+    0x08000202   0x08000202   0x00000008   Code   RO          127    .ARM.Collect$$rtentry$$0000000D  c_w.l(__rtentry2.o)
+    0x0800020a   0x0800020a   0x00000002   Code   RO          148    .ARM.Collect$$rtexit$$00000000  c_w.l(rtexit.o)
+    0x0800020c   0x0800020c   0x00000000   Code   RO          198    .ARM.Collect$$rtexit$$00000002  c_w.l(rtexit2.o)
+    0x0800020c   0x0800020c   0x00000004   Code   RO          199    .ARM.Collect$$rtexit$$00000003  c_w.l(rtexit2.o)
+    0x08000210   0x08000210   0x00000006   Code   RO          200    .ARM.Collect$$rtexit$$00000004  c_w.l(rtexit2.o)
     0x08000216   0x08000216   0x00000002   PAD
-    0x08000218   0x08000218   0x00000040   Code   RO           88    .text               startup_stm32f401xe.o
-    0x08000258   0x08000258   0x00000006   Code   RO          111    .text               c_w.l(heapauxi.o)
-    0x0800025e   0x0800025e   0x0000004a   Code   RO          131    .text               c_w.l(sys_stackheap_outer.o)
-    0x080002a8   0x080002a8   0x00000012   Code   RO          133    .text               c_w.l(exit.o)
+    0x08000218   0x08000218   0x00000040   Code   RO           92    .text               startup_stm32f401xe.o
+    0x08000258   0x08000258   0x00000006   Code   RO          115    .text               c_w.l(heapauxi.o)
+    0x0800025e   0x0800025e   0x0000004a   Code   RO          135    .text               c_w.l(sys_stackheap_outer.o)
+    0x080002a8   0x080002a8   0x00000012   Code   RO          137    .text               c_w.l(exit.o)
     0x080002ba   0x080002ba   0x00000002   PAD
-    0x080002bc   0x080002bc   0x00000008   Code   RO          141    .text               c_w.l(libspace.o)
-    0x080002c4   0x080002c4   0x0000000c   Code   RO          204    .text               c_w.l(sys_exit.o)
-    0x080002d0   0x080002d0   0x00000002   Code   RO          219    .text               c_w.l(use_no_semi.o)
-    0x080002d2   0x080002d2   0x00000000   Code   RO          221    .text               c_w.l(indicate_semi.o)
+    0x080002bc   0x080002bc   0x00000008   Code   RO          145    .text               c_w.l(libspace.o)
+    0x080002c4   0x080002c4   0x0000000c   Code   RO          208    .text               c_w.l(sys_exit.o)
+    0x080002d0   0x080002d0   0x00000002   Code   RO          223    .text               c_w.l(use_no_semi.o)
+    0x080002d2   0x080002d2   0x00000000   Code   RO          225    .text               c_w.l(indicate_semi.o)
     0x080002d2   0x080002d2   0x00000002   PAD
     0x080002d4   0x080002d4   0x0000007c   Code   RO           50    .text.Core_F401_init_HSI  core_init.o
     0x08000350   0x08000350   0x0000004e   Code   RO           15    .text.GPIO_Alternate  gpio_setup.o
     0x0800039e   0x0800039e   0x0000001c   Code   RO           13    .text.GPIO_DI_setup  gpio_setup.o
     0x080003ba   0x080003ba   0x0000001a   Code   RO           11    .text.GPIO_DO_setup  gpio_setup.o
-    0x080003d4   0x080003d4   0x0000004c   Code   RO           72    .text.Nokia_5110_init  nokia_5110_lcd.o
-    0x08000420   0x08000420   0x00000044   Code   RO           74    .text.Nokia_5110_send_command  nokia_5110_lcd.o
-    0x08000464   0x08000464   0x0000000a   Code   RO           37    .text.OUTLINED_FUNCTION_0  delay.o
-    0x0800046e   0x0800046e   0x00000002   PAD
-    0x08000470   0x08000470   0x00000030   Code   RO           62    .text.SPI_F4_init   spi.o
-    0x080004a0   0x080004a0   0x00000020   Code   RO           35    .text.SysTick_F4_Init  delay.o
-    0x080004c0   0x080004c0   0x00000010   Code   RO           27    .text.SysTick_Handler  delay.o
-    0x080004d0   0x080004d0   0x00000010   Code   RO           95    .text.SystemInit    system_stm32f4xx.o
-    0x080004e0   0x080004e0   0x00000020   Code   RO           31    .text.delay_ms      delay.o
-    0x08000500   0x08000500   0x00000024   Code   RO           29    .text.delay_us      delay.o
-    0x08000524   0x08000524   0x000000ec   Code   RO            2    .text.main          main.o
-    0x08000610   0x08000610   0x0000001a   Code   RO          202    x$fpl$fpinit        fz_wm.l(fpinit.o)
-    0x0800062a   0x0800062a   0x00000002   PAD
-    0x0800062c   0x0800062c   0x00000010   Data   RO          277    Region$$Table       anon$$obj.o
+    0x080003d4   0x080003d4   0x00000022   Code   RO           76    .text.Nokia_5110_clear_LCD  nokia_5110_lcd.o
+    0x080003f6   0x080003f6   0x00000002   PAD
+    0x080003f8   0x080003f8   0x00000054   Code   RO           72    .text.Nokia_5110_init  nokia_5110_lcd.o
+    0x0800044c   0x0800044c   0x00000030   Code   RO           74    .text.Nokia_5110_send_command  nokia_5110_lcd.o
+    0x0800047c   0x0800047c   0x0000003c   Code   RO           78    .text.Nokia_5110_send_data  nokia_5110_lcd.o
+    0x080004b8   0x080004b8   0x0000000a   Code   RO           37    .text.OUTLINED_FUNCTION_0  delay.o
+    0x080004c2   0x080004c2   0x0000000a   Code   RO           80    .text.OUTLINED_FUNCTION_0  nokia_5110_lcd.o
+    0x080004cc   0x080004cc   0x0000002c   Code   RO           62    .text.SPI_F4_init   spi.o
+    0x080004f8   0x080004f8   0x00000020   Code   RO           35    .text.SysTick_F4_Init  delay.o
+    0x08000518   0x08000518   0x00000010   Code   RO           27    .text.SysTick_Handler  delay.o
+    0x08000528   0x08000528   0x00000010   Code   RO           99    .text.SystemInit    system_stm32f4xx.o
+    0x08000538   0x08000538   0x00000028   Code   RO           31    .text.delay_ms      delay.o
+    0x08000560   0x08000560   0x00000128   Code   RO            2    .text.main          main.o
+    0x08000688   0x08000688   0x0000001a   Code   RO          206    x$fpl$fpinit        fz_wm.l(fpinit.o)
+    0x080006a2   0x080006a2   0x00000002   PAD
+    0x080006a4   0x080006a4   0x00000010   Data   RO          281    Region$$Table       anon$$obj.o
 
 
-    Execution Region RW_IRAM1 (Exec base: 0x20000000, Load base: 0x0800063c, Size: 0x00000668, Max: 0x00018000, ABSOLUTE)
+    Execution Region RW_IRAM1 (Exec base: 0x20000000, Load base: 0x080006b4, Size: 0x00000668, Max: 0x00018000, ABSOLUTE)
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
-    0x20000000        -       0x00000060   Zero   RW          142    .bss                c_w.l(libspace.o)
+    0x20000000        -       0x00000060   Zero   RW          146    .bss                c_w.l(libspace.o)
     0x20000060        -       0x00000004   Zero   RW           39    .bss.count          delay.o
-    0x20000064   0x0800063c   0x00000004   PAD
-    0x20000068        -       0x00000200   Zero   RW           86    HEAP                startup_stm32f401xe.o
-    0x20000268        -       0x00000400   Zero   RW           85    STACK               startup_stm32f401xe.o
+    0x20000064   0x080006b4   0x00000004   PAD
+    0x20000068        -       0x00000200   Zero   RW           90    HEAP                startup_stm32f401xe.o
+    0x20000268        -       0x00000400   Zero   RW           89    STACK               startup_stm32f401xe.o
 
 
 ==============================================================================
@@ -662,16 +679,16 @@ Image component sizes
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   Object Name
 
        124          4          0          0          0       2151   core_init.o
-       126         12          0          0          4       2522   delay.o
+        98         12          0          0          4       2522   delay.o
        132          0          0          0          0       1948   gpio_setup.o
-       236         20          0          0          0       1728   main.o
-       144         16          0          0          0       1630   nokia_5110_lcd.o
-        48          4          0          0          0       1935   spi.o
+       296         24          0          0          0       1746   main.o
+       236         16          0          0          0       2073   nokia_5110_lcd.o
+        44          4          0          0          0       1933   spi.o
         64         26        404          0       1536        892   startup_stm32f401xe.o
         16          4          0          0          0       2823   system_stm32f4xx.o
 
     ----------------------------------------------------------------------
-       892         86        420          0       1544      15629   Object Totals
+      1012         90        420          0       1544      16088   Object Totals
          0          0         16          0          0          0   (incl. Generated)
          2          0          0          0          4          0   (incl. Padding)
 
@@ -721,15 +738,15 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   
 
-      1176        102        420          0       1640      15985   Grand Totals
-      1176        102        420          0       1640      15985   ELF Image Totals
-      1176        102        420          0          0          0   ROM Totals
+      1296        106        420          0       1640      16444   Grand Totals
+      1296        106        420          0       1640      16444   ELF Image Totals
+      1296        106        420          0          0          0   ROM Totals
 
 ==============================================================================
 
-    Total RO  Size (Code + RO Data)                 1596 (   1.56kB)
+    Total RO  Size (Code + RO Data)                 1716 (   1.68kB)
     Total RW  Size (RW Data + ZI Data)              1640 (   1.60kB)
-    Total ROM Size (Code + RO Data + RW Data)       1596 (   1.56kB)
+    Total ROM Size (Code + RO Data + RW Data)       1716 (   1.68kB)
 
 ==============================================================================
 

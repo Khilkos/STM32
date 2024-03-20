@@ -26,6 +26,9 @@ GPIO_DO_setup(GPIOC,5,High);
 GPIO_DO_setup(GPIOC,6,High);
 GPIO_DO_setup(GPIOC,8,High);
 GPIO_DO_setup(GPIOC,9,High);
+	GPIO_DO_setup(GPIOB,8,High); //Nokia 5110_RST	
+GPIO_DO_setup(GPIOB,9,High); //nokia 5110_CE
+GPIO_DO_setup(GPIOA,6,High); //Nokia 5110_D/C
 
 	GPIO_DI_setup(GPIOA,10,No_pull);// A
 	GPIO_DI_setup(GPIOB,3,No_pull);// B
@@ -36,10 +39,10 @@ GPIO_DO_setup(GPIOC,9,High);
 	GPIO_DI_setup(GPIOA,9,No_pull);// Key
 
 
-SPI_F4_init(6);
-Nokia_5110_init();
+SPI_F4_init(2);
+Nokia_5110_init(72);
 
-//Nokia_5110_send_command(0x09);
+
 	
 	while (1)
 	{
@@ -52,9 +55,13 @@ Nokia_5110_init();
 				delay_ms(led_delay);
 	
 	if (!(GPIOA->IDR & 1<<10)) RED_ON; else RED_OFF;
-	//Nokia_5110_send_command(0x09);	
 	
-	
+		
+Nokia_5110_send_command(128+5);	
+Nokia_5110_send_command(64+1);
+Nokia_5110_send_data(0xff);	
+		Nokia_5110_send_data(0xff);	
+		Nokia_5110_send_data(0xff);	
 	
 	
 	}
