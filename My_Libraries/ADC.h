@@ -10,22 +10,41 @@
 
 extern uint32_t ADC_main_count;
 
-extern uint32_t ADC_ch0;
-extern uint32_t ADC_ch0_summ;
-extern uint32_t ADC_ch0_count;
+extern uint32_t ADC_ch[16];
+extern uint32_t ADC_ch_summ[16];
 
-extern uint32_t ADC_ch1;
-extern uint32_t ADC_ch1_summ;
-extern uint32_t ADC_ch1_count;
 
-extern uint32_t ADC_ch2;
-extern uint32_t ADC_ch2_summ;
-extern uint32_t ADC_ch2_count;
+//=================================================
+struct STM_F4_ADC{
+uint8_t ADC_Resolution;//6,8,10,12 бит разрешающая способность АЦП
+uint8_t ADC_Prescaler;//2,4,6,8 выбор пределителя PCLK2 для работы АЦП
+uint8_t ADC_Quantity_of_chanel; //количество каналов для преобразования, 0- одно преобразование, 15(максимально)- 16 преобразований
+uint8_t ADC_ch1; //выбор канала АЦП (физического) для 1-го преобразования
+uint8_t ADC_ch2; //выбор канала АЦП (физического) для 2-го преобразования
+uint8_t ADC_ch3; //выбор канала АЦП (физического) для 3-го преобразования
+uint8_t ADC_ch4; //выбор канала АЦП (физического) для 4-го преобразования
+uint8_t ADC_ch5; //выбор канала АЦП (физического) для 5-го преобразования
+uint8_t ADC_ch6; //выбор канала АЦП (физического) для 6-го преобразования
+uint8_t ADC_ch7; //выбор канала АЦП (физического) для 7-го преобразования
+uint8_t ADC_ch8; //выбор канала АЦП (физического) для 8-го преобразования
+uint8_t ADC_ch9; //выбор канала АЦП (физического) для 9-го преобразования
+uint8_t ADC_ch10; //выбор канала АЦП (физического) для 10-го преобразования
+uint8_t ADC_ch11; //выбор канала АЦП (физического) для 11-го преобразования
+uint8_t ADC_ch12; //выбор канала АЦП (физического) для 12-го преобразования
+uint8_t ADC_ch13; //выбор канала АЦП (физического) для 13-го преобразования
+uint8_t ADC_ch14; //выбор канала АЦП (физического) для 14-го преобразования
+uint8_t ADC_ch15; //выбор канала АЦП (физического) для 15-го преобразования
+uint8_t ADC_ch16; //выбор канала АЦП (физического) для 16-го преобразования
+uint32_t ADC_Sample_time;// установка времени семплирования в тактах 3,15,28,56,84,112,144,480
+};
+//==================================================
+extern struct STM_F4_ADC ADC_Init;
+
 
 void ADC1_F411_Init (void);
 void ADC_IRQHandler(void);
-void ADC1_F4_via_DMA_2ch_Init (void);
 void DMA_F4_ADC_init (void);
 void DMA2_Stream0_IRQHandler(void);
+void ADC_F4_init_via_DMA (void);
 
 #endif

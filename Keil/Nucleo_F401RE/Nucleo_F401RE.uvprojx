@@ -337,7 +337,7 @@
             <v6WtE>0</v6WtE>
             <v6Rtti>0</v6Rtti>
             <VariousControls>
-              <MiscControls>-Wno-binary-literal -Wno-invalid-utf8 -Wno-invalid-source-encoding</MiscControls>
+              <MiscControls>-Wno-binary-literal -Wno-invalid-utf8 -Wno-invalid-source-encoding -Wno-padded</MiscControls>
               <Define></Define>
               <Undefine></Undefine>
               <IncludePath>..\Nucleo_F401RE;..\..\My_Libraries</IncludePath>

@@ -51,6 +51,7 @@ while ((SPI1->SR&SPI_SR_BSY)) {__NOP();}
 //delay_us(1);
 	Nokia_5110_CE_1;
 //delay_us(1);
+
 }
 //============================================
 void Nokia_5110_clear_LCD(void)

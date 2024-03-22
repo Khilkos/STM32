@@ -47,12 +47,23 @@ SPI_F4_init(2);
 Nokia_5110_init(72);
 DMA_F4_init();
 DMA_F4_ADC_init();
-ADC1_F4_via_DMA_2ch_Init();
+//-----------------------
+ADC_Init.ADC_Resolution=12;
+ADC_Init.ADC_Prescaler=8;
+ADC_Init.ADC_Quantity_of_chanel=2;
+ADC_Init.ADC_ch1=0;
+ADC_Init.ADC_ch2=1;
+ADC_Init.ADC_Sample_time=480;
+ADC_F4_init_via_DMA();
+//-----------------------
+
 
 	
 	while (1)
 	{
 	
+
+		
 //		GPIOA->BSRR = 1<<(5);
 		GREEN_ON;
 //			delay_ms(led_delay);
@@ -60,16 +71,16 @@ ADC1_F4_via_DMA_2ch_Init();
 		GREEN_OFF;
 	//			delay_ms(led_delay);
 	
-	if (!(GPIOA->IDR & 1<<10)) RED_ON; else RED_OFF;
-Nokia_5110_clr_screen_buf();	
-sprintf(String,"Коорд.Х-%04d",ADC_ch0);
+	if (!(GPIOA->IDR & 1<<10)) {RED_ON; Nokia_5110_clr_screen_buf();} else RED_OFF;
+	
+sprintf(String,"Коорд.Х-%04d",ADC_ch[0]);
 Nokia_5110_String(0,0,(uint8_t*)String);
-sprintf(String,"Коорд.Y-%04d",ADC_ch1);
+sprintf(String,"Коорд.Y-%04d",ADC_ch[1]);
 Nokia_5110_String(0,8,(uint8_t*)String);	
-		X=(uint8_t)(ADC_ch0/48);
-		Y=(uint8_t)(48-ADC_ch1/84);
+		X=(uint8_t)(ADC_ch[0]/48);
+		Y=(uint8_t)(48-ADC_ch[1]/84);
 		X=(X<84) ? X: 83 ;
-		
+		Y=(Y<48) ? Y: 47 ;
 		Nokia_5110_dot(X,Y);
 		
 Nokia_5110_LCD_Out();		
