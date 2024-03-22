@@ -337,7 +337,7 @@
             <v6WtE>0</v6WtE>
             <v6Rtti>0</v6Rtti>
             <VariousControls>
-              <MiscControls>-Wno-binary-literal</MiscControls>
+              <MiscControls>-Wno-binary-literal -Wno-invalid-utf8 -Wno-invalid-source-encoding</MiscControls>
               <Define></Define>
               <Undefine></Undefine>
               <IncludePath>..\Nucleo_F401RE;..\..\My_Libraries</IncludePath>
@@ -443,6 +443,21 @@
               <FileName>Nokia_5110_LCD.h</FileName>
               <FileType>5</FileType>
               <FilePath>..\..\My_Libraries\Nokia_5110_LCD.h</FilePath>
+            </File>
+            <File>
+              <FileName>Font_table.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\My_Libraries\Font_table.c</FilePath>
+            </File>
+            <File>
+              <FileName>ADC.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\My_Libraries\ADC.c</FilePath>
+            </File>
+            <File>
+              <FileName>DMA.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\My_Libraries\DMA.c</FilePath>
             </File>
           </Files>
         </Group>

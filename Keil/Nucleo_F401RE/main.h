@@ -3,5 +3,9 @@
 #include "GPIO_setup.h"
 #include "Core_init.h"
 #include "Delay.h"
+#include "Font_table.h"
 #include "Nokia_5110_LCD.h"
 #include "SPI.h"
+#include "ADC.h"
+#include "DMA.h"
+

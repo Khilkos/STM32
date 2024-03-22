@@ -1,5 +1,7 @@
 #include "Nokia_5110_LCD.h"
 
+uint8_t Nokia_5110_screen_buf[6][84];
+
 #define Nokia_5110_Reset_1 GPIOB->BSRR |= 1<<(8)
 #define Nokia_5110_Reset_0 GPIOB->BSRR |= 1<<(8+16)
 #define Nokia_5110_CE_1 GPIOB->BSRR |= 1<<(9)
@@ -58,5 +60,54 @@ Nokia_5110_send_command(0b01000000);
 for (uint16_t i=0; i<504;i++)	
 Nokia_5110_send_data(0x00);	
 }
+//============================================
+void Nokia_5110_LCD_Out (void)
+{
+for (uint8_t y=0; y<6;y++)
+		{Nokia_5110_send_command(Nokia_Y+y);
+			for (uint8_t x=0;x<84;x++)
+				{Nokia_5110_send_command(Nokia_X+x);
+				 Nokia_5110_send_data(Nokia_5110_screen_buf[y][x]);	
+				}
+		}
+}
+//============================================
+void Nokia_5110_dot (uint8_t x, uint8_t y)
+{
+Nokia_5110_screen_buf[y/8][x] |=1<<(y%8);
+}
+//============================================
+void Nokia_5110_no_dot (uint8_t x, uint8_t y)
+{
+Nokia_5110_screen_buf[y/8][x] &=~(1<<(y%8));
+}
+//============================================
+void Nokia_5110_String (uint8_t x, uint8_t y, uint8_t *str)
+{
+uint8_t let=0;
+uint8_t temp=0;
+while (*str!='\0')
+	{let=*str;
+		for (uint8_t k=0; k<5; k++)
+			{	temp=FontTable[let][k];
+				for (uint8_t i=0; i<8;i++)
+				{	if (temp&1<<0) Nokia_5110_dot(x+k,y+i); else Nokia_5110_no_dot (x+k,y+i);
+					temp>>=1;
+				}
+			}
+	x+=6;
+	str++;
+	}
+}
+//==========================================
+void Nokia_5110_clr_screen_buf(void)
+{
+void *ptr=Nokia_5110_screen_buf;
+
+	for (uint8_t i=0; i<126; i++)
+			{*((uint32_t*)ptr+i)=0;}
+}
+
+
 
 
