@@ -5,8 +5,7 @@
 #include "stdint.h"
 //#include "cmsis_armclang.h" 
 //#include "core_cm4.h"
-#include "ADC.h"
-//#include "DS18B20_F411.h"
+#include "DS18B20_F411.h"
 
 
 #define res 16

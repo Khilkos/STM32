@@ -49,21 +49,19 @@ Core_F411_init();
 SysTick_Init();
 Timer_F411_init();
 I2C_F411_init();
-//delay_ms(1000);
-
 DMA_F411_init();
 USART_F411_init();
 LCD1602_init_via_I2C();
 SPI_F4_init(4);
-Nokia_5110_init();
-//DS18B20_read_ROM();
+Nokia_5110_init(65);
+
 
 while (1)
 {
 key_scan();
-//	DS3231_F411_get_time();
+
 if (GPIOB->IDR&1<<12) GPIOB->BSRR=1<<(12+res); else GPIOB->BSRR=1<<12;
-//delay_us(100);
+
 sprintf(String,"Encoder = %02d",encoder_data);
 Draw_String(0,(uint8_t*)String);	
 	
@@ -73,17 +71,9 @@ sprintf(String,"Temp. %04.1f/%04.1f",DS18B20_temperature_of_2_sensor[0]*0.1, DS1
 
 Draw_String(0x40, (uint8_t*)String);
 
-//SPI1->CR1 |= SPI_CR1_SPE;
-Nokia_5110_send_command(0b10000000);	
-Nokia_5110_send_command(0b01000000);
-
-
-Nokia_5110_send_data(0xff);	
-//Nokia_5110_send_data(0xff);	
-//	Nokia_5110_send_data(0xff);	
-//	Nokia_5110_send_data(0xff);	
-//	Nokia_5110_send_data(0xff);	
-//SPI1->CR1 &= ~SPI_CR1_SPE;
+	sprintf(String,"Время 1234");
+	Nokia_5110_String(0,0,(uint8_t*)String);
+	Nokia_5110_LCD_Out();
 
 }
 }

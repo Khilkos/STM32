@@ -450,19 +450,9 @@
               <FilePath>..\..\My_Libraries\DS18B20_F411.c</FilePath>
             </File>
             <File>
-              <FileName>USART_F411.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\My_Libraries\USART_F411.c</FilePath>
-            </File>
-            <File>
               <FileName>DMA_F411.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\My_Libraries\DMA_F411.c</FilePath>
-            </File>
-            <File>
-              <FileName>ADC_F411.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\My_Libraries\ADC_F411.c</FilePath>
             </File>
             <File>
               <FileName>Timer_F411_init.c</FileName>
@@ -493,6 +483,16 @@
               <FileName>Nokia_5110_LCD.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\My_Libraries\Nokia_5110_LCD.c</FilePath>
+            </File>
+            <File>
+              <FileName>USART_F411.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\My_Libraries\USART_F411.c</FilePath>
+            </File>
+            <File>
+              <FileName>DMA.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\My_Libraries\DMA.c</FilePath>
             </File>
           </Files>
         </Group>

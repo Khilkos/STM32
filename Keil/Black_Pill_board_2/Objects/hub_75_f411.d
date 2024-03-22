@@ -13,5 +13,4 @@
   ..\..\My_Libraries\Font_table.h ..\Black_Pill_board_2\Board.h \
   ..\..\My_Libraries\DS3231_F411.h ..\..\My_Libraries\I2C_F411.h \
   ..\..\My_Libraries\DS18B20_F411.h ..\..\My_Libraries\USART_F411.h \
-  ..\..\My_Libraries\DMA_F411.h ..\..\My_Libraries\ADC_F411.h \
-  ..\..\My_Libraries\One_Wire_F411.h
+  ..\..\My_Libraries\DMA_F411.h ..\..\My_Libraries\One_Wire_F411.h
