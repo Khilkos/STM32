@@ -425,24 +425,9 @@
               <FilePath>..\..\My_Libraries\1602_I2C.c</FilePath>
             </File>
             <File>
-              <FileName>HUB_08_F411.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\My_Libraries\HUB_08_F411.c</FilePath>
-            </File>
-            <File>
               <FileName>Font_table.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\My_Libraries\Font_table.c</FilePath>
-            </File>
-            <File>
-              <FileName>HUB_75_F411.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\My_Libraries\HUB_75_F411.c</FilePath>
-            </File>
-            <File>
-              <FileName>DS3231_F411.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\My_Libraries\DS3231_F411.c</FilePath>
             </File>
             <File>
               <FileName>DS18B20_F411.c</FileName>

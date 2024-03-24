@@ -49,7 +49,7 @@ Core_F411_init();
 SysTick_Init();
 Timer_F411_init();
 I2C_F411_init();
-DMA_F411_init();
+DMA_F4_init();
 USART_F411_init();
 LCD1602_init_via_I2C();
 SPI_F4_init(4);
