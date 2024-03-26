@@ -6,7 +6,7 @@
 //#include "cmsis_armclang.h" 
 //#include "core_cm4.h"
 #include "DS18B20_F411.h"
-
+#include "DMA.h"
 
 #define res 16
 

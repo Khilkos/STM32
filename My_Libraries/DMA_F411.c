@@ -33,10 +33,11 @@ DMA1_Stream6->CR &= ~DMA_SxCR_CIRC;	//кольцевой режим выключен
 DMA1_Stream6->CR |= DMA_SxCR_TCIE; //включение прерываний при завершении передачи
 NVIC->ISER[0]=( 1<<17);	//включение прерывания ДМА1 поток 6
 USART2->SR &=~USART_SR_TC;
-
-	USART_F411_DMAT_ON();
+USART_F411_DMAT_ON();
 
 DMA1_Stream6->CR |=DMA_SxCR_EN; //включение ДМА
+
+
 
 }
 

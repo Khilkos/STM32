@@ -17,10 +17,14 @@ if (DMA_STM_F4.DMA_Stream->CR & DMA_SxCR_EN)
 		DMA_STM_F4.DMA_Stream->CR &= ~(DMA_SxCR_EN);
 		while (DMA_STM_F4.DMA_Stream->CR & DMA_SxCR_EN) __NOP();
 	}
-DMA_STM_F4.DMA_Number->LIFCR |=DMA_LIFCR_CTCIF0;//сброс флага прерывания - завершение передачи
-DMA_STM_F4.DMA_Stream->PAR = (uint32_t)DMA_STM_F4.DMA_Peripheral_address;	//адрес перефирии
-DMA_STM_F4.DMA_Stream->M0AR = (uint32_t)DMA_STM_F4.DMA_Memory_address;		//адрес памяти
-DMA_STM_F4.DMA_Stream->NDTR = DMA_STM_F4.DMA_Quantity;	//количество данный передаваемых в ДМА
+//сброс флага прерывания - завершение передачи
+DMA_STM_F4.DMA_Number->LIFCR |=DMA_LIFCR_CTCIF0;
+//адрес перефирии	
+DMA_STM_F4.DMA_Stream->PAR = (uint32_t)DMA_STM_F4.DMA_Peripheral_address;	
+//адрес памяти	
+DMA_STM_F4.DMA_Stream->M0AR = (uint32_t)DMA_STM_F4.DMA_Memory_address;	
+//количество данный передаваемых в ДМА	
+DMA_STM_F4.DMA_Stream->NDTR = DMA_STM_F4.DMA_Quantity;	
 //выбор  канала ДМА	
 DMA_STM_F4.DMA_Stream->CR &= ~(DMA_SxCR_CHSEL_Msk);
 DMA_STM_F4.DMA_Stream->CR |= (DMA_STM_F4.DMA_Chanel<<DMA_SxCR_CHSEL_Pos); 
@@ -66,20 +70,6 @@ if (DMA_STM_F4.DMA_Interrupt>=64 && DMA_STM_F4.DMA_Interrupt<96) NVIC->ISER[2]=(
 //включение ДМА
 DMA_STM_F4.DMA_Stream->CR |=DMA_SxCR_EN;
 
-//DMA_STM_F4.DMA_Number = ;//выбор ДМА, напр. - DMA2
-//DMA_STM_F4.DMA_Stream = ;//выбор потока ДМА напр. -  DMA2_Stream0
-//DMA_STM_F4.DMA_Peripheral_address = ;//адрес перефирии
-//DMA_STM_F4.DMA_Memory_address =   ;//адрес памяти
-//DMA_STM_F4.DMA_Quantity =   ;//количество данный передаваемых в ДМА
-//DMA_STM_F4.DMA_Chanel =  ;//выбор канала ДМА
-//DMA_STM_F4.DMA_Prioroty =  ;//приоритет потока - DMA_Priority_low, DMA_Priority_medium, DMA_Priority_high, DMA_Priority_very_high
-//DMA_STM_F4.DMA_Data_transfer_direction =  ;//направление потока данных перефирия <-> память: DMA_Peripheral_to_memory, DMA_Memory_to_Peripheral, DMA_Memory_to_memory
-//DMA_STM_F4.DMA_Memory_inc =   ;//инкремент памяти DMA_Inc_ON-включить, DMA_Inc_OFF-выключить
-//DMA_STM_F4.DMA_Peripheral_inc =  ;//инкремент перефирии DMA_Inc_ON-включить, DMA_Inc_OFF-выключить
-//DMA_STM_F4.DMA_Memory_data_size =  ;//размер потока памяти: DMA_8_bit, DMA_16_bit, DMA_32_bit
-//DMA_STM_F4.DMA_Peripheral_data_size =  ;//размер потока перифирии: DMA_8_bit, DMA_16_bit, DMA_32_bit
-//DMA_STM_F4.DMA_Circular_mode =  ;//кольцевой режим:  Circular_mode_disabled, Circular_mode_enabled
-//DMA_STM_F4.DMA_Interrupt =  ;// прерывание из stm32f411xe.h, например - DMA2_Stream0_IRQn
 }
 
 //================================================

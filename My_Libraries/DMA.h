@@ -6,12 +6,12 @@
 
 
 
-//==============================================================
+//-------------------------------------------------
 //
 //DMA_STM_F4.DMA_Number = ;//выбор ДМА, напр. - DMA2
 //DMA_STM_F4.DMA_Stream = ;//выбор потока ДМА напр. -  DMA2_Stream0
-//DMA_STM_F4.DMA_Peripheral_address = ;//адрес перефирии
-//DMA_STM_F4.DMA_Memory_address =   ;//адрес памяти
+//DMA_STM_F4.DMA_Peripheral_address = ;//адрес перефирии, например (volatile uint32_t*)&(USART2->DR);
+//DMA_STM_F4.DMA_Memory_address =   ;//адрес памяти, например (void*)temp_send_buf ;
 //DMA_STM_F4.DMA_Quantity =   ;//количество данный передаваемых в ДМА
 //DMA_STM_F4.DMA_Chanel =  ;//выбор канала ДМА
 //DMA_STM_F4.DMA_Prioroty =  ;//приоритет потока - DMA_Priority_low, DMA_Priority_medium, DMA_Priority_high, DMA_Priority_very_high
@@ -24,7 +24,7 @@
 //DMA_STM_F4.DMA_Interrupt =  ;// прерывание из stm32f411xe.h, например - DMA2_Stream0_IRQn
 //DMA_F4_param_init ();//Запуск ДМА с заданными параметрами
 //
-//===============================================================
+//---------------------------------------------------
 
 
 
@@ -60,7 +60,7 @@ struct DMA_STM_F4_init_param
 {
 DMA_TypeDef * DMA_Number; //выбор ДМА напр. - DMA2
 DMA_Stream_TypeDef * DMA_Stream;//выбор потока ДМА напр. -  DMA2_Stream0
-uint32_t *DMA_Peripheral_address;	//адрес перефирии
+volatile uint32_t *DMA_Peripheral_address;	//адрес перефирии
 uint32_t *DMA_Memory_address;//адрес памяти
 uint32_t DMA_Quantity;//количество данный передаваемых в ДМА
 uint32_t DMA_Chanel;//выбор канала ДМА
