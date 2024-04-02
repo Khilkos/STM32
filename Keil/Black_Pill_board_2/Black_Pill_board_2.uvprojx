@@ -399,6 +399,11 @@
               <FileType>1</FileType>
               <FilePath>.\Board.c</FilePath>
             </File>
+            <File>
+              <FileName>Config.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\Config.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

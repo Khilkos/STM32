@@ -159,27 +159,18 @@ USART2->SR &=~USART_SR_RXNE;
 USART_F411_DMA_ON();	
 }
 
-//===================================================
-void DMA1_Stream6_IRQHandler(void)
+//====================================================
+void DMA1_Stream5_IRQHandler_User(void)
 {
-	if (DMA1->HISR & DMA_HISR_TCIF6)
-		{
-			DMA1->HIFCR |= DMA_HIFCR_CTCIF6;
+		DMA_busy=0;
+		USART_F411_DMAR_OFF();
+}
+//====================================================
+void DMA1_Stream6_IRQHandler_User(void)
+{
 			while (!(USART2->SR & USART_SR_TC)) __NOP();
-			DMA1_Stream6->CR &= ~(DMA_SxCR_EN);
 			if (!(DMA1_Stream5->CR & DMA_SxCR_EN)) DMA_busy=0;
 			USART_F411_DMAT_OFF();
-		}
-}	
-//===================================================
-void DMA1_Stream5_IRQHandler(void)
-{
-	if (DMA1->HISR & DMA_HISR_TCIF5)
-		{
-			DMA1->HIFCR |= DMA_HIFCR_CTCIF5;
-			DMA1_Stream5->CR &= ~(DMA_SxCR_EN);
-			DMA_busy=0;
-			USART_F411_DMAR_OFF();
-		}
-}	
+}
+//====================================================
 

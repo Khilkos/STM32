@@ -73,5 +73,28 @@ DMA_STM_F4.DMA_Stream->CR |=DMA_SxCR_EN;
 }
 
 //================================================
-
+#ifdef DMA1_Stream5_IRQHandler_define
+void DMA1_Stream5_IRQHandler(void)
+{
+	if (DMA1->HISR & DMA_HISR_TCIF5)
+		{
+			DMA1->HIFCR |= DMA_HIFCR_CTCIF5;
+			DMA1_Stream5->CR &= ~(DMA_SxCR_EN);
+			DMA1_Stream5_IRQHandler_User();
+		}
+}	
+#endif
+//===============================================
+#ifdef DMA1_Stream6_IRQHandler_define
+void DMA1_Stream6_IRQHandler(void)
+{
+	if (DMA1->HISR & DMA_HISR_TCIF6)
+		{
+			DMA1->HIFCR |= DMA_HIFCR_CTCIF6;
+			DMA1_Stream6->CR &= ~(DMA_SxCR_EN);
+			DMA1_Stream6_IRQHandler_User();
+		}
+}	
+#endif
+//===================================================
 

@@ -1,5 +1,5 @@
 ./objects/one_wire_f411.o: ..\..\My_Libraries\One_Wire_F411.c \
-  ..\..\My_Libraries\One_Wire_F411.h \
+  ..\..\My_Libraries\One_Wire_F411.h ..\Black_Pill_board_2\Config.h \
   C:\Users\dasha\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f411xe.h \
   C:\Users\dasha\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\core_cm4.h \
   C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\stdint.h \

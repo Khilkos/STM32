@@ -4,6 +4,7 @@ int main (void)
 	
 {
  char String[300];
+
 	
 	RCC->AHB1ENR |= ( RCC_AHB1ENR_GPIOAEN | RCC_AHB1ENR_GPIOBEN  ); // enable portA and portB clock
 

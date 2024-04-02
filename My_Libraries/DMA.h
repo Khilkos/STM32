@@ -3,7 +3,7 @@
 
 #include "stm32f411xe.h"
 #include "stdint.h"
-
+#include "Config.h"
 
 
 //-------------------------------------------------
@@ -52,7 +52,8 @@ void DMA_F4_init (void);
 #define Circular_mode_enabled 1
 
 void DMA_F4_param_init (void);
-
+void DMA1_Stream5_IRQHandler(void);
+void DMA1_Stream6_IRQHandler(void);
 
 
 
