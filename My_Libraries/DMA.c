@@ -97,4 +97,16 @@ void DMA1_Stream6_IRQHandler(void)
 }	
 #endif
 //===================================================
-
+#ifdef DMA2_Stream0_IRQHandler_define
+void DMA2_Stream0_IRQHandler(void)
+{
+if (DMA2->LISR & DMA_LISR_TCIF0)
+	{
+			DMA2->LIFCR |= DMA_LIFCR_CTCIF0;
+			if (!(DMA2_Stream0->CR & DMA_SxCR_CIRC)) DMA2_Stream0->CR &=~DMA_SxCR_EN;
+			DMA2_Stream0_IRQHandler_User();
+			
+	}
+}	
+#endif
+//================================================

@@ -44,7 +44,7 @@ extern struct STM_F4_ADC ADC_Init;
 void ADC1_F411_Init (void);
 void ADC_IRQHandler(void);
 void DMA_F4_ADC_init (void);
-void DMA2_Stream0_IRQHandler(void);
+void DMA2_Stream0_IRQHandler_User(void);
 void ADC_F4_init_via_DMA (void);
 
 #endif

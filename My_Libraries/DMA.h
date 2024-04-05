@@ -54,7 +54,7 @@ void DMA_F4_init (void);
 void DMA_F4_param_init (void);
 void DMA1_Stream5_IRQHandler(void);
 void DMA1_Stream6_IRQHandler(void);
-
+void DMA2_Stream0_IRQHandler(void);
 
 
 struct DMA_STM_F4_init_param

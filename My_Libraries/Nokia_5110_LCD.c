@@ -108,7 +108,8 @@ void *ptr=Nokia_5110_screen_buf;
 	for (uint8_t i=0; i<126; i++)
 			{*((uint32_t*)ptr+i)=0;}
 }
-
+//==========================================
+//void Nokia_5110_Vertikal_line
 
 
 

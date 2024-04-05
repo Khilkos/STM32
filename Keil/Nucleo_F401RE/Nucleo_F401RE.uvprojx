@@ -394,6 +394,11 @@
               <FileType>5</FileType>
               <FilePath>.\main.h</FilePath>
             </File>
+            <File>
+              <FileName>Config.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\Config.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

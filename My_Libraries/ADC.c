@@ -208,27 +208,21 @@ NVIC->ISER[1]=( 1<<24);	//включение прерывания ДМА2 поток 0
 DMA2_Stream0->CR |=DMA_SxCR_EN; //включение ДМА
 }
 
-//================================================
-void DMA2_Stream0_IRQHandler(void)
+//=================================================
+void DMA2_Stream0_IRQHandler_User(void)
 {
-if (DMA2->LISR & DMA_LISR_TCIF0)
-	{
-			DMA2->LIFCR |= DMA_LIFCR_CTCIF0;
-			
-			ADC_main_count++;
+	ADC_main_count++;
 			for (uint8_t i=0; i<16;i++)
 				{ADC_ch_summ[i]+=ADC_DMA_val[i];}
 			
 	if (ADC_main_count>=ADC_Average_val) 
 		{
-					ADC_main_count=0;
+			ADC_main_count=0;
 			for (uint8_t i=0; i<16;i++)
 				{	ADC_ch[i]=(ADC_ch_summ[i]/ADC_Average_val);
 					ADC_ch_summ[i]=0;	}
-
 		}
 			ADC1->CR2 |=ADC_CR2_SWSTART; 	
-	}
-}	
-
+}
 //=================================================
+
