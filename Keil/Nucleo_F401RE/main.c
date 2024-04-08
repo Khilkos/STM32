@@ -10,8 +10,9 @@
 #define YELLOW_ON 	GPIOC->BSRR = 1<<(9)
 #define YELLOW_OFF GPIOC->BSRR = 1<<(9+16)
 
-static char String[100];
-static uint8_t X,Y;
+//static char String[100];
+
+	
 
 int main(void)
 {
@@ -42,7 +43,8 @@ GPIO_DO_setup(GPIOA,6,High); //Nokia 5110_D/C
 
 GPIO_Analog_setup (GPIOA,0);//ADC_X
 GPIO_Analog_setup (GPIOA,1);//ADC_Y
-
+Timer1_F4_init(84);
+Timer2_F4_init(84);
 SPI_F4_init(2);
 Nokia_5110_init(72);
 DMA_F4_init();
@@ -61,28 +63,23 @@ ADC_F4_init_via_DMA();
 	
 	while (1)
 	{
-	
+Nokia_5110_clr_screen_buf();		
+if (!TIM2_Delay_1) {if (GPIOC->IDR &1 <<5) GREEN_OFF; else GREEN_ON; TIM2_Delay_1=100; }
 
 		
-//		GPIOA->BSRR = 1<<(5);
-		GREEN_ON;
 //			delay_ms(led_delay);
 //		GPIOA->BSRR = 1<<(5+16);
-		GREEN_OFF;
+	//	GREEN_OFF;
 	//			delay_ms(led_delay);
 	
 	if (!(GPIOA->IDR & 1<<10)) {RED_ON; Nokia_5110_clr_screen_buf();} else RED_OFF;
+//sprintf(String,"%d",15%8 );
+//sprintf(String,"Коорд.Х-%04d",ADC_ch[0]);
+//Nokia_5110_String(0,0,(uint8_t*)String);
+//sprintf(String,"Коорд.Y-%04d",ADC_ch[1]);
+//Nokia_5110_String(0,8,(uint8_t*)String);	
 	
-sprintf(String,"Коорд.Х-%04d",ADC_ch[0]);
-Nokia_5110_String(0,0,(uint8_t*)String);
-sprintf(String,"Коорд.Y-%04d",ADC_ch[1]);
-Nokia_5110_String(0,8,(uint8_t*)String);	
-		X=(uint8_t)(ADC_ch[0]/48);
-		Y=(uint8_t)(48-ADC_ch[1]/84);
-		X=(X<84) ? X: 83 ;
-		Y=(Y<48) ? Y: 47 ;
-		Nokia_5110_dot(X,Y);
-		
+Game_Car();		
 Nokia_5110_LCD_Out();		
 
 	

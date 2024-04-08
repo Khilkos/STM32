@@ -1,5 +1,7 @@
 --cpu=Cortex-M4.fp.sp
 ".\objects\main.o"
+".\objects\game.o"
+".\objects\config.o"
 ".\objects\gpio_setup.o"
 ".\objects\delay.o"
 ".\objects\core_init.o"
@@ -8,6 +10,7 @@
 ".\objects\font_table.o"
 ".\objects\adc.o"
 ".\objects\dma.o"
+".\objects\timer_f4.o"
 ".\objects\startup_stm32f401xe.o"
 ".\objects\system_stm32f4xx.o"
 --strict --scatter ".\Objects\Nucleo_F401RE.sct"

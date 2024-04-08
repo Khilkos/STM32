@@ -109,7 +109,17 @@ void *ptr=Nokia_5110_screen_buf;
 			{*((uint32_t*)ptr+i)=0;}
 }
 //==========================================
-//void Nokia_5110_Vertikal_line
-
+void Nokia_5110_Vertical_line (uint8_t X_poz, uint8_t Y_poz, uint8_t Lenght)
+{
+for (uint8_t i=0; i<Lenght; i++)
+	{	if ((Y_poz+i)<48 && X_poz<84 )	Nokia_5110_dot (X_poz, Y_poz+i); }
+}
+//==========================================
+void Nokia_5110_Horizontal_line (uint8_t X_poz, uint8_t Y_poz, uint8_t Lenght)
+{
+for (uint8_t i=0; i<Lenght; i++)
+	{	if ((X_poz+i)<84)	Nokia_5110_dot (X_poz+i, Y_poz); }
+}
+//==========================================
 
 

@@ -22,7 +22,7 @@ void Nokia_5110_dot (uint8_t x, uint8_t y);
 void Nokia_5110_no_dot (uint8_t x, uint8_t y);
 void Nokia_5110_String (uint8_t x, uint8_t y, uint8_t *str);
 void Nokia_5110_clr_screen_buf(void);
-
-
+void Nokia_5110_Vertical_line (uint8_t X_poz, uint8_t Y_poz, uint8_t Lenght);
+void Nokia_5110_Horizontal_line (uint8_t X_poz, uint8_t Y_poz, uint8_t Lenght);
 #endif
 
