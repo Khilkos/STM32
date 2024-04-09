@@ -43,8 +43,8 @@ GPIO_DO_setup(GPIOA,6,High); //Nokia 5110_D/C
 
 GPIO_Analog_setup (GPIOA,0);//ADC_X
 GPIO_Analog_setup (GPIOA,1);//ADC_Y
-Timer1_F4_init(84);
-Timer2_F4_init(84);
+Timer1_F4_init(84000000,1000);
+Timer2_F4_init(84000000,9856);
 SPI_F4_init(2);
 Nokia_5110_init(72);
 DMA_F4_init();
@@ -64,7 +64,7 @@ ADC_F4_init_via_DMA();
 	while (1)
 	{
 Nokia_5110_clr_screen_buf();		
-if (!TIM2_Delay_1) {if (GPIOC->IDR &1 <<5) GREEN_OFF; else GREEN_ON; TIM2_Delay_1=100; }
+//if (!TIM2_Delay_1) {if (GPIOC->IDR &1 <<5) GREEN_OFF; else GREEN_ON; TIM2_Delay_1=1000; }
 
 		
 //			delay_ms(led_delay);
