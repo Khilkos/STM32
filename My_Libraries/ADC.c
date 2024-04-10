@@ -1,10 +1,10 @@
 #include "ADC.h"
 
-#define ADC_Average_val 5
-static uint16_t ADC_DMA_val[16]={0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+//#define ADC_Average_val 5
+static uint16_t ADC_DMA_val[17]={0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
 uint32_t ADC_main_count=0;
-uint32_t ADC_ch[16]={0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
-uint32_t ADC_ch_summ[16]={0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+uint32_t ADC_ch[17]={0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+uint32_t ADC_ch_summ[17]={0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
 
 
 
@@ -192,8 +192,8 @@ if (DMA2_Stream0->CR & DMA_SxCR_EN)
 	}
 DMA2->LIFCR |=DMA_LIFCR_CTCIF0;//сброс флага прерывания - завершение передачи
 DMA2_Stream0->PAR = (uint32_t)&ADC1->DR;	//адрес перефирии
-DMA2_Stream0->M0AR = (uint32_t)ADC_DMA_val;		//адрес памяти
-DMA2_Stream0->NDTR = 2;	//количество данный передаваемых в ДМА
+DMA2_Stream0->M0AR = (uint32_t)(ADC_DMA_val+1);		//адрес памяти
+DMA2_Stream0->NDTR = ADC_Init.ADC_Quantity_of_chanel;	//количество данный передаваемых в ДМА
 DMA2_Stream0->CR &= ~(0x7UL<<DMA_SxCR_CHSEL_Pos); //выбор о канала ДМА
 DMA2_Stream0->CR |= 0x3UL<<DMA_SxCR_PL_Pos; //высокий приоритет потока
 DMA2_Stream0->FCR  &= ~(DMA_SxFCR_DMDIS); //прямой домтуп без измользования FIFO
@@ -210,16 +210,16 @@ DMA2_Stream0->CR |=DMA_SxCR_EN; //включение ДМА
 
 //=================================================
 void DMA2_Stream0_IRQHandler_User(void)
-{
+{	
 	ADC_main_count++;
-			for (uint8_t i=0; i<16;i++)
+			for (uint8_t i=1; i<17;i++)
 				{ADC_ch_summ[i]+=ADC_DMA_val[i];}
 			
-	if (ADC_main_count>=ADC_Average_val) 
+	if (ADC_main_count>=ADC_Init.ADC_Average_val) 
 		{
 			ADC_main_count=0;
-			for (uint8_t i=0; i<16;i++)
-				{	ADC_ch[i]=(ADC_ch_summ[i]/ADC_Average_val);
+			for (uint8_t i=1; i<17;i++)
+				{	ADC_ch[i]=(ADC_ch_summ[i]/ADC_Init.ADC_Average_val);
 					ADC_ch_summ[i]=0;	}
 		}
 			ADC1->CR2 |=ADC_CR2_SWSTART; 	

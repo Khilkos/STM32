@@ -43,23 +43,38 @@ GPIO_DO_setup(GPIOA,6,High); //Nokia 5110_D/C
 
 GPIO_Analog_setup (GPIOA,0);//ADC_X
 GPIO_Analog_setup (GPIOA,1);//ADC_Y
+GPIO_Analog_setup (GPIOB,1);//ADC9
+
 Timer1_F4_init(84000000,1000);
 Timer2_F4_init(84000000,9856);
 SPI_F4_init(2);
 Nokia_5110_init(72);
 DMA_F4_init();
-DMA_F4_ADC_init();
+
 //-----------------------
-ADC_Init.ADC_Resolution=12;
-ADC_Init.ADC_Prescaler=8;
-ADC_Init.ADC_Quantity_of_chanel=2;
-ADC_Init.ADC_ch1=0;
-ADC_Init.ADC_ch2=1;
-ADC_Init.ADC_Sample_time=480;
+ADC_Init.ADC_Resolution=12;//6,8,10,12 бит разрешающая способность АЦП
+ADC_Init.ADC_Prescaler=8;//2,4,6,8 выбор пределителя PCLK2 для работы АЦП
+ADC_Init.ADC_Quantity_of_chanel=3;//количество каналов для преобразования, 1- одно преобразование, 16(максимально)- 16 преобразований
+ADC_Init.ADC_ch1=0;//выбор канала АЦП (физического) для 1-го преобразования
+ADC_Init.ADC_ch2=1;//выбор канала АЦП (физического) для 2-го преобразования
+ADC_Init.ADC_ch3=9;//выбор канала АЦП (физического) для 3-го преобразования
+ADC_Init.ADC_Sample_time=480;// установка времени семплирования в тактах 3,15,28,56,84,112,144,480
+ADC_Init.ADC_Average_val= 1;// глубина усреднения результата АЦП, общая для всех каналов 
+DMA_F4_ADC_init();
 ADC_F4_init_via_DMA();
 //-----------------------
 
+RCC->APB1ENR |= RCC_APB1ENR_PWREN;
+PWR->CR |= PWR_CR_DBP;
 
+//RCC->BDCR|=RCC_BDCR_RTCSEL_1;
+RCC->BDCR |= 0x01<<RCC_BDCR_RTCSEL_Pos; //LSE tackting for RTC enamle
+RCC->BDCR |= RCC_BDCR_LSEON;
+			while (!RCC_BDCR_LSERDY) {__NOP();}
+
+//RCC->CSR |=RCC_CSR_LSION;			
+//while (!RCC_CSR_LSIRDY) {__NOP();}
+RCC->BDCR |= RCC_BDCR_RTCEN;
 	
 	while (1)
 	{
