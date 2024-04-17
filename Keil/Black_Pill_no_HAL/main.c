@@ -9,11 +9,18 @@ uint32_t i=12;
 
 int main(void)
 {
-Core_F411_init();
-SysTick_Init();	
-Timer_F411_init();
-
+Core_F4_init_HSE(25,192,2,4);
+//Core_F411_init();
+	SysTick_Init();	
+Timer1_F4_init(96000000,1000);
+DMA_F4_init();
+	
 RCC->AHB1ENR |= ( RCC_AHB1ENR_GPIOAEN | RCC_AHB1ENR_GPIOBEN  ); // enable portA and portB clock
+	
+I2C_F411_init();
+SPI_F4_init(5);
+RTC_F411_Init();
+USART_F411_init();
 
 
 GPIO_DO_setup(GPIOB,15,High);
@@ -40,25 +47,29 @@ GPIO_Analog_setup (GPIOA,0);
 GPIO_Analog_setup (GPIOA,1);
 //GPIO_Analog_setup (GPIOA,2);
 
-I2C_F411_init();
-SPI_F411_init();
-RTC_F411_Init();
-EXTI_F411_init();
-DMA_F411_init();
-DMA_F411_ADC_init();
-ADC1_F411_Init();
-USART_F411_init();
+
+//-----------------------
+ADC_Init.ADC_Resolution=  12;//6,8,10,12 бит разрешающая способность АЦП
+ADC_Init.ADC_Prescaler=  8;//2,4,6,8 выбор пределителя PCLK2 для работы АЦП
+ADC_Init.ADC_Quantity_of_chanel= 2 ; //количество каналов для преобразования, 1- одно преобразование, 16(максимально)- 16 преобразований
+ADC_Init.ADC_ch1= 0 ; //выбор канала АЦП (физического) для 1-го преобразования, результат в ADC_ch[1]
+ADC_Init.ADC_ch2=  1; //выбор канала АЦП (физического) для 2-го преобразования, результат в ADC_ch[2]
+//ADC_Init.ADC_ch3=  ; //выбор канала АЦП (физического) для 3-го преобразования, результат в ADC_ch[3]
+ADC_Init.ADC_Sample_time= 480 ; // установка времени семплирования в тактах 3,15,28,56,84,112,144,480
+ADC_Init.ADC_Average_val=  1000;// глубина усреднения результата АЦП, общая для всех каналов 
+DMA_F4_ADC_init();
+ADC_F4_init_via_DMA();
+//-----------------------
 
 
-
-delay_ms(100);
-LCD_init();
+//delay_ms(100);
+//LCD_init();
 
 //DS18B20_read_ROM();
 	
 while(1)
 {
-	
+
 key_scan();
 	RTC_F411_read_time_date();
 	DS3231_F411_get_time();
@@ -72,19 +83,20 @@ key_scan();
 	sprintf(String,"%02d:%02d:%02d",hour, minutes,seconds );
 	//sprintf(String,"1234567890");
 	LCD_string_font_10x16(32,0,(uint8_t*)String);
-/*	sprintf(String,"Prediv_A/S %d/%d",(RTC->PRER & 0x7f0000)>>16, RTC->PRER & 0x7fff);
+//	sprintf(String,"Prediv_A/S %d/%d",(RTC->PRER & 0x7f0000)>>16, RTC->PRER & 0x7fff);
 	//ST7920_running_line((uint8_t*)&String, 32);
 	//delay_ms(170);
-	LCD_string(32,0,(uint8_t*)String);
+//	LCD_string(32,0,(uint8_t*)String);
 	
-	sprintf(String,"DC_calibr %d", (0x1f&RTC->CALIBR));
-	LCD_string(40,0,(uint8_t*)String);
-*/
+//	sprintf(String,"DC_calibr %d", (0x1f&RTC->CALIBR));
+//	LCD_string(40,0,(uint8_t*)String);
+
 
 	
-	sprintf(String,"ADC_ch0/1= %.2f/%.2fB", (double)ADC_ch0/1262, (double)ADC_ch1/1262 );
+	sprintf(String,"ADC_ch0/1= %.2f/%.2fB", (double)ADC_ch[1]/1262, (double)ADC_ch[2]/1262 );
 	LCD_string (48,0, (uint8_t*)String);
-  DS18B20_read_temperatur_of_2_sensor(ROM_work, ROM_work_1,DS18B20_temperature_of_2_sensor);
+ 
+ DS18B20_read_temperatur_of_2_sensor(ROM_work, ROM_work_1,DS18B20_temperature_of_2_sensor);
 	sprintf(String,"Темпер. %.1f / %.1f",DS18B20_temperature_of_2_sensor[0]*0.1, DS18B20_temperature_of_2_sensor[1]*0.1 );
 	LCD_string (56,0, (uint8_t*)String);
 	
@@ -107,6 +119,7 @@ key_scan();
 	if (clock_poz_1 && clock_poz_1==7) line(Y_time_poz+18,X_time_poz +12+18*(clock_poz_1-3),Y_time_poz+18,X_time_poz+34+18*(clock_poz_1-3));
 	
 	
+
 LCD_out();
 
 
@@ -116,7 +129,8 @@ LCD_out();
 	
 
 	
-if (GPIOB->IDR&1<<12) GPIOB->BSRR=1<<(12+res); else GPIOB->BSRR=1<<12;	
+if (GPIOB->IDR&1<<12) GPIOB->BSRR=1<<(12+res); else GPIOB->BSRR=1<<12;
+//GPIOB->BSRR=1<<12;
 	//GPIOB->BSRR=1<<14;	
 }	
 }

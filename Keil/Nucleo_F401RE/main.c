@@ -10,9 +10,9 @@
 #define YELLOW_ON 	GPIOC->BSRR = 1<<(9)
 #define YELLOW_OFF GPIOC->BSRR = 1<<(9+16)
 
-//static char String[100];
+static char String[100];
+static char Menu[20][14];
 
-	
 
 int main(void)
 {
@@ -54,12 +54,13 @@ DMA_F4_init();
 //-----------------------
 ADC_Init.ADC_Resolution=12;//6,8,10,12 бит разрешающая способность АЦП
 ADC_Init.ADC_Prescaler=8;//2,4,6,8 выбор пределителя PCLK2 для работы АЦП
-ADC_Init.ADC_Quantity_of_chanel=3;//количество каналов для преобразования, 1- одно преобразование, 16(максимально)- 16 преобразований
+ADC_Init.ADC_Quantity_of_chanel=4;//количество каналов для преобразования, 1- одно преобразование, 16(максимально)- 16 преобразований
 ADC_Init.ADC_ch1=0;//выбор канала АЦП (физического) для 1-го преобразования
 ADC_Init.ADC_ch2=1;//выбор канала АЦП (физического) для 2-го преобразования
-ADC_Init.ADC_ch3=9;//выбор канала АЦП (физического) для 3-го преобразования
+ADC_Init.ADC_ch3=2;//выбор канала АЦП (физического) для 3-го преобразования
+ADC_Init.ADC_ch4=9;//выбор канала АЦП (физического) для 4-го преобразования
 ADC_Init.ADC_Sample_time=480;// установка времени семплирования в тактах 3,15,28,56,84,112,144,480
-ADC_Init.ADC_Average_val= 1;// глубина усреднения результата АЦП, общая для всех каналов 
+ADC_Init.ADC_Average_val= 1000;// глубина усреднения результата АЦП, общая для всех каналов 
 DMA_F4_ADC_init();
 ADC_F4_init_via_DMA();
 //-----------------------
@@ -78,23 +79,51 @@ RCC->BDCR |= RCC_BDCR_RTCEN;
 	
 	while (1)
 	{
+key_scan();
 Nokia_5110_clr_screen_buf();		
 //if (!TIM2_Delay_1) {if (GPIOC->IDR &1 <<5) GREEN_OFF; else GREEN_ON; TIM2_Delay_1=1000; }
 
+sprintf(Menu[0], "Игра гонки");
+sprintf(Menu[1], "Параметры");
+sprintf(Menu[2], "Настройки");
+sprintf(Menu[3], "ADC1 - %d",ADC_ch[1]);
+sprintf(Menu[4], "ADC2 - %d",ADC_ch[2]);
+sprintf(Menu[5], "ADC3 - %d",ADC_ch[3]);
+sprintf(Menu[6], "ADC4 - %d",ADC_ch[4]);
+sprintf(Menu[7], "Игра 2");
+sprintf(Menu[8], "Игра 3");
+sprintf(Menu[9], "Игра 4");
+sprintf(Menu[10], "Игра 5");
+sprintf(Menu[11], "Игра 6");
+sprintf(Menu[12], "Игра 7");
+		
+sprintf (String,"-");
+Nokia_5110_String(0,8*Cursor_poz,(uint8_t*)String);		
+
+		
+Nokia_5110_String(7,0,(uint8_t*)(Menu+Menu_poz));
+Nokia_5110_String(7,8,(uint8_t*)(Menu+Menu_poz+1));
+Nokia_5110_String(7,16,(uint8_t*)(Menu+Menu_poz+2));
+Nokia_5110_String(7,24,(uint8_t*)(Menu+Menu_poz+3));
+Nokia_5110_String(7,32,(uint8_t*)(Menu+Menu_poz+4));
+Nokia_5110_String(7,40,(uint8_t*)(Menu+Menu_poz+5));
+
+
+		
 		
 //			delay_ms(led_delay);
 //		GPIOA->BSRR = 1<<(5+16);
 	//	GREEN_OFF;
 	//			delay_ms(led_delay);
 	
-	if (!(GPIOA->IDR & 1<<10)) {RED_ON; Nokia_5110_clr_screen_buf();} else RED_OFF;
-//sprintf(String,"%d",15%8 );
+//	if (!(GPIOA->IDR & 1<<10)) {RED_ON; Nokia_5110_clr_screen_buf();} else RED_OFF;
+//sprintf(String,"%d%d",1234567890,123456 );
 //sprintf(String,"Коорд.Х-%04d",ADC_ch[0]);
 //Nokia_5110_String(0,0,(uint8_t*)String);
 //sprintf(String,"Коорд.Y-%04d",ADC_ch[1]);
 //Nokia_5110_String(0,8,(uint8_t*)String);	
 	
-Game_Car();		
+//Game_Car();		
 Nokia_5110_LCD_Out();		
 
 	

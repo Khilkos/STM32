@@ -5,9 +5,8 @@
 #include "stm32f411xe.h"
 #include "stdint.h"
 #include "USART_F411.h"
-#include "DMA_F411.h"
 #include "Delay.h"
-#include "Timer_F411_init.h"
+#include "DMA.h"
 
 
 

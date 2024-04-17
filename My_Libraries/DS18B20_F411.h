@@ -9,7 +9,7 @@
 #include "USART_F411.h"
 #include "DMA_F411.h"
 #include "Delay.h"
-#include "Timer_F411_init.h"
+#include "Timer_F4.h"
 #include "One_Wire_F411.h"
 #define skip_rom 0xCC
 #define convert_t 0x44

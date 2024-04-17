@@ -2,6 +2,7 @@
 ".\objects\main.o"
 ".\objects\game.o"
 ".\objects\config.o"
+".\objects\board.o"
 ".\objects\gpio_setup.o"
 ".\objects\delay.o"
 ".\objects\core_init.o"

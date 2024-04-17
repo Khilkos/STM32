@@ -2,7 +2,6 @@
 
 uint32_t key_delay=0;
 uint32_t select_delay=0;
-uint32_t DS18B20_delay=0;
 uint32_t HUB75_line_run_delay=0;
 uint32_t HUB75_screen_delay=0;
 

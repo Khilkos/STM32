@@ -106,7 +106,6 @@ void DS18B20_read_ROM (void)
 uint16_t DS18B20_read_temperatur (void)
 {
 	_Bool Sensor_OK=0;
-	
 	if (read_temperature_stage==0) 
 		{
 			Sensor_OK=DS18B20_Reset_single();
@@ -114,7 +113,7 @@ uint16_t DS18B20_read_temperatur (void)
 			DS18B20_write_byte(skip_rom);
 			DS18B20_write_byte(convert_t);
 			read_temperature_stage=1;
-			DS18B20_delay=1000;
+			TIM1_Delay_1=1000;
 		}
 	if (read_temperature_stage==1)
 		{
@@ -163,12 +162,12 @@ _Bool DS18B20_read_temperatur_of_2_sensor (uint8_t* _ROM_1, uint8_t* _ROM_2,uint
 		}		
 	if (read_temperature_stage==3 && !DMA_busy)
 		{
-			DS18B20_delay=1000;
+			TIM1_Delay_1=1000;
 			read_temperature_stage=4;
 		}
 	if (read_temperature_stage==4)
 		{
-			if (!DS18B20_delay) read_temperature_stage=5;		
+			if (!TIM1_Delay_1) read_temperature_stage=5;		
 		}
 	if (read_temperature_stage==5)
 		{
@@ -318,12 +317,12 @@ uint16_t DS18B20_read_temperatur_via_DMA_timer (void)
 			DMA_F411_DS18B20_convert_T();
 			DMA_busy=1;
 			read_temperature_stage=1;
-			DS18B20_delay=5000;
+			TIM1_Delay_1=5000;
 		}
 
 	if (read_temperature_stage==1 && !DMA_busy)
 		{
-			if (!DS18B20_delay) read_temperature_stage=2;		
+			if (!TIM1_Delay_1) read_temperature_stage=2;		
 		}
 
 	if (read_temperature_stage==2 && !DMA_busy)

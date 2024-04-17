@@ -9,8 +9,9 @@
   C:\Users\Khilk\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_armclang.h \
   C:\Users\Khilk\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\mpu_armv7.h \
   C:\Users\Khilk\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.17.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include\system_stm32f4xx.h \
+  ..\Nucleo_F401RE\Board.h ..\..\My_Libraries\Timer_F4.h \
   ..\..\My_Libraries\GPIO_setup.h ..\..\My_Libraries\Core_init.h \
   ..\..\My_Libraries\Delay.h ..\..\My_Libraries\Timer_F411_init.h \
-  ..\..\My_Libraries\Timer_F4.h ..\..\My_Libraries\Font_table.h \
-  ..\..\My_Libraries\Nokia_5110_LCD.h ..\..\My_Libraries\SPI.h \
-  ..\..\My_Libraries\DMA.h ..\Nucleo_F401RE\Game.h
+  ..\..\My_Libraries\Font_table.h ..\..\My_Libraries\Nokia_5110_LCD.h \
+  ..\..\My_Libraries\SPI.h ..\..\My_Libraries\DMA.h \
+  ..\Nucleo_F401RE\Game.h
