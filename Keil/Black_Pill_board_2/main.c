@@ -46,9 +46,9 @@ GPIO_Alternate(GPIOA,2,Open_drain,High,Pull_up,AF7);// USART2 TX2
 GPIO_Alternate(GPIOA,3,Open_drain,High,Pull_up,AF7);// USART2 RX2	
 	
 	
-Core_F411_init();
+Core_F4_init_HSE(25,192,2,4);
 SysTick_Init();
-Timer_F411_init();
+Timer1_F4_init(96000000,1000);
 I2C_F411_init();
 DMA_F4_init();
 USART_F411_init();

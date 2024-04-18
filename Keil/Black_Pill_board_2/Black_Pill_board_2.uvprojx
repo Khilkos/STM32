@@ -16,7 +16,7 @@
         <TargetCommonOption>
           <Device>STM32F411CEUx</Device>
           <Vendor>STMicroelectronics</Vendor>
-          <PackID>Keil.STM32F4xx_DFP.2.17.0</PackID>
+          <PackID>Keil.STM32F4xx_DFP.2.17.1</PackID>
           <PackURL>https://www.keil.com/pack/</PackURL>
           <Cpu>IRAM(0x20000000,0x00020000) IROM(0x08000000,0x00080000) CPUTYPE("Cortex-M4") FPU2 CLOCK(12000000) ELITTLE</Cpu>
           <FlashUtilSpec></FlashUtilSpec>
@@ -337,7 +337,7 @@
             <v6WtE>0</v6WtE>
             <v6Rtti>0</v6Rtti>
             <VariousControls>
-              <MiscControls>-Wno-invalid-utf8 -Wno-gnu-binary-literal -Wno-invalid-source-encoding</MiscControls>
+              <MiscControls>-Wno-invalid-utf8 -Wno-gnu-binary-literal -Wno-invalid-source-encoding -Wno-newline-eof</MiscControls>
               <Define></Define>
               <Undefine></Undefine>
               <IncludePath>..\..\My_Libraries;..\Black_Pill_board_2</IncludePath>
@@ -440,16 +440,6 @@
               <FilePath>..\..\My_Libraries\DS18B20_F411.c</FilePath>
             </File>
             <File>
-              <FileName>DMA_F411.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\My_Libraries\DMA_F411.c</FilePath>
-            </File>
-            <File>
-              <FileName>Timer_F411_init.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\My_Libraries\Timer_F411_init.c</FilePath>
-            </File>
-            <File>
               <FileName>One_Wire_F411.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\My_Libraries\One_Wire_F411.c</FilePath>
@@ -484,6 +474,11 @@
               <FileType>1</FileType>
               <FilePath>..\..\My_Libraries\DMA.c</FilePath>
             </File>
+            <File>
+              <FileName>Timer_F4.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\My_Libraries\Timer_F4.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -516,7 +511,7 @@
       <file attr="config" category="source" condition="STM32F411xE_ARMCC" name="Drivers\CMSIS\Device\ST\STM32F4xx\Source\Templates\arm\startup_stm32f411xe.s" version="2.6.8">
         <instance index="0">RTE\Device\STM32F411CEUx\startup_stm32f411xe.s</instance>
         <component Cclass="Device" Cgroup="Startup" Cvendor="Keil" Cversion="2.6.3" condition="STM32F4 CMSIS"/>
-        <package name="STM32F4xx_DFP" schemaVersion="1.7.2" url="https://www.keil.com/pack/" vendor="Keil" version="2.17.0"/>
+        <package name="STM32F4xx_DFP" schemaVersion="1.7.2" url="https://www.keil.com/pack/" vendor="Keil" version="2.17.1"/>
         <targetInfos>
           <targetInfo name="Target 1"/>
         </targetInfos>
@@ -524,7 +519,7 @@
       <file attr="config" category="source" name="Drivers\CMSIS\Device\ST\STM32F4xx\Source\Templates\system_stm32f4xx.c" version="2.6.8">
         <instance index="0">RTE\Device\STM32F411CEUx\system_stm32f4xx.c</instance>
         <component Cclass="Device" Cgroup="Startup" Cvendor="Keil" Cversion="2.6.3" condition="STM32F4 CMSIS"/>
-        <package name="STM32F4xx_DFP" schemaVersion="1.7.2" url="https://www.keil.com/pack/" vendor="Keil" version="2.17.0"/>
+        <package name="STM32F4xx_DFP" schemaVersion="1.7.2" url="https://www.keil.com/pack/" vendor="Keil" version="2.17.1"/>
         <targetInfos>
           <targetInfo name="Target 1"/>
         </targetInfos>
