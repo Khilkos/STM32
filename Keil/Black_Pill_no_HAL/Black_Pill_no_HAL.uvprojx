@@ -337,7 +337,7 @@
             <v6WtE>0</v6WtE>
             <v6Rtti>0</v6Rtti>
             <VariousControls>
-              <MiscControls>-Wno-invalid-source-encoding -Wno-invalid-utf8 -Wno-gnu-binary-literal -Wno-vla -Wno-padded</MiscControls>
+              <MiscControls>-Wno-invalid-source-encoding -Wno-invalid-utf8 -Wno-gnu-binary-literal -Wno-vla -Wno-padded -Wno-newline-eof</MiscControls>
               <Define></Define>
               <Undefine></Undefine>
               <IncludePath>..\Black_Pill_no_HAL;..\..\My_Libraries</IncludePath>
@@ -443,11 +443,6 @@
               <FileName>I2C_F411.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\My_Libraries\I2C_F411.c</FilePath>
-            </File>
-            <File>
-              <FileName>DMA_F411.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\My_Libraries\DMA_F411.c</FilePath>
             </File>
             <File>
               <FileName>DS18B20_F411.c</FileName>

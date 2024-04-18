@@ -190,22 +190,25 @@ if (DMA2_Stream0->CR & DMA_SxCR_EN)
 		DMA2_Stream0->CR &= ~(DMA_SxCR_EN);
 		while (DMA2_Stream0->CR & DMA_SxCR_EN) __NOP();
 	}
+	//-------------------------------------------------
+//
 DMA2->LIFCR |=DMA_LIFCR_CTCIF0;//сброс флага прерывания - завершение передачи
-DMA2_Stream0->PAR = (uint32_t)&ADC1->DR;	//адрес перефирии
-DMA2_Stream0->M0AR = (uint32_t)(ADC_DMA_val+1);		//адрес памяти
-DMA2_Stream0->NDTR = ADC_Init.ADC_Quantity_of_chanel;	//количество данный передаваемых в ДМА
-DMA2_Stream0->CR &= ~(0x7UL<<DMA_SxCR_CHSEL_Pos); //выбор о канала ДМА
-DMA2_Stream0->CR |= 0x3UL<<DMA_SxCR_PL_Pos; //высокий приоритет потока
-DMA2_Stream0->FCR  &= ~(DMA_SxFCR_DMDIS); //прямой домтуп без измользования FIFO
-DMA2_Stream0->CR &= ~(0x3UL<<DMA_SxCR_DIR_Pos); //направление потока данных из перефирии в память
-DMA2_Stream0->CR |= DMA_SxCR_MINC; //инкремент памяти включить
-DMA2_Stream0->CR &= ~DMA_SxCR_PINC; //инкремент перефирии отключить
-DMA2_Stream0->CR |= 0x1UL<<DMA_SxCR_PSIZE_Pos; //размер потока перефирии 16 бит
-DMA2_Stream0->CR |= 0x1UL<<DMA_SxCR_MSIZE_Pos; //размер потока памяти 16 бит
-DMA2_Stream0->CR |= DMA_SxCR_CIRC;	//кольцевой режим	
-DMA2_Stream0->CR |= DMA_SxCR_TCIE; //включение прерываний при завершении передачи
-NVIC->ISER[1]=( 1<<24);	//включение прерывания ДМА2 поток 0
-DMA2_Stream0->CR |=DMA_SxCR_EN; //включение ДМА
+DMA_STM_F4.DMA_Number = DMA2;//выбор ДМА, напр. - DMA2
+DMA_STM_F4.DMA_Stream = DMA2_Stream0;//выбор потока ДМА напр. -  DMA2_Stream0
+DMA_STM_F4.DMA_Peripheral_address = &ADC1->DR ;//адрес перефирии, например (volatile uint32_t*)&(USART2->DR);
+DMA_STM_F4.DMA_Memory_address =  (void*)(ADC_DMA_val+1) ;//адрес памяти, например (void*)temp_send_buf ;
+DMA_STM_F4.DMA_Quantity = ADC_Init.ADC_Quantity_of_chanel  ;//количество данный передаваемых в ДМА
+DMA_STM_F4.DMA_Chanel = 0 ;//выбор канала ДМА
+DMA_STM_F4.DMA_Prioroty =  DMA_Priority_low;//приоритет потока - DMA_Priority_low, DMA_Priority_medium, DMA_Priority_high, DMA_Priority_very_high
+DMA_STM_F4.DMA_Data_transfer_direction = DMA_Peripheral_to_memory ;//направление потока данных перефирия <-> память: DMA_Peripheral_to_memory, DMA_Memory_to_Peripheral, DMA_Memory_to_memory
+DMA_STM_F4.DMA_Memory_inc =  DMA_Inc_ON ;//инкремент памяти DMA_Inc_ON-включить, DMA_Inc_OFF-выключить
+DMA_STM_F4.DMA_Peripheral_inc = DMA_Inc_OFF ;//инкремент перефирии DMA_Inc_ON-включить, DMA_Inc_OFF-выключить
+DMA_STM_F4.DMA_Memory_data_size = DMA_16_bit ;//размер потока памяти: DMA_8_bit, DMA_16_bit, DMA_32_bit
+DMA_STM_F4.DMA_Peripheral_data_size = DMA_16_bit ;//размер потока перифирии: DMA_8_bit, DMA_16_bit, DMA_32_bit
+DMA_STM_F4.DMA_Circular_mode = Circular_mode_enabled ;//кольцевой режим:  Circular_mode_disabled, Circular_mode_enabled
+DMA_STM_F4.DMA_Interrupt = DMA2_Stream0_IRQn ;// прерывание из stm32f411xe.h, например - DMA2_Stream0_IRQn
+DMA_F4_param_init ();//Запуск ДМА с заданными параметрами
+//
 }
 
 //=================================================

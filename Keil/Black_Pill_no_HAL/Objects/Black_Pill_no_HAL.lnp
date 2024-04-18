@@ -9,7 +9,6 @@
 ".\objects\font_table.o"
 ".\objects\rtc_f411.o"
 ".\objects\i2c_f411.o"
-".\objects\dma_f411.o"
 ".\objects\ds18b20_f411.o"
 ".\objects\usart_f411.o"
 ".\objects\ds3231_f411.o"

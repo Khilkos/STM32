@@ -4,6 +4,7 @@
 #include "stm32f411xe.h"
 #include <math.h>
 #include "Font_table.h"
+#include "Config.h"
 //#include "stdint.h"
 //#include "cmsis_armclang.h" 
 //#include "core_cm4.h"
@@ -13,6 +14,8 @@
 #define size_x 128/8
 #define CS 6
 
+
+extern uint8_t SPI_send_buf [3];
 extern uint8_t img_scr[size_y][size_x];
 
 
@@ -30,6 +33,14 @@ void line (int y1, int x1, int y2, int x2); //отрисовка линий функция line агуме
 extern void delay_us(uint32_t time_delay_us);
 void ST7920_running_line(uint8_t *str, uint8_t Y_pos);
 void LCD_string_font_10x16 (int y, int x, uint8_t *str);
+//
+void copy_to_img_scr (uint8_t y_pos, uint8_t x_pos, uint8_t y_size, uint8_t x_size, const unsigned char ar[][x_size/8]);
+//копирование изображение из флеша в кадровый буфер, сначала координаты y, x-кратная 8, затем размер массива с изображением y,x-кратное 8 */
+//
 
+void digit (uint8_t y_pos, uint8_t x_pos,uint16_t data, uint8_t size, uint8_t dot_pos, uint8_t mask);
+//вывод блока максимально из 5 чисел, с координатами y,x, само число, количество цифр не больше 5, количество цифр после запятой не больше 5, 
+//позиция цифры которая будет мерцать с тактовой частотой переменной Bool pulse_1000ms
+//
 
 #endif

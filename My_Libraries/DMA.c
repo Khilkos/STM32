@@ -18,7 +18,8 @@ if (DMA_STM_F4.DMA_Stream->CR & DMA_SxCR_EN)
 		while (DMA_STM_F4.DMA_Stream->CR & DMA_SxCR_EN) __NOP();
 	}
 //сброс флага прерывания - завершение передачи
-DMA_STM_F4.DMA_Number->LIFCR |=DMA_LIFCR_CTCIF0;
+//if (DMA_STM_F4.DMA_Stream)	
+//DMA_STM_F4.DMA_Number->LIFCR |=DMA_LIFCR_CTCIF0;
 //адрес перефирии	
 DMA_STM_F4.DMA_Stream->PAR = (uint32_t)DMA_STM_F4.DMA_Peripheral_address;	
 //адрес памяти	
@@ -79,6 +80,7 @@ void DMA1_Stream5_IRQHandler(void)
 	if (DMA1->HISR & DMA_HISR_TCIF5)
 		{
 			DMA1->HIFCR |= DMA_HIFCR_CTCIF5;
+			if (!(DMA1_Stream5->CR & DMA_SxCR_CIRC)) 
 			DMA1_Stream5->CR &= ~(DMA_SxCR_EN);
 			DMA1_Stream5_IRQHandler_User();
 		}
@@ -91,6 +93,7 @@ void DMA1_Stream6_IRQHandler(void)
 	if (DMA1->HISR & DMA_HISR_TCIF6)
 		{
 			DMA1->HIFCR |= DMA_HIFCR_CTCIF6;
+			if (!(DMA1_Stream6->CR & DMA_SxCR_CIRC)) 
 			DMA1_Stream6->CR &= ~(DMA_SxCR_EN);
 			DMA1_Stream6_IRQHandler_User();
 		}
@@ -103,10 +106,26 @@ void DMA2_Stream0_IRQHandler(void)
 if (DMA2->LISR & DMA_LISR_TCIF0)
 	{
 			DMA2->LIFCR |= DMA_LIFCR_CTCIF0;
-			if (!(DMA2_Stream0->CR & DMA_SxCR_CIRC)) DMA2_Stream0->CR &=~DMA_SxCR_EN;
+			if (!(DMA2_Stream0->CR & DMA_SxCR_CIRC)) 
+			DMA2_Stream0->CR &=~DMA_SxCR_EN;
 			DMA2_Stream0_IRQHandler_User();
 			
 	}
 }	
 #endif
 //================================================
+//===============================================
+#ifdef DMA2_Stream2_IRQHandler_define
+void DMA2_Stream2_IRQHandler(void)
+{
+	if (DMA2->LISR & DMA_LISR_TCIF2)
+		{
+			DMA2->LIFCR |= DMA_LIFCR_CTCIF2;
+			if (!(DMA2_Stream2->CR & DMA_SxCR_CIRC)) 
+			DMA2_Stream2->CR &= ~(DMA_SxCR_EN);
+			DMA2_Stream2_IRQHandler_User();
+		}
+}	
+#endif
+//===================================================
+

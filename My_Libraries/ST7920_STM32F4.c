@@ -2,22 +2,14 @@
 
 uint8_t img_scr[size_y][size_x];
 extern const unsigned char FontTable[256][5];
-
+uint8_t SPI_send_buf [3];
 
 
 //==========================================
 //прототипы функций
 //==========================================
 
-//
-void copy_to_img_scr (uint8_t y_pos, uint8_t x_pos, uint8_t y_size, uint8_t x_size, const unsigned char ar[][x_size/8]);
-//копирование изображение из флеша в кадровый буфер, сначала координаты y, x-кратная 8, затем размер массива с изображением y,x-кратное 8 */
-//
 
-void digit (uint8_t y_pos, uint8_t x_pos,uint16_t data, uint8_t size, uint8_t dot_pos, uint8_t mask);
-//вывод блока максимально из 5 чисел, с координатами y,x, само число, количество цифр не больше 5, количество цифр после запятой не больше 5, 
-//позиция цифры которая будет мерцать с тактовой частотой переменной Bool pulse_1000ms
-//
 /*
 char String[100];
 sprintf(String,"Время %02d:%02d:%02d DS3231",hour, minutes,seconds );
@@ -29,10 +21,17 @@ sprintf(String,"Время %02d:%02d:%02d DS3231",hour, minutes,seconds );
 //===========================================
 void LCD_comand (unsigned char data)
 {
-	
-//	uint8_t SREG_save=SREG;
-//	cli ();
-//	SPCR=(1<<SPE|1<<MSTR|1<<SPR0);
+/*	
+unsigned char temp;
+*SPI_send_buf=0b11111000;
+temp=data;
+temp&=0b11110000;	
+*(SPI_send_buf+1)=temp;
+temp=(unsigned char)(data<<4);	
+*(SPI_send_buf+2)=temp;
+SPI1_F4_send_8bit(3,SPI_send_buf);	
+delay_us (101);	
+*/
 unsigned char temp;
 GPIOA->BSRR=1<<CS;
 SPI1->DR=0b11111000;
@@ -44,13 +43,15 @@ SPI1->DR=temp;
 		temp=(unsigned char)(data<<4);	
 SPI1->DR=temp;
 while (!(SPI1->SR&SPI_SR_TXE)) {__NOP();}
-delay_us(5);
+//delay_us(5);
+while ((SPI1->SR&SPI_SR_BSY)) {__NOP();}
 GPIOA->BSRR=(1<<(CS+res));
 __NOP();
 __NOP();
 __NOP();
 // SREG=SREG_save;
 delay_us (21);
+	
 }
 
 //============================================

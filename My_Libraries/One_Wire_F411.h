@@ -16,6 +16,8 @@ void DMA_F411_One_Wire_Recive (uint8_t size_buf, uint8_t* recive_buf);
 void DMA_F411_One_Wire_Reset (uint8_t* recive_buf);
 extern uint8_t One_wire_recive_buf[64];
 
+#define DMA1_Stream5_IRQHandler_define
+#define DMA1_Stream6_IRQHandler_define
 void DMA1_Stream5_IRQHandler_User(void);
 void DMA1_Stream6_IRQHandler_User(void);
 

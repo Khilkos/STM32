@@ -3,6 +3,7 @@
 
 #include "stm32f411xe.h"
 #include "stdint.h"
+#include "Config.h"
 //#include "cmsis_armclang.h" 
 //#include "core_cm4.h"
 
@@ -61,6 +62,7 @@ extern struct STM_F4_ADC ADC_Init;
 void ADC1_F411_Init (void);
 void ADC_IRQHandler(void);
 void DMA_F4_ADC_init (void);
+#define DMA2_Stream0_IRQHandler_define
 void DMA2_Stream0_IRQHandler_User(void);
 void ADC_F4_init_via_DMA (void);
 

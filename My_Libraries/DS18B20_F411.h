@@ -1,13 +1,8 @@
-#ifndef __DS18B20_F411_H
-#define __DS18B20_F411_H
+#ifndef _DS18B20_F411_H
+#define _DS18B20_F411_H
 
-//#include "stm32f411xe.h"
 #include "stdint.h"
-//#include "I2C_F411.h"
-//#include "cmsis_armclang.h" 
-//#include "core_cm4.h"
 #include "USART_F411.h"
-#include "DMA_F411.h"
 #include "Delay.h"
 #include "Timer_F4.h"
 #include "One_Wire_F411.h"

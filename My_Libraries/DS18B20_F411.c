@@ -259,7 +259,7 @@ _Bool DS18B20_read_temperatur_of_2_sensor (uint8_t* _ROM_1, uint8_t* _ROM_2,uint
 return 1;
 }
 //===================================================
-uint16_t DS18B20_read_temperatur_via_DMA (void)
+/*uint16_t DS18B20_read_temperatur_via_DMA (void)
 {
 	_Bool temp_bit=0;
 	_Bool Sensor_OK=0;
@@ -302,9 +302,10 @@ uint16_t DS18B20_read_temperatur_via_DMA (void)
 		
 return DS18B20_temperature;
 }
-
+*/
 //======================================================================
 //===================================================
+/*
 uint16_t DS18B20_read_temperatur_via_DMA_timer (void)
 {
 	_Bool temp_bit=0;
@@ -348,6 +349,6 @@ uint16_t DS18B20_read_temperatur_via_DMA_timer (void)
 		
 return DS18B20_temperature;
 }
-
+*/
 //======================================================================
 
