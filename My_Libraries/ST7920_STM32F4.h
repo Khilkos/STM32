@@ -17,7 +17,9 @@
 
 extern uint8_t SPI_send_buf [3];
 extern uint8_t img_scr[size_y][size_x];
-
+extern uint32_t Send_poz;
+extern uint8_t ST7920_SPI_Send_buf [3456][3];
+extern uint32_t Buf_poz;
 
 void LCD_comand (unsigned char data);
 void LCD_data (unsigned char data);
@@ -42,5 +44,9 @@ void digit (uint8_t y_pos, uint8_t x_pos,uint16_t data, uint8_t size, uint8_t do
 //вывод блока максимально из 5 чисел, с координатами y,x, само число, количество цифр не больше 5, количество цифр после запятой не больше 5, 
 //позиция цифры которая будет мерцать с тактовой частотой переменной Bool pulse_1000ms
 //
+void ST7920_makeDMA_buf_command(uint32_t poz, uint8_t data);
+void ST7920_makeDMA_buf_data(uint32_t poz, uint8_t data);
+void LCD_DMA_out (void);
+
 
 #endif

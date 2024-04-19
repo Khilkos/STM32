@@ -104,7 +104,9 @@ DS18B20_read_temperatur_of_2_sensor(ROM_work, ROM_work_1,DS18B20_temperature_of_
 	if (clock_poz_1 && clock_poz_1==7) line(Y_time_poz+18,X_time_poz +12+18*(clock_poz_1-3),Y_time_poz+18,X_time_poz+34+18*(clock_poz_1-3));
 
 LCD_out();
-
+//LCD_DMA_out();
+//	delay_ms(100);
+	
 if (GPIOB->IDR&1<<12) GPIOB->BSRR=1<<(12+res); else GPIOB->BSRR=1<<12;
 	//GPIOB->BSRR=1<<14;	
 }	

@@ -8,6 +8,7 @@
 //#include "core_cm4.h"
 
 #define res 16
+extern _Bool SPI1_DMA_buzy;
 
 void SPI_F411_init(void);
 void SPI_F4_init(uint8_t SPI_speed);

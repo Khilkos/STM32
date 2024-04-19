@@ -3,7 +3,9 @@
 uint8_t img_scr[size_y][size_x];
 extern const unsigned char FontTable[256][5];
 uint8_t SPI_send_buf [3];
-
+uint8_t ST7920_SPI_Send_buf [3456][3];
+uint32_t Buf_poz=0;
+uint32_t Send_poz=0;
 
 //==========================================
 //прототипы функций
@@ -21,17 +23,8 @@ sprintf(String,"Время %02d:%02d:%02d DS3231",hour, minutes,seconds );
 //===========================================
 void LCD_comand (unsigned char data)
 {
-/*	
-unsigned char temp;
-*SPI_send_buf=0b11111000;
-temp=data;
-temp&=0b11110000;	
-*(SPI_send_buf+1)=temp;
-temp=(unsigned char)(data<<4);	
-*(SPI_send_buf+2)=temp;
-SPI1_F4_send_8bit(3,SPI_send_buf);	
-delay_us (101);	
-*/
+
+
 unsigned char temp;
 GPIOA->BSRR=1<<CS;
 SPI1->DR=0b11111000;
@@ -59,8 +52,6 @@ delay_us (21);
 //=============================================
 void LCD_data (unsigned char data)
 {
-//uint8_t SREG_save=SREG;
-//cli ();
 unsigned char temp;
 GPIOA->BSRR=(1<<CS);
 SPI1->DR=0b11111010;
@@ -78,7 +69,7 @@ __NOP();
 __NOP();
 __NOP();
 delay_us(21);
-//	 SREG=SREG_save;
+
 }
 
 
@@ -114,7 +105,6 @@ void LCD_out (void)
 	unsigned char y_scr,x_scr;
 	
 //вывод первой половины экрана
-
 for (y_scr=0;y_scr<32;y_scr++)
 	{
 	unsigned char temp_y=y_scr;
@@ -125,7 +115,6 @@ for (y_scr=0;y_scr<32;y_scr++)
 		{
 			unsigned char data=img_scr[y_scr][x_scr];
 			LCD_data(data);
-	//		img_scr[y_scr][x_scr]=0;
 		}
 	}
 // вывод второй половины экрана
@@ -139,7 +128,6 @@ for (y_scr=0;y_scr<32;y_scr++)
 	{
 		unsigned char data=img_scr[y_scr+32][x_scr];
 		LCD_data(data);
-	//	img_scr[y_scr+32][x_scr]=0;
 		
 	}
 }
@@ -356,3 +344,89 @@ void LCD_string_font_10x16 (int y, int x, uint8_t *str)
 	}
 }
 //==================================
+//========================================
+//Вывод изображения на экран
+//==========================================
+void LCD_DMA_out (void)
+{
+	if (!Send_poz)
+	{		
+			void *ptr = img_scr;
+//			uint8_t *ptr8=0;
+			uint32_t* arr=ptr;
+			uint32_t size=(size_x*8*size_y)/32;
+			unsigned char y_scr,x_scr;
+	
+				//вывод первой половины экрана
+			for (y_scr=0;y_scr<32;y_scr++)
+				{
+					unsigned char temp_y=y_scr;
+					temp_y|=0b10000000;
+					ST7920_makeDMA_buf_command(Buf_poz,temp_y);
+					Buf_poz++;
+					ST7920_makeDMA_buf_command(Buf_poz,0b10000000);
+					Buf_poz++;
+					for (x_scr=0;x_scr<16;x_scr++)
+					{
+						unsigned char data=img_scr[y_scr][x_scr];
+						ST7920_makeDMA_buf_data(Buf_poz,data);
+						Buf_poz++;
+					}
+				}
+// вывод второй половины экрана
+			for (y_scr=0;y_scr<32;y_scr++)
+				{
+					unsigned char temp_y=y_scr;
+					temp_y|=0b10000000;
+					ST7920_makeDMA_buf_command(Buf_poz,temp_y);
+					Buf_poz++;
+					ST7920_makeDMA_buf_command(Buf_poz,0b10001000);
+					Buf_poz++;
+					for (x_scr=0;x_scr<16;x_scr++)
+					{
+						unsigned char data=img_scr[y_scr+32][x_scr];
+						ST7920_makeDMA_buf_data(Buf_poz,data);
+						Buf_poz++;
+					}
+				}
+			Buf_poz=0;
+	//		ptr8=ST7920_SPI_Send_buf;
+			
+//очистка кадрового буфера
+		for (uint8_t i=0; i<(size-1);i++)
+		{
+				*(arr+i)=0;
+		}
+			
+	}		
+if(!SPI1_DMA_buzy)
+	{
+		SPI1_F4_send_8bit(3,*(ST7920_SPI_Send_buf+Send_poz));
+		if(Send_poz<(3456-1)) Send_poz++; else Send_poz=0;
+	}
+	
+}
+//===========================================================
+void ST7920_makeDMA_buf_command(uint32_t poz, uint8_t data)
+{
+unsigned char temp;
+ST7920_SPI_Send_buf[poz][0]=0b11111000;
+temp=data;
+temp&=0b11110000;	
+ST7920_SPI_Send_buf[poz][1]=temp;
+temp=(unsigned char)(data<<4);	
+ST7920_SPI_Send_buf[poz][2]=temp;
+//SPI1_F4_send_8bit(3,SPI_send_buf);	
+}
+//===========================================================
+void ST7920_makeDMA_buf_data(uint32_t poz, uint8_t data)
+{
+unsigned char temp;
+ST7920_SPI_Send_buf[poz][0]=0b11111010;
+temp=data;
+temp&=0b11110000;	
+ST7920_SPI_Send_buf[poz][1]=temp;
+temp=(unsigned char)(data<<4);	
+ST7920_SPI_Send_buf[poz][2]=temp;
+//SPI1_F4_send_8bit(3,SPI_send_buf);
+}
