@@ -109,12 +109,24 @@ for (y_scr=0;y_scr<32;y_scr++)
 	{
 	unsigned char temp_y=y_scr;
 	temp_y|=0b10000000;
-	LCD_comand(temp_y);
+//	ST7920_makeDMA_buf_command(1,temp_y);
+//	SPI1_F4_send_8bit(3,*(ST7920_SPI_Send_buf+1));
+//	while (SPI1_DMA_buzy) {__NOP();}
+		LCD_comand(temp_y);
+//	temp_y=0b10000000;
+//	ST7920_makeDMA_buf_command(0,temp_y);
+//	SPI1_F4_send_8bit(3,*ST7920_SPI_Send_buf);
+//	while (SPI1_DMA_buzy) {__NOP();}
+	
 	LCD_comand(0b10000000);
 		for (x_scr=0;x_scr<16;x_scr++)
 		{
 			unsigned char data=img_scr[y_scr][x_scr];
-			LCD_data(data);
+			ST7920_makeDMA_buf_data(1,data);
+	SPI1_F4_send_8bit(3,*(ST7920_SPI_Send_buf+1));
+//	while (SPI1_DMA_buzy) {__NOP();}
+			delay_us(50);
+			//LCD_data(data);
 		}
 	}
 // вывод второй половины экрана

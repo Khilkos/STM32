@@ -57,6 +57,7 @@ while ((SPI1->SR&SPI_SR_BSY)) {__NOP();}
 SPI1->CR2 &= ~SPI_CR2_TXDMAEN;
 SPI1_CS_OFF;
 SPI1_DMA_buzy=0;
+
   }
  //============================================
 	
