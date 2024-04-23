@@ -27,6 +27,7 @@ SPI1->CR1 |= SPI_CR1_SPE;
  {
  SPI1_CS_ON;
 SPI1->CR2 |= SPI_CR2_TXDMAEN;
+//SPI1->CR1 |= SPI_CR1_SPE;//////	 
 //-------------------------------------------------
 //
 DMA_STM_F4.DMA_Number = DMA2;//выбор ДМА, напр. - DMA2
@@ -51,13 +52,15 @@ SPI1_DMA_buzy=1;
  
  void DMA2_Stream2_IRQHandler_User(void)
  {
-// DMA2_Stream2->CR &= ~(DMA_SxCR_EN);
+
 while (!(SPI1->SR&SPI_SR_TXE)) {__NOP();}
 while ((SPI1->SR&SPI_SR_BSY)) {__NOP();}
 SPI1->CR2 &= ~SPI_CR2_TXDMAEN;
+//SPI1->CR1 &= ~SPI_CR1_SPE;////////
+//DMA2_Stream2->CR &= ~(DMA_SxCR_EN);//
 SPI1_CS_OFF;
 SPI1_DMA_buzy=0;
-
+GPIOB->BSRR=1<<13;
   }
  //============================================
 	

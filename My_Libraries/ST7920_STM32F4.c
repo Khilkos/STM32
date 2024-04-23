@@ -134,6 +134,7 @@ for (y_scr=0;y_scr<32;y_scr++)
 {
 	unsigned char temp_y=y_scr;
 	temp_y|=0b10000000;
+//	SPI1->CR1 |= SPI_CR1_SPE;//////
 	LCD_comand(temp_y);
 	LCD_comand(0b10001000);
 	for (x_scr=0;x_scr<16;x_scr++)

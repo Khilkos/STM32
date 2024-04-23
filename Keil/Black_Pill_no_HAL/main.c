@@ -9,6 +9,8 @@ uint32_t i=12;
 
 int main(void)
 {
+
+	
 Core_F4_init_HSE(25,192,2,4);
 SysTick_Init();	
 Timer1_F4_init(96000000,1000);
