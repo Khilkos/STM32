@@ -1,6 +1,7 @@
 #include "Nokia_5110_LCD.h"
 
 uint8_t Nokia_5110_screen_buf[6][84];
+uint8_t temp_send_buf[6]={1,2,3,4,5,6};
 
 #define Nokia_5110_Reset_1 GPIOB->BSRR |= 1<<(8)
 #define Nokia_5110_Reset_0 GPIOB->BSRR |= 1<<(8+16)
@@ -123,5 +124,20 @@ for (uint8_t i=0; i<Lenght; i++)
 	{	if ((X_poz+i)<84)	Nokia_5110_dot (X_poz+i, Y_poz); }
 }
 //==========================================
+void Nokia_test(void)
+{
+if (!SPI1_DMA_buzy)
+{
+SPI1_F4_send_8bit(6,temp_send_buf);
+}	
+	
+//Nokia_5110_CE_1;
+//SPI1->DR=temp_send_buf[5];
+//while (!(SPI1->SR&SPI_SR_TXE)) {__NOP();}
+//while ((SPI1->SR&SPI_SR_BSY)) {__NOP();}
+//Nokia_5110_CE_0;
 
+
+
+}
 

@@ -9,6 +9,7 @@
 
 #define res 16
 extern _Bool SPI1_DMA_buzy;
+extern uint32_t SPI1_send_num;
 
 void SPI_F411_init(void);
 void SPI_F4_init(uint8_t SPI_speed);

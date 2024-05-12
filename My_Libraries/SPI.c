@@ -2,6 +2,7 @@
 #define SPI1_CS_ON GPIOA->BSRR = 1<<6
 #define SPI1_CS_OFF GPIOA->BSRR = 1<<(6+16)
 _Bool SPI1_DMA_buzy=0;
+uint32_t SPI1_send_num=0;
 
  void SPI_F411_init(void)
  {
@@ -27,6 +28,9 @@ SPI1->CR1 |= SPI_CR1_SPE;
  {
  SPI1_CS_ON;
 SPI1->CR2 |= SPI_CR2_TXDMAEN;
+	 
+//SPI1->DR;
+	// SPI1->DR;
 //SPI1->CR1 |= SPI_CR1_SPE;//////	 
 //-------------------------------------------------
 //
@@ -36,7 +40,7 @@ DMA_STM_F4.DMA_Peripheral_address = &(SPI1->DR);//адрес перефирии, например (vol
 DMA_STM_F4.DMA_Memory_address = (void*) buf ;//адрес памяти, например (void*)temp_send_buf ;
 DMA_STM_F4.DMA_Quantity =  size ;//количество данный передаваемых в ДМА
 DMA_STM_F4.DMA_Chanel = 2 ;//выбор канала ДМА
-DMA_STM_F4.DMA_Prioroty = DMA_Priority_high ;//приоритет потока - DMA_Priority_low, DMA_Priority_medium, DMA_Priority_high, DMA_Priority_very_high
+DMA_STM_F4.DMA_Prioroty = DMA_Priority_medium ;//приоритет потока - DMA_Priority_low, DMA_Priority_medium, DMA_Priority_high, DMA_Priority_very_high
 DMA_STM_F4.DMA_Data_transfer_direction = DMA_Memory_to_Peripheral ;//направление потока данных перефирия <-> память: DMA_Peripheral_to_memory, DMA_Memory_to_Peripheral, DMA_Memory_to_memory
 DMA_STM_F4.DMA_Memory_inc =  DMA_Inc_ON ;//инкремент памяти DMA_Inc_ON-включить, DMA_Inc_OFF-выключить
 DMA_STM_F4.DMA_Peripheral_inc = DMA_Inc_OFF ;//инкремент перефирии DMA_Inc_ON-включить, DMA_Inc_OFF-выключить
@@ -60,7 +64,25 @@ SPI1->CR2 &= ~SPI_CR2_TXDMAEN;
 //DMA2_Stream2->CR &= ~(DMA_SxCR_EN);//
 SPI1_CS_OFF;
 SPI1_DMA_buzy=0;
-GPIOB->BSRR=1<<13;
-  }
+if (GPIOB->IDR&1<<15) GPIOB->BSRR=1UL<<(15+res); else GPIOB->BSRR=1<<15;
+/*if (SPI1_send_num<5)
+	{	SPI1_send_num++;
+		SPI1->CR2 |= SPI_CR2_TXDMAEN; 
+		DMA2_Stream2->M0AR=(uint32_t)(temp_send_buf+SPI1_send_num); 
+		DMA2_Stream2->CR |= (DMA_SxCR_EN); } 
+	else {SPI1_send_num=0;SPI1_DMA_buzy=0;}
+*/
+__NOP();
+__NOP();
+
+
+
+
+
+
+
+
+
+ }
  //============================================
 	
