@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\Objects\Black_Pill_no_HAL.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\Objects\Black_Pill_no_HAL.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 6190004: Last Updated: Tue Apr 23 13:10:20 2024
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 6190004: Last Updated: Mon May 13 15:27:28 2024
 <BR><P>
 <H3>Maximum Stack Usage =        324 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -759,7 +759,7 @@ Global Symbols
 <P><STRONG><a name="[36]"></a>DMA2_Stream2_IRQHandler</STRONG> (Thumb, 36 bytes, Stack size 0 bytes, dma.o(.text.DMA2_Stream2_IRQHandler))
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f411xe.o(RESET)
 </UL>
-<P><STRONG><a name="[114]"></a>DMA2_Stream2_IRQHandler_User</STRONG> (Thumb, 52 bytes, Stack size 0 bytes, spi.o(.text.DMA2_Stream2_IRQHandler_User), UNUSED)
+<P><STRONG><a name="[114]"></a>DMA2_Stream2_IRQHandler_User</STRONG> (Thumb, 68 bytes, Stack size 0 bytes, spi.o(.text.DMA2_Stream2_IRQHandler_User), UNUSED)
 
 <P><STRONG><a name="[8b]"></a>DMA_F411_One_Wire_Recive</STRONG> (Thumb, 140 bytes, Stack size 40 bytes, one_wire_f411.o(.text.DMA_F411_One_Wire_Recive))
 <BR><BR>[Stack]<UL><LI>Max Depth = 56<LI>Call Chain = DMA_F411_One_Wire_Recive &rArr; DMA_F4_param_init
@@ -1132,13 +1132,13 @@ Global Symbols
 <P><STRONG><a name="[be]"></a>line</STRONG> (Thumb, 360 bytes, Stack size 80 bytes, st7920_stm32f4.o(.text.line))
 <BR><BR>[Stack]<UL><LI>Max Depth = 176<LI>Call Chain = line &rArr; __hardfp_round &rArr; __aeabi_dsub
 </UL>
-<BR>[Calls]<UL><LI><a href="#[bf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_i2d
-<LI><a href="#[99]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_d2iz
+<BR>[Calls]<UL><LI><a href="#[99]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_d2iz
 <LI><a href="#[c0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_ddiv
 <LI><a href="#[c1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dadd
 <LI><a href="#[c3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OUTLINED_FUNCTION_0
 <LI><a href="#[c2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__hardfp_round
 <LI><a href="#[b3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dmul
+<LI><a href="#[bf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_i2d
 </UL>
 <BR>[Called By]<UL><LI><a href="#[64]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>

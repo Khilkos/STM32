@@ -1,6 +1,7 @@
 #include "Delay.h"
 
-
+// __disable_irq (); // запретить прерывания
+//__enable_irq ();  // разрешить прерывания
 
 
 void SysTick_Handler(void)
