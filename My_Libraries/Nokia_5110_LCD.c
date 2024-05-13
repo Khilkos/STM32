@@ -128,7 +128,7 @@ void Nokia_test(void)
 {
 if (!SPI1_DMA_buzy)
 {
-SPI1_F4_send_8bit(6,temp_send_buf);
+SPI1_F4_send_8bit(1,temp_send_buf);
 }	
 	
 //Nokia_5110_CE_1;

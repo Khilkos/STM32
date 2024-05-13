@@ -28,10 +28,7 @@ SPI1->CR1 |= SPI_CR1_SPE;
  {
  SPI1_CS_ON;
 SPI1->CR2 |= SPI_CR2_TXDMAEN;
-	 
-//SPI1->DR;
-	// SPI1->DR;
-//SPI1->CR1 |= SPI_CR1_SPE;//////	 
+SPI1_DMA_buzy=1;	 
 //-------------------------------------------------
 //
 DMA_STM_F4.DMA_Number = DMA2;//выбор ДМА, напр. - DMA2
@@ -49,7 +46,7 @@ DMA_STM_F4.DMA_Peripheral_data_size =  DMA_8_bit;//размер потока перифирии: DMA_
 DMA_STM_F4.DMA_Circular_mode =  Circular_mode_disabled;//кольцевой режим:  Circular_mode_disabled, Circular_mode_enabled
 DMA_STM_F4.DMA_Interrupt = DMA2_Stream2_IRQn ;// прерывание из stm32f411xe.h, например - DMA2_Stream0_IRQn
 DMA_F4_param_init ();//Запуск ДМА с заданными параметрами
-SPI1_DMA_buzy=1;
+//SPI1_DMA_buzy=1;
 //
 //---------------------------------------------------
 }
@@ -60,25 +57,15 @@ SPI1_DMA_buzy=1;
 while (!(SPI1->SR&SPI_SR_TXE)) {__NOP();}
 while ((SPI1->SR&SPI_SR_BSY)) {__NOP();}
 SPI1->CR2 &= ~SPI_CR2_TXDMAEN;
-//SPI1->CR1 &= ~SPI_CR1_SPE;////////
-//DMA2_Stream2->CR &= ~(DMA_SxCR_EN);//
 SPI1_CS_OFF;
-SPI1_DMA_buzy=0;
+//SPI1_DMA_buzy=0;
 if (GPIOB->IDR&1<<15) GPIOB->BSRR=1UL<<(15+res); else GPIOB->BSRR=1<<15;
-/*if (SPI1_send_num<5)
+if (SPI1_send_num<5)
 	{	SPI1_send_num++;
 		SPI1->CR2 |= SPI_CR2_TXDMAEN; 
 		DMA2_Stream2->M0AR=(uint32_t)(temp_send_buf+SPI1_send_num); 
 		DMA2_Stream2->CR |= (DMA_SxCR_EN); } 
 	else {SPI1_send_num=0;SPI1_DMA_buzy=0;}
-*/
-__NOP();
-__NOP();
-
-
-
-
-
 
 
 

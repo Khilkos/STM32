@@ -29,7 +29,7 @@ I2C_F411_data_write(data_Lo|0x08|0x01);
 
 void LCD1602_init_via_I2C(void)
 {
-//delay_ms(800);
+delay_ms(100);
 	
 I2C_F411_Start();
 I2C_F411_address_write(LCD_1602_adress);
@@ -38,21 +38,21 @@ I2C_F411_address_write(LCD_1602_adress);
 	LCD1602_send_command_via_I2C(0x2C);
 	//включаем дисплей, в режиме 2-х линий
 	
-	delay_ms(1);
+	delay_ms(10);
 	
 	LCD1602_send_command_via_I2C(0x0C);//0x0F включение мерцающего курсора
 	//включаем отображение мерцающего курсора
 	
-	delay_ms(1);
+	delay_ms(10);
 
 	LCD1602_send_command_via_I2C(0x01);
 	//очищаем дисплей
 	
-	delay_ms(50);
+	delay_ms(100);
 	
 	LCD1602_send_command_via_I2C(0x06);
 	//значение DDRAM увеличивается, без сдвига экрана
-		delay_ms(50);
+		delay_ms(100);
 
 I2C_F411_Stop();
 

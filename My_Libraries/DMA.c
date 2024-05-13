@@ -120,10 +120,12 @@ void DMA2_Stream2_IRQHandler(void)
 {
 	if (DMA2->LISR & DMA_LISR_TCIF2)
 		{
+		//	__disable_irq (); // запретить прерывания
 			DMA2->LIFCR |= DMA_LIFCR_CTCIF2;
 			if (!(DMA2_Stream2->CR & DMA_SxCR_CIRC)) 
 			DMA2_Stream2->CR &= ~(DMA_SxCR_EN);
 			DMA2_Stream2_IRQHandler_User();
+			//__enable_irq ();  // разрешить прерывания
 		}
 }	
 #endif
