@@ -13,6 +13,8 @@
   ..\..\My_Libraries\One_Wire_F411.h ..\Black_Pill_no_HAL\Config.h \
   ..\..\My_Libraries\GPIO_setup.h ..\..\My_Libraries\Core_init.h \
   ..\..\My_Libraries\EXTI_F411_init.h ..\..\My_Libraries\SPI.h \
+  ..\Black_Pill_no_HAL\main.h \
+  C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\stdio.h \
   ..\..\My_Libraries\ST7920_STM32F4.h \
   C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\math.h \
   ..\..\My_Libraries\Font_table.h ..\..\My_Libraries\I2C_F411.h \

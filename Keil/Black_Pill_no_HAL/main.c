@@ -5,7 +5,7 @@
 #define X_time_poz 0
 uint8_t day_of_week[7][3]={"Ïí","Âò","Ñð","×ò","Ïò","Ñá","Âñ"};
 char String[100];
-uint32_t i=12;	
+
 
 int main(void)
 {
@@ -19,7 +19,7 @@ DMA_F4_init();
 RCC->AHB1ENR |= ( RCC_AHB1ENR_GPIOAEN | RCC_AHB1ENR_GPIOBEN  ); // enable portA and portB clock
 	
 I2C_F411_init();
-SPI_F4_init(5);
+SPI_F4_init(7);
 RTC_F411_Init();
 USART_F411_init();
 
@@ -105,9 +105,9 @@ DS18B20_read_temperatur_of_2_sensor(ROM_work, ROM_work_1,DS18B20_temperature_of_
 	if (clock_poz_1 && clock_poz_1>3 && clock_poz_1<7 ) 	line(Y_time_poz+18,X_time_poz+12+18*(clock_poz_1-3),Y_time_poz+18,X_time_poz+22+18*(clock_poz_1-3));	
 	if (clock_poz_1 && clock_poz_1==7) line(Y_time_poz+18,X_time_poz +12+18*(clock_poz_1-3),Y_time_poz+18,X_time_poz+34+18*(clock_poz_1-3));
 
-LCD_out();
-//LCD_DMA_out();
-//	delay_ms(100);
+//LCD_out();
+LCD_DMA_out();
+	delay_ms(100);
 	
 if (GPIOB->IDR&1<<12) GPIOB->BSRR=1<<(12+res); else GPIOB->BSRR=1<<12;
 	//GPIOB->BSRR=1<<14;	

@@ -124,8 +124,8 @@ for (y_scr=0;y_scr<32;y_scr++)
 			unsigned char data=img_scr[y_scr][x_scr];
 			ST7920_makeDMA_buf_data(1,data);
 	SPI1_F4_send_8bit(3,*(ST7920_SPI_Send_buf+1));
-//	while (SPI1_DMA_buzy) {__NOP();}
-			delay_us(50);
+	while (SPI1_DMA_buzy) {__NOP();}
+			//delay_us(20);
 			//LCD_data(data);
 		}
 	}
@@ -410,14 +410,14 @@ void LCD_DMA_out (void)
 		{
 				*(arr+i)=0;
 		}
-			
+			SPI1_F4_send_8bit(3,*(ST7920_SPI_Send_buf));
 	}		
-if(!SPI1_DMA_buzy)
+/*if(!SPI1_DMA_buzy)
 	{
 		SPI1_F4_send_8bit(3,*(ST7920_SPI_Send_buf+Send_poz));
 		if(Send_poz<(3456-1)) Send_poz++; else Send_poz=0;
 	}
-	
+	*/
 }
 //===========================================================
 void ST7920_makeDMA_buf_command(uint32_t poz, uint8_t data)
@@ -443,3 +443,33 @@ temp=(unsigned char)(data<<4);
 ST7920_SPI_Send_buf[poz][2]=temp;
 //SPI1_F4_send_8bit(3,SPI_send_buf);
 }
+//===========================================================
+ void DMA2_Stream2_IRQHandler_User(void)
+ {
+
+while (!(SPI1->SR&SPI_SR_TXE)) {__NOP();}
+while ((SPI1->SR&SPI_SR_BSY)) {__NOP();}
+SPI1->CR2 &= ~SPI_CR2_TXDMAEN;
+SPI1_CS_OFF;
+SPI1_DMA_buzy=0;
+
+//if (SPI1_send_num<5)
+//	{	SPI1_send_num++;
+//		SPI1->CR2 |= SPI_CR2_TXDMAEN; 
+//		DMA2_Stream2->M0AR=(uint32_t)(temp_send_buf+SPI1_send_num); 
+//		DMA2_Stream2->CR |= (DMA_SxCR_EN); } 
+//	else {SPI1_send_num=0;SPI1_DMA_buzy=0;}
+
+		if(Send_poz<(3456-1)) 
+		{Send_poz++;
+		SPI1_F4_send_8bit(3,*(ST7920_SPI_Send_buf+Send_poz));
+		}
+
+		else 
+		{	if (GPIOB->IDR&1<<15) GPIOB->BSRR=1UL<<(15+res); else GPIOB->BSRR=1<<15;
+			Send_poz=0;
+		}
+
+
+ }
+ //============================================

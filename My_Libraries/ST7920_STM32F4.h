@@ -3,8 +3,9 @@
 
 #include "stm32f411xe.h"
 #include <math.h>
+#include "main.h"
 #include "Font_table.h"
-#include "Config.h"
+//#include "Config.h"
 //#include "stdint.h"
 //#include "cmsis_armclang.h" 
 //#include "core_cm4.h"
@@ -47,6 +48,7 @@ void digit (uint8_t y_pos, uint8_t x_pos,uint16_t data, uint8_t size, uint8_t do
 void ST7920_makeDMA_buf_command(uint32_t poz, uint8_t data);
 void ST7920_makeDMA_buf_data(uint32_t poz, uint8_t data);
 void LCD_DMA_out (void);
-
+#define DMA2_Stream2_IRQHandler_define
+void DMA2_Stream2_IRQHandler_User(void);
 
 #endif

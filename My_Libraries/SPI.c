@@ -1,6 +1,5 @@
 #include "SPI.h"
-#define SPI1_CS_ON GPIOA->BSRR = 1<<6
-#define SPI1_CS_OFF GPIOA->BSRR = 1<<(6+16)
+
 _Bool SPI1_DMA_buzy=0;
 uint32_t SPI1_send_num=0;
 
@@ -17,7 +16,8 @@ SPI1->CR1 |= SPI_CR1_SPE;
  void SPI_F4_init(uint8_t SPI_speed)
  {
 RCC->APB2ENR |= RCC_APB2ENR_SPI1EN ;
-	 
+
+if (SPI_speed>7) SPI_speed=7;	 
 SPI1->CR1 |=( SPI_CR1_BIDIMODE | SPI_CR1_BIDIOE | SPI_CR1_SSM | SPI_CR1_SSI | (uint32_t)SPI_speed<<3 | SPI_CR1_MSTR | SPI_CR1_CPOL | SPI_CR1_CPHA );
 __NOP();
 SPI1->CR1 |= SPI_CR1_SPE;
@@ -37,7 +37,7 @@ DMA_STM_F4.DMA_Peripheral_address = &(SPI1->DR);//адрес перефирии, например (vol
 DMA_STM_F4.DMA_Memory_address = (void*) buf ;//адрес памяти, например (void*)temp_send_buf ;
 DMA_STM_F4.DMA_Quantity =  size ;//количество данный передаваемых в ДМА
 DMA_STM_F4.DMA_Chanel = 2 ;//выбор канала ДМА
-DMA_STM_F4.DMA_Prioroty = DMA_Priority_medium ;//приоритет потока - DMA_Priority_low, DMA_Priority_medium, DMA_Priority_high, DMA_Priority_very_high
+DMA_STM_F4.DMA_Prioroty = DMA_Priority_low ;//приоритет потока - DMA_Priority_low, DMA_Priority_medium, DMA_Priority_high, DMA_Priority_very_high
 DMA_STM_F4.DMA_Data_transfer_direction = DMA_Memory_to_Peripheral ;//направление потока данных перефирия <-> память: DMA_Peripheral_to_memory, DMA_Memory_to_Peripheral, DMA_Memory_to_memory
 DMA_STM_F4.DMA_Memory_inc =  DMA_Inc_ON ;//инкремент памяти DMA_Inc_ON-включить, DMA_Inc_OFF-выключить
 DMA_STM_F4.DMA_Peripheral_inc = DMA_Inc_OFF ;//инкремент перефирии DMA_Inc_ON-включить, DMA_Inc_OFF-выключить
@@ -50,7 +50,7 @@ DMA_F4_param_init ();//Запуск ДМА с заданными параметрами
 //
 //---------------------------------------------------
 }
- 
+ /*
  void DMA2_Stream2_IRQHandler_User(void)
  {
 
@@ -72,4 +72,5 @@ if (SPI1_send_num<5)
 
  }
  //============================================
+	*/
 	
