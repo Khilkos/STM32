@@ -5,7 +5,7 @@
 #define X_time_poz 0
 uint8_t day_of_week[7][3]={"Ïí","Âò","Ñð","×ò","Ïò","Ñá","Âñ"};
 char String[100];
-
+uint16_t fault=0;
 
 int main(void)
 {
@@ -70,18 +70,25 @@ LCD_init();
 	
 while(1)
 {
-
+//fault=0;
+GPIOB->BSRR=1<<13;
 key_scan();
+//fault=1;	
 RTC_F411_read_time_date();
+//fault=2;	
 DS3231_F411_get_time();
+//fault=3;	
 DS18B20_read_temperatur_of_2_sensor(ROM_work, ROM_work_1,DS18B20_temperature_of_2_sensor);	
-	
+//fault=4;	
 	sprintf(String,"%02x%02x%02x%02x%02x%02x%02x%02x",ROM[7],ROM[6],ROM[5],ROM[4],ROM[3],ROM[2],ROM[1],ROM[0] );	
 //	sprintf(String,"Âðåìÿ %02d:%02d:%02d DS3231",hour, minutes,seconds );
+//fault=5;	
 	LCD_string(0,0,(uint8_t*)String);	
+//fault=6;	
 	if (clock_poz) 	line(8,17+18*clock_poz,8,28+18*clock_poz);	
-		
+//fault=7;		
 	sprintf(String,"%02d:%02d:%02d",hour, minutes,seconds );
+//fault=8;
 	LCD_string_font_10x16(32,0,(uint8_t*)String);
 //	sprintf(String,"Prediv_A/S %d/%d",(RTC->PRER & 0x7f0000)>>16, RTC->PRER & 0x7fff);
 //	LCD_string(32,0,(uint8_t*)String);
@@ -90,27 +97,32 @@ DS18B20_read_temperatur_of_2_sensor(ROM_work, ROM_work_1,DS18B20_temperature_of_
 //	LCD_string(40,0,(uint8_t*)String);
 	
 	sprintf(String,"ADC_ch0/1= %.2f/%.2fB", (double)ADC_ch[1]/1262, (double)ADC_ch[2]/1262 );
+//fault=9;	
 	LCD_string (48,0, (uint8_t*)String);
-  
+//fault=10;  
 	sprintf(String,"Òåìïåð. %.1f / %.1f",DS18B20_temperature_of_2_sensor[0]*0.1, DS18B20_temperature_of_2_sensor[1]*0.1 );
-	LCD_string (56,0, (uint8_t*)String);
-	
+GPIOB->BSRR=1<<(13+16);
+//fault=11;
+LCD_string (56,0, (uint8_t*)String);
+//fault=12;	
 	sprintf(String,"Âðåìÿ %02d:%02d:%02d RTC", RTC_hours, RTC_minutes, RTC_seconds);
-	LCD_string (Y_time_poz,X_time_poz, (uint8_t*)String);	
-
+//fault=13;
+LCD_string (Y_time_poz,X_time_poz, (uint8_t*)String);	
+//fault=14;
 	sprintf(String,"Äàòà %s/%02d/%02d/%02d", day_of_week[RTC_day_of_week-1], RTC_day, RTC_month,  RTC_year+2000 );
-	LCD_string (Y_time_poz+10,X_time_poz, (uint8_t*)String);	
+//fault=15;
+LCD_string (Y_time_poz+10,X_time_poz, (uint8_t*)String);	
 
 	if (clock_poz_1 && clock_poz_1<4 ) 	line(Y_time_poz+8,X_time_poz+18+18*clock_poz_1,Y_time_poz+8,X_time_poz+28+18*clock_poz_1);	
 	if (clock_poz_1 && clock_poz_1>3 && clock_poz_1<7 ) 	line(Y_time_poz+18,X_time_poz+12+18*(clock_poz_1-3),Y_time_poz+18,X_time_poz+22+18*(clock_poz_1-3));	
 	if (clock_poz_1 && clock_poz_1==7) line(Y_time_poz+18,X_time_poz +12+18*(clock_poz_1-3),Y_time_poz+18,X_time_poz+34+18*(clock_poz_1-3));
-
+//fault=16;
 //LCD_out();
 LCD_DMA_out();
-	delay_ms(100);
-	
+//	delay_ms(500);
+//fault=17;	
 if (GPIOB->IDR&1<<12) GPIOB->BSRR=1<<(12+res); else GPIOB->BSRR=1<<12;
-	//GPIOB->BSRR=1<<14;	
+	
 }	
 }
 

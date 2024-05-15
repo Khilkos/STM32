@@ -33,5 +33,6 @@
 
 extern uint8_t day_of_week[7][3];
 extern char String[100];
+extern uint16_t fault;
 
 
