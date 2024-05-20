@@ -78,7 +78,10 @@ RTC_F411_read_time_date();
 //fault=2;	
 DS3231_F411_get_time();
 //fault=3;	
-DS18B20_read_temperatur_of_2_sensor(ROM_work, ROM_work_1,DS18B20_temperature_of_2_sensor);	
+
+	GPIOB->BSRR=1<<(13+16);
+	
+	DS18B20_read_temperatur_of_2_sensor(ROM_work, ROM_work_1,DS18B20_temperature_of_2_sensor);	
 //fault=4;	
 	sprintf(String,"%02x%02x%02x%02x%02x%02x%02x%02x",ROM[7],ROM[6],ROM[5],ROM[4],ROM[3],ROM[2],ROM[1],ROM[0] );	
 //	sprintf(String,"Время %02d:%02d:%02d DS3231",hour, minutes,seconds );
@@ -101,7 +104,7 @@ DS18B20_read_temperatur_of_2_sensor(ROM_work, ROM_work_1,DS18B20_temperature_of_
 	LCD_string (48,0, (uint8_t*)String);
 //fault=10;  
 	sprintf(String,"Темпер. %.1f / %.1f",DS18B20_temperature_of_2_sensor[0]*0.1, DS18B20_temperature_of_2_sensor[1]*0.1 );
-GPIOB->BSRR=1<<(13+16);
+//GPIOB->BSRR=1<<(13+16);
 //fault=11;
 LCD_string (56,0, (uint8_t*)String);
 //fault=12;	
