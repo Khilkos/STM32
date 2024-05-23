@@ -76,10 +76,11 @@ key_scan();
 //fault=1;	
 RTC_F411_read_time_date();
 //fault=2;	
+	GPIOB->BSRR=1<<(13+16);
 DS3231_F411_get_time();
 //fault=3;	
 
-	GPIOB->BSRR=1<<(13+16);
+	//GPIOB->BSRR=1<<(13+16);
 	
 	DS18B20_read_temperatur_of_2_sensor(ROM_work, ROM_work_1,DS18B20_temperature_of_2_sensor);	
 //fault=4;	
