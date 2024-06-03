@@ -77,7 +77,7 @@ key_scan();
 RTC_F411_read_time_date();
 //fault=2;	
 	GPIOB->BSRR=1<<(13+16);
-DS3231_F411_get_time();
+//DS3231_F411_get_time();
 //fault=3;	
 
 	//GPIOB->BSRR=1<<(13+16);
