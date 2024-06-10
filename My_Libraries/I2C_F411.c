@@ -89,7 +89,7 @@ uint32_t I2C_F411_data_read (void)
 	uint32_t count=0;
 while (!(I2C1->SR1 & I2C_SR1_RXNE)) 
 { 	count++;
-			if (count>delay_answer) return 0;
+			if (count>delay_answer) {return 0;}
 	}	
 	return I2C1->DR;
 }

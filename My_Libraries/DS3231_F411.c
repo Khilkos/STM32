@@ -14,9 +14,11 @@ void DS3231_F411_get_time(void)
 I2C_F411_Start();	
 I2C_F411_address_write(DS3231_address);
 I2C_F411_data_write(0);
+	GPIOB->BSRR=1<<(13+16);
 I2C_F411_Start();
 I2C_F411_address_read(DS3231_address);
 I2C_F411_ACK_enable();	
+//	GPIOB->BSRR=1<<(13+16);
 seconds=(uint16_t)I2C_F411_data_read();
 minutes=(uint16_t)I2C_F411_data_read();
 hour=(uint16_t)I2C_F411_data_read();

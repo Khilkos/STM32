@@ -72,12 +72,12 @@ while(1)
 {
 //fault=0;
 GPIOB->BSRR=1<<13;
-key_scan();
+//key_scan();
 //fault=1;	
 RTC_F411_read_time_date();
 //fault=2;	
-	GPIOB->BSRR=1<<(13+16);
-//DS3231_F411_get_time();
+//	GPIOB->BSRR=1<<(13+16);
+DS3231_F411_get_time();
 //fault=3;	
 
 	//GPIOB->BSRR=1<<(13+16);
