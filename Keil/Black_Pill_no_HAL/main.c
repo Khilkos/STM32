@@ -71,7 +71,7 @@ LCD_init();
 while(1)
 {
 //fault=0;
-GPIOB->BSRR=1<<13;
+//GPIOB->BSRR=1<<13;
 //key_scan();
 //fault=1;	
 RTC_F411_read_time_date();
