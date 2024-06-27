@@ -74,9 +74,13 @@ while (!(I2C1->SR1 & I2C_SR1_ADDR))
 
 _Bool I2C_F411_data_write (uint8_t data)
 {
+	uint32_t count=0;
 _Bool ACK_error=0;
 I2C1->DR = data;
-while (!(I2C1->SR1 & I2C_SR1_BTF)) __NOP();
+while (!(I2C1->SR1 & I2C_SR1_BTF)) 
+	{ 	count++;
+			if (count>delay_answer) {ACK_error=1; break;}
+	}	
 if (I2C1->SR1 & I2C_SR1_AF) ACK_error=1;	
 	
 return ACK_error;
