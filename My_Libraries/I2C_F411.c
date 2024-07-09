@@ -25,8 +25,13 @@ I2C1->CR1 |=I2C_CR1_PE; //enable I2C
 //---------------------------------------
 void I2C_F411_Start (void)
 {
+	uint32_t count=0;
 I2C1->CR1 |= I2C_CR1_START;
-while (!(I2C1->SR1&I2C_SR1_SB)) __NOP();
+while (!(I2C1->SR1&I2C_SR1_SB)) 
+{ 	count++;
+			if (count>delay_answer)  break;
+	}	
+__NOP();
 }
 //---------------------------------------
 void I2C_F411_Stop (void)
