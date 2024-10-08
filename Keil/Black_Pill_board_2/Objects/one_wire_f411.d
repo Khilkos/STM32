@@ -13,5 +13,7 @@
   ..\..\My_Libraries\GPIO_setup.h ..\..\My_Libraries\I2C_F411.h \
   ..\..\My_Libraries\1602_I2C.h ..\..\My_Libraries\Font_table.h \
   ..\Black_Pill_board_2\Board.h ..\..\My_Libraries\DMA.h \
+  ..\Black_Pill_board_2\main.h \
+  C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\stdio.h \
   ..\..\My_Libraries\USART_F411.h ..\..\My_Libraries\DS18B20_F411.h \
   ..\..\My_Libraries\SPI.h ..\..\My_Libraries\Nokia_5110_LCD.h

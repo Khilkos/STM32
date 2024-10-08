@@ -4,7 +4,7 @@ int main (void)
 	
 {
  char String[300];
-
+uint16_t tmp=0;
 	
 	RCC->AHB1ENR |= ( RCC_AHB1ENR_GPIOAEN | RCC_AHB1ENR_GPIOBEN  ); // enable portA and portB clock
 
@@ -59,10 +59,19 @@ SPI_F4_init(4);
 
 while (1)
 {
-key_scan();
+//key_scan();
 
-if (GPIOB->IDR&1<<12) GPIOB->BSRR=1<<(12+res); else GPIOB->BSRR=1<<12;
-
+for (uint8_t i=0; i<64; i++)
+	{	
+			if (GPIOB->IDR&1<<12) GPIOB->BSRR=1<<(12+res); else GPIOB->BSRR=1<<12;
+			tmp=5;
+			while (tmp)
+				{	tmp--;
+					__NOP();
+				}
+	}
+delay_us(10);
+/*
 sprintf(String,"Encoder = %02d / %d",encoder_data,SPI1_send_num);
 Draw_String(0,(uint8_t*)String);	
 	
@@ -76,6 +85,7 @@ Draw_String(0x40, (uint8_t*)String);
 //	Nokia_5110_String(0,0,(uint8_t*)String);
 //	Nokia_5110_LCD_Out();
 Nokia_test();
+	*/
 }
 }
 
