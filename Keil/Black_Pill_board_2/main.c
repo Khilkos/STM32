@@ -1,10 +1,68 @@
 #include "main.h"
+#define delay1 50
+#define pre_led 255
+
+
+void Led_RGB_out (uint8_t size_led, uint8_t (*Led_RGB)[3])
+{
+uint8_t	temp=0;	
+	
+for (uint8_t i=0; i<64; i++) {if (GPIOB->IDR&1<<12) GPIOB->BSRR=1<<(12+res); else GPIOB->BSRR=1<<12;	delay_us(delay1);}
+delay_us(delay1*4);
+
+
+for (uint8_t led_num=0; led_num<size_led; led_num++)
+	{
+		temp=pre_led;
+		for (uint8_t i=0;i<8;i++)
+			{	
+				if (temp&0x80) GPIOB->BSRR=1<<13; else GPIOB->BSRR=1<<(13+res);
+				temp<<=1;
+				GPIOB->BSRR=1<<12;
+				delay_us(delay1);
+				GPIOB->BSRR=1<<(12+res);
+				if (i==0 || i==2 || i==4 || i==6)	delay_us(delay1); else delay_us(delay1*4);
+			}
+		GPIOB->BSRR=1<<(13+res);
+
+			for (uint8_t color_led=0; color_led<3;color_led++)
+				{
+					temp=*(*(Led_RGB+led_num)+color_led);
+						for (uint8_t i=0; i<8; i++)
+							{
+								if (temp&0x80) GPIOB->BSRR=1<<13; else GPIOB->BSRR=1<<(13+res);
+								GPIOB->BSRR=1<<12;
+								delay_us(delay1);
+								GPIOB->BSRR=1<<(12+res);
+								delay_us(delay1);
+								temp<<=1;
+							}
+						GPIOB->BSRR=1<<(13+res);
+				delay_us(delay1*3);
+				}
+				
+		}
+
+for (uint8_t i=0; i<64; i++) {if (GPIOB->IDR&1<<12) GPIOB->BSRR=1<<(12+res); else GPIOB->BSRR=1<<12;	delay_us(delay1);}
+delay_ms(25);	
+}	
+
+
+
 
 int main (void)
 	
 {
  char String[300];
 uint16_t tmp=0;
+
+
+ static uint8_t Led_RGB_1 [2][3]=	{	{255,255,255},{0,255,255}	};
+ static uint8_t Led_RGB10_1 [10][3]=	{	{255,0,0},{255,0,0},{255,0,0},{255,0,0},{255,0,0},{0,0,0},{0,0,0},{0,0,0},{0,0,0},{0,0,0}	};	
+ static uint8_t Led_RGB10_2 [10][3]=	{	{0,0,0},{0,0,0},{0,0,0},{0,0,0},{0,0,0},{0,0,255},{0,0,255},{0,0,255},{0,0,255},{0,0,255}	};	
+ static uint8_t Led_RGB10_3 [10][3]=	{	{0,0,0},{0,0,0},{0,0,0},{0,0,0},{0,0,0},{0,0,0},{0,0,0},{0,0,0},{0,0,0},{0,0,0}	};	
+ 
+	
 	
 	RCC->AHB1ENR |= ( RCC_AHB1ENR_GPIOAEN | RCC_AHB1ENR_GPIOBEN  ); // enable portA and portB clock
 
@@ -61,16 +119,39 @@ while (1)
 {
 //key_scan();
 
-for (uint8_t i=0; i<64; i++)
-	{	
-			if (GPIOB->IDR&1<<12) GPIOB->BSRR=1<<(12+res); else GPIOB->BSRR=1<<12;
-			tmp=5;
-			while (tmp)
-				{	tmp--;
-					__NOP();
-				}
-	}
-delay_us(10);
+#define delay3 1	
+	Led_RGB_out(10,Led_RGB10_1);	
+delay_ms(delay3);	
+Led_RGB_out(10,Led_RGB10_3);	
+delay_ms(delay3);
+Led_RGB_out(10,Led_RGB10_1);	
+delay_ms(delay3);	
+Led_RGB_out(10,Led_RGB10_3);	
+delay_ms(delay3);
+Led_RGB_out(10,Led_RGB10_1);	
+delay_ms(delay3);
+	Led_RGB_out(10,Led_RGB10_3);	
+delay_ms(delay3);
+	delay_ms(30);
+Led_RGB_out(10,Led_RGB10_2);	
+delay_ms(delay3);
+Led_RGB_out(10,Led_RGB10_3);	
+delay_ms(delay3);
+	Led_RGB_out(10,Led_RGB10_2);	
+delay_ms(delay3);
+	Led_RGB_out(10,Led_RGB10_3);	
+delay_ms(delay3);
+		Led_RGB_out(10,Led_RGB10_2);	
+delay_ms(delay3);
+	Led_RGB_out(10,Led_RGB10_3);	
+delay_ms(delay3);
+	
+
+	
+	
+	
+	
+	
 /*
 sprintf(String,"Encoder = %02d / %d",encoder_data,SPI1_send_num);
 Draw_String(0,(uint8_t*)String);	
