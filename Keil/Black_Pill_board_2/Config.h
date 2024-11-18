@@ -17,6 +17,7 @@
 #include "DS18B20_F411.h"
 #include "SPI.h"
 #include "Nokia_5110_LCD.h"
+#include "PROMLED.h"
 
 #endif
 

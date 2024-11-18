@@ -3,11 +3,11 @@
 <title>Static Call Graph - [.\Objects\Black_Pill_board_2.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\Objects\Black_Pill_board_2.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 6190004: Last Updated: Sat Nov 16 19:19:18 2024
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 6190004: Last Updated: Mon Nov 18 20:38:16 2024
 <BR><P>
 <H3>Maximum Stack Usage =         48 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
-Led_RGB_out
+Promled_kvantum_out
 <P>
 <H3>
 Functions with no stack information
@@ -72,13 +72,13 @@ Function Pointers
  <LI><a href="#[3e]">I2C3_EV_IRQHandler</a> from startup_stm32f411xe.o(.text) referenced from startup_stm32f411xe.o(RESET)
  <LI><a href="#[47]">I2C_F411_data_write</a> from i2c_f411.o(.text.I2C_F411_data_write) referenced from 1602_i2c.o(.text.LCD1602_send_command_via_I2C)
  <LI><a href="#[46]">LCD1602_send_command_via_I2C</a> from 1602_i2c.o(.text.LCD1602_send_command_via_I2C) referenced from 1602_i2c.o(.text.LCD1602_init_via_I2C)
- <LI><a href="#[4b]">Led_RGB_out</a> from main.o(.text.Led_RGB_out) referenced from main.o(.text.main)
  <LI><a href="#[3]">MemManage_Handler</a> from startup_stm32f411xe.o(.text) referenced from startup_stm32f411xe.o(RESET)
  <LI><a href="#[1]">NMI_Handler</a> from startup_stm32f411xe.o(.text) referenced from startup_stm32f411xe.o(RESET)
  <LI><a href="#[39]">OTG_FS_IRQHandler</a> from startup_stm32f411xe.o(.text) referenced from startup_stm32f411xe.o(RESET)
  <LI><a href="#[2f]">OTG_FS_WKUP_IRQHandler</a> from startup_stm32f411xe.o(.text) referenced from startup_stm32f411xe.o(RESET)
  <LI><a href="#[b]">PVD_IRQHandler</a> from startup_stm32f411xe.o(.text) referenced from startup_stm32f411xe.o(RESET)
  <LI><a href="#[8]">PendSV_Handler</a> from startup_stm32f411xe.o(.text) referenced from startup_stm32f411xe.o(RESET)
+ <LI><a href="#[4b]">Promled_kvantum_out</a> from promled.o(.text.Promled_kvantum_out) referenced from main.o(.text.main)
  <LI><a href="#[f]">RCC_IRQHandler</a> from startup_stm32f411xe.o(.text) referenced from startup_stm32f411xe.o(RESET)
  <LI><a href="#[2e]">RTC_Alarm_IRQHandler</a> from startup_stm32f411xe.o(.text) referenced from startup_stm32f411xe.o(RESET)
  <LI><a href="#[d]">RTC_WKUP_IRQHandler</a> from startup_stm32f411xe.o(.text) referenced from startup_stm32f411xe.o(RESET)
@@ -607,12 +607,12 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> 1602_i2c.o(.text.LCD1602_init_via_I2C)
 </UL>
-<P><STRONG><a name="[4b]"></a>Led_RGB_out</STRONG> (Thumb, 276 bytes, Stack size 48 bytes, main.o(.text.Led_RGB_out))
-<BR><BR>[Stack]<UL><LI>Max Depth = 48<LI>Call Chain = Led_RGB_out
+<P><STRONG><a name="[4b]"></a>Promled_kvantum_out</STRONG> (Thumb, 276 bytes, Stack size 48 bytes, promled.o(.text.Promled_kvantum_out))
+<BR><BR>[Stack]<UL><LI>Max Depth = 48<LI>Call Chain = Promled_kvantum_out
 </UL>
-<BR>[Calls]<UL><LI><a href="#[45]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delay_ms
-<LI><a href="#[6c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delay_us
-<LI><a href="#[6d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OUTLINED_FUNCTION_2
+<BR>[Calls]<UL><LI><a href="#[6c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OUTLINED_FUNCTION_0
+<LI><a href="#[6d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delay_us
+<LI><a href="#[45]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delay_ms
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> main.o(.text.main)
 </UL>
@@ -671,16 +671,16 @@ Global Symbols
 <P><STRONG><a name="[45]"></a>delay_ms</STRONG> (Thumb, 32 bytes, Stack size 0 bytes, delay.o(.text.delay_ms))
 <BR><BR>[Calls]<UL><LI><a href="#[73]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OUTLINED_FUNCTION_0
 </UL>
-<BR>[Called By]<UL><LI><a href="#[4b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Led_RGB_out
+<BR>[Called By]<UL><LI><a href="#[4b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Promled_kvantum_out
 </UL>
 <BR>[Address Reference Count : 2]<UL><LI> main.o(.text.main)
 <LI> 1602_i2c.o(.text.LCD1602_init_via_I2C)
 </UL>
-<P><STRONG><a name="[6c]"></a>delay_us</STRONG> (Thumb, 28 bytes, Stack size 0 bytes, delay.o(.text.delay_us))
+<P><STRONG><a name="[6d]"></a>delay_us</STRONG> (Thumb, 28 bytes, Stack size 0 bytes, delay.o(.text.delay_us))
 <BR><BR>[Calls]<UL><LI><a href="#[73]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OUTLINED_FUNCTION_0
 </UL>
-<BR>[Called By]<UL><LI><a href="#[4b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Led_RGB_out
-<LI><a href="#[6d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OUTLINED_FUNCTION_2
+<BR>[Called By]<UL><LI><a href="#[6c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OUTLINED_FUNCTION_0
+<LI><a href="#[4b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Promled_kvantum_out
 </UL>
 
 <P><STRONG><a name="[58]"></a>main</STRONG> (Thumb, 372 bytes, Stack size 8 bytes, main.o(.text.main))
@@ -695,7 +695,7 @@ Global Symbols
 <LI><a href="#[76]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SysTick_Init
 <LI><a href="#[60]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Core_F4_init_HSE
 <LI><a href="#[7a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OUTLINED_FUNCTION_0
-<LI><a href="#[75]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OUTLINED_FUNCTION_3
+<LI><a href="#[75]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OUTLINED_FUNCTION_2
 <LI><a href="#[74]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OUTLINED_FUNCTION_1
 </UL>
 <BR>[Called By]<UL><LI><a href="#[57]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_entry_main
@@ -712,17 +712,11 @@ Global Symbols
 <H3>
 Local Symbols
 </H3>
-<P><STRONG><a name="[6d]"></a>OUTLINED_FUNCTION_2</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, main.o(.text.OUTLINED_FUNCTION_2))
-<BR><BR>[Calls]<UL><LI><a href="#[6c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delay_us
-</UL>
-<BR>[Called By]<UL><LI><a href="#[4b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Led_RGB_out
-</UL>
-
 <P><STRONG><a name="[74]"></a>OUTLINED_FUNCTION_1</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, main.o(.text.OUTLINED_FUNCTION_1))
 <BR><BR>[Called By]<UL><LI><a href="#[58]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[75]"></a>OUTLINED_FUNCTION_3</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, main.o(.text.OUTLINED_FUNCTION_3))
+<P><STRONG><a name="[75]"></a>OUTLINED_FUNCTION_2</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, main.o(.text.OUTLINED_FUNCTION_2))
 <BR><BR>[Called By]<UL><LI><a href="#[58]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
@@ -731,8 +725,8 @@ Local Symbols
 </UL>
 
 <P><STRONG><a name="[73]"></a>OUTLINED_FUNCTION_0</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, delay.o(.text.OUTLINED_FUNCTION_0))
-<BR><BR>[Called By]<UL><LI><a href="#[45]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delay_ms
-<LI><a href="#[6c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delay_us
+<BR><BR>[Called By]<UL><LI><a href="#[6d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delay_us
+<LI><a href="#[45]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delay_ms
 </UL>
 
 <P><STRONG><a name="[68]"></a>OUTLINED_FUNCTION_0</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, i2c_f411.o(.text.OUTLINED_FUNCTION_0))
@@ -753,6 +747,12 @@ Local Symbols
 
 <P><STRONG><a name="[6f]"></a>OUTLINED_FUNCTION_0</STRONG> (Thumb, 18 bytes, Stack size 0 bytes, timer_f4.o(.text.OUTLINED_FUNCTION_0))
 <BR><BR>[Called By]<UL><LI><a href="#[6e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Timer1_F4_init
+</UL>
+
+<P><STRONG><a name="[6c]"></a>OUTLINED_FUNCTION_0</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, promled.o(.text.OUTLINED_FUNCTION_0))
+<BR><BR>[Calls]<UL><LI><a href="#[6d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delay_us
+</UL>
+<BR>[Called By]<UL><LI><a href="#[4b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Promled_kvantum_out
 </UL>
 <P>
 <H3>
