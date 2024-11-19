@@ -22,16 +22,23 @@ Dialog DLL:      TCM.DLL V1.56.4.0
  
 <h2>Project:</h2>
 E:\STM32\Project\Git_STM32\Keil\Black_Pill_no_HAL\Black_Pill_no_HAL.uvprojx
-Project File Date:  04/18/2024
+Project File Date:  11/19/2024
 
 <h2>Output:</h2>
 *** Using Compiler 'V6.19', folder: 'C:\Keil_v5\ARM\ARMCLANG\Bin'
 Build target 'Target 1'
-compiling I2C_F411.c...
+main.c(10): warning: no previous extern declaration for non-static variable 'temp_led' [-Wmissing-variable-declarations]
+uint8_t temp_led=0;
+        ^
+main.c(10): note: declare 'static' if the variable is not intended to be used outside of this translation unit
+uint8_t temp_led=0;
+^
+1 warning generated.
+compiling main.c...
 linking...
-Program Size: Code=14770 RO-data=7074 RW-data=40 ZI-data=13736  
+Program Size: Code=4412 RO-data=440 RW-data=20 ZI-data=12332  
 FromELF: creating hex file...
-".\Objects\Black_Pill_no_HAL.axf" - 0 Error(s), 0 Warning(s).
+".\Objects\Black_Pill_no_HAL.axf" - 0 Error(s), 1 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -57,12 +64,12 @@ Package Vendor: Keil
    * Component: ARM::CMSIS:CORE:5.6.0
 
    * Component: Keil::Device:Startup:2.6.3
+      Source file:   MDK/Device/Source/ARM/STM32F411xx_OPT.s
+      Include file:  Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h
       Source file:   MDK/Device/Source/ARM/STM32F4xx_OTP.s
       Source file:   Drivers/CMSIS/Device/ST/STM32F4xx/Source/Templates/arm/startup_stm32f411xe.s
-      Include file:  Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h
-      Source file:   MDK/Device/Source/ARM/STM32F411xx_OPT.s
       Source file:   Drivers/CMSIS/Device/ST/STM32F4xx/Source/Templates/system_stm32f4xx.c
-Build Time Elapsed:  00:00:05
+Build Time Elapsed:  00:00:01
 </pre>
 </body>
 </html>

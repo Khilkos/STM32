@@ -6,7 +6,7 @@
 
 
 #define res 16
-#define Promled_kvantum_delay 50
+#define Promled_kvantum_delay 5
 #define pre_led 255
 
 

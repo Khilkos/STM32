@@ -20,4 +20,4 @@
   ..\..\My_Libraries\Font_table.h ..\..\My_Libraries\I2C_F411.h \
   ..\..\My_Libraries\DS3231_F411.h ..\Black_Pill_no_HAL\Board.h \
   ..\..\My_Libraries\RTC_F411.h ..\..\My_Libraries\ADC.h \
-  ..\..\My_Libraries\DMA.h
+  ..\..\My_Libraries\DMA.h ..\..\My_Libraries\PROMLED.h

@@ -7,6 +7,14 @@ uint8_t day_of_week[7][3]={"Ïí","Âò","Ñð","×ò","Ïò","Ñá","Âñ"};
 char String[100];
 uint16_t fault=0;
 
+uint8_t temp_led=0;
+
+static uint8_t Led_RGB2 [2][3];
+static uint8_t Led_RGB2_1 [2][3]=	{	{255,0,0},{0,0,0}	};
+ static uint8_t Led_RGB2_2 [2][3]=	{	{0,0,0},{0,0,255}	};
+ static uint8_t Led_RGB2_3 [2][3]=	{	{0,0,0},{0,0,0}	};
+static uint8_t Led_RGB2_4 [2][3]=	{	{255,255,255},{255,255,255}	};
+
 int main(void)
 {
 
@@ -70,6 +78,75 @@ LCD_init();
 	
 while(1)
 {
+	#define delay3 20	
+for (uint8_t i=0; i<255; i+=5)
+	{
+**Led_RGB2=i;
+*(*(Led_RGB2)+1)=i;		
+*(*(Led_RGB2)+2)=i;
+*(*(Led_RGB2+1)+0)=i;
+*(*(Led_RGB2+1)+1)=i;
+*(*(Led_RGB2+1)+2)=i;		
+	Promled_kvantum_out(2,Led_RGB2);
+	//	delay_ms(delay3);		
+	}
+	Promled_kvantum_out(2,Led_RGB2_4);
+delay_ms(50);
+	
+	for (uint8_t i=255; i>0; i-=5)
+	{
+**Led_RGB2=i;
+*(*(Led_RGB2)+1)=i;		
+*(*(Led_RGB2)+2)=i;
+*(*(Led_RGB2+1)+0)=i;
+*(*(Led_RGB2+1)+1)=i;
+*(*(Led_RGB2+1)+2)=i;		
+	Promled_kvantum_out(2,Led_RGB2);
+	//	delay_ms(delay3);		
+	}
+	
+	
+Promled_kvantum_out(2,Led_RGB2_3);	
+delay_ms(delay3);
+delay_ms(1000);	
+	
+	
+	for (uint8_t i=0; i<2;i++)
+	{
+	Promled_kvantum_out(2,Led_RGB2_1);	
+delay_ms(delay3);	
+Promled_kvantum_out(2,Led_RGB2_3);	
+delay_ms(delay3);
+Promled_kvantum_out(2,Led_RGB2_1);	
+delay_ms(delay3);	
+Promled_kvantum_out(2,Led_RGB2_3);	
+delay_ms(delay3);
+Promled_kvantum_out(2,Led_RGB2_1);	
+delay_ms(delay3);
+	Promled_kvantum_out(2,Led_RGB2_3);	
+delay_ms(delay3);
+	
+	delay_ms(delay3*2);
+
+	Promled_kvantum_out(2,Led_RGB2_2);	
+delay_ms(delay3);
+Promled_kvantum_out(2,Led_RGB2_3);	
+delay_ms(delay3);
+	Promled_kvantum_out(2,Led_RGB2_2);	
+delay_ms(delay3);
+	Promled_kvantum_out(2,Led_RGB2_3);	
+delay_ms(delay3);
+		Promled_kvantum_out(2,Led_RGB2_2);	
+delay_ms(delay3);
+	Promled_kvantum_out(2,Led_RGB2_3);	
+delay_ms(delay3);
+	}
+	
+Promled_kvantum_out(2,Led_RGB2_3);	
+delay_ms(1000);	
+	/*
+	
+	
 //fault=0;
 //GPIOB->BSRR=1<<13;
 //key_scan();
@@ -126,7 +203,7 @@ LCD_DMA_out();
 //	delay_ms(500);
 //fault=17;	
 if (GPIOB->IDR&1<<12) GPIOB->BSRR=1<<(12+res); else GPIOB->BSRR=1<<12;
-	
+	*/
 }	
 }
 

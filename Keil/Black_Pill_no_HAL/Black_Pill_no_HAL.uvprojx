@@ -519,6 +519,16 @@
               <FileType>5</FileType>
               <FilePath>..\..\My_Libraries\Timer_F4.h</FilePath>
             </File>
+            <File>
+              <FileName>PROMLED.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\..\My_Libraries\PROMLED.h</FilePath>
+            </File>
+            <File>
+              <FileName>PROMLED.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\My_Libraries\PROMLED.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
