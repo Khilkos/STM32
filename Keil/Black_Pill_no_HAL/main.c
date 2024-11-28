@@ -14,6 +14,16 @@ static uint8_t Led_RGB2_1 [2][3]=	{	{255,0,0},{0,0,0}	};
  static uint8_t Led_RGB2_2 [2][3]=	{	{0,0,0},{0,0,255}	};
  static uint8_t Led_RGB2_3 [2][3]=	{	{0,0,0},{0,0,0}	};
 static uint8_t Led_RGB2_4 [2][3]=	{	{255,255,255},{255,255,255}	};
+static uint8_t Led_RGB2_5 [2][3]=	{	{0,255,255},{255,0,255}	};
+static uint8_t Led_RGB2_6 [2][3]=	{	{0,255,0},{0,0,255}	};
+static uint8_t Led_RGB2_7 [2][3]=	{	{0,255,0},{0,0,0}	};
+static uint8_t Led_RGB2_8 [2][3]=	{	{0,0,0},{0,255,0}	};
+static uint8_t Led_RGB2_9 [2][3]=	{	{255,0,0},{0,0,0}	};
+static uint8_t Led_RGB2_10 [2][3]=	{	{0,0,0},{255,0,0}	};
+static uint8_t Led_RGB2_11 [2][3]=	{	{255,255,0},{0,0,0}	};
+static uint8_t Led_RGB2_12 [2][3]=	{	{0,0,0},{255,255,0}	};
+static uint8_t Led_RGB2_13 [2][3]=	{	{0,255,255},{0,0,0}	};
+static uint8_t Led_RGB2_14 [2][3]=	{	{0,0,0},{0,255,255}	};
 
 int main(void)
 {
@@ -78,8 +88,42 @@ LCD_init();
 	
 while(1)
 {
+	
 	#define delay3 20	
-for (uint8_t i=0; i<255; i+=5)
+	
+	
+	for (uint8_t i=0; i<2;i++)
+	{
+	Promled_kvantum_out(2,Led_RGB2_7);
+	delay_ms(delay3*3);		
+	Promled_kvantum_out(2,Led_RGB2_8);
+	delay_ms(delay3*3);
+	Promled_kvantum_out(2,Led_RGB2_3);
+	delay_ms(delay3*15);
+	
+	Promled_kvantum_out(2,Led_RGB2_9);
+	delay_ms(delay3*3);		
+	Promled_kvantum_out(2,Led_RGB2_10);
+	delay_ms(delay3*3);
+	Promled_kvantum_out(2,Led_RGB2_3);
+	delay_ms(delay3*15);
+	
+	Promled_kvantum_out(2,Led_RGB2_11);
+	delay_ms(delay3*3);		
+	Promled_kvantum_out(2,Led_RGB2_12);
+	delay_ms(delay3*3);
+	Promled_kvantum_out(2,Led_RGB2_3);
+	delay_ms(delay3*15);
+	
+	Promled_kvantum_out(2,Led_RGB2_13);
+	delay_ms(delay3*3);		
+	Promled_kvantum_out(2,Led_RGB2_14);
+	delay_ms(delay3*3);
+	Promled_kvantum_out(2,Led_RGB2_3);
+	delay_ms(delay3*15);
+}
+
+	for (uint8_t i=0; i<255; i+=5)
 	{
 **Led_RGB2=i;
 *(*(Led_RGB2)+1)=i;		
@@ -143,7 +187,18 @@ delay_ms(delay3);
 	}
 	
 Promled_kvantum_out(2,Led_RGB2_3);	
-delay_ms(1000);	
+delay_ms(1000);
+
+for (uint8_t i=0; i<10; i++)
+{
+Promled_kvantum_out(2,Led_RGB2_5);
+	delay_ms(delay3*10);
+	Promled_kvantum_out(2,Led_RGB2_6);
+	delay_ms(delay3*10);
+}
+
+	
+	
 	/*
 	
 	
