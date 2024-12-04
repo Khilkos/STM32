@@ -22,22 +22,26 @@ Dialog DLL:      TCM.DLL V1.56.4.0
  
 <h2>Project:</h2>
 F:\STM32\Project\Git_STM32\F411\STM32\Keil\Black_Pill_board_2\Black_Pill_board_2.uvprojx
-Project File Date:  11/18/2024
+Project File Date:  12/04/2024
 
 <h2>Output:</h2>
 *** Using Compiler 'V6.19', folder: 'C:\Keil_v5\ARM\ARMCLANG\Bin'
 Build target 'Target 1'
-main.c(16): warning: unused variable 'Led_RGB2_3' [-Wunused-variable]
- static uint8_t Led_RGB2_3 [2][3]=      {       {0,0,0},{0,0,0} };
-                ^
-main.c(14): warning: unused variable 'Led_RGB2_1' [-Wunused-variable]
- static uint8_t Led_RGB2_1 [2][3]=      {       {255,0,0},{0,0,0}       };
+compiling 1602_I2C.c...
+compiling PROMLED.c...
+compiling Delay.c...
+compiling Font_table.c...
+main.c(20): warning: unused variable 'Led_RGB10_3' [-Wunused-variable]
+ static uint8_t Led_RGB10_3 [10][3]=    {       {0,0,0},{0,0,0},{0,0,0},{0,0,0},{0,0,0},{0,0,0},{0,0,0},{0,0,0},{0,0,0},{0,0,0} };      
                 ^
 main.c(18): warning: unused variable 'Led_RGB10_1' [-Wunused-variable]
  static uint8_t Led_RGB10_1 [10][3]=    {       {255,0,0},{255,0,0},{255,0,0},{255,0,0},{255,0,0},{0,0,0},{0,0,0},{0,0,0},{0,0,0},{0,0,0}       };      
                 ^
-main.c(20): warning: unused variable 'Led_RGB10_3' [-Wunused-variable]
- static uint8_t Led_RGB10_3 [10][3]=    {       {0,0,0},{0,0,0},{0,0,0},{0,0,0},{0,0,0},{0,0,0},{0,0,0},{0,0,0},{0,0,0},{0,0,0} };      
+main.c(14): warning: unused variable 'Led_RGB2_1' [-Wunused-variable]
+ static uint8_t Led_RGB2_1 [2][3]=      {       {255,0,0},{0,0,0}       };
+                ^
+main.c(16): warning: unused variable 'Led_RGB2_3' [-Wunused-variable]
+ static uint8_t Led_RGB2_3 [2][3]=      {       {0,0,0},{0,0,0} };
                 ^
 main.c(19): warning: unused variable 'Led_RGB10_2' [-Wunused-variable]
  static uint8_t Led_RGB10_2 [10][3]=    {       {0,0,0},{0,0,0},{0,0,0},{0,0,0},{0,0,0},{0,0,255},{0,0,255},{0,0,255},{0,0,255},{0,0,255}       };      
@@ -50,6 +54,18 @@ main.c(15): warning: unused variable 'Led_RGB2_2' [-Wunused-variable]
                 ^
 7 warnings generated.
 compiling main.c...
+compiling GPIO_setup.c...
+compiling Board.c...
+compiling Timer_F4.c...
+compiling DMA.c...
+compiling SPI.c...
+compiling Nokia_5110_LCD.c...
+compiling I2C_F411.c...
+compiling Core_init.c...
+compiling USART_F411.c...
+compiling One_Wire_F411.c...
+compiling DS18B20_F411.c...
+compiling system_stm32f4xx.c...
 linking...
 Program Size: Code=8954 RO-data=634 RW-data=20 ZI-data=1984  
 FromELF: creating hex file...
@@ -58,10 +74,10 @@ FromELF: creating hex file...
 <h2>Software Packages used:</h2>
 
 Package Vendor: ARM
-                http://www.keil.com/pack/ARM.CMSIS.5.9.0.pack
-                ARM.CMSIS.5.9.0
+                https://www.keil.com/pack/ARM.CMSIS.6.1.0.pack
+                ARM.CMSIS.6.1.0
                 CMSIS (Common Microcontroller Software Interface Standard)
-   * Component: CORE Version: 5.6.0
+   * Component: CORE Version: 6.1.0
 
 Package Vendor: Keil
                 https://www.keil.com/pack/Keil.STM32F4xx_DFP.2.17.1.pack
@@ -71,18 +87,18 @@ Package Vendor: Keil
 
 <h2>Collection of Component include folders:</h2>
   ./RTE/_Target_1
-  C:/Users/dasha/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include
+  C:/Users/dasha/AppData/Local/Arm/Packs/ARM/CMSIS/6.1.0/CMSIS/Core/Include
   C:/Users/dasha/AppData/Local/Arm/Packs/Keil/STM32F4xx_DFP/2.17.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include
 
 <h2>Collection of Component Files used:</h2>
 
-   * Component: ARM::CMSIS:CORE:5.6.0
+   * Component: ARM::CMSIS:CORE:6.1.0
 
    * Component: Keil::Device:Startup:2.6.3
       Source file:   MDK/Device/Source/ARM/STM32F4xx_OTP.s
-      Source file:   Drivers/CMSIS/Device/ST/STM32F4xx/Source/Templates/arm/startup_stm32f411xe.s
       Include file:  Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h
       Source file:   MDK/Device/Source/ARM/STM32F411xx_OPT.s
+      Source file:   Drivers/CMSIS/Device/ST/STM32F4xx/Source/Templates/arm/startup_stm32f411xe.s
       Source file:   Drivers/CMSIS/Device/ST/STM32F4xx/Source/Templates/system_stm32f4xx.c
 Build Time Elapsed:  00:00:00
 </pre>
