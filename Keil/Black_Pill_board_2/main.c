@@ -74,8 +74,8 @@ SPI_F4_init(4);
 
 while (1)
 {
-//key_scan();
-
+key_scan();
+/*
 #define delay3 20	
 	Promled_kvantum_out(2,Led_RGB2_1);	
 delay_ms(delay3);	
@@ -111,7 +111,7 @@ delay_ms(delay3);
 	
 	
 	
-/*
+*/
 sprintf(String,"Encoder = %02d / %d",encoder_data,SPI1_send_num);
 Draw_String(0,(uint8_t*)String);	
 	
@@ -124,10 +124,9 @@ Draw_String(0x40, (uint8_t*)String);
 	sprintf(String,"Время 1234");
 //	Nokia_5110_String(0,0,(uint8_t*)String);
 //	Nokia_5110_LCD_Out();
-Nokia_test();
-	*/
-}
+//Nokia_test();
+	
 }
 
-
+}
 
