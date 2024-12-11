@@ -2,6 +2,7 @@
 
 void GPIO_DO_setup (GPIO_TypeDef *PORT, uint32_t PIN_number, uint32_t Output_speed)
 {
+PORT->MODER &= ~(0x3UL<<PIN_number*2);
 PORT->MODER |= (1U<<PIN_number*2);
 PORT->OSPEEDR |=(Output_speed<<PIN_number*2);	
 }

@@ -394,10 +394,27 @@
               <FileType>5</FileType>
               <FilePath>.\main.h</FilePath>
             </File>
+            <File>
+              <FileName>Config.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\Config.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
           <GroupName>Library_code</GroupName>
+          <Files>
+            <File>
+              <FileName>GPIO_setup.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\My_Libraries\GPIO_setup.c</FilePath>
+            </File>
+            <File>
+              <FileName>GPIO_setup.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\..\My_Libraries\GPIO_setup.h</FilePath>
+            </File>
+          </Files>
         </Group>
         <Group>
           <GroupName>::CMSIS</GroupName>

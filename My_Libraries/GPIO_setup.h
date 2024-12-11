@@ -1,16 +1,13 @@
 #ifndef __GPIO_setup_H
 #define __GPIO_setup_H
 
-/*
+#include "Config.h"
 
-*/
-
-
-#include "stm32f411xe.h"  //!!!!!!!!!!!!!!!!!!!!!!!
+//#include "stm32f411xe.h"  //!!!!!!!!!!!!!!!!!!!!!!!
 //#include "stm32h750xx.h"
 #include "stdint.h"
-#include "cmsis_armclang.h" 
-#include "core_cm4.h"    //!!!!!!!!!!!!!!!!!!!!!!!
+//#include "cmsis_armclang.h" //!!!!!!!!!!!!!!!!!
+//#include "core_cm4.h"    //!!!!!!!!!!!!!!!!!!!!!!!
 
 
 #define Input 0
