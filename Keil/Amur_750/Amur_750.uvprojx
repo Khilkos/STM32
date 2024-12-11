@@ -414,6 +414,16 @@
               <FileType>5</FileType>
               <FilePath>..\..\My_Libraries\GPIO_setup.h</FilePath>
             </File>
+            <File>
+              <FileName>Delay.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\My_Libraries\Delay.c</FilePath>
+            </File>
+            <File>
+              <FileName>Delay.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\..\My_Libraries\Delay.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

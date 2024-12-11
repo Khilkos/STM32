@@ -26,6 +26,7 @@ void delay_ms(uint32_t delay_time_ms)
 	SysTick->CTRL &=~(1U<<SysTick_CTRL_ENABLE_Pos);
 }
 
+#ifdef STM32F4
 void SysTick_Init(void)
 {	
 RCC->APB2ENR |= RCC_APB2ENR_SYSCFGEN;
@@ -42,3 +43,18 @@ RCC->APB2ENR |= RCC_APB2ENR_SYSCFGEN;
 SysTick->LOAD =(CPU_AHB_MHz_frequency-1); //enable Systick on 1 us takt
 SysTick->CTRL |= 1<<SysTick_CTRL_CLKSOURCE_Pos | 1<<SysTick_CTRL_TICKINT_Pos;
 }
+#endif
+
+#ifdef STM32H7
+
+void SysTick_H7_Init(uint16_t Systick_MHz_frequency) //frequency AHB bus in MHz
+{	
+RCC->AHB4ENR |= RCC_APB4ENR_SYSCFGEN;
+			
+SysTick->LOAD =(Systick_MHz_frequency-1); //enable Systick on 1 us takt
+SysTick->CTRL |= 1<<SysTick_CTRL_CLKSOURCE_Pos | 1<<SysTick_CTRL_TICKINT_Pos;
+}
+
+
+#endif
+
