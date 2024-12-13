@@ -10,7 +10,7 @@ RCC->AHB4ENR |= RCC_AHB4ENR_GPIOEEN;
 GPIO_DO_setup(GPIOE,0,High);
 
 SysTick_H7_Init(480);	
-		
+Core_STM32_H7_init();		
 		
 		while (1)
 	{

@@ -3,13 +3,13 @@
 
 #include "Config.h"
 #include "GPIO_setup.h"
-
+#include "Core_init.h"
 
 /*
 
 #include "Board.h"
 #include "GPIO_setup.h"
-#include "Core_init.h"
+
 
 #include "Timer_F4.h"
 #include "Font_table.h"

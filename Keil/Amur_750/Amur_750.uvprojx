@@ -424,6 +424,16 @@
               <FileType>5</FileType>
               <FilePath>..\..\My_Libraries\Delay.h</FilePath>
             </File>
+            <File>
+              <FileName>Core_init.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\My_Libraries\Core_init.c</FilePath>
+            </File>
+            <File>
+              <FileName>Core_init.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\..\My_Libraries\Core_init.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

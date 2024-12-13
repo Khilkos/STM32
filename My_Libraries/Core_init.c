@@ -1,6 +1,6 @@
 #include "Core_init.h"
 
-
+#ifdef STM32F4
 void Core_F411_init(void)
 {
 RCC->CR =RCC_CR_HSEON;	//enable external HSE clock
@@ -71,6 +71,28 @@ RCC->CFGR |=RCC_CFGR_SW_PLL ;	//switched System clock switch from PPL module
  while (!(RCC->CFGR &  RCC_CFGR_SWS_1)) ;	
 }
 //=========================================================
+#endif	
+	
+#ifdef STM32H7
+
+void Core_STM32_H7_init (void)
+{
+
+FLASH->ACR &= ~(FLASH_ACR_LATENCY_Msk | FLASH_ACR_WRHIGHFREQ_Msk);
+FLASH->ACR = (FLASH_ACR_LATENCY_4WS | 2<<FLASH_ACR_WRHIGHFREQ_Pos);
+
+RCC->CR |= (RCC_CR_HSEON); //enable external HSE clock
+while (!(RCC->CR & RCC_CR_HSERDY)) __NOP();	//wait for HSE clock is enaled	
+
+	
+	
+//RCC->CR |= RCC_CR_PLL1ON;	//enable PLL
+//while (!(RCC->CR & RCC_CR_PLL1RDY)) __NOP();	
+	
+}
+
+#endif
+	
 	
 	
 
