@@ -1,7 +1,8 @@
 #ifndef __SPI_H
 #define __SPI_H
+#include "Config.h"
 
-#include "stm32f411xe.h"
+//#include "stm32f411xe.h"  //!!!!!!!!!!!!!!!!!!!
 #include "main.h"
 
 
@@ -18,6 +19,12 @@ void SPI_F4_init(uint8_t SPI_speed);
 void SPI1_F4_send_8bit (uint32_t size,uint8_t* buf);
 //#define DMA2_Stream2_IRQHandler_define
 //void DMA2_Stream2_IRQHandler_User(void);
+
+void SPI_H7_init(void);
+
+
+
+
 #endif
 
 

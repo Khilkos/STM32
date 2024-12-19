@@ -337,7 +337,7 @@
             <v6WtE>0</v6WtE>
             <v6Rtti>0</v6Rtti>
             <VariousControls>
-              <MiscControls></MiscControls>
+              <MiscControls>-Wno-invalid-utf8</MiscControls>
               <Define></Define>
               <Undefine></Undefine>
               <IncludePath>..\Amur_750;..\..\My_Libraries</IncludePath>
@@ -433,6 +433,16 @@
               <FileName>Core_init.h</FileName>
               <FileType>5</FileType>
               <FilePath>..\..\My_Libraries\Core_init.h</FilePath>
+            </File>
+            <File>
+              <FileName>SPI.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\My_Libraries\SPI.c</FilePath>
+            </File>
+            <File>
+              <FileName>SPI.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\..\My_Libraries\SPI.h</FilePath>
             </File>
           </Files>
         </Group>

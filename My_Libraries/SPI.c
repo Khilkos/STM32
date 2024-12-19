@@ -3,6 +3,7 @@
 _Bool SPI1_DMA_buzy=0;
 uint32_t SPI1_send_num=0;
 
+#ifdef STM32F4
  void SPI_F411_init(void)
  {
 	 RCC->APB2ENR |= RCC_APB2ENR_SPI1EN ;
@@ -73,4 +74,22 @@ if (SPI1_send_num<5)
  }
  //============================================
 	*/
-	
+#endif
+
+#ifdef STM32H7
+
+void SPI_H7_init(void)
+{
+RCC->D2CCIP1R &= ~RCC_D2CCIP1R_SPI123SEL_Msk;
+RCC->D2CCIP1R |= 0U<<RCC_D2CCIP1R_SPI123SEL_Pos;	//выбор источника тактирования SPI 
+
+RCC->APB2ENR |= RCC_APB2ENR_SPI1EN;
+
+SPI1->CR1 |= SPI_CR1_SSI;	
+
+SPI1->CR1 |= SPI_CR1_SPE; //enable SPI	
+}
+
+
+
+#endif

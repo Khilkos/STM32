@@ -17,7 +17,7 @@ void Core_F411_init(void);
 void Core_F401_init_HSI(uint32_t _PLL_M, uint32_t _PLL_N, uint32_t _PLL_P, uint32_t _PLL_Q);
 void Core_F4_init_HSE(uint32_t _PLL_M, uint32_t _PLL_N, uint32_t _PLL_P, uint32_t _PLL_Q);
 
-void Core_STM32_H7_init (void);
+void Core_STM32_H7_init (uint8_t DivM1, uint8_t DivN1, uint8_t DivP1, uint8_t DivQ1, uint8_t DivR1);
 
 
 
