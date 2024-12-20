@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\Objects\Amur_750.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\Objects\Amur_750.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 6190004: Last Updated: Thu Dec 19 17:21:02 2024
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 6190004: Last Updated: Fri Dec 20 20:12:19 2024
 <BR><P>
 <H3>Maximum Stack Usage =         40 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -877,16 +877,16 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32h750xx.o(.text)
 </UL>
-<P><STRONG><a name="[ae]"></a>delay_ms</STRONG> (Thumb, 78 bytes, Stack size 4 bytes, delay.o(.text.delay_ms))
-<BR><BR>[Stack]<UL><LI>Max Depth = 4<LI>Call Chain = delay_ms
+<P><STRONG><a name="[ae]"></a>delay_us</STRONG> (Thumb, 72 bytes, Stack size 4 bytes, delay.o(.text.delay_us))
+<BR><BR>[Stack]<UL><LI>Max Depth = 4<LI>Call Chain = delay_us
 </UL>
 <BR>[Called By]<UL><LI><a href="#[a3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[a3]"></a>main</STRONG> (Thumb, 120 bytes, Stack size 24 bytes, main.o(.text.main))
+<P><STRONG><a name="[a3]"></a>main</STRONG> (Thumb, 118 bytes, Stack size 24 bytes, main.o(.text.main))
 <BR><BR>[Stack]<UL><LI>Max Depth = 40<LI>Call Chain = main &rArr; Core_STM32_H7_init
 </UL>
-<BR>[Calls]<UL><LI><a href="#[ae]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delay_ms
+<BR>[Calls]<UL><LI><a href="#[ae]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delay_us
 <LI><a href="#[ad]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Core_STM32_H7_init
 <LI><a href="#[ac]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SysTick_H7_Init
 <LI><a href="#[ab]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_DO_setup
