@@ -17,9 +17,9 @@ Core_STM32_H7_init(1,114,2,19,2);
 	
 //GPIOB->BSRR=1<<(2);		
 GPIOE->BSRR=1<<(0+16);	
-delay_us (50);		
+//delay_us (50);		
 GPIOE->BSRR=1<<(0);		
-delay_us (50);		
+//delay_us (50);		
 		
 	}
 	
