@@ -16,6 +16,7 @@ PORT->PUPDR |=(Pull_mode<<PIN_number*2);
 
 void GPIO_Alternate(GPIO_TypeDef *PORT, uint32_t PIN_number, uint32_t OTYPER, uint32_t Output_speed, uint32_t Pull_mode, uint32_t Alternate_function)
 {
+PORT->MODER &= ~(0x3UL<<PIN_number*2);
 PORT->MODER |= (2UL<<PIN_number*2);
 PORT->OTYPER |= OTYPER<<PIN_number;
 PORT->OSPEEDR |=(Output_speed<<PIN_number*2);	

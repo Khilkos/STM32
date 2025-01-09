@@ -78,14 +78,16 @@ if (SPI1_send_num<5)
 
 #ifdef STM32H7
 
-void SPI_H7_init(void)
+void SPI1_init(void)
 {
 RCC->D2CCIP1R &= ~RCC_D2CCIP1R_SPI123SEL_Msk;
 RCC->D2CCIP1R |= 0U<<RCC_D2CCIP1R_SPI123SEL_Pos;	//выбор источника тактирования SPI 
 
 RCC->APB2ENR |= RCC_APB2ENR_SPI1EN;
 
-SPI1->CR1 |= SPI_CR1_SSI;	
+SPI1->CR1 |= (SPI_CR1_SSI | SPI_CR1_CSTART);	
+SPI1->CFG1 |= (5<<SPI_CFG1_MBR_Pos | 7<<SPI_CFG1_DSIZE_Pos );
+SPI1->CFG2 |= (SPI_CFG2_SSM | SPI_CFG2_MASTER);	
 
 SPI1->CR1 |= SPI_CR1_SPE; //enable SPI	
 }
