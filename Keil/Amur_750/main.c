@@ -27,9 +27,11 @@ GPIOE->BSRR=1<<(0+16);
 GPIOE->BSRR=1<<(0);		
 //delay_us (50);		
 	//SPI1->DR=temp;
-SPI1->TXDR = 0b10101010;		
-//while (!(SPI1->SR&SPI_SR_TXC)) {__NOP();}
-delay_us(20);
+//SPI1->TXDR = 0b10101010;	
+SPI1->TXDR =0xF0F0f0f0;		
+SPI1->CR1 |= (SPI_CR1_CSTART);		
+while (!(SPI1->SR&SPI_SR_TXC)) {__NOP();}
+delay_us(10);
 		
 	}
 	

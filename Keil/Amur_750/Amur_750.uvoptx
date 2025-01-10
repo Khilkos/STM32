@@ -200,6 +200,10 @@
           <Name>System Viewer\RCC</Name>
           <WinId>35905</WinId>
         </Entry>
+        <Entry>
+          <Name>System Viewer\SPI1</Name>
+          <WinId>35903</WinId>
+        </Entry>
       </SystemViewers>
       <DebugDescription>
         <Enable>1</Enable>
