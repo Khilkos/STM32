@@ -94,9 +94,10 @@ SPI1->CFG2 |= ( SPI_CFG2_MASTER | 1<<SPI_CFG2_COMM_Pos | SPI_CFG2_CPOL | SPI_CFG
 
 SPI1->CFG2 |= (SPI_CFG2_SSOE | SPI_CFG2_SSIOP);	
 SPI1->CFG2 |= ( SPI_CFG2_SSOM );
+SPI1->CFG2 |= ( 2<<SPI_CFG2_MSSI_Pos );	//отступ от SS начала передачи, значение от 0 до 15 тактов
 	
-SPI1->CR2 |= (1<<SPI_CR2_TSIZE_Pos);
-SPI1->CR2 |= (8<<SPI_CR2_TSER_Pos);
+SPI1->CR2 |= (4<<SPI_CR2_TSIZE_Pos);
+SPI1->CR2 |= (0<<SPI_CR2_TSER_Pos);
 	
 SPI1->CR1 |= SPI_CR1_SPE; //enable SPI	
 }
