@@ -78,7 +78,7 @@ if (SPI1_send_num<5)
 
 #ifdef STM32H7
 
-void SPI1_init(void)
+void SPI1_H7_init(void)
 {
 RCC->D2CCIP1R &= ~RCC_D2CCIP1R_SPI123SEL_Msk;
 RCC->D2CCIP1R |= 0U<<RCC_D2CCIP1R_SPI123SEL_Pos;	//выбор источника тактирования SPI 
@@ -90,11 +90,13 @@ RCC->APB2ENR |= RCC_APB2ENR_SPI1EN;
 SPI1->CFG1 &=~SPI_CFG1_DSIZE_Msk;
 SPI1->CFG1 |= (4<<SPI_CFG1_MBR_Pos | 31<<SPI_CFG1_DSIZE_Pos | 8<<SPI_CFG1_FTHLV_Pos);
 //SPI1->CFG2 |= (SPI_CFG2_SSM | SPI_CFG2_MASTER | 1<<SPI_CFG2_COMM_Pos | SPI_CFG2_CPOL | SPI_CFG2_CPHA);	
-SPI1->CFG2 |= ( SPI_CFG2_MASTER | 1<<SPI_CFG2_COMM_Pos | SPI_CFG2_CPOL | SPI_CFG2_CPHA);	
-
+SPI1->CFG2 |= ( SPI_CFG2_MASTER | 1<<SPI_CFG2_COMM_Pos );	
+//SPI1->CFG2 |= ( SPI_CFG2_CPOL ); //полярность CLK	
+//SPI1->CFG2 |= ( SPI_CFG2_CPHA);	 //фаза CLK
+	
 SPI1->CFG2 |= (SPI_CFG2_SSOE | SPI_CFG2_SSIOP);	
 SPI1->CFG2 |= ( SPI_CFG2_SSOM );
-SPI1->CFG2 |= ( 2<<SPI_CFG2_MSSI_Pos );	//отступ от SS начала передачи, значение от 0 до 15 тактов
+SPI1->CFG2 |= ( 0<<SPI_CFG2_MSSI_Pos );	//отступ от SS начала передачи, значение от 0 до 15 тактов
 	
 SPI1->CR2 |= (4<<SPI_CR2_TSIZE_Pos);
 SPI1->CR2 |= (0<<SPI_CR2_TSER_Pos);
