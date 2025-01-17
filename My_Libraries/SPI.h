@@ -21,7 +21,7 @@ void SPI1_F4_send_8bit (uint32_t size,uint8_t* buf);
 //void DMA2_Stream2_IRQHandler_User(void);
 
 void SPI1_H7_init(void);
-
+void SPI2_H7_init(void);
 
 
 

@@ -86,11 +86,14 @@ RCC->D2CCIP1R |= 0U<<RCC_D2CCIP1R_SPI123SEL_Pos;	//выбор источника тактирования 
 RCC->APB2ENR |= RCC_APB2ENR_SPI1EN;
 
 
-//SPI1->CR1 |= (SPI_CR1_SSI);	
+SPI1->CR1 |= (SPI_CR1_SSI);
+SPI1->CFG2 |= (SPI_CFG2_SSM ); // программный SS, управляется битом SSI
+	
 SPI1->CFG1 &=~SPI_CFG1_DSIZE_Msk;
 SPI1->CFG1 |= (4<<SPI_CFG1_MBR_Pos | 31<<SPI_CFG1_DSIZE_Pos | 8<<SPI_CFG1_FTHLV_Pos);
 //SPI1->CFG2 |= (SPI_CFG2_SSM | SPI_CFG2_MASTER | 1<<SPI_CFG2_COMM_Pos | SPI_CFG2_CPOL | SPI_CFG2_CPHA);	
-SPI1->CFG2 |= ( SPI_CFG2_MASTER | 1<<SPI_CFG2_COMM_Pos );	
+SPI1->CFG2 |= ( SPI_CFG2_MASTER ); 
+SPI1->CFG2 |= ( 1<<SPI_CFG2_COMM_Pos );	
 //SPI1->CFG2 |= ( SPI_CFG2_CPOL ); //полярность CLK	
 //SPI1->CFG2 |= ( SPI_CFG2_CPHA);	 //фаза CLK
 	
@@ -100,10 +103,41 @@ SPI1->CFG2 |= ( 0<<SPI_CFG2_MSSI_Pos );	//отступ от SS начала передачи, значение
 	
 SPI1->CR2 |= (4<<SPI_CR2_TSIZE_Pos);
 SPI1->CR2 |= (0<<SPI_CR2_TSER_Pos);
-	
 SPI1->CR1 |= SPI_CR1_SPE; //enable SPI	
 }
 
+//===============================================
+
+void SPI2_H7_init(void)
+{
+RCC->D2CCIP1R &= ~RCC_D2CCIP1R_SPI123SEL_Msk;
+RCC->D2CCIP1R |= 0U<<RCC_D2CCIP1R_SPI123SEL_Pos;	//выбор источника тактирования SPI 
+
+RCC->APB1LENR |= RCC_APB1LENR_SPI2EN;
+
+
+//SPI2->CR1 |= (SPI_CR1_SSI);	
+SPI2->CFG2 |= (SPI_CFG2_SSM ); // программный SS, управляется битом SSI	
+	
+SPI2->CFG1 &=~SPI_CFG1_DSIZE_Msk;
+SPI2->CFG1 &=~SPI_CFG1_UDRDET_Msk;
+SPI2->CFG1 |= (2<<SPI_CFG1_UDRDET_Pos);	
+SPI2->CFG1 |= (4<<SPI_CFG1_MBR_Pos | 31<<SPI_CFG1_DSIZE_Pos | 8<<SPI_CFG1_FTHLV_Pos);
+//SPI2->CFG2 |= (SPI_CFG2_SSM | SPI_CFG2_MASTER | 1<<SPI_CFG2_COMM_Pos | SPI_CFG2_CPOL | SPI_CFG2_CPHA);	
+//SPI2->CFG2 |= ( SPI_CFG2_MASTER );
+SPI2->CFG2 |= ( 1<<SPI_CFG2_COMM_Pos );	
+//SPI2->CFG2 |= ( SPI_CFG2_CPOL ); //полярность CLK	
+//SPI2->CFG2 |= ( SPI_CFG2_CPHA);	 //фаза CLK
+	
+SPI2->CFG2 |= (SPI_CFG2_SSOE | SPI_CFG2_SSIOP);	
+SPI2->CFG2 |= ( SPI_CFG2_SSOM );
+SPI2->CFG2 |= ( 0<<SPI_CFG2_MSSI_Pos );	//отступ от SS начала передачи, значение от 0 до 15 тактов
+	
+SPI2->CR2 |= (4<<SPI_CR2_TSIZE_Pos);
+SPI2->CR2 |= (0<<SPI_CR2_TSER_Pos);
+	
+SPI2->CR1 |= SPI_CR1_SPE; //enable SPI	
+}
 
 
 #endif
