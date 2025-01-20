@@ -35,8 +35,8 @@ if (led_temp==0xfff)
 		if (GPIOE->IDR & 1<<0)	GPIOE->BSRR=1<<(0+16); else GPIOE->BSRR=1<<(0);
 	}	
 		
-SPI1->CR1 |= SPI_CR1_SPE; //enable SPI			
-SPI2->CR1 |= SPI_CR1_SPE; //enable SPI
+SPI1->CR1 |= SPI_CR1_SPE; //enable SPI1			
+SPI2->CR1 |= SPI_CR1_SPE; //enable SPI2
 	
 SPI1->TXDR =0xffffffff;		
 SPI1->TXDR =0x00000000;
@@ -50,13 +50,13 @@ SPI2->TXDR =0x00000ff0;
 	
 	
 
-//SPI2->CR1 |= (SPI_CR1_SSI);
 	
 SPI2_temp++;
 if (SPI2_temp==3)
 	{	
 		SPI2_temp=0;
 		SPI2->CR1 |= (SPI_CR1_SSI);
+		//SPI2->CR1 &= ~(SPI_CR1_SSI);
 	}	
 	
 SPI1->CR1 |= (SPI_CR1_CSTART);		
@@ -64,9 +64,11 @@ while (!(SPI1->SR&SPI_SR_EOT)) {__NOP();}
 SPI1->IFCR |= ( SPI_IFCR_EOTC | SPI_IFCR_TXTFC );
 
 SPI2->IFCR |= ( SPI_IFCR_EOTC | SPI_IFCR_TXTFC );
-SPI2->CR1 &= ~(SPI_CR1_SSI);
 
-SPI1->CR1 &= ~SPI_CR1_SPE; //desable SPI	
+SPI2->CR1 &= ~(SPI_CR1_SSI);
+//SPI2->CR1 |= (SPI_CR1_SSI);
+
+SPI1->CR1 &= ~SPI_CR1_SPE; //desable SPI1	
 //----------------
 
 			
@@ -77,7 +79,7 @@ SPI1->CR1 &= ~SPI_CR1_SPE; //desable SPI
 //while (!(SPI2->SR&SPI_SR_EOT)) {__NOP();}
 //SPI2->IFCR |= ( SPI_IFCR_EOTC | SPI_IFCR_TXTFC );
 
-SPI2->CR1 &= ~SPI_CR1_SPE; //desable SPI
+SPI2->CR1 &= ~SPI_CR1_SPE; //desable SPI2
 
 
 
