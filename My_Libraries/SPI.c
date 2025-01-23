@@ -86,8 +86,8 @@ RCC->D2CCIP1R |= 0U<<RCC_D2CCIP1R_SPI123SEL_Pos;	//выбор источника тактировани€ 
 RCC->APB2ENR |= RCC_APB2ENR_SPI1EN;
 
 
-//SPI1->CR1 |= (SPI_CR1_SSI);
-//SPI1->CFG2 |= (SPI_CFG2_SSM ); // программный SS, управл€етс€ битом SSI
+SPI1->CR1 |= (SPI_CR1_SSI);
+SPI1->CFG2 |= (SPI_CFG2_SSM ); // программный SS, управл€етс€ битом SSI
 	
 SPI1->CFG1 &=~SPI_CFG1_DSIZE_Msk;
 SPI1->CFG1 |= (4<<SPI_CFG1_MBR_Pos | 31<<SPI_CFG1_DSIZE_Pos | 8<<SPI_CFG1_FTHLV_Pos);
@@ -97,8 +97,8 @@ SPI1->CFG2 |= ( 1<<SPI_CFG2_COMM_Pos );
 //SPI1->CFG2 |= ( SPI_CFG2_CPOL ); //пол€рность CLK	
 //SPI1->CFG2 |= ( SPI_CFG2_CPHA);	 //фаза CLK
 	
-SPI1->CFG2 |= ( SPI_CFG2_SSOE ); //включение выхода SS	
-SPI1->CFG2 |= ( SPI_CFG2_SSIOP ); //выбор активного уровн€ SS
+//SPI1->CFG2 |= ( SPI_CFG2_SSOE ); //включение выхода SS	
+//SPI1->CFG2 |= ( SPI_CFG2_SSIOP ); //выбор активного уровн€ SS
 
 	
 SPI1->CFG2 |= ( SPI_CFG2_SSOM );
@@ -121,11 +121,11 @@ RCC->APB1LENR |= RCC_APB1LENR_SPI2EN;
 
 
 //SPI2->CR1 |= (SPI_CR1_SSI);	
-//SPI2->CFG2 |= (SPI_CFG2_SSM ); // программный SS, управл€етс€ битом SSI	
+SPI2->CFG2 |= (SPI_CFG2_SSM ); // программный SS, управл€етс€ битом SSI	
 	
 SPI2->CFG1 &=~SPI_CFG1_DSIZE_Msk;
 SPI2->CFG1 &=~SPI_CFG1_UDRDET_Msk;
-SPI2->CFG1 |= (2<<SPI_CFG1_UDRDET_Pos);	
+SPI2->CFG1 |= (1<<SPI_CFG1_UDRDET_Pos);	
 SPI2->CFG1 |= (4<<SPI_CFG1_MBR_Pos | 31<<SPI_CFG1_DSIZE_Pos | 8<<SPI_CFG1_FTHLV_Pos);
 //SPI2->CFG2 |= (SPI_CFG2_SSM | SPI_CFG2_MASTER | 1<<SPI_CFG2_COMM_Pos | SPI_CFG2_CPOL | SPI_CFG2_CPHA);	
 //SPI2->CFG2 |= ( SPI_CFG2_MASTER );
