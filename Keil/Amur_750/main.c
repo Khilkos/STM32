@@ -47,9 +47,8 @@ SPI2->TXDR =0xffffffff;
 SPI2->TXDR =0x00000000;
 SPI2->TXDR =0xffffffff;		
 SPI2->TXDR =0x00000ff0;		
-	
-	
 
+	
 	
 SPI2_temp++;
 if (SPI2_temp==1)

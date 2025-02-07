@@ -77,37 +77,128 @@ if (SPI1_send_num<5)
 #endif
 
 #ifdef STM32H7
+struct SPI_H7_init SPI_H7;
+
+void SPI_H7_init(void)
+{
+	RCC->D2CCIP1R &= ~RCC_D2CCIP1R_SPI123SEL_Msk;
+	RCC->D2CCIP1R |= 0U<<RCC_D2CCIP1R_SPI123SEL_Pos;	//выбор источника тактирования SPI 
+
+	if (SPI_H7.SPI_Number == SPI1) RCC->APB2ENR |= RCC_APB2ENR_SPI1EN; // включение тактирования SPI
+	if (SPI_H7.SPI_Number == SPI2) RCC->APB1LENR |= RCC_APB1LENR_SPI2EN; // включение тактирования SPI
+	
+	SPI_H7.SPI_Number ->CR1 |= (SPI_CR1_SSI);
+	if (SPI_H7.SSM_bit == 1) SPI_H7.SPI_Number->CFG2 |= (SPI_CFG2_SSM ); // программный SS, управляется битом SSI
+	
+	if (SPI_H7.MBR >=7) SPI_H7.MBR =7;
+	SPI_H7.SPI_Number->CFG1 |= ((uint32_t)SPI_H7.MBR<<SPI_CFG1_MBR_Pos); // делитель тактовой частоты для SPI, от 0=/2, 1=/4 ....7=/256 
+	
+	if (SPI_H7.DSIZE <=3) SPI_H7.DSIZE =3;
+	if (SPI_H7.DSIZE>=31) SPI_H7.DSIZE = 31;
+	SPI_H7.SPI_Number->CFG1 &=~SPI_CFG1_DSIZE_Msk;
+	SPI_H7.SPI_Number->CFG1 |=((uint32_t)SPI_H7.DSIZE<<SPI_CFG1_DSIZE_Pos); // количество бит в кадре от 3=4бита, 4=5бит, .... 31=32бита.
+	
+	if (SPI_H7.FTHLV >=15) SPI_H7.FTHLV=15;
+	SPI_H7.SPI_Number->CFG1 |= ((uint32_t)SPI_H7.FTHLV<<SPI_CFG1_FTHLV_Pos); // уровень поорга FIFO, количество кадров данных, от 0=1кадр, 1=2кадр ... 15=16кадр
+	
+	SPI_H7.SPI_Number->CFG2 &=~SPI_CFG2_MASTER;
+	if (SPI_H7.MASTER_bit) SPI_H7.SPI_Number ->CFG2 |= ( SPI_CFG2_MASTER ); //режим SPI: 0-Slave, 1-Master
+	
+	SPI_H7.SPI_Number->CFG2 &=~SPI_CFG2_CPOL;
+	if (SPI_H7.CPOL_bit) SPI_H7.SPI_Number ->CFG2 |= ( SPI_CFG2_CPOL );//полярность CLK:	0-SCK сигнал когда 0 на idle, 1-SCK сигнал когда 1 на idle
+
+	SPI_H7.SPI_Number->CFG2 &=~SPI_CFG2_CPHA;
+	if (SPI_H7.CPHA_bit) SPI_H7.SPI_Number ->CFG2 |= ( SPI_CFG2_CPHA ); //фаза CLK: 0-захват сигнала по первому фронту CLK, 1-захват сигнала по фторому фронту CLK
+	
+	SPI_H7.SPI_Number->CFG2 &=~SPI_CFG2_SSOE;
+	if (SPI_H7.SSOE_bit) SPI_H7.SPI_Number ->CFG2 |= ( SPI_CFG2_SSOE ); //включение аппаратного выхода SS: 0 - выключен, 1-включен	
+	
+	SPI_H7.SPI_Number->CFG2 &=~SPI_CFG2_SSIOP;
+	if (SPI_H7.SSIOP_bit) SPI_H7.SPI_Number ->CFG2 |= ( SPI_CFG2_SSIOP ); //выбор активного уровня SS: 0-низкий уровень это активный SS, 1- высокий уровень это активный SS	
+	
+	SPI_H7.SPI_Number->CFG2 &=~SPI_CFG2_SSOM;
+	if (SPI_H7.SSOM_bit) SPI_H7.SPI_Number ->CFG2 |= ( SPI_CFG2_SSOM ); //режим работы выхода SS в MASTER mode
+
+	if (SPI_H7.MSSI >=15) SPI_H7.MSSI =15;
+	SPI_H7.SPI_Number->CFG2 &=~SPI_CFG2_MSSI_Msk;
+	SPI_H7.SPI_Number->CFG2 |= ((uint32_t)SPI_H7.MSSI<<SPI_CFG2_MSSI_Pos); //отступ от SS начала передачи, значение от 0 до 15 тактов
+	
+	
+	
+}
 
 void SPI1_H7_init(void)
 {
-RCC->D2CCIP1R &= ~RCC_D2CCIP1R_SPI123SEL_Msk;
+SPI_H7.SPI_Number = SPI1;	//Выбор SPI, например SPI1
+SPI_H7.SSM_bit =1; // программный SS если SSM=1, управляется битом SSI, если SSM=0 - SS управляется аппаратно
+SPI_H7.MBR = 4; // делитель тактовой частоты для SPI, от 0=/2, 1=/4 ....7=/256 
+SPI_H7.DSIZE = 31; // количество бит в кадре от 3=4бита, 4=5бит, .... 31=32бита.
+SPI_H7.FTHLV = 7; // уровень поорга FIFO, количество кадров данных, от 0=1кадр, 1=2кадр ... 15=16кадр	
+SPI_H7.MASTER_bit = 1; //режим SPI: 0-Slave, 1-Master
+SPI_H7.CPOL_bit =0; //полярность CLK:	0-SCK сигнал когда 0 на idle, 1-SCK сигнал когда 1 на idle
+SPI_H7.CPHA_bit =0; //фаза CLK: 0-захват сигнала по первому фронту CLK, 1-захват сигнала по фторому фронту CLK
+SPI_H7.SSOE_bit =0; //включение аппаратного выхода SS: 0 - выключен, 1-включен
+SPI_H7.SSIOP_bit = 0; //выбор активного уровня SS: 0-низкий уровень это активный SS, 1- высокий уровень это активный SS	
+SPI_H7.SSOM_bit = 0; //режим работы выхода SS в MASTER mode
+SPI_H7.MSSI = 0; //отступ от SS начала передачи, значение от 0 до 15 тактов
+	
+	RCC->D2CCIP1R &= ~RCC_D2CCIP1R_SPI123SEL_Msk;
 RCC->D2CCIP1R |= 0U<<RCC_D2CCIP1R_SPI123SEL_Pos;	//выбор источника тактирования SPI 
 
+if (SPI_H7.SPI_Number == SPI1)
 RCC->APB2ENR |= RCC_APB2ENR_SPI1EN;
-
-
-SPI1->CR1 |= (SPI_CR1_SSI);
-SPI1->CFG2 |= (SPI_CFG2_SSM ); // программный SS, управляется битом SSI
 	
-SPI1->CFG1 &=~SPI_CFG1_DSIZE_Msk;
-SPI1->CFG1 |= (4<<SPI_CFG1_MBR_Pos | 31<<SPI_CFG1_DSIZE_Pos | 8<<SPI_CFG1_FTHLV_Pos);
-//SPI1->CFG2 |= (SPI_CFG2_SSM | SPI_CFG2_MASTER | 1<<SPI_CFG2_COMM_Pos | SPI_CFG2_CPOL | SPI_CFG2_CPHA);	
-SPI1->CFG2 |= ( SPI_CFG2_MASTER ); 
+SPI_H7.SPI_Number ->CR1 |= (SPI_CR1_SSI);
+//SPI1->CR1 |= (SPI_CR1_SSI);
+
+if (SPI_H7.SSM_bit == 1) SPI_H7.SPI_Number->CFG2 |= (SPI_CFG2_SSM );
+//SPI1->CFG2 |= (SPI_CFG2_SSM ); // программный SS, управляется битом SSI
+
+if (SPI_H7.MBR >=7) SPI_H7.MBR =7;
+SPI_H7.SPI_Number->CFG1 &=~SPI_CFG1_MBR_Msk;
+SPI_H7.SPI_Number->CFG1 |= ((uint32_t)SPI_H7.MBR<<SPI_CFG1_MBR_Pos); // делитель тактовой частоты для SPI, от 0=/2, 1=/4 ....7=/256 
+
+if (SPI_H7.DSIZE <=3) SPI_H7.DSIZE =3;
+if (SPI_H7.DSIZE >=31) SPI_H7.DSIZE = 31;
+SPI_H7.SPI_Number->CFG1 &=~SPI_CFG1_DSIZE_Msk;
+SPI_H7.SPI_Number->CFG1 |=((uint32_t)SPI_H7.DSIZE<<SPI_CFG1_DSIZE_Pos); // количество бит в кадре от 3=4бита, 4=5бит, .... 31=32бита.
+
+if (SPI_H7.FTHLV >=15) SPI_H7.FTHLV=15;
+SPI_H7.SPI_Number->CFG1 |= ((uint32_t)SPI_H7.FTHLV<<SPI_CFG1_FTHLV_Pos); // уровень поорга FIFO, количество кадров данных, от 0=1кадр, 1=2кадр ... 15=16кадр
+
+SPI_H7.SPI_Number->CFG2 &=~SPI_CFG2_MASTER;
+if (SPI_H7.MASTER_bit) SPI_H7.SPI_Number ->CFG2 |= ( SPI_CFG2_MASTER ); //режим SPI: 0-Slave, 1-Master
+
+SPI_H7.SPI_Number->CFG2 &=~SPI_CFG2_CPOL;
+if (SPI_H7.CPOL_bit) SPI_H7.SPI_Number ->CFG2 |= ( SPI_CFG2_CPOL );//полярность CLK:	0-SCK сигнал когда 0 на idle, 1-SCK сигнал когда 1 на idle
+
+SPI_H7.SPI_Number->CFG2 &=~SPI_CFG2_CPHA;
+if (SPI_H7.CPHA_bit) SPI_H7.SPI_Number ->CFG2 |= ( SPI_CFG2_CPHA ); //фаза CLK: 0-захват сигнала по первому фронту CLK, 1-захват сигнала по фторому фронту CLK
+
+SPI_H7.SPI_Number->CFG2 &=~SPI_CFG2_SSOE;
+if (SPI_H7.SSOE_bit) SPI_H7.SPI_Number ->CFG2 |= ( SPI_CFG2_SSOE ); //включение аппаратного выхода SS: 0 - выключен, 1-включен	
+
+SPI_H7.SPI_Number->CFG2 &=~SPI_CFG2_SSIOP;
+if (SPI_H7.SSIOP_bit) SPI_H7.SPI_Number ->CFG2 |= ( SPI_CFG2_SSIOP ); //выбор активного уровня SS: 0-низкий уровень это активный SS, 1- высокий уровень это активный SS
+
+SPI_H7.SPI_Number->CFG2 &=~SPI_CFG2_SSOM;
+if (SPI_H7.SSOM_bit) SPI_H7.SPI_Number ->CFG2 |= ( SPI_CFG2_SSOM ); //режим работы выхода SS в MASTER mode
+
+if (SPI_H7.MSSI >=15) SPI_H7.MSSI =15;
+SPI_H7.SPI_Number->CFG2 &=~SPI_CFG2_MSSI_Msk;
+SPI_H7.SPI_Number->CFG2 |= ((uint32_t)SPI_H7.MSSI<<SPI_CFG2_MSSI_Pos); //отступ от SS начала передачи, значение от 0 до 15 тактов
+
+
+
 SPI1->CFG2 |= ( 1<<SPI_CFG2_COMM_Pos );	
-//SPI1->CFG2 |= ( SPI_CFG2_CPOL ); //полярность CLK	
-//SPI1->CFG2 |= ( SPI_CFG2_CPHA);	 //фаза CLK
 	
-//SPI1->CFG2 |= ( SPI_CFG2_SSOE ); //включение выхода SS	
-//SPI1->CFG2 |= ( SPI_CFG2_SSIOP ); //выбор активного уровня SS
 
-	
-SPI1->CFG2 |= ( SPI_CFG2_SSOM );
-SPI1->CFG2 |= ( 0<<SPI_CFG2_MSSI_Pos );	//отступ от SS начала передачи, значение от 0 до 15 тактов
+
 	
 SPI1->CR2 |= (4<<SPI_CR2_TSIZE_Pos);
-SPI1->CR2 |= (0<<SPI_CR2_TSER_Pos);
+
 SPI1->CR1 |= SPI_CR1_SPE; //enable SPI	
-//SPI1->CR1 |= (SPI_CR1_SSI);
+
 }
 
 //===============================================
