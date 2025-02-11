@@ -3,6 +3,10 @@
 //#define STM32F4
 
 #include "Delay.h"
+#include "GPIO_setup.h"
+#include "Core_init.h"
+#include "SPI.h"
+#include "DMA.h"
 
 
 

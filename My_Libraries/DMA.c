@@ -1,5 +1,6 @@
 #include "DMA.h"
 
+#ifdef STM32F4
 void DMA_F4_init (void)
 {
 RCC->AHB1ENR |= RCC_AHB1ENR_DMA2EN | RCC_AHB1ENR_DMA1EN;
@@ -131,3 +132,17 @@ void DMA2_Stream2_IRQHandler(void)
 #endif
 //===================================================
 
+#endif
+
+
+#ifdef STM32H7
+
+
+
+
+
+
+
+
+
+#endif

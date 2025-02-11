@@ -1,11 +1,12 @@
 #ifndef __DMA_H
 #define __DMA_H
 
-#include "stm32f411xe.h"
+#include "Config.h"
 #include "stdint.h"
 #include "main.h"
 
 
+#ifdef STM32F4
 //-------------------------------------------------
 //
 //DMA_STM_F4.DMA_Number = ;//выбор ДМА, напр. - DMA2
@@ -77,6 +78,30 @@ uint8_t DMA_Interrupt;	 //из stm32f411xe.h, например - DMA2_Stream0_IRQn
 };
 
 extern struct DMA_STM_F4_init_param DMA_STM_F4;
+#endif
+
+
+//================================================================================
+//==============================STM32H7===========================================
+//================================================================================
+#ifdef STM32H7
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#endif
+
 
 
 

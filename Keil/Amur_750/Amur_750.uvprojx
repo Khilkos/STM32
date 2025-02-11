@@ -444,6 +444,16 @@
               <FileType>5</FileType>
               <FilePath>..\..\My_Libraries\SPI.h</FilePath>
             </File>
+            <File>
+              <FileName>DMA.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\My_Libraries\DMA.c</FilePath>
+            </File>
+            <File>
+              <FileName>DMA.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\..\My_Libraries\DMA.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

@@ -2,9 +2,7 @@
 #include "stdint.h"
 
 #include "Config.h"
-#include "GPIO_setup.h"
-#include "Core_init.h"
-#include "SPI.h"
+
 /*
 
 #include "Board.h"
