@@ -137,7 +137,12 @@ void DMA2_Stream2_IRQHandler(void)
 
 #ifdef STM32H7
 
+void DMA_H7_init (void)
+{
 
+	
+
+}
 
 
 
