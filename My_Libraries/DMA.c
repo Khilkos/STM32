@@ -140,8 +140,48 @@ void DMA2_Stream2_IRQHandler(void)
 void DMA_H7_init (void)
 {
 
-	
+	RCC->AHB1ENR |= RCC_AHB1ENR_DMA1EN;
 
+	
+if (DMA1_Stream0->CR & DMA_SxCR_EN) 
+	{
+		DMA1_Stream0->CR &= ~(DMA_SxCR_EN);
+		while (DMA1_Stream0->CR & DMA_SxCR_EN) __NOP();
+	}
+DMA1_Stream0->PAR = (uint32_t)&SPI1->TXDR;
+DMA1_Stream0->M0AR = (uint32_t)ptr;
+DMA1_Stream0->NDTR =0;
+
+DMAMUX1_Channel0->CCR &=~ (DMAMUX_CxCR_DMAREQ_ID_Msk);
+DMAMUX1_Channel0->CCR |= 38<<DMAMUX_CxCR_DMAREQ_ID_Pos;//выбор источника для DMA потока
+	
+DMA1_Stream0->CR &= ~DMA_SxCR_PFCTRL_Msk; 
+DMA1_Stream0->CR |= 1<<DMA_SxCR_PFCTRL_Pos; //если=0 - контроллером потока является DMA, если=1 - перифирическое устройство
+
+DMA1_Stream0->CR &=~DMA_SxCR_PL_Msk;
+DMA1_Stream0->CR |= 0<<DMA_SxCR_PL_Pos; //0-Low, 1-Medium, 2-High, 3-Very high	
+	
+DMA1_Stream0->CR &=~DMA_SxCR_MSIZE_Msk;
+DMA1_Stream0->CR |=2<<DMA_SxCR_MSIZE_Pos; //Размер памяти: 0-Byte (8-bit), 1-Half-word (16-bit), 2-Word (32-bit), 3-Reserved	
+	
+DMA1_Stream0->CR &=~DMA_SxCR_PSIZE_Msk;
+DMA1_Stream0->CR |=2<<DMA_SxCR_PSIZE_Pos; //Размер перефирического устройства: 0-Byte (8-bit), 1-Half-word (16-bit), 2-Word (32-bit), 3-Reserved
+	
+DMA1_Stream0->CR &=~DMA_SxCR_MINC_Msk;
+DMA1_Stream0->CR |=0<<DMA_SxCR_MINC_Pos; //инкремент памяти: 0-выкл, 1-включен
+	
+DMA1_Stream0->CR &=~DMA_SxCR_PINC_Msk;	
+DMA1_Stream0->CR |=0<<DMA_SxCR_PINC_Pos; //инкремент перефирии: 0-выкл, 1-включен
+
+DMA1_Stream0->CR &=~DMA_SxCR_CIRC_Msk;
+DMA1_Stream0->CR |=0<<DMA_SxCR_CIRC_Pos; //циклический режим: 0-выключен, 1-включен
+
+DMA1_Stream0->CR &=~DMA_SxCR_DIR_Msk;
+DMA1_Stream0->CR |=1<<DMA_SxCR_DIR_Pos; //направление передачи DMA: 0-Peripheral-to-memory, 1-Memory-to-peripheral, 2-Memory-to-memory, 3-Reserved
+
+
+//DMA1_Stream0->CR |=DMA_SxCR_EN; //включение DMA
+	
 }
 
 

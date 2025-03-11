@@ -3,6 +3,9 @@
 
 #include "Config.h"
 
+extern uint32_t send_data;
+extern uint32_t send_data_DMA;
+extern uint32_t *ptr;
 /*
 
 #include "Board.h"

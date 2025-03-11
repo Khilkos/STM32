@@ -27,7 +27,15 @@ Project File Date:  02/11/2025
 <h2>Output:</h2>
 *** Using Compiler 'V6.19', folder: 'C:\Keil_v5\ARM\ARMCLANG\Bin'
 Build target 'Target 1'
-".\Objects\Amur_750.axf" - 0 Error(s), 0 Warning(s).
+main.c(3): warning: unused variable 'SPI2_temp' [-Wunused-variable]
+static uint16_t SPI2_temp=0;
+                ^
+1 warning generated.
+compiling main.c...
+linking...
+Program Size: Code=2964 RO-data=696 RW-data=8 ZI-data=1664  
+FromELF: creating hex file...
+".\Objects\Amur_750.axf" - 0 Error(s), 1 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -61,7 +69,7 @@ Package Vendor: Keil
       Include file:  Drivers/CMSIS/Device/ST/STM32H7xx/Include/stm32h7xx.h
       Source file:   Drivers/CMSIS/Device/ST/STM32H7xx/Source/Templates/arm/startup_stm32h750xx.s
       Source file:   Drivers/CMSIS/Device/ST/STM32H7xx/Source/Templates/system_stm32h7xx.c
-Build Time Elapsed:  00:00:00
+Build Time Elapsed:  00:00:01
 </pre>
 </body>
 </html>
