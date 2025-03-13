@@ -53,8 +53,9 @@ SPI1->CFG1 |=SPI_CFG1_TXDMAEN;
 
 DMA_H7_init();	
 SPI_H7_init();//запуск SPI с заданными параметрами
-//SPI1->TXDR=send_data;	
-DMA1_Stream0->CR |=DMA_SxCR_EN; //включение DMA
+
+SPI1->TXDR=send_data;	
+//DMA1_Stream0->CR |=DMA_SxCR_EN; //включение DMA
 SPI1->CR1 |= (SPI_CR1_CSTART);	
 
 //------------------------------------------------
@@ -88,14 +89,14 @@ SPI_H7.MSSI = 0; //отступ от SS начала передачи, значение от 0 до 15 тактов
 		while (1)
 	{
 		
-/*	if (SPI1->SR&SPI_SR_EOT) 
+	if (SPI1->SR&SPI_SR_EOT) 
 			{	SPI1->IFCR |= ( SPI_IFCR_EOTC | SPI_IFCR_TXTFC );
 				SPI1->CR1 &= ~SPI_CR1_SPE; //desable SPI1	
 				SPI1->CR1 |= SPI_CR1_SPE;
 				SPI1->TXDR=send_data;	
 				SPI1->CR1 |= (SPI_CR1_CSTART);
 			}	
-*/
+
 led_temp++;
 if (led_temp==0xfffff)
 	{	

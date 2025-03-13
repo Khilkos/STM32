@@ -149,8 +149,8 @@ if (DMA1_Stream0->CR & DMA_SxCR_EN)
 		while (DMA1_Stream0->CR & DMA_SxCR_EN) __NOP();
 	}
 DMA1_Stream0->PAR = (uint32_t)&SPI1->TXDR;
-DMA1_Stream0->M0AR = (uint32_t)ptr;
-DMA1_Stream0->NDTR =0;
+DMA1_Stream0->M0AR = (uint32_t)&send_data_DMA;
+DMA1_Stream0->NDTR =1;
 
 DMAMUX1_Channel0->CCR &=~ (DMAMUX_CxCR_DMAREQ_ID_Msk);
 DMAMUX1_Channel0->CCR |= 38<<DMAMUX_CxCR_DMAREQ_ID_Pos;//выбор источника дл€ DMA потока
@@ -159,7 +159,7 @@ DMA1_Stream0->CR &= ~DMA_SxCR_PFCTRL_Msk;
 DMA1_Stream0->CR |= 1<<DMA_SxCR_PFCTRL_Pos; //если=0 - контроллером потока €вл€етс€ DMA, если=1 - перифирическое устройство
 
 DMA1_Stream0->CR &=~DMA_SxCR_PL_Msk;
-DMA1_Stream0->CR |= 0<<DMA_SxCR_PL_Pos; //0-Low, 1-Medium, 2-High, 3-Very high	
+DMA1_Stream0->CR |= 3<<DMA_SxCR_PL_Pos; //0-Low, 1-Medium, 2-High, 3-Very high	
 	
 DMA1_Stream0->CR &=~DMA_SxCR_MSIZE_Msk;
 DMA1_Stream0->CR |=2<<DMA_SxCR_MSIZE_Pos; //–азмер пам€ти: 0-Byte (8-bit), 1-Half-word (16-bit), 2-Word (32-bit), 3-Reserved	
@@ -180,7 +180,7 @@ DMA1_Stream0->CR &=~DMA_SxCR_DIR_Msk;
 DMA1_Stream0->CR |=1<<DMA_SxCR_DIR_Pos; //направление передачи DMA: 0-Peripheral-to-memory, 1-Memory-to-peripheral, 2-Memory-to-memory, 3-Reserved
 
 
-//DMA1_Stream0->CR |=DMA_SxCR_EN; //включение DMA
+DMA1_Stream0->CR |=DMA_SxCR_EN; //включение DMA
 	
 }
 
