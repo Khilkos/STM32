@@ -1,9 +1,13 @@
 #include "main.h"
+#define SRAM2_start_adress ((uint32_t*)0x30020000)
 static uint32_t led_temp=0;
 static uint16_t SPI2_temp=0;
 uint32_t send_data=0xf0f0f0f0;
-uint32_t send_data_DMA=0xffff00A1;
-uint32_t *ptr=&(send_data_DMA);	
+uint32_t send_data_DMA=0x0abcdef0;
+uint32_t *ptr;	
+
+
+
 
 int main(void)
 	{
@@ -14,11 +18,14 @@ RCC->AHB4ENR |= RCC_AHB4ENR_GPIOEEN;
 		
 		RCC->AHB2ENR |= RCC_AHB2ENR_D2SRAM1EN | RCC_AHB2ENR_D2SRAM2EN | RCC_AHB2ENR_D2SRAM3EN;
 		
+ptr=SRAM2_start_adress;	
+*ptr=send_data_DMA;
+		
 GPIO_DO_setup(GPIOE,0,High);
 		
 GPIO_Alternate(GPIOA,7,Push_pull,High,Pull_down,AF5);// SPI1 MOSI
 GPIO_Alternate(GPIOA,5,Push_pull,High,Pull_down,AF5);// SPI1 CLK
-//GPIO_Alternate(GPIOA,4,Push_pull,High,Pull_up,AF5);// SPI1 NSS
+GPIO_Alternate(GPIOA,4,Push_pull,High,Pull_up,AF5);// SPI1 NSS
  
 GPIO_Alternate(GPIOC,2,Push_pull,High,Pull_down,AF5);// SPI2 MISO
 GPIO_Alternate(GPIOB,10,Push_pull,High,Pull_down,AF5);// SPI2 CLK
@@ -36,25 +43,26 @@ SPI_H7.MBR = 4; // делитель тактовой частоты для SPI, от 0=/2, 1=/4 ....7=/256
 SPI_H7.DSIZE = 31; // количество бит в кадре от 3=4бита, 4=5бит, .... 31=32бита.	
 SPI_H7.MASTER_bit = 1; //режим SPI: 0-Slave, 1-Master	
 SPI_H7.COMM = 1;	//режим работы SPI: 0-full_duplex, 1-simplex_transmitter, 2-simplex_receiver, 3-half_duplex	
-SPI_H7.FTHLV = 7; // уровень поорга FIFO, количество кадров данных, от 0=1кадр, 1=2кадр ... 15=16кадр	
-SPI_H7.TSIZE =1;	//количество кадров в одной посылке (во время активного SS)	
+SPI_H7.FTHLV = 15; // уровень поорга FIFO, количество кадров данных, от 0=1кадр, 1=2кадр ... 15=16кадр	
+SPI_H7.TSIZE =2;	//количество кадров в одной посылке (во время активного SS)	
 	//настройка CLK
 SPI_H7.CPOL_bit =0; //полярность CLK:	0-SCK сигнал когда 0 на idle, 1-SCK сигнал когда 1 на idle
 SPI_H7.CPHA_bit =0; //фаза CLK: 0-захват сигнала по первому фронту CLK, 1-захват сигнала по фторому фронту CLK	
 	//настройка вывода SS
-SPI_H7.SSM_bit =1; // программный SS если SSM=1, управляется битом SSI, если SSM=0 - SS управляется аппаратно
-SPI_H7.SSOE_bit =0; //включение аппаратного выхода SS: 0 - выключен, 1-включен
-SPI_H7.SSIOP_bit = 0; //выбор активного уровня SS: 0-низкий уровень это активный SS, 1- высокий уровень это активный SS	
+SPI_H7.SSM_bit =0; // программный SS если SSM=1, управляется битом SSI, если SSM=0 - SS управляется аппаратно
+SPI_H7.SSOE_bit =1; //включение аппаратного выхода SS: 0 - выключен, 1-включен
+SPI_H7.SSIOP_bit = 1; //выбор активного уровня SS: 0-низкий уровень это активный SS, 1- высокий уровень это активный SS	
 SPI_H7.SSOM_bit = 0; //режим работы выхода SS в MASTER mode
 SPI_H7.MSSI = 0; //отступ от SS начала передачи, значение от 0 до 15 тактов	
 
-SPI1->CFG1 |=SPI_CFG1_TXDMAEN;
+
 //SPI1->CFG1 |=0<<SPI_CFG1_UDRDET_Pos;
-
-DMA_H7_init();	
 SPI_H7_init();//запуск SPI с заданными параметрами
+SPI1->CFG1 |=SPI_CFG1_TXDMAEN;
+DMA_H7_init();	
 
-SPI1->TXDR=send_data;	
+
+//SPI1->TXDR=send_data;	
 //DMA1_Stream0->CR |=DMA_SxCR_EN; //включение DMA
 SPI1->CR1 |= (SPI_CR1_CSTART);	
 
@@ -90,10 +98,12 @@ SPI_H7.MSSI = 0; //отступ от SS начала передачи, значение от 0 до 15 тактов
 	{
 		
 	if (SPI1->SR&SPI_SR_EOT) 
-			{	SPI1->IFCR |= ( SPI_IFCR_EOTC | SPI_IFCR_TXTFC );
-				SPI1->CR1 &= ~SPI_CR1_SPE; //desable SPI1	
+			{	SPI1->CR1 &= ~SPI_CR1_SPE; //desable SPI1	
+				SPI1->IFCR |= ( SPI_IFCR_EOTC | SPI_IFCR_TXTFC );
+			//	delay_us(20);
+				
 				SPI1->CR1 |= SPI_CR1_SPE;
-				SPI1->TXDR=send_data;	
+				//SPI1->TXDR=send_data;	
 				SPI1->CR1 |= (SPI_CR1_CSTART);
 			}	
 

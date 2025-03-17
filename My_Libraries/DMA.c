@@ -149,7 +149,7 @@ if (DMA1_Stream0->CR & DMA_SxCR_EN)
 		while (DMA1_Stream0->CR & DMA_SxCR_EN) __NOP();
 	}
 DMA1_Stream0->PAR = (uint32_t)&SPI1->TXDR;
-DMA1_Stream0->M0AR = (uint32_t)&send_data_DMA;
+DMA1_Stream0->M0AR = (uint32_t)ptr;
 DMA1_Stream0->NDTR =1;
 
 DMAMUX1_Channel0->CCR &=~ (DMAMUX_CxCR_DMAREQ_ID_Msk);
