@@ -89,13 +89,39 @@ extern struct DMA_STM_F4_init_param DMA_STM_F4;
 void DMA_H7_init(void);
 
 struct DMA_H7_init
+	
+
+//-------------------------------------------------
+//-------------инициализация DMA-------------------
+//-------------------------------------------------
+//DMA_H7.DMA_Number = ; //выбор ДМА, напр. - DMA2
+//DMA_H7.DMA_Stream = ; //выбор потока ДМА напр. -  DMA2_Stream0
+//DMA_H7.DMA_Peripheral_address = ;//адрес перефирии, например &USART2->DR;
+//DMA_H7.DMA_Memory_address = ; //адрес памяти, например (void*)temp_send_buf ;
+//DMA_H7.DMA_Quantity = ;//NDTR - Number of data items to transfer (0 up to 65535), количество данный передаваемых в ДМА
+//DMA_H7.DMA_Request_source = ; //выбор источника тактирования DMAMUX для канала ДМА
+//DMA_H7.DMA_flow_control =;//если=0 - контроллером потока является DMA, если=1 - перифирическое устройство
+//DMA_H7.DMA_Prioroty = ;//приоритет потока: 0-Low, 1-Medium, 2-High, 3-Very high
+//DMA_H7.DMA_Memory_data_size = ; //Размер памяти: 0-Byte (8-bit), 1-Half-word (16-bit), 2-Word (32-bit), 3-Reserved
+//DMA_H7.DMA_Peripheral_data_size = ;	//Размер перефирического устройства: 0-Byte (8-bit), 1-Half-word (16-bit), 2-Word (32-bit), 3-Reserved
+//DMA_H7.DMA_Data_transfer_direction = ; //направление передачи DMA: 0-Peripheral-to-memory, 1-Memory-to-peripheral, 2-Memory-to-memory, 3-Reserved
+//DMA_H7.DMA_Memory_inc = ;//инкремент памяти: 0-выкл, 1-включен
+//DMA_H7.DMA_Peripheral_inc = ; //инкремент перефирии: 0-выкл, 1-включен
+//DMA_H7.DMA_Circular_mode =; //циклический режим: 0-выключен, 1-включен
+
+//DMA_STM_F4.DMA_Interrupt =  ;// прерывание из stm32f411xe.h, например - DMA2_Stream0_IRQn
+//DMA_H7_init();//Запуск ДМА с заданными параметрами
+//
+//---------------------------------------------------	
+
 {
 DMA_TypeDef * DMA_Number; //выбор ДМА напр. - DMA2
 DMA_Stream_TypeDef * DMA_Stream;//выбор потока ДМА напр. -  DMA2_Stream0
 volatile uint32_t *DMA_Peripheral_address;	//адрес перефирии
 uint32_t *DMA_Memory_address;//адрес памяти
 uint32_t DMA_Quantity;//количество данный передаваемых в ДМА
-uint32_t DMA_Chanel;//выбор канала ДМА
+uint8_t DMA_Request_source;//выбор источника тактирования DMAMUX для канала ДМА
+_Bool DMA_flow_control;////если=0 - контроллером потока является DMA, если=1 - перифирическое устройство
 uint8_t DMA_Prioroty;//приоритет потока - DMA_Priority_low, DMA_Priority_medium, DMA_Priority_high, DMA_Priority_very_high
 	uint8_t DMA_Data_transfer_direction;//направление потока данных перефирия <-> память: DMA_Peripheral_to_memory, DMA_Memory_to_Peripheral, DMA_Memory_to_memory
 _Bool DMA_Memory_inc;	//инкремент памяти DMA_Inc_ON-включить, DMA_Inc_OFF-выключить

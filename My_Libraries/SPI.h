@@ -47,7 +47,10 @@ void SPI_H7_init(void);
 //SPI_H7.SSIOP_bit = ; //выбор активного уровня SS: 0-низкий уровень это активный SS, 1- высокий уровень это активный SS	
 //SPI_H7.SSOM_bit = ; //режим работы выхода SS в MASTER mode
 //SPI_H7.MSSI = ; //отступ от SS начала передачи, значение от 0 до 15 тактов	
-
+	//настройка DMA
+//SPI_H7.Tx_DMA =;// включение потока ДМА на передачу (Tx DMA stream enable): 1- включен, 0- выключен	
+//SPI_H7.Rx_DMA =;// включение потока ДМА на прием (Rx DMA stream enable): 1- включен, 0- выключен
+//
 //SPI_H7_init();//запуск SPI с заданными параметрами
 //------------------------------------------------
 
@@ -68,7 +71,9 @@ _Bool SSOM_bit;	//режим работы выхода SS в MASTER mode
 uint8_t MSSI; //отступ от SS начала передачи, значение от 0 до 15 тактов
 uint8_t COMM; //режим работы SPI: 0-full_duplex, 1-simplex_transmitter, 2-simplex_receiver, 3-half_duplex
 uint16_t TSIZE; //количество кадров в одной посылке (во время активного SS)
-	
+_Bool Tx_DMA;// включение потока ДМА на передачу (Tx DMA stream enable): 1- включен, 0- выключен	
+_Bool Rx_DMA;// включение потока ДМА на прием (Rx DMA stream enable): 1- включен, 0- выключен
+
 };
 
 extern struct SPI_H7_init SPI_H7;

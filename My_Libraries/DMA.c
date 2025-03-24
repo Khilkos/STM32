@@ -137,50 +137,122 @@ void DMA2_Stream2_IRQHandler(void)
 
 #ifdef STM32H7
 
+struct DMA_H7_init DMA_H7;
+
 void DMA_H7_init (void)
 {
 
 	RCC->AHB1ENR |= RCC_AHB1ENR_DMA1EN;
 
-	
-if (DMA1_Stream0->CR & DMA_SxCR_EN) 
+if (DMA_H7.DMA_Stream->CR & DMA_SxCR_EN) 
 	{
-		DMA1_Stream0->CR &= ~(DMA_SxCR_EN);
-		while (DMA1_Stream0->CR & DMA_SxCR_EN) __NOP();
+		DMA_H7.DMA_Stream->CR &= ~(DMA_SxCR_EN);
+		while (DMA_H7.DMA_Stream->CR & DMA_SxCR_EN) __NOP();
 	}
-DMA1_Stream0->PAR = (uint32_t)&SPI1->TXDR;
-DMA1_Stream0->M0AR = (uint32_t)ptr;
-DMA1_Stream0->NDTR =1;
+DMA_H7.DMA_Stream->PAR = (uint32_t)DMA_H7.DMA_Peripheral_address;
 
-DMAMUX1_Channel0->CCR &=~ (DMAMUX_CxCR_DMAREQ_ID_Msk);
-DMAMUX1_Channel0->CCR |= 38<<DMAMUX_CxCR_DMAREQ_ID_Pos;//выбор источника для DMA потока
+DMA_H7.DMA_Stream->M0AR = (uint32_t)DMA_H7.DMA_Memory_address;
+
+DMA_H7.DMA_Stream->NDTR = DMA_H7.DMA_Quantity;
+
+if (DMA_H7.DMA_Stream == DMA1_Stream0)
+{DMAMUX1_Channel0->CCR &=~ (DMAMUX_CxCR_DMAREQ_ID_Msk);
+DMAMUX1_Channel0->CCR |= (uint32_t)DMA_H7.DMA_Request_source<<DMAMUX_CxCR_DMAREQ_ID_Pos;//выбор источника для DMA потока DMA1_Stream0
+}	
+if (DMA_H7.DMA_Stream == DMA1_Stream1)
+{DMAMUX1_Channel1->CCR &=~ (DMAMUX_CxCR_DMAREQ_ID_Msk);
+DMAMUX1_Channel1->CCR |= (uint32_t)DMA_H7.DMA_Request_source<<DMAMUX_CxCR_DMAREQ_ID_Pos;//выбор источника для DMA потока DMA1_Stream1
+}	
+if (DMA_H7.DMA_Stream == DMA1_Stream2)
+{DMAMUX1_Channel2->CCR &=~ (DMAMUX_CxCR_DMAREQ_ID_Msk);
+DMAMUX1_Channel2->CCR |= (uint32_t)DMA_H7.DMA_Request_source<<DMAMUX_CxCR_DMAREQ_ID_Pos;//выбор источника для DMA потока DMA1_Stream2
+}	
+if (DMA_H7.DMA_Stream == DMA1_Stream3)
+{DMAMUX1_Channel3->CCR &=~ (DMAMUX_CxCR_DMAREQ_ID_Msk);
+DMAMUX1_Channel3->CCR |= (uint32_t)DMA_H7.DMA_Request_source<<DMAMUX_CxCR_DMAREQ_ID_Pos;//выбор источника для DMA потока DMA1_Stream3
+}	
+if (DMA_H7.DMA_Stream == DMA1_Stream4)
+{DMAMUX1_Channel4->CCR &=~ (DMAMUX_CxCR_DMAREQ_ID_Msk);
+DMAMUX1_Channel4->CCR |= (uint32_t)DMA_H7.DMA_Request_source<<DMAMUX_CxCR_DMAREQ_ID_Pos;//выбор источника для DMA потока DMA1_Stream4
+}	
+if (DMA_H7.DMA_Stream == DMA1_Stream5)
+{
+DMAMUX1_Channel5->CCR &=~ (DMAMUX_CxCR_DMAREQ_ID_Msk);
+DMAMUX1_Channel5->CCR |= (uint32_t)DMA_H7.DMA_Request_source<<DMAMUX_CxCR_DMAREQ_ID_Pos;//выбор источника для DMA потока DMA1_Stream5
+}	
+if (DMA_H7.DMA_Stream == DMA1_Stream6)
+{DMAMUX1_Channel6->CCR &=~ (DMAMUX_CxCR_DMAREQ_ID_Msk);
+DMAMUX1_Channel6->CCR |= (uint32_t)DMA_H7.DMA_Request_source<<DMAMUX_CxCR_DMAREQ_ID_Pos;//выбор источника для DMA потока DMA1_Stream6
+}	
+if (DMA_H7.DMA_Stream == DMA1_Stream7)
+{DMAMUX1_Channel7->CCR &=~ (DMAMUX_CxCR_DMAREQ_ID_Msk);
+DMAMUX1_Channel7->CCR |= (uint32_t)DMA_H7.DMA_Request_source<<DMAMUX_CxCR_DMAREQ_ID_Pos;//выбор источника для DMA потока DMA1_Stream7
+}	
+if (DMA_H7.DMA_Stream == DMA2_Stream0)
+{DMAMUX1_Channel8->CCR &=~ (DMAMUX_CxCR_DMAREQ_ID_Msk);
+DMAMUX1_Channel8->CCR |= (uint32_t)DMA_H7.DMA_Request_source<<DMAMUX_CxCR_DMAREQ_ID_Pos;//выбор источника для DMA потока DMA2_Stream0
+}	
+if (DMA_H7.DMA_Stream == DMA2_Stream1)
+{
+DMAMUX1_Channel9->CCR &=~ (DMAMUX_CxCR_DMAREQ_ID_Msk);
+DMAMUX1_Channel9->CCR |= (uint32_t)DMA_H7.DMA_Request_source<<DMAMUX_CxCR_DMAREQ_ID_Pos;//выбор источника для DMA потока DMA2_Stream1
+}	
+if (DMA_H7.DMA_Stream == DMA2_Stream2)
+{DMAMUX1_Channel10->CCR &=~ (DMAMUX_CxCR_DMAREQ_ID_Msk);
+DMAMUX1_Channel10->CCR |= (uint32_t)DMA_H7.DMA_Request_source<<DMAMUX_CxCR_DMAREQ_ID_Pos;//выбор источника для DMA потока DMA2_Stream2
+}	
+if (DMA_H7.DMA_Stream == DMA2_Stream3)
+{DMAMUX1_Channel11->CCR &=~ (DMAMUX_CxCR_DMAREQ_ID_Msk);
+DMAMUX1_Channel11->CCR |= (uint32_t)DMA_H7.DMA_Request_source<<DMAMUX_CxCR_DMAREQ_ID_Pos;//выбор источника для DMA потока DMA2_Stream3
+}	
+if (DMA_H7.DMA_Stream == DMA2_Stream4)
+{DMAMUX1_Channel12->CCR &=~ (DMAMUX_CxCR_DMAREQ_ID_Msk);
+DMAMUX1_Channel12->CCR |= (uint32_t)DMA_H7.DMA_Request_source<<DMAMUX_CxCR_DMAREQ_ID_Pos;//выбор источника для DMA потока DMA2_Stream4
+}	
+if (DMA_H7.DMA_Stream == DMA2_Stream5)
+{DMAMUX1_Channel13->CCR &=~ (DMAMUX_CxCR_DMAREQ_ID_Msk);
+DMAMUX1_Channel13->CCR |= (uint32_t)DMA_H7.DMA_Request_source<<DMAMUX_CxCR_DMAREQ_ID_Pos;//выбор источника для DMA потока DMA2_Stream5
+}	
+if (DMA_H7.DMA_Stream == DMA2_Stream6)
+{DMAMUX1_Channel14->CCR &=~ (DMAMUX_CxCR_DMAREQ_ID_Msk);
+DMAMUX1_Channel14->CCR |= (uint32_t)DMA_H7.DMA_Request_source<<DMAMUX_CxCR_DMAREQ_ID_Pos;//выбор источника для DMA потока DMA2_Stream6
+}	
+if (DMA_H7.DMA_Stream == DMA2_Stream7)
+{DMAMUX1_Channel15->CCR &=~ (DMAMUX_CxCR_DMAREQ_ID_Msk);
+DMAMUX1_Channel15->CCR |= (uint32_t)DMA_H7.DMA_Request_source<<DMAMUX_CxCR_DMAREQ_ID_Pos;//выбор источника для DMA потока DMA2_Stream7
+}	
+
+DMA_H7.DMA_Stream->CR &= ~DMA_SxCR_PFCTRL_Msk; 
+DMA_H7.DMA_Stream->CR |= (uint32_t)DMA_H7.DMA_flow_control<<DMA_SxCR_PFCTRL_Pos; //если=0 - контроллером потока является DMA, если=1 - перифирическое устройство
+
+if (DMA_H7.DMA_Prioroty>=3) DMA_H7.DMA_Prioroty=3;
+DMA_H7.DMA_Stream->CR &=~DMA_SxCR_PL_Msk;
+DMA_H7.DMA_Stream->CR |= (uint32_t)DMA_H7.DMA_Prioroty<<DMA_SxCR_PL_Pos; //приоритет потока: 0-Low, 1-Medium, 2-High, 3-Very high
+
+if(DMA_H7.DMA_Memory_data_size>=2) DMA_H7.DMA_Memory_data_size=2;
+DMA_H7.DMA_Stream->CR &=~DMA_SxCR_MSIZE_Msk;
+DMA_H7.DMA_Stream->CR |=(uint32_t)DMA_H7.DMA_Memory_data_size<<DMA_SxCR_MSIZE_Pos; //Размер памяти: 0-Byte (8-bit), 1-Half-word (16-bit), 2-Word (32-bit), 3-Reserved	
+
+if(DMA_H7.DMA_Peripheral_data_size>=2) DMA_H7.DMA_Peripheral_data_size=2;
+DMA_H7.DMA_Stream->CR &=~DMA_SxCR_PSIZE_Msk;
+DMA_H7.DMA_Stream->CR |=(uint32_t)DMA_H7.DMA_Peripheral_data_size<<DMA_SxCR_PSIZE_Pos; //Размер перефирического устройства: 0-Byte (8-bit), 1-Half-word (16-bit), 2-Word (32-bit), 3-Reserved
+
+if(DMA_H7.DMA_Data_transfer_direction>=2) DMA_H7.DMA_Data_transfer_direction=2;
+DMA_H7.DMA_Stream->CR &=~DMA_SxCR_DIR_Msk;
+DMA_H7.DMA_Stream->CR |=(uint32_t)DMA_H7.DMA_Data_transfer_direction<<DMA_SxCR_DIR_Pos; //направление передачи DMA: 0-Peripheral-to-memory, 1-Memory-to-peripheral, 2-Memory-to-memory, 3-Reserved
+
+
+DMA_H7.DMA_Stream->CR &=~DMA_SxCR_MINC_Msk;
+DMA_H7.DMA_Stream->CR |=(uint32_t)DMA_H7.DMA_Memory_inc<<DMA_SxCR_MINC_Pos; //инкремент памяти: 0-выкл, 1-включен
 	
-DMA1_Stream0->CR &= ~DMA_SxCR_PFCTRL_Msk; 
-DMA1_Stream0->CR |= 1<<DMA_SxCR_PFCTRL_Pos; //если=0 - контроллером потока является DMA, если=1 - перифирическое устройство
+DMA_H7.DMA_Stream->CR &=~DMA_SxCR_PINC_Msk;	
+DMA_H7.DMA_Stream->CR |=(uint32_t)DMA_H7.DMA_Peripheral_inc<<DMA_SxCR_PINC_Pos; //инкремент перефирии: 0-выкл, 1-включен
 
-DMA1_Stream0->CR &=~DMA_SxCR_PL_Msk;
-DMA1_Stream0->CR |= 3<<DMA_SxCR_PL_Pos; //0-Low, 1-Medium, 2-High, 3-Very high	
-	
-DMA1_Stream0->CR &=~DMA_SxCR_MSIZE_Msk;
-DMA1_Stream0->CR |=2<<DMA_SxCR_MSIZE_Pos; //Размер памяти: 0-Byte (8-bit), 1-Half-word (16-bit), 2-Word (32-bit), 3-Reserved	
-	
-DMA1_Stream0->CR &=~DMA_SxCR_PSIZE_Msk;
-DMA1_Stream0->CR |=2<<DMA_SxCR_PSIZE_Pos; //Размер перефирического устройства: 0-Byte (8-bit), 1-Half-word (16-bit), 2-Word (32-bit), 3-Reserved
-	
-DMA1_Stream0->CR &=~DMA_SxCR_MINC_Msk;
-DMA1_Stream0->CR |=0<<DMA_SxCR_MINC_Pos; //инкремент памяти: 0-выкл, 1-включен
-	
-DMA1_Stream0->CR &=~DMA_SxCR_PINC_Msk;	
-DMA1_Stream0->CR |=0<<DMA_SxCR_PINC_Pos; //инкремент перефирии: 0-выкл, 1-включен
-
-DMA1_Stream0->CR &=~DMA_SxCR_CIRC_Msk;
-DMA1_Stream0->CR |=0<<DMA_SxCR_CIRC_Pos; //циклический режим: 0-выключен, 1-включен
-
-DMA1_Stream0->CR &=~DMA_SxCR_DIR_Msk;
-DMA1_Stream0->CR |=1<<DMA_SxCR_DIR_Pos; //направление передачи DMA: 0-Peripheral-to-memory, 1-Memory-to-peripheral, 2-Memory-to-memory, 3-Reserved
+DMA_H7.DMA_Stream->CR &=~DMA_SxCR_CIRC_Msk;
+DMA_H7.DMA_Stream->CR |=(uint32_t)DMA_H7.DMA_Circular_mode<<DMA_SxCR_CIRC_Pos; //циклический режим: 0-выключен, 1-включен
 
 
-DMA1_Stream0->CR |=DMA_SxCR_EN; //включение DMA
+DMA_H7.DMA_Stream->CR |=DMA_SxCR_EN; //включение DMA
 	
 }
 

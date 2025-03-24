@@ -6,6 +6,9 @@
 extern uint32_t send_data;
 extern uint32_t send_data_DMA;
 extern uint32_t *ptr;
+extern uint32_t send_buf[2];
+
+
 /*
 
 #include "Board.h"

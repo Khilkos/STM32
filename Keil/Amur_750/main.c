@@ -3,9 +3,9 @@
 static uint32_t led_temp=0;
 static uint16_t SPI2_temp=0;
 uint32_t send_data=0xf0f0f0f0;
-uint32_t send_data_DMA=0x0abcdef0;
+uint32_t send_data_DMA = 0x0abcdef0;
 uint32_t *ptr;	
-
+uint32_t send_buf[2]={0x0abcdef0,0xff00ff0f};
 
 
 
@@ -19,7 +19,9 @@ RCC->AHB4ENR |= RCC_AHB4ENR_GPIOEEN;
 		RCC->AHB2ENR |= RCC_AHB2ENR_D2SRAM1EN | RCC_AHB2ENR_D2SRAM2EN | RCC_AHB2ENR_D2SRAM3EN;
 		
 ptr=SRAM2_start_adress;	
-*ptr=send_data_DMA;
+*ptr=send_buf[0];
+*(ptr+1)=send_buf[1];		
+		
 		
 GPIO_DO_setup(GPIOE,0,High);
 		
@@ -54,16 +56,37 @@ SPI_H7.SSOE_bit =1; //включение аппаратного выхода SS: 0 - выключен, 1-включен
 SPI_H7.SSIOP_bit = 1; //выбор активного уровня SS: 0-низкий уровень это активный SS, 1- высокий уровень это активный SS	
 SPI_H7.SSOM_bit = 0; //режим работы выхода SS в MASTER mode
 SPI_H7.MSSI = 0; //отступ от SS начала передачи, значение от 0 до 15 тактов	
-
-
-//SPI1->CFG1 |=0<<SPI_CFG1_UDRDET_Pos;
+	//настройка DMA
+SPI_H7.Tx_DMA = 1;// включение потока ДМА на передачу (Tx DMA stream enable): 1- включен, 0- выключен	
+SPI_H7.Rx_DMA = 0;// включение потока ДМА на прием (Rx DMA stream enable): 1- включен, 0- выключен
+//
 SPI_H7_init();//запуск SPI с заданными параметрами
-SPI1->CFG1 |=SPI_CFG1_TXDMAEN;
-DMA_H7_init();	
+//------------------------------------------------
+
+//-------------------------------------------------
+//-------------инициализация DMA-------------------
+//-------------------------------------------------
+DMA_H7.DMA_Number = DMA1; //выбор ДМА, напр. - DMA2
+DMA_H7.DMA_Stream = DMA1_Stream0; //выбор потока ДМА напр. -  DMA2_Stream0
+DMA_H7.DMA_Peripheral_address = &SPI1->TXDR;//адрес перефирии, например &USART2->DR;
+DMA_H7.DMA_Memory_address = ptr; //адрес памяти, например (void*)temp_send_buf ;
+DMA_H7.DMA_Quantity = 1;//NDTR - Number of data items to transfer (0 up to 65535), количество данный передаваемых в ДМА
+DMA_H7.DMA_Request_source = 38; //выбор источника тактирования DMAMUX для канала ДМА
+DMA_H7.DMA_flow_control =1;//если=0 - контроллером потока является DMA, если=1 - перифирическое устройство
+DMA_H7.DMA_Prioroty = 0;//приоритет потока: 0-Low, 1-Medium, 2-High, 3-Very high
+DMA_H7.DMA_Memory_data_size = 2; //Размер памяти: 0-Byte (8-bit), 1-Half-word (16-bit), 2-Word (32-bit), 3-Reserved
+DMA_H7.DMA_Peripheral_data_size = 2;	//Размер перефирического устройства: 0-Byte (8-bit), 1-Half-word (16-bit), 2-Word (32-bit), 3-Reserved
+DMA_H7.DMA_Data_transfer_direction = 1; //направление передачи DMA: 0-Peripheral-to-memory, 1-Memory-to-peripheral, 2-Memory-to-memory, 3-Reserved
+DMA_H7.DMA_Memory_inc = 1;//инкремент памяти: 0-выкл, 1-включен
+DMA_H7.DMA_Peripheral_inc = 0; //инкремент перефирии: 0-выкл, 1-включен
+DMA_H7.DMA_Circular_mode =0; //циклический режим: 0-выключен, 1-включен
+
+//DMA_STM_F4.DMA_Interrupt =  ;// прерывание из stm32f411xe.h, например - DMA2_Stream0_IRQn
+DMA_H7_init();//Запуск ДМА с заданными параметрами
+//
+//---------------------------------------------------	
 
 
-//SPI1->TXDR=send_data;	
-//DMA1_Stream0->CR |=DMA_SxCR_EN; //включение DMA
 SPI1->CR1 |= (SPI_CR1_CSTART);	
 
 //------------------------------------------------
@@ -100,10 +123,14 @@ SPI_H7.MSSI = 0; //отступ от SS начала передачи, значение от 0 до 15 тактов
 	if (SPI1->SR&SPI_SR_EOT) 
 			{	SPI1->CR1 &= ~SPI_CR1_SPE; //desable SPI1	
 				SPI1->IFCR |= ( SPI_IFCR_EOTC | SPI_IFCR_TXTFC );
-			//	delay_us(20);
 				
+				DMA1_Stream0->CR &=~DMA_SxCR_EN; //включение DMA
+						while (DMA1_Stream0->CR & DMA_SxCR_EN) __NOP();
+			
+				DMA1->LIFCR=DMA_LIFCR_CTCIF0;
+				DMA1_Stream0->CR |=DMA_SxCR_EN; //включение DMA
+			
 				SPI1->CR1 |= SPI_CR1_SPE;
-				//SPI1->TXDR=send_data;	
 				SPI1->CR1 |= (SPI_CR1_CSTART);
 			}	
 

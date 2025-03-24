@@ -131,6 +131,12 @@ void SPI_H7_init(void)
 	SPI_H7.SPI_Number->CR2 &=~SPI_CR2_TSIZE_Msk;
 	SPI_H7.SPI_Number->CR2 |= ((uint32_t)SPI_H7.TSIZE<<SPI_CR2_TSIZE_Pos); //количество кадров в одной посылке (во время активного SS)
 	
+	SPI_H7.SPI_Number->CFG1 &=~SPI_CFG1_TXDMAEN_Msk;
+	if (SPI_H7.Tx_DMA) SPI_H7.SPI_Number->CFG1|=SPI_CFG1_TXDMAEN;
+	
+	SPI_H7.SPI_Number->CFG1 &=~SPI_CFG1_RXDMAEN_Msk;
+	if (SPI_H7.Rx_DMA) SPI_H7.SPI_Number->CFG1|=SPI_CFG1_RXDMAEN;
+		
 	SPI_H7.SPI_Number->CR1 |= SPI_CR1_SPE; //enable SPI	
 	
 }
