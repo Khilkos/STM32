@@ -2,11 +2,9 @@
 #define SRAM2_start_adress ((uint32_t*)0x30020000)
 static uint32_t led_temp=0;
 static uint16_t SPI2_temp=0;
-uint32_t send_data=0xf0f0f0f0;
-uint32_t send_data_DMA = 0x0abcdef0;
-uint32_t *ptr;	
-uint32_t send_buf[2]={0x0abcdef0,0xff00ff0f};
 
+uint32_t send_buf_SPI1[3] __attribute__((section(".ARM.__at_0x30020000")));
+volatile uint32_t send_buf_SPI2[2] __attribute__((section(".ARM.__at_0x30020000")));
 
 
 int main(void)
@@ -17,11 +15,12 @@ RCC->AHB4ENR |= RCC_AHB4ENR_GPIOCEN;
 RCC->AHB4ENR |= RCC_AHB4ENR_GPIOEEN;
 		
 		RCC->AHB2ENR |= RCC_AHB2ENR_D2SRAM1EN | RCC_AHB2ENR_D2SRAM2EN | RCC_AHB2ENR_D2SRAM3EN;
-		
-ptr=SRAM2_start_adress;	
-*ptr=send_buf[0];
-*(ptr+1)=send_buf[1];		
-		
+
+send_buf_SPI1[0]=0x0f0f0f0f;
+send_buf_SPI1[1]=0x0a0a0a0a;
+
+send_buf_SPI2[0]=0x0b0b0b0b;
+send_buf_SPI2[1]=0x0c0c0c0c;		
 		
 GPIO_DO_setup(GPIOE,0,High);
 		
@@ -31,7 +30,7 @@ GPIO_Alternate(GPIOA,4,Push_pull,High,Pull_up,AF5);// SPI1 NSS
  
 GPIO_Alternate(GPIOC,2,Push_pull,High,Pull_down,AF5);// SPI2 MISO
 GPIO_Alternate(GPIOB,10,Push_pull,High,Pull_down,AF5);// SPI2 CLK
-//GPIO_Alternate(GPIOB,12,Push_pull,High,Pull_up,AF5);// SPI2 NSS
+GPIO_Alternate(GPIOB,12,Push_pull,High,Pull_up,AF5);// SPI2 NSS
 		
 SysTick_H7_Init(456);	
 Core_STM32_H7_init(1,114,2,19,2);
@@ -69,7 +68,7 @@ SPI_H7_init();//запуск SPI с заданными параметрами
 DMA_H7.DMA_Number = DMA1; //выбор ДМА, напр. - DMA2
 DMA_H7.DMA_Stream = DMA1_Stream0; //выбор потока ДМА напр. -  DMA2_Stream0
 DMA_H7.DMA_Peripheral_address = &SPI1->TXDR;//адрес перефирии, например &USART2->DR;
-DMA_H7.DMA_Memory_address = ptr; //адрес памяти, например (void*)temp_send_buf ;
+DMA_H7.DMA_Memory_address = send_buf_SPI1; //адрес памяти, например (void*)temp_send_buf ;
 DMA_H7.DMA_Quantity = 1;//NDTR - Number of data items to transfer (0 up to 65535), количество данный передаваемых в ДМА
 DMA_H7.DMA_Request_source = 38; //выбор источника тактирования DMAMUX для канала ДМА
 DMA_H7.DMA_flow_control =1;//если=0 - контроллером потока является DMA, если=1 - перифирическое устройство

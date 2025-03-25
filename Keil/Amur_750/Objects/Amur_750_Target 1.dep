@@ -1,7 +1,7 @@
 Dependencies for Project 'Amur_750', Target 'Target 1': (DO NOT MODIFY !)
 CompilerVersion: 6190000::V6.19::ARMCLANG
-F (.\main.c)(0x67E16644)(-xc -std=c11 --target=arm-arm-none-eabi -mcpu=cortex-m7 -mfpu=fpv5-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O0 -ffunction-sections -Weverything -Wno-packed -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Amur_750 -I ../../My_Libraries -Wno-invalid-utf8 -Wno-gnu-binary-literal -Wno-padded-I./RTE/_Target_1-IC:/Users/Khilk/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IC:/Users/Khilk/AppData/Local/Arm/Packs/Keil/STM32H7xx_DFP/3.1.1/Drivers/CMSIS/Device/ST/STM32H7xx/Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32H750xx -D_RTE_-o ./objects/main.o -MD)
-I (..\Amur_750\main.h)(0x67E11449)
+F (.\main.c)(0x67E2BC3A)(-xc -std=c11 --target=arm-arm-none-eabi -mcpu=cortex-m7 -mfpu=fpv5-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O0 -ffunction-sections -Weverything -Wno-packed -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Amur_750 -I ../../My_Libraries -Wno-invalid-utf8 -Wno-gnu-binary-literal -Wno-padded-I./RTE/_Target_1-IC:/Users/Khilk/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IC:/Users/Khilk/AppData/Local/Arm/Packs/Keil/STM32H7xx_DFP/3.1.1/Drivers/CMSIS/Device/ST/STM32H7xx/Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32H750xx -D_RTE_-o ./objects/main.o -MD)
+I (..\Amur_750\main.h)(0x67E2BC4E)
 I (C:\Keil_v5\ARM\ARMCLANG\include\stdio.h)(0x63888F58)
 I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x63888F58)
 I (..\Amur_750\Config.h)(0x67AB255B)
@@ -18,7 +18,7 @@ I (..\..\My_Libraries\GPIO_setup.h)(0x675943EB)
 I (..\..\My_Libraries\Core_init.h)(0x6763E5D1)
 I (..\..\My_Libraries\SPI.h)(0x67E13EBF)
 I (..\..\My_Libraries\DMA.h)(0x67E15DBA)
-F (.\main.h)(0x67E11449)()
+F (.\main.h)(0x67E2BC4E)()
 F (.\Config.h)(0x67AB255B)()
 F (..\..\My_Libraries\GPIO_setup.c)(0x677FAAEF)(-xc -std=c11 --target=arm-arm-none-eabi -mcpu=cortex-m7 -mfpu=fpv5-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O0 -ffunction-sections -Weverything -Wno-packed -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Amur_750 -I ../../My_Libraries -Wno-invalid-utf8 -Wno-gnu-binary-literal -Wno-padded-I./RTE/_Target_1-IC:/Users/Khilk/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IC:/Users/Khilk/AppData/Local/Arm/Packs/Keil/STM32H7xx_DFP/3.1.1/Drivers/CMSIS/Device/ST/STM32H7xx/Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32H750xx -D_RTE_-o ./objects/gpio_setup.o -MD)
 I (..\..\My_Libraries\GPIO_setup.h)(0x675943EB)
@@ -36,7 +36,7 @@ I (..\..\My_Libraries\Delay.h)(0x67599C10)
 I (..\..\My_Libraries\Core_init.h)(0x6763E5D1)
 I (..\..\My_Libraries\SPI.h)(0x67E13EBF)
 I (..\..\My_Libraries\DMA.h)(0x67E15DBA)
-I (..\Amur_750\main.h)(0x67E11449)
+I (..\Amur_750\main.h)(0x67E2BC4E)
 I (C:\Keil_v5\ARM\ARMCLANG\include\stdio.h)(0x63888F58)
 F (..\..\My_Libraries\GPIO_setup.h)(0x675943EB)()
 F (..\..\My_Libraries\Delay.c)(0x677F69BB)(-xc -std=c11 --target=arm-arm-none-eabi -mcpu=cortex-m7 -mfpu=fpv5-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O0 -ffunction-sections -Weverything -Wno-packed -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Amur_750 -I ../../My_Libraries -Wno-invalid-utf8 -Wno-gnu-binary-literal -Wno-padded-I./RTE/_Target_1-IC:/Users/Khilk/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IC:/Users/Khilk/AppData/Local/Arm/Packs/Keil/STM32H7xx_DFP/3.1.1/Drivers/CMSIS/Device/ST/STM32H7xx/Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32H750xx -D_RTE_-o ./objects/delay.o -MD)
@@ -55,7 +55,7 @@ I (..\..\My_Libraries\GPIO_setup.h)(0x675943EB)
 I (..\..\My_Libraries\Core_init.h)(0x6763E5D1)
 I (..\..\My_Libraries\SPI.h)(0x67E13EBF)
 I (..\..\My_Libraries\DMA.h)(0x67E15DBA)
-I (..\Amur_750\main.h)(0x67E11449)
+I (..\Amur_750\main.h)(0x67E2BC4E)
 I (C:\Keil_v5\ARM\ARMCLANG\include\stdio.h)(0x63888F58)
 F (..\..\My_Libraries\Delay.h)(0x67599C10)()
 F (..\..\My_Libraries\Core_init.c)(0x6763F4E2)(-xc -std=c11 --target=arm-arm-none-eabi -mcpu=cortex-m7 -mfpu=fpv5-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O0 -ffunction-sections -Weverything -Wno-packed -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Amur_750 -I ../../My_Libraries -Wno-invalid-utf8 -Wno-gnu-binary-literal -Wno-padded-I./RTE/_Target_1-IC:/Users/Khilk/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IC:/Users/Khilk/AppData/Local/Arm/Packs/Keil/STM32H7xx_DFP/3.1.1/Drivers/CMSIS/Device/ST/STM32H7xx/Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32H750xx -D_RTE_-o ./objects/core_init.o -MD)
@@ -74,7 +74,7 @@ I (..\..\My_Libraries\Delay.h)(0x67599C10)
 I (..\..\My_Libraries\GPIO_setup.h)(0x675943EB)
 I (..\..\My_Libraries\SPI.h)(0x67E13EBF)
 I (..\..\My_Libraries\DMA.h)(0x67E15DBA)
-I (..\Amur_750\main.h)(0x67E11449)
+I (..\Amur_750\main.h)(0x67E2BC4E)
 I (C:\Keil_v5\ARM\ARMCLANG\include\stdio.h)(0x63888F58)
 F (..\..\My_Libraries\Core_init.h)(0x6763E5D1)()
 F (..\..\My_Libraries\SPI.c)(0x67E13EBF)(-xc -std=c11 --target=arm-arm-none-eabi -mcpu=cortex-m7 -mfpu=fpv5-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O0 -ffunction-sections -Weverything -Wno-packed -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Amur_750 -I ../../My_Libraries -Wno-invalid-utf8 -Wno-gnu-binary-literal -Wno-padded-I./RTE/_Target_1-IC:/Users/Khilk/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IC:/Users/Khilk/AppData/Local/Arm/Packs/Keil/STM32H7xx_DFP/3.1.1/Drivers/CMSIS/Device/ST/STM32H7xx/Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32H750xx -D_RTE_-o ./objects/spi.o -MD)
@@ -93,7 +93,7 @@ I (..\..\My_Libraries\Delay.h)(0x67599C10)
 I (..\..\My_Libraries\GPIO_setup.h)(0x675943EB)
 I (..\..\My_Libraries\Core_init.h)(0x6763E5D1)
 I (..\..\My_Libraries\DMA.h)(0x67E15DBA)
-I (..\Amur_750\main.h)(0x67E11449)
+I (..\Amur_750\main.h)(0x67E2BC4E)
 I (C:\Keil_v5\ARM\ARMCLANG\include\stdio.h)(0x63888F58)
 F (..\..\My_Libraries\SPI.h)(0x67E13EBF)()
 F (..\..\My_Libraries\DMA.c)(0x67E15DBA)(-xc -std=c11 --target=arm-arm-none-eabi -mcpu=cortex-m7 -mfpu=fpv5-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O0 -ffunction-sections -Weverything -Wno-packed -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Amur_750 -I ../../My_Libraries -Wno-invalid-utf8 -Wno-gnu-binary-literal -Wno-padded-I./RTE/_Target_1-IC:/Users/Khilk/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IC:/Users/Khilk/AppData/Local/Arm/Packs/Keil/STM32H7xx_DFP/3.1.1/Drivers/CMSIS/Device/ST/STM32H7xx/Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32H750xx -D_RTE_-o ./objects/dma.o -MD)
@@ -112,7 +112,7 @@ I (..\..\My_Libraries\Delay.h)(0x67599C10)
 I (..\..\My_Libraries\GPIO_setup.h)(0x675943EB)
 I (..\..\My_Libraries\Core_init.h)(0x6763E5D1)
 I (..\..\My_Libraries\SPI.h)(0x67E13EBF)
-I (..\Amur_750\main.h)(0x67E11449)
+I (..\Amur_750\main.h)(0x67E2BC4E)
 I (C:\Keil_v5\ARM\ARMCLANG\include\stdio.h)(0x63888F58)
 F (..\..\My_Libraries\DMA.h)(0x67E15DBA)()
 F (RTE/Device/STM32H750VBTx/startup_stm32h750xx.s)(0x6756DA31)(--target=arm-arm-none-eabi -mcpu=cortex-m7 -mfpu=fpv5-d16 -mfloat-abi=hard -masm=auto  -Wa,armasm,--diag_suppress=A1950W -c-gdwarf-4 -I ../Amur_750 -I ../../My_Libraries-I./RTE/_Target_1-IC:/Users/Khilk/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IC:/Users/Khilk/AppData/Local/Arm/Packs/Keil/STM32H7xx_DFP/3.1.1/Drivers/CMSIS/Device/ST/STM32H7xx/Include-Wa,armasm,--pd,"__UVISION_VERSION SETA 538" -Wa,armasm,--pd,"_RTE_ SETA 1" -Wa,armasm,--pd,"STM32H750xx SETA 1" -Wa,armasm,--pd,"_RTE_ SETA 1"-o ./objects/startup_stm32h750xx.o)
