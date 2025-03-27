@@ -6,7 +6,7 @@
 #include "main.h"
 
 
-#define res 16
+
 
 #define SPI1_CS_ON GPIOA->BSRR = 1<<6
 #define SPI1_CS_OFF GPIOA->BSRR = 1<<(6+16)

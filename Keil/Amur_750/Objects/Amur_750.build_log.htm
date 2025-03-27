@@ -22,25 +22,23 @@ Dialog DLL:      TCM.DLL V1.56.4.0
  
 <h2>Project:</h2>
 E:\STM32\Project\Git_STM32\Keil\Amur_750\Amur_750.uvprojx
-Project File Date:  02/11/2025
+Project File Date:  03/27/2025
 
 <h2>Output:</h2>
 *** Using Compiler 'V6.19', folder: 'C:\Keil_v5\ARM\ARMCLANG\Bin'
 Build target 'Target 1'
-compiling DMA.c...
-compiling Delay.c...
-compiling Core_init.c...
-compiling GPIO_setup.c...
-compiling SPI.c...
+main.c(189): warning: variable 'temp' set but not used [-Wunused-but-set-variable]
+        uint32_t temp=0;
+                 ^
 main.c(4): warning: unused variable 'SPI2_temp' [-Wunused-variable]
 static uint16_t SPI2_temp=0;
                 ^
-1 warning generated.
+2 warnings generated.
 compiling main.c...
 linking...
-Program Size: Code=4404 RO-data=680 RW-data=20 ZI-data=1696  
+Program Size: Code=5032 RO-data=680 RW-data=20 ZI-data=1696  
 FromELF: creating hex file...
-".\Objects\Amur_750.axf" - 0 Error(s), 1 Warning(s).
+".\Objects\Amur_750.axf" - 0 Error(s), 2 Warning(s).
 
 <h2>Software Packages used:</h2>
 

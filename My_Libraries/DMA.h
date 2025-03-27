@@ -87,6 +87,7 @@ extern struct DMA_STM_F4_init_param DMA_STM_F4;
 #ifdef STM32H7
 
 void DMA_H7_init(void);
+void DMA1_Stream0_IRQHandler(void);
 
 struct DMA_H7_init
 	
@@ -107,9 +108,9 @@ struct DMA_H7_init
 //DMA_H7.DMA_Data_transfer_direction = ; //направление передачи DMA: 0-Peripheral-to-memory, 1-Memory-to-peripheral, 2-Memory-to-memory, 3-Reserved
 //DMA_H7.DMA_Memory_inc = ;//инкремент памяти: 0-выкл, 1-включен
 //DMA_H7.DMA_Peripheral_inc = ; //инкремент перефирии: 0-выкл, 1-включен
-//DMA_H7.DMA_Circular_mode =; //циклический режим: 0-выключен, 1-включен
-
-//DMA_STM_F4.DMA_Interrupt =  ;// прерывание из stm32f411xe.h, например - DMA2_Stream0_IRQn
+//DMA_H7.DMA_Circular_mode = ; //циклический режим: 0-выключен, 1-включен
+//DMA_H7.DMA_Transfer_complete_interrupt= ; //Прерывание после завершения передачи: 0-выключен, 1-включен	
+//DMA_H7.DMA_Interrupt =  ;// прерывание из stm32f411xe.h, например - DMA2_Stream0_IRQn
 //DMA_H7_init();//Запуск ДМА с заданными параметрами
 //
 //---------------------------------------------------	
@@ -117,7 +118,7 @@ struct DMA_H7_init
 {
 DMA_TypeDef * DMA_Number; //выбор ДМА напр. - DMA2
 DMA_Stream_TypeDef * DMA_Stream;//выбор потока ДМА напр. -  DMA2_Stream0
-volatile uint32_t *DMA_Peripheral_address;	//адрес перефирии
+volatile uint32_t *DMA_Peripheral_address;	//адрес перефирии, например &USART2->DR;
 uint32_t *DMA_Memory_address;//адрес памяти
 uint32_t DMA_Quantity;//количество данный передаваемых в ДМА
 uint8_t DMA_Request_source;//выбор источника тактирования DMAMUX для канала ДМА
@@ -129,6 +130,7 @@ _Bool DMA_Peripheral_inc;////инкремент перефирии DMA_Inc_ON-включить, DMA_Inc_OF
 uint8_t DMA_Memory_data_size;//размер потока памяти: DMA_8_bit, DMA_16_bit, DMA_32_bit
 uint8_t DMA_Peripheral_data_size;//размер потока перифирии: DMA_8_bit, DMA_16_bit, DMA_32_bit
 	_Bool DMA_Circular_mode;//кольцевой режим:  Circular_mode_disabled, Circular_mode_enabled
+_Bool DMA_Transfer_complete_interrupt; //Прерывание после завершения передачи	
 uint8_t DMA_Interrupt;	 //из stm32f411xe.h, например - DMA2_Stream0_IRQn
 };
 

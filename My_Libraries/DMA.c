@@ -251,12 +251,33 @@ DMA_H7.DMA_Stream->CR |=(uint32_t)DMA_H7.DMA_Peripheral_inc<<DMA_SxCR_PINC_Pos; 
 DMA_H7.DMA_Stream->CR &=~DMA_SxCR_CIRC_Msk;
 DMA_H7.DMA_Stream->CR |=(uint32_t)DMA_H7.DMA_Circular_mode<<DMA_SxCR_CIRC_Pos; //циклический режим: 0-выключен, 1-включен
 
+if (DMA_H7.DMA_Transfer_complete_interrupt) 
+{	DMA_H7.DMA_Stream->CR |=DMA_SxCR_TCIE;
+	if (DMA_H7.DMA_Interrupt<32) NVIC->ISER[0]=( 1UL<<DMA_H7.DMA_Interrupt);
+	if (DMA_H7.DMA_Interrupt>=32 && DMA_H7.DMA_Interrupt<64) NVIC->ISER[1]=( 1UL<<(DMA_H7.DMA_Interrupt-32));
+	if (DMA_H7.DMA_Interrupt>=64 && DMA_H7.DMA_Interrupt<96) NVIC->ISER[2]=( 1UL<<(DMA_H7.DMA_Interrupt-64));
+}
+
 
 DMA_H7.DMA_Stream->CR |=DMA_SxCR_EN; //включение DMA
 	
 }
 
 
+//===============================================
+#ifdef DMA1_Stream0_IRQHandler_define
+void DMA1_Stream0_IRQHandler(void)
+{
+	if (DMA1->LISR & DMA_LISR_TCIF0)
+		{
+			DMA1->LIFCR |= DMA_LIFCR_CTCIF0;
+			if (!(DMA1_Stream0->CR & DMA_SxCR_CIRC)) 
+			DMA1_Stream0->CR &= ~(DMA_SxCR_EN);
+			DMA1_Stream0_IRQHandler_User();
+		}
+}	
+#endif
+//===================================================
 
 
 
