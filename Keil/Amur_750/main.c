@@ -186,7 +186,7 @@ if (led_temp==0xfffff)
 
 void DMA1_Stream0_IRQHandler_User(void)
 {
-	//uint32_t temp=500;
+//	volatile uint32_t temp=1;
 //	GPIOE->BSRR|=1<<(1+res);
 //	if (GPIOE->IDR & 1<<2)	GPIOE->BSRR=1<<(2+16); else GPIOE->BSRR=1<<(2);
 	if (GPIOB->IDR & 1<<12)	GPIOB->BSRR=1<<(12+16); else GPIOB->BSRR=1<<(12);
@@ -198,7 +198,7 @@ if (temp1==0xfff)
 	}	
 //delay_us(1);
 //GPIOB->BSRR=1<<(12);
-//	while (temp) temp--;
+	//while (temp) temp--;
 //GPIOB->BSRR=1<<(12+16);
 //	temp=500;
 //	while (temp) temp--;
