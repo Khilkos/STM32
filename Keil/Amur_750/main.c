@@ -1,7 +1,7 @@
 #include "main.h"
 #define SRAM2_start_adress ((uint32_t*)0x30020000)
 static uint32_t led_temp=0;
-static uint16_t SPI2_temp=0;
+static uint32_t temp1=0;
 
 uint32_t send_buf_SPI1[3] __attribute__((section(".ARM.__at_0x30020000")));
 uint32_t send_buf_SPI2[2] __attribute__((section(".ARM.__at_0x30020000")));
@@ -173,7 +173,7 @@ GPIOE->BSRR|=1<<(1);
 				SPI1->CR1 |= SPI_CR1_SPE;
 				SPI1->CR1 |= (SPI_CR1_CSTART);
 			}	
-
+//delay_us(100);
 led_temp++;
 if (led_temp==0xfffff)
 	{	
@@ -186,16 +186,22 @@ if (led_temp==0xfffff)
 
 void DMA1_Stream0_IRQHandler_User(void)
 {
-	uint32_t temp=0;
-	GPIOE->BSRR|=1<<(1+res);
+	//uint32_t temp=500;
+//	GPIOE->BSRR|=1<<(1+res);
 //	if (GPIOE->IDR & 1<<2)	GPIOE->BSRR=1<<(2+16); else GPIOE->BSRR=1<<(2);
 	if (GPIOB->IDR & 1<<12)	GPIOB->BSRR=1<<(12+16); else GPIOB->BSRR=1<<(12);
-	//delay_us(1);
-//	while (temp<=10) temp++;
-	temp=0;
-	__NOP();
-		__NOP();
-		__NOP();
+	temp1++;
+if (temp1==0xfff)
+	{	
+		temp1=0;
+		if (GPIOE->IDR & 1<<1)	GPIOE->BSRR=1<<(1+16); else GPIOE->BSRR=1<<(1);
+	}	
+//delay_us(1);
+//GPIOB->BSRR=1<<(12);
+//	while (temp) temp--;
+//GPIOB->BSRR=1<<(12+16);
+//	temp=500;
+//	while (temp) temp--;
 	
 		
 }	
