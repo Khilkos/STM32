@@ -12,6 +12,7 @@
 #include "Core_init.h"
 #include "SPI.h"
 #include "DMA.h"
+#include "Timer.h"
 
 
 

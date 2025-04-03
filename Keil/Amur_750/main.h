@@ -10,18 +10,3 @@ extern uint32_t send_buf_SPI1[3];
 extern uint32_t send_buf_SPI2[2];
 
 
-/*
-
-#include "Board.h"
-#include "GPIO_setup.h"
-
-
-#include "Timer_F4.h"
-#include "Font_table.h"
-#include "Nokia_5110_LCD.h"
-
-#include "ADC.h"
-#include "DMA.h"
-#include "Game.h"
-
-*/

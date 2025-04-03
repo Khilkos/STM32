@@ -11,4 +11,4 @@
   C:\Users\Khilk\AppData\Local\Arm\Packs\Keil\STM32H7xx_DFP\3.1.1\Drivers\CMSIS\Device\ST\STM32H7xx\Include\system_stm32h7xx.h \
   ..\..\My_Libraries\Delay.h ..\..\My_Libraries\GPIO_setup.h \
   ..\..\My_Libraries\Core_init.h ..\..\My_Libraries\SPI.h \
-  ..\..\My_Libraries\DMA.h
+  ..\..\My_Libraries\DMA.h ..\..\My_Libraries\Timer.h

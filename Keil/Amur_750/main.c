@@ -1,6 +1,6 @@
 #include "main.h"
 #define SRAM2_start_adress ((uint32_t*)0x30020000)
-static uint32_t led_temp=0;
+volatile static uint32_t led_temp=0;
 static uint32_t temp1=0;
 
 uint32_t send_buf_SPI1[3] __attribute__((section(".ARM.__at_0x30020000")));
@@ -24,7 +24,8 @@ send_buf_SPI2[1]=0x0cffff0c;
 		
 GPIO_DO_setup(GPIOE,0,High);
 GPIO_DO_setup(GPIOE,1,High);
-GPIO_DO_setup(GPIOE,2,High);		
+GPIO_DO_setup(GPIOE,2,High);
+GPIO_DO_setup(GPIOB,2,High);		
 		
 GPIO_Alternate(GPIOA,7,Push_pull,High,Pull_down,AF5);// SPI1 MOSI
 GPIO_Alternate(GPIOA,5,Push_pull,High,Pull_down,AF5);// SPI1 CLK
@@ -37,6 +38,7 @@ GPIO_DO_setup(GPIOB,12,High);
 		
 SysTick_H7_Init(456);	
 Core_STM32_H7_init(1,114,2,19,2);
+Timer1_H7_init(228000000,1000);
 		
 //-----------------------------------------------
 //----------инициализация SPI--------------------
@@ -146,7 +148,7 @@ SPI2->CR1 |= (SPI_CR1_SSI);
 SPI2->CR1 |= (SPI_CR1_CSTART);
 SPI1->CR1 |= (SPI_CR1_CSTART);			
 
-GPIOE->BSRR|=1<<(1);
+//GPIOB->BSRR|=1<<(2);
 
 		while (1)
 	{
@@ -181,14 +183,21 @@ if (led_temp==0xfffff)
 		if (GPIOE->IDR & 1<<0)	GPIOE->BSRR=1<<(0+16); else GPIOE->BSRR=1<<(0);
 	}	
 
+if (!TIM1_Delay_1) 
+	{
+			if (GPIOB->IDR & 1<<2)	GPIOB->BSRR=1<<(2+16); else GPIOB->BSRR=1<<(2);
+			TIM1_Delay_1=500;
+	}
+	
+	
+	
 }
 }
 
+//-------------------------------------
 void DMA1_Stream0_IRQHandler_User(void)
 {
-//	volatile uint32_t temp=1;
-//	GPIOE->BSRR|=1<<(1+res);
-//	if (GPIOE->IDR & 1<<2)	GPIOE->BSRR=1<<(2+16); else GPIOE->BSRR=1<<(2);
+//	volatile uint32_t temp=500;
 	if (GPIOB->IDR & 1<<12)	GPIOB->BSRR=1<<(12+16); else GPIOB->BSRR=1<<(12);
 	temp1++;
 if (temp1==0xfff)
@@ -198,10 +207,8 @@ if (temp1==0xfff)
 	}	
 //delay_us(1);
 //GPIOB->BSRR=1<<(12);
-	//while (temp) temp--;
-//GPIOB->BSRR=1<<(12+16);
-//	temp=500;
 //	while (temp) temp--;
+//GPIOB->BSRR=1<<(12+16);
 	
 		
 }	

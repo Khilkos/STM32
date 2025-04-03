@@ -274,8 +274,8 @@ void DMA1_Stream0_IRQHandler(void)
 			if (!(DMA1_Stream0->CR & DMA_SxCR_CIRC)) 
 			DMA1_Stream0->CR &= ~(DMA_SxCR_EN);
 			DMA1_Stream0_IRQHandler_User();
-			DMA1->LIFCR |= DMA_LIFCR_CTCIF0;
 		}
+	DMA1->LIFCR |= DMA_LIFCR_CTCIF0;	
 }	
 #endif
 //===================================================
