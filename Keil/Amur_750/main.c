@@ -148,7 +148,6 @@ SPI2->CR1 |= (SPI_CR1_SSI);
 SPI2->CR1 |= (SPI_CR1_CSTART);
 SPI1->CR1 |= (SPI_CR1_CSTART);			
 
-//GPIOB->BSRR|=1<<(2);
 
 		while (1)
 	{
@@ -176,19 +175,20 @@ SPI1->CR1 |= (SPI_CR1_CSTART);
 				SPI1->CR1 |= (SPI_CR1_CSTART);
 			}	
 //delay_us(100);
-led_temp++;
-if (led_temp==0xfffff)
+
+if (!led_temp)
 	{	
-		led_temp=0;
+		led_temp=0xfffff;
 		if (GPIOE->IDR & 1<<0)	GPIOE->BSRR=1<<(0+16); else GPIOE->BSRR=1<<(0);
 	}	
-
+led_temp--;
+	
 if (!TIM1_Delay_1) 
 	{
 			if (GPIOB->IDR & 1<<2)	GPIOB->BSRR=1<<(2+16); else GPIOB->BSRR=1<<(2);
 			TIM1_Delay_1=500;
 	}
-	
+if (GPIOE->IDR & 1<<2)	GPIOE->BSRR=1<<(2+16); else GPIOE->BSRR=1<<(2);	
 	
 	
 }
@@ -197,7 +197,6 @@ if (!TIM1_Delay_1)
 //-------------------------------------
 void DMA1_Stream0_IRQHandler_User(void)
 {
-//	volatile uint32_t temp=500;
 	if (GPIOB->IDR & 1<<12)	GPIOB->BSRR=1<<(12+16); else GPIOB->BSRR=1<<(12);
 	temp1++;
 if (temp1==0xfff)
@@ -205,10 +204,4 @@ if (temp1==0xfff)
 		temp1=0;
 		if (GPIOE->IDR & 1<<1)	GPIOE->BSRR=1<<(1+16); else GPIOE->BSRR=1<<(1);
 	}	
-//delay_us(1);
-//GPIOB->BSRR=1<<(12);
-//	while (temp) temp--;
-//GPIOB->BSRR=1<<(12+16);
-	
-		
 }	
