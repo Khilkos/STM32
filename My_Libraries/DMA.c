@@ -270,15 +270,13 @@ void DMA1_Stream0_IRQHandler(void)
 {
 	if (DMA1->LISR & DMA_LISR_TCIF0)
 		{
-	//	DMA1->LIFCR |= DMA_LIFCR_CTCIF0;
-	//	while (DMA1->LISR & DMA_LISR_TCIF0) __NOP();
+			NVIC->ICPR[0] |=1<<11;
+			DMA1->LIFCR |= DMA_LIFCR_CTCIF0;
+		while (DMA1->LISR & DMA_LISR_TCIF0) __NOP();
 			if (!(DMA1_Stream0->CR & DMA_SxCR_CIRC)) 
 			DMA1_Stream0->CR &= ~(DMA_SxCR_EN);
 			DMA1_Stream0_IRQHandler_User();
-			DMA1->LIFCR |= DMA_LIFCR_CTCIF0;
-			while (DMA1->LISR & DMA_LISR_TCIF0) __NOP();
-		//	NVIC->ICPR[0] |=1<<11;
-			//while (NVIC->ICPR[0] & 1<<11) __NOP();
+			NVIC->IABR[0]|=1<<11;
 		}
 }	
 #endif

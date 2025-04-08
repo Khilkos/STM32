@@ -149,6 +149,7 @@ SPI2->CR1 |= (SPI_CR1_SSI);
 SPI2->CR1 |= (SPI_CR1_CSTART);
 SPI1->CR1 |= (SPI_CR1_CSTART);			
 
+NVIC->IP[11]=3<<4;
 
 		while (1)
 	{
@@ -198,8 +199,8 @@ if (!TIM1_Delay_1)
 //-------------------------------------
 void DMA1_Stream0_IRQHandler_User(void)
 {
-	GPIOE->BSRR=1<<(2+res);
-	GPIOE->BSRR=1<<3;
+	GPIOE->BSRR=1<<(2);
+	GPIOE->BSRR=1<<(3);
 	if (GPIOB->IDR & 1<<12)	GPIOB->BSRR=1<<(12+16); else GPIOB->BSRR=1<<(12);
 	temp1++;
 if (temp1==0xfff)
@@ -208,5 +209,5 @@ if (temp1==0xfff)
 		if (GPIOE->IDR & 1<<1)	GPIOE->BSRR=1<<(1+16); else GPIOE->BSRR=1<<(1);
 	}
 	GPIOE->BSRR=1<<(3+res);
-	
+	GPIOE->BSRR=1<<(2+res);
 }	

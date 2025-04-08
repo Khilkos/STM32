@@ -84,14 +84,14 @@ RCC->APB2ENR |=RCC_APB2ENR_TIM1EN; //enable clock for Timer 1
 	TIM1->PSC =(CPU_AHB_Hz_frequency/(256*Timer_frequency_Hz)-1);
 	TIM1->ARR = 0xFF;
 	NVIC->ISER[0] |=1<<25; //enable timer1 update interrupt for NVIC
-	//TIM1->CR1 |=TIM_CR1_URS;
-	TIM1->CR1 |=TIM_CR1_CEN;// | TIM_CR1_URS;
+	NVIC->IP[25]=8<<4;
+	TIM1->CR1 |=TIM_CR1_CEN;// 
 }
 //----------------------------------------
 void TIM1_UP_IRQHandler (void)
 {
 	if (TIM1->SR&TIM_SR_UIF) 
-	{		
+	{	NVIC->ICPR[0] |=1<<25;	
 		TIM1->SR &= ~TIM_SR_UIF;	
 		if (TIM1_Delay_1>0) TIM1_Delay_1--; else TIM1_Delay_1=0;
 		if (TIM1_Delay_2>0) TIM1_Delay_2--; else TIM1_Delay_2=0;
@@ -104,7 +104,8 @@ void TIM1_UP_IRQHandler (void)
 		if (TIM1_Delay_9>0) TIM1_Delay_9--; else TIM1_Delay_9=0;
 		if (TIM1_Delay_10>0) TIM1_Delay_10--; else TIM1_Delay_10=0;
 	}
-TIM1->SR &= ~TIM_SR_UIF;	 
+	NVIC->IABR[0]|=1<<25;
+//TIM1->SR &= ~TIM_SR_UIF;	 
 }
 //-----------------------------------------
 
