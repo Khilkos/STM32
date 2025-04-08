@@ -852,18 +852,18 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   Object Name
 
-       196         20          0          0          0       3604   core_init.o
-        56         12          0          0          4       3180   delay.o
-       868         84          0          0         32       4402   dma.o
-       128          0          0          0          0       1958   gpio_setup.o
-       866         96          0         20          8       6852   main.o
-       420         16          0          0         20       3414   spi.o
+       196         20          0          0          0       3601   core_init.o
+        56         12          0          0          4       3178   delay.o
+       868         84          0          0         32       4400   dma.o
+       128          0          0          0          0       1955   gpio_setup.o
+       866         96          0         20          8       6849   main.o
+       420         16          0          0         20       3411   spi.o
         64         26        664          0       1536        896   startup_stm32h750xx.o
-       176         40          0          0          0       6010   system_stm32h7xx.o
-       208         20          0          0         40       4041   timer.o
+       176         40          0          0          0       6008   system_stm32h7xx.o
+       208         20          0          0         40       4039   timer.o
 
     ----------------------------------------------------------------------
-      2984        314        680         20       1640      34357   Object Totals
+      2984        314        680         20       1640      34337   Object Totals
          0          0         16          0          0          0   (incl. Generated)
          2          0          0          0          0          0   (incl. Padding)
 
@@ -913,8 +913,8 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   
 
-      3268        330        680         20       1736      34693   Grand Totals
-      3268        330        680         20       1736      34693   ELF Image Totals
+      3268        330        680         20       1736      34673   Grand Totals
+      3268        330        680         20       1736      34673   ELF Image Totals
       3268        330        680         20          0          0   ROM Totals
 
 ==============================================================================
