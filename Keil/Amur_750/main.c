@@ -25,6 +25,7 @@ send_buf_SPI2[1]=0x0cffff0c;
 GPIO_DO_setup(GPIOE,0,High);
 GPIO_DO_setup(GPIOE,1,High);
 GPIO_DO_setup(GPIOE,2,High);
+GPIO_DO_setup(GPIOE,3,High);		
 GPIO_DO_setup(GPIOB,2,High);		
 		
 GPIO_Alternate(GPIOA,7,Push_pull,High,Pull_down,AF5);// SPI1 MOSI
@@ -188,7 +189,7 @@ if (!TIM1_Delay_1)
 			if (GPIOB->IDR & 1<<2)	GPIOB->BSRR=1<<(2+16); else GPIOB->BSRR=1<<(2);
 			TIM1_Delay_1=500;
 	}
-if (GPIOE->IDR & 1<<2)	GPIOE->BSRR=1<<(2+16); else GPIOE->BSRR=1<<(2);	
+//if (GPIOE->IDR & 1<<2)	GPIOE->BSRR=1<<(2+16); else GPIOE->BSRR=1<<(2);	
 	
 	
 }
@@ -197,11 +198,15 @@ if (GPIOE->IDR & 1<<2)	GPIOE->BSRR=1<<(2+16); else GPIOE->BSRR=1<<(2);
 //-------------------------------------
 void DMA1_Stream0_IRQHandler_User(void)
 {
+	GPIOE->BSRR=1<<(2+res);
+	GPIOE->BSRR=1<<3;
 	if (GPIOB->IDR & 1<<12)	GPIOB->BSRR=1<<(12+16); else GPIOB->BSRR=1<<(12);
 	temp1++;
 if (temp1==0xfff)
 	{	
 		temp1=0;
 		if (GPIOE->IDR & 1<<1)	GPIOE->BSRR=1<<(1+16); else GPIOE->BSRR=1<<(1);
-	}	
+	}
+	GPIOE->BSRR=1<<(3+res);
+	
 }	
