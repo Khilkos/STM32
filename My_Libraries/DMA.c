@@ -258,6 +258,11 @@ if (DMA_H7.DMA_Transfer_complete_interrupt)
 	if (DMA_H7.DMA_Interrupt>=64 && DMA_H7.DMA_Interrupt<96) NVIC->ISER[2]=( 1UL<<(DMA_H7.DMA_Interrupt-64));
 }
 
+if (DMA_H7.DMA_Transfer_complete_interrupt)
+{	if(DMA_H7.DMA_Interrupt_Priority>15) DMA_H7.DMA_Interrupt_Priority=15;
+	NVIC->IP[DMA_H7.DMA_Interrupt]=DMA_H7.DMA_Interrupt_Priority*16; // приоритет прерывани€ (свиг на 4 влево)
+}
+
 
 DMA_H7.DMA_Stream->CR |=DMA_SxCR_EN; //включение DMA
 	
@@ -270,13 +275,13 @@ void DMA1_Stream0_IRQHandler(void)
 {
 	if (DMA1->LISR & DMA_LISR_TCIF0)
 		{
-			NVIC->ICPR[0] |=1<<11;
+	//		NVIC->ICPR[0] |=1<<DMA1_Stream0_IRQn;
 			DMA1->LIFCR |= DMA_LIFCR_CTCIF0;
 		while (DMA1->LISR & DMA_LISR_TCIF0) __NOP();
 			if (!(DMA1_Stream0->CR & DMA_SxCR_CIRC)) 
 			DMA1_Stream0->CR &= ~(DMA_SxCR_EN);
 			DMA1_Stream0_IRQHandler_User();
-			NVIC->IABR[0]|=1<<11;
+		//	NVIC->IABR[0]|=1<<DMA1_Stream0_IRQn;
 		}
 }	
 #endif

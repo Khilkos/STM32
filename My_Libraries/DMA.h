@@ -111,6 +111,8 @@ struct DMA_H7_init
 //DMA_H7.DMA_Circular_mode = ; //циклический режим: 0-выключен, 1-включен
 //DMA_H7.DMA_Transfer_complete_interrupt= ; //Прерывание после завершения передачи: 0-выключен, 1-включен	
 //DMA_H7.DMA_Interrupt =  ;// прерывание из stm32f411xe.h, например - DMA2_Stream0_IRQn
+//DMA_H7.DMA_Interrupt_Priority = ; //приоритет прерывания
+
 //DMA_H7_init();//Запуск ДМА с заданными параметрами
 //
 //---------------------------------------------------	
@@ -132,6 +134,7 @@ uint8_t DMA_Peripheral_data_size;//размер потока перифирии: DMA_8_bit, DMA_16_bi
 	_Bool DMA_Circular_mode;//кольцевой режим:  Circular_mode_disabled, Circular_mode_enabled
 _Bool DMA_Transfer_complete_interrupt; //Прерывание после завершения передачи	
 uint8_t DMA_Interrupt;	 //из stm32f411xe.h, например - DMA2_Stream0_IRQn
+uint8_t DMA_Interrupt_Priority; //приоритет прерывания DMA, от 0 до 15 (0 самый высокий приоритет)
 };
 
 extern struct DMA_H7_init DMA_H7;

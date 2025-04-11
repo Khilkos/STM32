@@ -91,7 +91,7 @@ RCC->APB2ENR |=RCC_APB2ENR_TIM1EN; //enable clock for Timer 1
 void TIM1_UP_IRQHandler (void)
 {
 	if (TIM1->SR&TIM_SR_UIF) 
-	{	NVIC->ICPR[0] |=1<<25;	
+	{	//NVIC->ICPR[0] |=1<<25;	
 		TIM1->SR &= ~TIM_SR_UIF;	
 		if (TIM1_Delay_1>0) TIM1_Delay_1--; else TIM1_Delay_1=0;
 		if (TIM1_Delay_2>0) TIM1_Delay_2--; else TIM1_Delay_2=0;
@@ -104,8 +104,7 @@ void TIM1_UP_IRQHandler (void)
 		if (TIM1_Delay_9>0) TIM1_Delay_9--; else TIM1_Delay_9=0;
 		if (TIM1_Delay_10>0) TIM1_Delay_10--; else TIM1_Delay_10=0;
 	}
-	NVIC->IABR[0]|=1<<25;
-//TIM1->SR &= ~TIM_SR_UIF;	 
+//	NVIC->IABR[0]|=1<<25;
 }
 //-----------------------------------------
 

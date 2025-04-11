@@ -37,9 +37,9 @@ GPIO_Alternate(GPIOB,10,Push_pull,High,Pull_down,AF5);// SPI2 CLK
 //GPIO_Alternate(GPIOB,12,Push_pull,High,Pull_up,AF5);// SPI2 NSS
 GPIO_DO_setup(GPIOB,12,High);
 		
-SysTick_H7_Init(456);	
-Core_STM32_H7_init(1,114,2,19,2);
-Timer1_H7_init(228000000,1000);
+SysTick_H7_Init(408);	
+Core_STM32_H7_init(1,102,2,17,2);//1,114,2,19,2
+Timer1_H7_init(204000000,1000);
 		
 //-----------------------------------------------
 //----------инициализация SPI--------------------
@@ -87,6 +87,7 @@ DMA_H7.DMA_Peripheral_inc = 0; //инкремент перефирии: 0-выкл, 1-включен
 DMA_H7.DMA_Circular_mode =0; //циклический режим: 0-выключен, 1-включен
 DMA_H7.DMA_Transfer_complete_interrupt=1; //Прерывание после завершения передачи: 0-выключен, 1-включен	
 DMA_H7.DMA_Interrupt = DMA1_Stream0_IRQn; // прерывание из stm32f411xe.h, например - DMA2_Stream0_IRQn
+DMA_H7.DMA_Interrupt_Priority = 4; //приоритет прерывания
 
 DMA_H7_init();//Запуск ДМА с заданными параметрами
 //
@@ -149,7 +150,6 @@ SPI2->CR1 |= (SPI_CR1_SSI);
 SPI2->CR1 |= (SPI_CR1_CSTART);
 SPI1->CR1 |= (SPI_CR1_CSTART);			
 
-NVIC->IP[11]=3<<4;
 
 		while (1)
 	{
@@ -200,7 +200,7 @@ if (!TIM1_Delay_1)
 void DMA1_Stream0_IRQHandler_User(void)
 {
 	GPIOE->BSRR=1<<(2);
-	GPIOE->BSRR=1<<(3);
+	GPIOE->BSRR=1<<(3+res);
 	if (GPIOB->IDR & 1<<12)	GPIOB->BSRR=1<<(12+16); else GPIOB->BSRR=1<<(12);
 	temp1++;
 if (temp1==0xfff)
@@ -208,6 +208,7 @@ if (temp1==0xfff)
 		temp1=0;
 		if (GPIOE->IDR & 1<<1)	GPIOE->BSRR=1<<(1+16); else GPIOE->BSRR=1<<(1);
 	}
-	GPIOE->BSRR=1<<(3+res);
+//	delay_us(10);
+	GPIOE->BSRR=1<<(3);
 	GPIOE->BSRR=1<<(2+res);
 }	
