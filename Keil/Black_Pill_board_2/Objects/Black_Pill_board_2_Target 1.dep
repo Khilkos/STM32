@@ -1,10 +1,10 @@
 Dependencies for Project 'Black_Pill_board_2', Target 'Target 1': (DO NOT MODIFY !)
 CompilerVersion: 6190000::V6.19::ARMCLANG
-F (.\main.c)(0x67508F34)(-xc -std=c11 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__EVAL -gdwarf-4 -Oz -ffunction-sections -Weverything -Wno-packed -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../../My_Libraries -I ../Black_Pill_board_2 -Wno-invalid-utf8 -Wno-gnu-binary-literal -Wno-invalid-source-encoding -Wno-newline-eof-I./RTE/_Target_1-IC:/Users/dasha/AppData/Local/Arm/Packs/ARM/CMSIS/6.1.0/CMSIS/Core/Include-IC:/Users/dasha/AppData/Local/Arm/Packs/Keil/STM32F4xx_DFP/2.17.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32F411xE -D_RTE_-o ./objects/main.o -MD)
+F (.\main.c)(0x67FA6AB7)(-xc -std=c11 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__EVAL -gdwarf-4 -Oz -ffunction-sections -Weverything -Wno-packed -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../../My_Libraries -I ../Black_Pill_board_2 -Wno-invalid-utf8 -Wno-gnu-binary-literal -Wno-invalid-source-encoding -Wno-newline-eof-I./RTE/_Target_1-IC:/Users/dasha/AppData/Local/Arm/Packs/ARM/CMSIS/6.1.0/CMSIS/Core/Include-IC:/Users/dasha/AppData/Local/Arm/Packs/Keil/STM32F4xx_DFP/2.17.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32F411xE -D_RTE_-o ./objects/main.o -MD)
 I (..\Black_Pill_board_2\main.h)(0x673B7B88)
 I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x63888F58)
 I (C:\Keil_v5\ARM\ARMCLANG\include\stdio.h)(0x63888F58)
-I (..\Black_Pill_board_2\Config.h)(0x673B7B88)
+I (..\Black_Pill_board_2\Config.h)(0x67FA29BC)
 I (..\..\My_Libraries\One_Wire_F411.h)(0x66215B85)
 I (C:\Users\dasha\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f411xe.h)(0x6374903A)
 I (C:\Users\dasha\AppData\Local\Arm\Packs\ARM\CMSIS\6.1.0\CMSIS\Core\Include\core_cm4.h)(0x664C1ED8)
@@ -16,17 +16,17 @@ I (C:\Users\dasha\AppData\Local\Arm\Packs\ARM\CMSIS\6.1.0\CMSIS\Core\Include\m-p
 I (C:\Users\dasha\AppData\Local\Arm\Packs\ARM\CMSIS\6.1.0\CMSIS\Core\Include\m-profile\armv7m_mpu.h)(0x664C1ED8)
 I (C:\Users\dasha\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS\Device\ST\STM32F4xx\Include\system_stm32f4xx.h)(0x6374903A)
 I (..\..\My_Libraries\USART_F411.h)(0x6589D1AA)
-I (..\..\My_Libraries\Delay.h)(0x66215B85)
-I (..\..\My_Libraries\DMA.h)(0x668D7BD7)
-I (..\..\My_Libraries\Core_init.h)(0x66215B85)
+I (..\..\My_Libraries\Delay.h)(0x67659F92)
+I (..\..\My_Libraries\DMA.h)(0x67FA28ED)
+I (..\..\My_Libraries\Core_init.h)(0x67659F92)
 I (..\..\My_Libraries\Timer_F4.h)(0x66215B85)
-I (..\..\My_Libraries\GPIO_setup.h)(0x65257F34)
+I (..\..\My_Libraries\GPIO_setup.h)(0x67659F92)
 I (..\..\My_Libraries\I2C_F411.h)(0x65257F34)
 I (..\..\My_Libraries\1602_I2C.h)(0x6589D1AA)
 I (..\..\My_Libraries\Font_table.h)(0x65966ABC)
 I (..\Black_Pill_board_2\Board.h)(0x66216634)
 I (..\..\My_Libraries\DS18B20_F411.h)(0x66215B85)
-I (..\..\My_Libraries\SPI.h)(0x668D7BD7)
+I (..\..\My_Libraries\SPI.h)(0x67FA28ED)
 I (..\..\My_Libraries\Nokia_5110_LCD.h)(0x6635F1B5)
 I (..\..\My_Libraries\PROMLED.h)(0x67508E37)
 F (.\main.h)(0x673B7B88)()
@@ -42,9 +42,11 @@ I (C:\Keil_v5\ARM\ARMCLANG\include\arm_acle.h)(0x63888F58)
 I (C:\Users\dasha\AppData\Local\Arm\Packs\ARM\CMSIS\6.1.0\CMSIS\Core\Include\m-profile\cmsis_armclang_m.h)(0x664C1ED8)
 I (C:\Users\dasha\AppData\Local\Arm\Packs\ARM\CMSIS\6.1.0\CMSIS\Core\Include\m-profile\armv7m_mpu.h)(0x664C1ED8)
 I (C:\Users\dasha\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS\Device\ST\STM32F4xx\Include\system_stm32f4xx.h)(0x6374903A)
-F (.\Config.h)(0x673B7B88)()
-F (..\..\My_Libraries\Delay.c)(0x66425B4E)(-xc -std=c11 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__EVAL -gdwarf-4 -Oz -ffunction-sections -Weverything -Wno-packed -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../../My_Libraries -I ../Black_Pill_board_2 -Wno-invalid-utf8 -Wno-gnu-binary-literal -Wno-invalid-source-encoding -Wno-newline-eof-I./RTE/_Target_1-IC:/Users/dasha/AppData/Local/Arm/Packs/ARM/CMSIS/6.1.0/CMSIS/Core/Include-IC:/Users/dasha/AppData/Local/Arm/Packs/Keil/STM32F4xx_DFP/2.17.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32F411xE -D_RTE_-o ./objects/delay.o -MD)
-I (..\..\My_Libraries\Delay.h)(0x66215B85)
+F (.\Config.h)(0x67FA29BC)()
+F (..\..\My_Libraries\Delay.c)(0x67FA28ED)(-xc -std=c11 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__EVAL -gdwarf-4 -Oz -ffunction-sections -Weverything -Wno-packed -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../../My_Libraries -I ../Black_Pill_board_2 -Wno-invalid-utf8 -Wno-gnu-binary-literal -Wno-invalid-source-encoding -Wno-newline-eof-I./RTE/_Target_1-IC:/Users/dasha/AppData/Local/Arm/Packs/ARM/CMSIS/6.1.0/CMSIS/Core/Include-IC:/Users/dasha/AppData/Local/Arm/Packs/Keil/STM32F4xx_DFP/2.17.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32F411xE -D_RTE_-o ./objects/delay.o -MD)
+I (..\..\My_Libraries\Delay.h)(0x67659F92)
+I (..\Black_Pill_board_2\Config.h)(0x67FA29BC)
+I (..\..\My_Libraries\One_Wire_F411.h)(0x66215B85)
 I (C:\Users\dasha\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f411xe.h)(0x6374903A)
 I (C:\Users\dasha\AppData\Local\Arm\Packs\ARM\CMSIS\6.1.0\CMSIS\Core\Include\core_cm4.h)(0x664C1ED8)
 I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x63888F58)
@@ -55,8 +57,25 @@ I (C:\Keil_v5\ARM\ARMCLANG\include\arm_acle.h)(0x63888F58)
 I (C:\Users\dasha\AppData\Local\Arm\Packs\ARM\CMSIS\6.1.0\CMSIS\Core\Include\m-profile\cmsis_armclang_m.h)(0x664C1ED8)
 I (C:\Users\dasha\AppData\Local\Arm\Packs\ARM\CMSIS\6.1.0\CMSIS\Core\Include\m-profile\armv7m_mpu.h)(0x664C1ED8)
 I (C:\Users\dasha\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS\Device\ST\STM32F4xx\Include\system_stm32f4xx.h)(0x6374903A)
-F (..\..\My_Libraries\GPIO_setup.c)(0x65257F34)(-xc -std=c11 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__EVAL -gdwarf-4 -Oz -ffunction-sections -Weverything -Wno-packed -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../../My_Libraries -I ../Black_Pill_board_2 -Wno-invalid-utf8 -Wno-gnu-binary-literal -Wno-invalid-source-encoding -Wno-newline-eof-I./RTE/_Target_1-IC:/Users/dasha/AppData/Local/Arm/Packs/ARM/CMSIS/6.1.0/CMSIS/Core/Include-IC:/Users/dasha/AppData/Local/Arm/Packs/Keil/STM32F4xx_DFP/2.17.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32F411xE -D_RTE_-o ./objects/gpio_setup.o -MD)
-I (..\..\My_Libraries\GPIO_setup.h)(0x65257F34)
+I (..\..\My_Libraries\USART_F411.h)(0x6589D1AA)
+I (..\..\My_Libraries\DMA.h)(0x67FA28ED)
+I (..\Black_Pill_board_2\main.h)(0x673B7B88)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdio.h)(0x63888F58)
+I (..\..\My_Libraries\Core_init.h)(0x67659F92)
+I (..\..\My_Libraries\Timer_F4.h)(0x66215B85)
+I (..\..\My_Libraries\GPIO_setup.h)(0x67659F92)
+I (..\..\My_Libraries\I2C_F411.h)(0x65257F34)
+I (..\..\My_Libraries\1602_I2C.h)(0x6589D1AA)
+I (..\..\My_Libraries\Font_table.h)(0x65966ABC)
+I (..\Black_Pill_board_2\Board.h)(0x66216634)
+I (..\..\My_Libraries\DS18B20_F411.h)(0x66215B85)
+I (..\..\My_Libraries\SPI.h)(0x67FA28ED)
+I (..\..\My_Libraries\Nokia_5110_LCD.h)(0x6635F1B5)
+I (..\..\My_Libraries\PROMLED.h)(0x67508E37)
+F (..\..\My_Libraries\GPIO_setup.c)(0x677FF3A1)(-xc -std=c11 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__EVAL -gdwarf-4 -Oz -ffunction-sections -Weverything -Wno-packed -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../../My_Libraries -I ../Black_Pill_board_2 -Wno-invalid-utf8 -Wno-gnu-binary-literal -Wno-invalid-source-encoding -Wno-newline-eof-I./RTE/_Target_1-IC:/Users/dasha/AppData/Local/Arm/Packs/ARM/CMSIS/6.1.0/CMSIS/Core/Include-IC:/Users/dasha/AppData/Local/Arm/Packs/Keil/STM32F4xx_DFP/2.17.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32F411xE -D_RTE_-o ./objects/gpio_setup.o -MD)
+I (..\..\My_Libraries\GPIO_setup.h)(0x67659F92)
+I (..\Black_Pill_board_2\Config.h)(0x67FA29BC)
+I (..\..\My_Libraries\One_Wire_F411.h)(0x66215B85)
 I (C:\Users\dasha\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f411xe.h)(0x6374903A)
 I (C:\Users\dasha\AppData\Local\Arm\Packs\ARM\CMSIS\6.1.0\CMSIS\Core\Include\core_cm4.h)(0x664C1ED8)
 I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x63888F58)
@@ -67,6 +86,21 @@ I (C:\Keil_v5\ARM\ARMCLANG\include\arm_acle.h)(0x63888F58)
 I (C:\Users\dasha\AppData\Local\Arm\Packs\ARM\CMSIS\6.1.0\CMSIS\Core\Include\m-profile\cmsis_armclang_m.h)(0x664C1ED8)
 I (C:\Users\dasha\AppData\Local\Arm\Packs\ARM\CMSIS\6.1.0\CMSIS\Core\Include\m-profile\armv7m_mpu.h)(0x664C1ED8)
 I (C:\Users\dasha\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS\Device\ST\STM32F4xx\Include\system_stm32f4xx.h)(0x6374903A)
+I (..\..\My_Libraries\USART_F411.h)(0x6589D1AA)
+I (..\..\My_Libraries\Delay.h)(0x67659F92)
+I (..\..\My_Libraries\DMA.h)(0x67FA28ED)
+I (..\Black_Pill_board_2\main.h)(0x673B7B88)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdio.h)(0x63888F58)
+I (..\..\My_Libraries\Core_init.h)(0x67659F92)
+I (..\..\My_Libraries\Timer_F4.h)(0x66215B85)
+I (..\..\My_Libraries\I2C_F411.h)(0x65257F34)
+I (..\..\My_Libraries\1602_I2C.h)(0x6589D1AA)
+I (..\..\My_Libraries\Font_table.h)(0x65966ABC)
+I (..\Black_Pill_board_2\Board.h)(0x66216634)
+I (..\..\My_Libraries\DS18B20_F411.h)(0x66215B85)
+I (..\..\My_Libraries\SPI.h)(0x67FA28ED)
+I (..\..\My_Libraries\Nokia_5110_LCD.h)(0x6635F1B5)
+I (..\..\My_Libraries\PROMLED.h)(0x67508E37)
 F (..\..\My_Libraries\I2C_F411.c)(0x668D7BD7)(-xc -std=c11 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__EVAL -gdwarf-4 -Oz -ffunction-sections -Weverything -Wno-packed -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../../My_Libraries -I ../Black_Pill_board_2 -Wno-invalid-utf8 -Wno-gnu-binary-literal -Wno-invalid-source-encoding -Wno-newline-eof-I./RTE/_Target_1-IC:/Users/dasha/AppData/Local/Arm/Packs/ARM/CMSIS/6.1.0/CMSIS/Core/Include-IC:/Users/dasha/AppData/Local/Arm/Packs/Keil/STM32F4xx_DFP/2.17.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32F411xE -D_RTE_-o ./objects/i2c_f411.o -MD)
 I (..\..\My_Libraries\I2C_F411.h)(0x65257F34)
 I (C:\Users\dasha\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f411xe.h)(0x6374903A)
@@ -92,7 +126,22 @@ I (C:\Users\dasha\AppData\Local\Arm\Packs\ARM\CMSIS\6.1.0\CMSIS\Core\Include\m-p
 I (C:\Users\dasha\AppData\Local\Arm\Packs\ARM\CMSIS\6.1.0\CMSIS\Core\Include\m-profile\armv7m_mpu.h)(0x664C1ED8)
 I (C:\Users\dasha\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS\Device\ST\STM32F4xx\Include\system_stm32f4xx.h)(0x6374903A)
 I (..\..\My_Libraries\I2C_F411.h)(0x65257F34)
-I (..\..\My_Libraries\Delay.h)(0x66215B85)
+I (..\..\My_Libraries\Delay.h)(0x67659F92)
+I (..\Black_Pill_board_2\Config.h)(0x67FA29BC)
+I (..\..\My_Libraries\One_Wire_F411.h)(0x66215B85)
+I (..\..\My_Libraries\USART_F411.h)(0x6589D1AA)
+I (..\..\My_Libraries\DMA.h)(0x67FA28ED)
+I (..\Black_Pill_board_2\main.h)(0x673B7B88)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdio.h)(0x63888F58)
+I (..\..\My_Libraries\Core_init.h)(0x67659F92)
+I (..\..\My_Libraries\Timer_F4.h)(0x66215B85)
+I (..\..\My_Libraries\GPIO_setup.h)(0x67659F92)
+I (..\..\My_Libraries\Font_table.h)(0x65966ABC)
+I (..\Black_Pill_board_2\Board.h)(0x66216634)
+I (..\..\My_Libraries\DS18B20_F411.h)(0x66215B85)
+I (..\..\My_Libraries\SPI.h)(0x67FA28ED)
+I (..\..\My_Libraries\Nokia_5110_LCD.h)(0x6635F1B5)
+I (..\..\My_Libraries\PROMLED.h)(0x67508E37)
 F (..\..\My_Libraries\Font_table.c)(0x65966ABC)(-xc -std=c11 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__EVAL -gdwarf-4 -Oz -ffunction-sections -Weverything -Wno-packed -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../../My_Libraries -I ../Black_Pill_board_2 -Wno-invalid-utf8 -Wno-gnu-binary-literal -Wno-invalid-source-encoding -Wno-newline-eof-I./RTE/_Target_1-IC:/Users/dasha/AppData/Local/Arm/Packs/ARM/CMSIS/6.1.0/CMSIS/Core/Include-IC:/Users/dasha/AppData/Local/Arm/Packs/Keil/STM32F4xx_DFP/2.17.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32F411xE -D_RTE_-o ./objects/font_table.o -MD)
 I (..\..\My_Libraries\Font_table.h)(0x65966ABC)
 F (..\..\My_Libraries\DS18B20_F411.c)(0x66215B85)(-xc -std=c11 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__EVAL -gdwarf-4 -Oz -ffunction-sections -Weverything -Wno-packed -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../../My_Libraries -I ../Black_Pill_board_2 -Wno-invalid-utf8 -Wno-gnu-binary-literal -Wno-invalid-source-encoding -Wno-newline-eof-I./RTE/_Target_1-IC:/Users/dasha/AppData/Local/Arm/Packs/ARM/CMSIS/6.1.0/CMSIS/Core/Include-IC:/Users/dasha/AppData/Local/Arm/Packs/Keil/STM32F4xx_DFP/2.17.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32F411xE -D_RTE_-o ./objects/ds18b20_f411.o -MD)
@@ -108,29 +157,31 @@ I (C:\Keil_v5\ARM\ARMCLANG\include\arm_acle.h)(0x63888F58)
 I (C:\Users\dasha\AppData\Local\Arm\Packs\ARM\CMSIS\6.1.0\CMSIS\Core\Include\m-profile\cmsis_armclang_m.h)(0x664C1ED8)
 I (C:\Users\dasha\AppData\Local\Arm\Packs\ARM\CMSIS\6.1.0\CMSIS\Core\Include\m-profile\armv7m_mpu.h)(0x664C1ED8)
 I (C:\Users\dasha\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS\Device\ST\STM32F4xx\Include\system_stm32f4xx.h)(0x6374903A)
-I (..\..\My_Libraries\Delay.h)(0x66215B85)
-I (..\..\My_Libraries\Timer_F4.h)(0x66215B85)
+I (..\..\My_Libraries\Delay.h)(0x67659F92)
+I (..\Black_Pill_board_2\Config.h)(0x67FA29BC)
 I (..\..\My_Libraries\One_Wire_F411.h)(0x66215B85)
-I (..\Black_Pill_board_2\Config.h)(0x673B7B88)
-I (..\..\My_Libraries\Core_init.h)(0x66215B85)
-I (..\..\My_Libraries\GPIO_setup.h)(0x65257F34)
+I (..\..\My_Libraries\DMA.h)(0x67FA28ED)
+I (..\Black_Pill_board_2\main.h)(0x673B7B88)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdio.h)(0x63888F58)
+I (..\..\My_Libraries\Core_init.h)(0x67659F92)
+I (..\..\My_Libraries\Timer_F4.h)(0x66215B85)
+I (..\..\My_Libraries\GPIO_setup.h)(0x67659F92)
 I (..\..\My_Libraries\I2C_F411.h)(0x65257F34)
 I (..\..\My_Libraries\1602_I2C.h)(0x6589D1AA)
 I (..\..\My_Libraries\Font_table.h)(0x65966ABC)
 I (..\Black_Pill_board_2\Board.h)(0x66216634)
-I (..\..\My_Libraries\DMA.h)(0x668D7BD7)
-I (..\Black_Pill_board_2\main.h)(0x673B7B88)
-I (C:\Keil_v5\ARM\ARMCLANG\include\stdio.h)(0x63888F58)
-I (..\..\My_Libraries\SPI.h)(0x668D7BD7)
+I (..\..\My_Libraries\SPI.h)(0x67FA28ED)
 I (..\..\My_Libraries\Nokia_5110_LCD.h)(0x6635F1B5)
 I (..\..\My_Libraries\PROMLED.h)(0x67508E37)
 F (..\..\My_Libraries\One_Wire_F411.c)(0x660C47AC)(-xc -std=c11 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__EVAL -gdwarf-4 -Oz -ffunction-sections -Weverything -Wno-packed -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../../My_Libraries -I ../Black_Pill_board_2 -Wno-invalid-utf8 -Wno-gnu-binary-literal -Wno-invalid-source-encoding -Wno-newline-eof-I./RTE/_Target_1-IC:/Users/dasha/AppData/Local/Arm/Packs/ARM/CMSIS/6.1.0/CMSIS/Core/Include-IC:/Users/dasha/AppData/Local/Arm/Packs/Keil/STM32F4xx_DFP/2.17.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32F411xE -D_RTE_-o ./objects/one_wire_f411.o -MD)
 I (..\..\My_Libraries\One_Wire_F411.h)(0x66215B85)
-I (..\Black_Pill_board_2\Config.h)(0x673B7B88)
-I (..\..\My_Libraries\Core_init.h)(0x66215B85)
+I (..\Black_Pill_board_2\Config.h)(0x67FA29BC)
+I (..\..\My_Libraries\Core_init.h)(0x67659F92)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x63888F58)
+I (..\..\My_Libraries\Delay.h)(0x67659F92)
+I (..\..\My_Libraries\Timer_F4.h)(0x66215B85)
 I (C:\Users\dasha\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f411xe.h)(0x6374903A)
 I (C:\Users\dasha\AppData\Local\Arm\Packs\ARM\CMSIS\6.1.0\CMSIS\Core\Include\core_cm4.h)(0x664C1ED8)
-I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x63888F58)
 I (C:\Users\dasha\AppData\Local\Arm\Packs\ARM\CMSIS\6.1.0\CMSIS\Core\Include\cmsis_version.h)(0x664C1ED8)
 I (C:\Users\dasha\AppData\Local\Arm\Packs\ARM\CMSIS\6.1.0\CMSIS\Core\Include\cmsis_compiler.h)(0x664C1ED8)
 I (C:\Users\dasha\AppData\Local\Arm\Packs\ARM\CMSIS\6.1.0\CMSIS\Core\Include\cmsis_armclang.h)(0x664C1ED8)
@@ -138,55 +189,70 @@ I (C:\Keil_v5\ARM\ARMCLANG\include\arm_acle.h)(0x63888F58)
 I (C:\Users\dasha\AppData\Local\Arm\Packs\ARM\CMSIS\6.1.0\CMSIS\Core\Include\m-profile\cmsis_armclang_m.h)(0x664C1ED8)
 I (C:\Users\dasha\AppData\Local\Arm\Packs\ARM\CMSIS\6.1.0\CMSIS\Core\Include\m-profile\armv7m_mpu.h)(0x664C1ED8)
 I (C:\Users\dasha\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS\Device\ST\STM32F4xx\Include\system_stm32f4xx.h)(0x6374903A)
-I (..\..\My_Libraries\Delay.h)(0x66215B85)
-I (..\..\My_Libraries\Timer_F4.h)(0x66215B85)
-I (..\..\My_Libraries\GPIO_setup.h)(0x65257F34)
+I (..\..\My_Libraries\GPIO_setup.h)(0x67659F92)
 I (..\..\My_Libraries\I2C_F411.h)(0x65257F34)
 I (..\..\My_Libraries\1602_I2C.h)(0x6589D1AA)
 I (..\..\My_Libraries\Font_table.h)(0x65966ABC)
 I (..\Black_Pill_board_2\Board.h)(0x66216634)
-I (..\..\My_Libraries\DMA.h)(0x668D7BD7)
+I (..\..\My_Libraries\DMA.h)(0x67FA28ED)
 I (..\Black_Pill_board_2\main.h)(0x673B7B88)
 I (C:\Keil_v5\ARM\ARMCLANG\include\stdio.h)(0x63888F58)
 I (..\..\My_Libraries\USART_F411.h)(0x6589D1AA)
 I (..\..\My_Libraries\DS18B20_F411.h)(0x66215B85)
-I (..\..\My_Libraries\SPI.h)(0x668D7BD7)
+I (..\..\My_Libraries\SPI.h)(0x67FA28ED)
 I (..\..\My_Libraries\Nokia_5110_LCD.h)(0x6635F1B5)
 I (..\..\My_Libraries\PROMLED.h)(0x67508E37)
-F (..\..\My_Libraries\Core_init.c)(0x66215B85)(-xc -std=c11 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__EVAL -gdwarf-4 -Oz -ffunction-sections -Weverything -Wno-packed -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../../My_Libraries -I ../Black_Pill_board_2 -Wno-invalid-utf8 -Wno-gnu-binary-literal -Wno-invalid-source-encoding -Wno-newline-eof-I./RTE/_Target_1-IC:/Users/dasha/AppData/Local/Arm/Packs/ARM/CMSIS/6.1.0/CMSIS/Core/Include-IC:/Users/dasha/AppData/Local/Arm/Packs/Keil/STM32F4xx_DFP/2.17.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32F411xE -D_RTE_-o ./objects/core_init.o -MD)
-I (..\..\My_Libraries\Core_init.h)(0x66215B85)
-I (C:\Users\dasha\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f411xe.h)(0x6374903A)
-I (C:\Users\dasha\AppData\Local\Arm\Packs\ARM\CMSIS\6.1.0\CMSIS\Core\Include\core_cm4.h)(0x664C1ED8)
-I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x63888F58)
-I (C:\Users\dasha\AppData\Local\Arm\Packs\ARM\CMSIS\6.1.0\CMSIS\Core\Include\cmsis_version.h)(0x664C1ED8)
-I (C:\Users\dasha\AppData\Local\Arm\Packs\ARM\CMSIS\6.1.0\CMSIS\Core\Include\cmsis_compiler.h)(0x664C1ED8)
-I (C:\Users\dasha\AppData\Local\Arm\Packs\ARM\CMSIS\6.1.0\CMSIS\Core\Include\cmsis_armclang.h)(0x664C1ED8)
-I (C:\Keil_v5\ARM\ARMCLANG\include\arm_acle.h)(0x63888F58)
-I (C:\Users\dasha\AppData\Local\Arm\Packs\ARM\CMSIS\6.1.0\CMSIS\Core\Include\m-profile\cmsis_armclang_m.h)(0x664C1ED8)
-I (C:\Users\dasha\AppData\Local\Arm\Packs\ARM\CMSIS\6.1.0\CMSIS\Core\Include\m-profile\armv7m_mpu.h)(0x664C1ED8)
-I (C:\Users\dasha\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS\Device\ST\STM32F4xx\Include\system_stm32f4xx.h)(0x6374903A)
-F (..\..\My_Libraries\SPI.c)(0x668D7BD7)(-xc -std=c11 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__EVAL -gdwarf-4 -Oz -ffunction-sections -Weverything -Wno-packed -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../../My_Libraries -I ../Black_Pill_board_2 -Wno-invalid-utf8 -Wno-gnu-binary-literal -Wno-invalid-source-encoding -Wno-newline-eof-I./RTE/_Target_1-IC:/Users/dasha/AppData/Local/Arm/Packs/ARM/CMSIS/6.1.0/CMSIS/Core/Include-IC:/Users/dasha/AppData/Local/Arm/Packs/Keil/STM32F4xx_DFP/2.17.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32F411xE -D_RTE_-o ./objects/spi.o -MD)
-I (..\..\My_Libraries\SPI.h)(0x668D7BD7)
-I (C:\Users\dasha\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f411xe.h)(0x6374903A)
-I (C:\Users\dasha\AppData\Local\Arm\Packs\ARM\CMSIS\6.1.0\CMSIS\Core\Include\core_cm4.h)(0x664C1ED8)
-I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x63888F58)
-I (C:\Users\dasha\AppData\Local\Arm\Packs\ARM\CMSIS\6.1.0\CMSIS\Core\Include\cmsis_version.h)(0x664C1ED8)
-I (C:\Users\dasha\AppData\Local\Arm\Packs\ARM\CMSIS\6.1.0\CMSIS\Core\Include\cmsis_compiler.h)(0x664C1ED8)
-I (C:\Users\dasha\AppData\Local\Arm\Packs\ARM\CMSIS\6.1.0\CMSIS\Core\Include\cmsis_armclang.h)(0x664C1ED8)
-I (C:\Keil_v5\ARM\ARMCLANG\include\arm_acle.h)(0x63888F58)
-I (C:\Users\dasha\AppData\Local\Arm\Packs\ARM\CMSIS\6.1.0\CMSIS\Core\Include\m-profile\cmsis_armclang_m.h)(0x664C1ED8)
-I (C:\Users\dasha\AppData\Local\Arm\Packs\ARM\CMSIS\6.1.0\CMSIS\Core\Include\m-profile\armv7m_mpu.h)(0x664C1ED8)
-I (C:\Users\dasha\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS\Device\ST\STM32F4xx\Include\system_stm32f4xx.h)(0x6374903A)
-I (..\Black_Pill_board_2\main.h)(0x673B7B88)
-I (C:\Keil_v5\ARM\ARMCLANG\include\stdio.h)(0x63888F58)
-I (..\Black_Pill_board_2\Config.h)(0x673B7B88)
+F (..\..\My_Libraries\Core_init.c)(0x67659F92)(-xc -std=c11 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__EVAL -gdwarf-4 -Oz -ffunction-sections -Weverything -Wno-packed -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../../My_Libraries -I ../Black_Pill_board_2 -Wno-invalid-utf8 -Wno-gnu-binary-literal -Wno-invalid-source-encoding -Wno-newline-eof-I./RTE/_Target_1-IC:/Users/dasha/AppData/Local/Arm/Packs/ARM/CMSIS/6.1.0/CMSIS/Core/Include-IC:/Users/dasha/AppData/Local/Arm/Packs/Keil/STM32F4xx_DFP/2.17.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32F411xE -D_RTE_-o ./objects/core_init.o -MD)
+I (..\..\My_Libraries\Core_init.h)(0x67659F92)
+I (..\Black_Pill_board_2\Config.h)(0x67FA29BC)
 I (..\..\My_Libraries\One_Wire_F411.h)(0x66215B85)
+I (C:\Users\dasha\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f411xe.h)(0x6374903A)
+I (C:\Users\dasha\AppData\Local\Arm\Packs\ARM\CMSIS\6.1.0\CMSIS\Core\Include\core_cm4.h)(0x664C1ED8)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x63888F58)
+I (C:\Users\dasha\AppData\Local\Arm\Packs\ARM\CMSIS\6.1.0\CMSIS\Core\Include\cmsis_version.h)(0x664C1ED8)
+I (C:\Users\dasha\AppData\Local\Arm\Packs\ARM\CMSIS\6.1.0\CMSIS\Core\Include\cmsis_compiler.h)(0x664C1ED8)
+I (C:\Users\dasha\AppData\Local\Arm\Packs\ARM\CMSIS\6.1.0\CMSIS\Core\Include\cmsis_armclang.h)(0x664C1ED8)
+I (C:\Keil_v5\ARM\ARMCLANG\include\arm_acle.h)(0x63888F58)
+I (C:\Users\dasha\AppData\Local\Arm\Packs\ARM\CMSIS\6.1.0\CMSIS\Core\Include\m-profile\cmsis_armclang_m.h)(0x664C1ED8)
+I (C:\Users\dasha\AppData\Local\Arm\Packs\ARM\CMSIS\6.1.0\CMSIS\Core\Include\m-profile\armv7m_mpu.h)(0x664C1ED8)
+I (C:\Users\dasha\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS\Device\ST\STM32F4xx\Include\system_stm32f4xx.h)(0x6374903A)
 I (..\..\My_Libraries\USART_F411.h)(0x6589D1AA)
-I (..\..\My_Libraries\Delay.h)(0x66215B85)
-I (..\..\My_Libraries\DMA.h)(0x668D7BD7)
-I (..\..\My_Libraries\Core_init.h)(0x66215B85)
+I (..\..\My_Libraries\Delay.h)(0x67659F92)
+I (..\..\My_Libraries\DMA.h)(0x67FA28ED)
+I (..\Black_Pill_board_2\main.h)(0x673B7B88)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdio.h)(0x63888F58)
 I (..\..\My_Libraries\Timer_F4.h)(0x66215B85)
-I (..\..\My_Libraries\GPIO_setup.h)(0x65257F34)
+I (..\..\My_Libraries\GPIO_setup.h)(0x67659F92)
+I (..\..\My_Libraries\I2C_F411.h)(0x65257F34)
+I (..\..\My_Libraries\1602_I2C.h)(0x6589D1AA)
+I (..\..\My_Libraries\Font_table.h)(0x65966ABC)
+I (..\Black_Pill_board_2\Board.h)(0x66216634)
+I (..\..\My_Libraries\DS18B20_F411.h)(0x66215B85)
+I (..\..\My_Libraries\SPI.h)(0x67FA28ED)
+I (..\..\My_Libraries\Nokia_5110_LCD.h)(0x6635F1B5)
+I (..\..\My_Libraries\PROMLED.h)(0x67508E37)
+F (..\..\My_Libraries\SPI.c)(0x67FA28ED)(-xc -std=c11 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__EVAL -gdwarf-4 -Oz -ffunction-sections -Weverything -Wno-packed -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../../My_Libraries -I ../Black_Pill_board_2 -Wno-invalid-utf8 -Wno-gnu-binary-literal -Wno-invalid-source-encoding -Wno-newline-eof-I./RTE/_Target_1-IC:/Users/dasha/AppData/Local/Arm/Packs/ARM/CMSIS/6.1.0/CMSIS/Core/Include-IC:/Users/dasha/AppData/Local/Arm/Packs/Keil/STM32F4xx_DFP/2.17.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32F411xE -D_RTE_-o ./objects/spi.o -MD)
+I (..\..\My_Libraries\SPI.h)(0x67FA28ED)
+I (..\Black_Pill_board_2\Config.h)(0x67FA29BC)
+I (..\..\My_Libraries\One_Wire_F411.h)(0x66215B85)
+I (C:\Users\dasha\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f411xe.h)(0x6374903A)
+I (C:\Users\dasha\AppData\Local\Arm\Packs\ARM\CMSIS\6.1.0\CMSIS\Core\Include\core_cm4.h)(0x664C1ED8)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x63888F58)
+I (C:\Users\dasha\AppData\Local\Arm\Packs\ARM\CMSIS\6.1.0\CMSIS\Core\Include\cmsis_version.h)(0x664C1ED8)
+I (C:\Users\dasha\AppData\Local\Arm\Packs\ARM\CMSIS\6.1.0\CMSIS\Core\Include\cmsis_compiler.h)(0x664C1ED8)
+I (C:\Users\dasha\AppData\Local\Arm\Packs\ARM\CMSIS\6.1.0\CMSIS\Core\Include\cmsis_armclang.h)(0x664C1ED8)
+I (C:\Keil_v5\ARM\ARMCLANG\include\arm_acle.h)(0x63888F58)
+I (C:\Users\dasha\AppData\Local\Arm\Packs\ARM\CMSIS\6.1.0\CMSIS\Core\Include\m-profile\cmsis_armclang_m.h)(0x664C1ED8)
+I (C:\Users\dasha\AppData\Local\Arm\Packs\ARM\CMSIS\6.1.0\CMSIS\Core\Include\m-profile\armv7m_mpu.h)(0x664C1ED8)
+I (C:\Users\dasha\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS\Device\ST\STM32F4xx\Include\system_stm32f4xx.h)(0x6374903A)
+I (..\..\My_Libraries\USART_F411.h)(0x6589D1AA)
+I (..\..\My_Libraries\Delay.h)(0x67659F92)
+I (..\..\My_Libraries\DMA.h)(0x67FA28ED)
+I (..\Black_Pill_board_2\main.h)(0x673B7B88)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdio.h)(0x63888F58)
+I (..\..\My_Libraries\Core_init.h)(0x67659F92)
+I (..\..\My_Libraries\Timer_F4.h)(0x66215B85)
+I (..\..\My_Libraries\GPIO_setup.h)(0x67659F92)
 I (..\..\My_Libraries\I2C_F411.h)(0x65257F34)
 I (..\..\My_Libraries\1602_I2C.h)(0x6589D1AA)
 I (..\..\My_Libraries\Font_table.h)(0x65966ABC)
@@ -194,7 +260,7 @@ I (..\Black_Pill_board_2\Board.h)(0x66216634)
 I (..\..\My_Libraries\DS18B20_F411.h)(0x66215B85)
 I (..\..\My_Libraries\Nokia_5110_LCD.h)(0x6635F1B5)
 I (..\..\My_Libraries\PROMLED.h)(0x67508E37)
-F (..\..\My_Libraries\SPI.h)(0x668D7BD7)()
+F (..\..\My_Libraries\SPI.h)(0x67FA28ED)()
 F (..\..\My_Libraries\Nokia_5110_LCD.c)(0x66425C4A)(-xc -std=c11 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__EVAL -gdwarf-4 -Oz -ffunction-sections -Weverything -Wno-packed -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../../My_Libraries -I ../Black_Pill_board_2 -Wno-invalid-utf8 -Wno-gnu-binary-literal -Wno-invalid-source-encoding -Wno-newline-eof-I./RTE/_Target_1-IC:/Users/dasha/AppData/Local/Arm/Packs/ARM/CMSIS/6.1.0/CMSIS/Core/Include-IC:/Users/dasha/AppData/Local/Arm/Packs/Keil/STM32F4xx_DFP/2.17.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32F411xE -D_RTE_-o ./objects/nokia_5110_lcd.o -MD)
 I (..\..\My_Libraries\Nokia_5110_LCD.h)(0x6635F1B5)
 I (C:\Users\dasha\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f411xe.h)(0x6374903A)
@@ -207,22 +273,22 @@ I (C:\Keil_v5\ARM\ARMCLANG\include\arm_acle.h)(0x63888F58)
 I (C:\Users\dasha\AppData\Local\Arm\Packs\ARM\CMSIS\6.1.0\CMSIS\Core\Include\m-profile\cmsis_armclang_m.h)(0x664C1ED8)
 I (C:\Users\dasha\AppData\Local\Arm\Packs\ARM\CMSIS\6.1.0\CMSIS\Core\Include\m-profile\armv7m_mpu.h)(0x664C1ED8)
 I (C:\Users\dasha\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS\Device\ST\STM32F4xx\Include\system_stm32f4xx.h)(0x6374903A)
-I (..\..\My_Libraries\Delay.h)(0x66215B85)
-I (..\..\My_Libraries\Font_table.h)(0x65966ABC)
-I (..\..\My_Libraries\SPI.h)(0x668D7BD7)
-I (..\Black_Pill_board_2\main.h)(0x673B7B88)
-I (C:\Keil_v5\ARM\ARMCLANG\include\stdio.h)(0x63888F58)
-I (..\Black_Pill_board_2\Config.h)(0x673B7B88)
+I (..\..\My_Libraries\Delay.h)(0x67659F92)
+I (..\Black_Pill_board_2\Config.h)(0x67FA29BC)
 I (..\..\My_Libraries\One_Wire_F411.h)(0x66215B85)
 I (..\..\My_Libraries\USART_F411.h)(0x6589D1AA)
-I (..\..\My_Libraries\DMA.h)(0x668D7BD7)
-I (..\..\My_Libraries\Core_init.h)(0x66215B85)
+I (..\..\My_Libraries\DMA.h)(0x67FA28ED)
+I (..\Black_Pill_board_2\main.h)(0x673B7B88)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdio.h)(0x63888F58)
+I (..\..\My_Libraries\Core_init.h)(0x67659F92)
 I (..\..\My_Libraries\Timer_F4.h)(0x66215B85)
-I (..\..\My_Libraries\GPIO_setup.h)(0x65257F34)
+I (..\..\My_Libraries\GPIO_setup.h)(0x67659F92)
 I (..\..\My_Libraries\I2C_F411.h)(0x65257F34)
 I (..\..\My_Libraries\1602_I2C.h)(0x6589D1AA)
+I (..\..\My_Libraries\Font_table.h)(0x65966ABC)
 I (..\Black_Pill_board_2\Board.h)(0x66216634)
 I (..\..\My_Libraries\DS18B20_F411.h)(0x66215B85)
+I (..\..\My_Libraries\SPI.h)(0x67FA28ED)
 I (..\..\My_Libraries\PROMLED.h)(0x67508E37)
 F (..\..\My_Libraries\USART_F411.c)(0x6589D1AA)(-xc -std=c11 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__EVAL -gdwarf-4 -Oz -ffunction-sections -Weverything -Wno-packed -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../../My_Libraries -I ../Black_Pill_board_2 -Wno-invalid-utf8 -Wno-gnu-binary-literal -Wno-invalid-source-encoding -Wno-newline-eof-I./RTE/_Target_1-IC:/Users/dasha/AppData/Local/Arm/Packs/ARM/CMSIS/6.1.0/CMSIS/Core/Include-IC:/Users/dasha/AppData/Local/Arm/Packs/Keil/STM32F4xx_DFP/2.17.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32F411xE -D_RTE_-o ./objects/usart_f411.o -MD)
 I (..\..\My_Libraries\USART_F411.h)(0x6589D1AA)
@@ -236,9 +302,27 @@ I (C:\Keil_v5\ARM\ARMCLANG\include\arm_acle.h)(0x63888F58)
 I (C:\Users\dasha\AppData\Local\Arm\Packs\ARM\CMSIS\6.1.0\CMSIS\Core\Include\m-profile\cmsis_armclang_m.h)(0x664C1ED8)
 I (C:\Users\dasha\AppData\Local\Arm\Packs\ARM\CMSIS\6.1.0\CMSIS\Core\Include\m-profile\armv7m_mpu.h)(0x664C1ED8)
 I (C:\Users\dasha\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS\Device\ST\STM32F4xx\Include\system_stm32f4xx.h)(0x6374903A)
-I (..\..\My_Libraries\Delay.h)(0x66215B85)
-F (..\..\My_Libraries\DMA.c)(0x66425D20)(-xc -std=c11 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__EVAL -gdwarf-4 -Oz -ffunction-sections -Weverything -Wno-packed -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../../My_Libraries -I ../Black_Pill_board_2 -Wno-invalid-utf8 -Wno-gnu-binary-literal -Wno-invalid-source-encoding -Wno-newline-eof-I./RTE/_Target_1-IC:/Users/dasha/AppData/Local/Arm/Packs/ARM/CMSIS/6.1.0/CMSIS/Core/Include-IC:/Users/dasha/AppData/Local/Arm/Packs/Keil/STM32F4xx_DFP/2.17.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32F411xE -D_RTE_-o ./objects/dma.o -MD)
-I (..\..\My_Libraries\DMA.h)(0x668D7BD7)
+I (..\..\My_Libraries\Delay.h)(0x67659F92)
+I (..\Black_Pill_board_2\Config.h)(0x67FA29BC)
+I (..\..\My_Libraries\One_Wire_F411.h)(0x66215B85)
+I (..\..\My_Libraries\DMA.h)(0x67FA28ED)
+I (..\Black_Pill_board_2\main.h)(0x673B7B88)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdio.h)(0x63888F58)
+I (..\..\My_Libraries\Core_init.h)(0x67659F92)
+I (..\..\My_Libraries\Timer_F4.h)(0x66215B85)
+I (..\..\My_Libraries\GPIO_setup.h)(0x67659F92)
+I (..\..\My_Libraries\I2C_F411.h)(0x65257F34)
+I (..\..\My_Libraries\1602_I2C.h)(0x6589D1AA)
+I (..\..\My_Libraries\Font_table.h)(0x65966ABC)
+I (..\Black_Pill_board_2\Board.h)(0x66216634)
+I (..\..\My_Libraries\DS18B20_F411.h)(0x66215B85)
+I (..\..\My_Libraries\SPI.h)(0x67FA28ED)
+I (..\..\My_Libraries\Nokia_5110_LCD.h)(0x6635F1B5)
+I (..\..\My_Libraries\PROMLED.h)(0x67508E37)
+F (..\..\My_Libraries\DMA.c)(0x67FA28ED)(-xc -std=c11 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__EVAL -gdwarf-4 -Oz -ffunction-sections -Weverything -Wno-packed -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../../My_Libraries -I ../Black_Pill_board_2 -Wno-invalid-utf8 -Wno-gnu-binary-literal -Wno-invalid-source-encoding -Wno-newline-eof-I./RTE/_Target_1-IC:/Users/dasha/AppData/Local/Arm/Packs/ARM/CMSIS/6.1.0/CMSIS/Core/Include-IC:/Users/dasha/AppData/Local/Arm/Packs/Keil/STM32F4xx_DFP/2.17.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32F411xE -D_RTE_-o ./objects/dma.o -MD)
+I (..\..\My_Libraries\DMA.h)(0x67FA28ED)
+I (..\Black_Pill_board_2\Config.h)(0x67FA29BC)
+I (..\..\My_Libraries\One_Wire_F411.h)(0x66215B85)
 I (C:\Users\dasha\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f411xe.h)(0x6374903A)
 I (C:\Users\dasha\AppData\Local\Arm\Packs\ARM\CMSIS\6.1.0\CMSIS\Core\Include\core_cm4.h)(0x664C1ED8)
 I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x63888F58)
@@ -249,21 +333,19 @@ I (C:\Keil_v5\ARM\ARMCLANG\include\arm_acle.h)(0x63888F58)
 I (C:\Users\dasha\AppData\Local\Arm\Packs\ARM\CMSIS\6.1.0\CMSIS\Core\Include\m-profile\cmsis_armclang_m.h)(0x664C1ED8)
 I (C:\Users\dasha\AppData\Local\Arm\Packs\ARM\CMSIS\6.1.0\CMSIS\Core\Include\m-profile\armv7m_mpu.h)(0x664C1ED8)
 I (C:\Users\dasha\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS\Device\ST\STM32F4xx\Include\system_stm32f4xx.h)(0x6374903A)
-I (..\Black_Pill_board_2\main.h)(0x673B7B88)
-I (C:\Keil_v5\ARM\ARMCLANG\include\stdio.h)(0x63888F58)
-I (..\Black_Pill_board_2\Config.h)(0x673B7B88)
-I (..\..\My_Libraries\One_Wire_F411.h)(0x66215B85)
 I (..\..\My_Libraries\USART_F411.h)(0x6589D1AA)
-I (..\..\My_Libraries\Delay.h)(0x66215B85)
-I (..\..\My_Libraries\Core_init.h)(0x66215B85)
+I (..\..\My_Libraries\Delay.h)(0x67659F92)
+I (..\..\My_Libraries\Core_init.h)(0x67659F92)
 I (..\..\My_Libraries\Timer_F4.h)(0x66215B85)
-I (..\..\My_Libraries\GPIO_setup.h)(0x65257F34)
+I (..\..\My_Libraries\GPIO_setup.h)(0x67659F92)
 I (..\..\My_Libraries\I2C_F411.h)(0x65257F34)
 I (..\..\My_Libraries\1602_I2C.h)(0x6589D1AA)
 I (..\..\My_Libraries\Font_table.h)(0x65966ABC)
 I (..\Black_Pill_board_2\Board.h)(0x66216634)
 I (..\..\My_Libraries\DS18B20_F411.h)(0x66215B85)
-I (..\..\My_Libraries\SPI.h)(0x668D7BD7)
+I (..\..\My_Libraries\SPI.h)(0x67FA28ED)
+I (..\Black_Pill_board_2\main.h)(0x673B7B88)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdio.h)(0x63888F58)
 I (..\..\My_Libraries\Nokia_5110_LCD.h)(0x6635F1B5)
 I (..\..\My_Libraries\PROMLED.h)(0x67508E37)
 F (..\..\My_Libraries\Timer_F4.c)(0x66215B85)(-xc -std=c11 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__EVAL -gdwarf-4 -Oz -ffunction-sections -Weverything -Wno-packed -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../../My_Libraries -I ../Black_Pill_board_2 -Wno-invalid-utf8 -Wno-gnu-binary-literal -Wno-invalid-source-encoding -Wno-newline-eof-I./RTE/_Target_1-IC:/Users/dasha/AppData/Local/Arm/Packs/ARM/CMSIS/6.1.0/CMSIS/Core/Include-IC:/Users/dasha/AppData/Local/Arm/Packs/Keil/STM32F4xx_DFP/2.17.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32F411xE -D_RTE_-o ./objects/timer_f4.o -MD)
@@ -293,20 +375,20 @@ I (C:\Users\dasha\AppData\Local\Arm\Packs\ARM\CMSIS\6.1.0\CMSIS\Core\Include\m-p
 I (C:\Users\dasha\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS\Device\ST\STM32F4xx\Include\system_stm32f4xx.h)(0x6374903A)
 I (..\Black_Pill_board_2\main.h)(0x673B7B88)
 I (C:\Keil_v5\ARM\ARMCLANG\include\stdio.h)(0x63888F58)
-I (..\Black_Pill_board_2\Config.h)(0x673B7B88)
+I (..\Black_Pill_board_2\Config.h)(0x67FA29BC)
 I (..\..\My_Libraries\One_Wire_F411.h)(0x66215B85)
 I (..\..\My_Libraries\USART_F411.h)(0x6589D1AA)
-I (..\..\My_Libraries\Delay.h)(0x66215B85)
-I (..\..\My_Libraries\DMA.h)(0x668D7BD7)
-I (..\..\My_Libraries\Core_init.h)(0x66215B85)
+I (..\..\My_Libraries\Delay.h)(0x67659F92)
+I (..\..\My_Libraries\DMA.h)(0x67FA28ED)
+I (..\..\My_Libraries\Core_init.h)(0x67659F92)
 I (..\..\My_Libraries\Timer_F4.h)(0x66215B85)
-I (..\..\My_Libraries\GPIO_setup.h)(0x65257F34)
+I (..\..\My_Libraries\GPIO_setup.h)(0x67659F92)
 I (..\..\My_Libraries\I2C_F411.h)(0x65257F34)
 I (..\..\My_Libraries\1602_I2C.h)(0x6589D1AA)
 I (..\..\My_Libraries\Font_table.h)(0x65966ABC)
 I (..\Black_Pill_board_2\Board.h)(0x66216634)
 I (..\..\My_Libraries\DS18B20_F411.h)(0x66215B85)
-I (..\..\My_Libraries\SPI.h)(0x668D7BD7)
+I (..\..\My_Libraries\SPI.h)(0x67FA28ED)
 I (..\..\My_Libraries\Nokia_5110_LCD.h)(0x6635F1B5)
 F (RTE/Device/STM32F411CEUx/startup_stm32f411xe.s)(0x6589D1AA)(--target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -masm=auto  -Wa,armasm,--diag_suppress=A1950W -c-gdwarf-4 -Wa,armasm,--pd,"__EVAL SETA 1"-I./RTE/_Target_1-IC:/Users/dasha/AppData/Local/Arm/Packs/ARM/CMSIS/6.1.0/CMSIS/Core/Include-IC:/Users/dasha/AppData/Local/Arm/Packs/Keil/STM32F4xx_DFP/2.17.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include-Wa,armasm,--pd,"__UVISION_VERSION SETA 538" -Wa,armasm,--pd,"_RTE_ SETA 1" -Wa,armasm,--pd,"STM32F411xE SETA 1" -Wa,armasm,--pd,"_RTE_ SETA 1"-o ./objects/startup_stm32f411xe.o)
 F (RTE/Device/STM32F411CEUx/system_stm32f4xx.c)(0x6589D1AA)(-xc -std=c11 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__EVAL -gdwarf-4 -Oz -ffunction-sections -Weverything -Wno-packed -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../../My_Libraries -I ../Black_Pill_board_2 -Wno-invalid-utf8 -Wno-gnu-binary-literal -Wno-invalid-source-encoding -Wno-newline-eof-I./RTE/_Target_1-IC:/Users/dasha/AppData/Local/Arm/Packs/ARM/CMSIS/6.1.0/CMSIS/Core/Include-IC:/Users/dasha/AppData/Local/Arm/Packs/Keil/STM32F4xx_DFP/2.17.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32F411xE -D_RTE_-o ./objects/system_stm32f4xx.o -MD)

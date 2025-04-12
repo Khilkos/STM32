@@ -1,6 +1,8 @@
 #ifndef __Config_H
 #define __Config_H
 
+#define STM32F4
+
 #include "One_Wire_F411.h"
 #include "Core_init.h"
 #include "Delay.h"

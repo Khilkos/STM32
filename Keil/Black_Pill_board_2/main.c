@@ -1,7 +1,12 @@
 #include "main.h"
-
-
-
+#define CLK_ON GPIOB->BSRR = 1<<12
+#define CLK_OFF GPIOB->BSRR = 1<<(12+ res)
+#define R1_ON GPIOB->BSRR = 1<<13
+#define R1_OFF GPIOB->BSRR = 1<<(13+ res)
+#define LAT_ON GPIOB->BSRR = 1<<14
+#define LAT_OFF GPIOB->BSRR = 1<<(14+ res)
+#define OE_ON GPIOB->BSRR = 1UL<<15
+#define OE_OFF GPIOB->BSRR = 1UL<<(15+ res)
 
 
 int main (void)
@@ -10,6 +15,8 @@ int main (void)
  char String[300];
 uint16_t tmp=0;
 
+static uint32_t led_buf = 0x0F0F0f0f;
+static uint32_t temp32=0;
 
  static uint8_t Led_RGB2_1 [2][3]=	{	{255,0,0},{0,0,0}	};
  static uint8_t Led_RGB2_2 [2][3]=	{	{0,0,0},{0,0,255}	};
@@ -21,16 +28,19 @@ uint16_t tmp=0;
  
 	
 	
-	RCC->AHB1ENR |= ( RCC_AHB1ENR_GPIOAEN | RCC_AHB1ENR_GPIOBEN  ); // enable portA and portB clock
+	RCC->AHB1ENR |= ( RCC_AHB1ENR_GPIOAEN | RCC_AHB1ENR_GPIOBEN | RCC_AHB1ENR_GPIOCEN ); // enable portA and portB clock
 
 	
 GPIO_DO_setup(GPIOB,12,High);	
 GPIO_DO_setup(GPIOB,13,High);	
+	 GPIOB->OTYPER |=1<<13;
+	 GPIOB->PUPDR |=2<<(13*2);
 GPIO_DO_setup(GPIOB,14,High);	
 GPIO_DO_setup(GPIOB,15,High);	
 GPIO_DO_setup(GPIOB,8,High); //Nokia 5110_RST	
 GPIO_DO_setup(GPIOB,9,High); //nokia 5110_CE
 GPIO_DO_setup(GPIOA,6,High); //Nokia 5110_D/C
+GPIO_DO_setup(GPIOC,13,High);
 
 //GPIOB->BSRR|=1<<8;	
 //GPIO_DO_setup(GPIOA,4,High);	
@@ -112,6 +122,8 @@ delay_ms(delay3);
 	
 	
 */
+
+
 sprintf(String,"Encoder = %02d / %d",encoder_data,SPI1_send_num);
 Draw_String(0,(uint8_t*)String);	
 	
@@ -125,6 +137,13 @@ Draw_String(0x40, (uint8_t*)String);
 //	Nokia_5110_String(0,0,(uint8_t*)String);
 //	Nokia_5110_LCD_Out();
 //Nokia_test();
+
+
+if (!TIM1_Delay_2) { if (GPIOC->IDR & 1<<13) GPIOC->BSRR = 1<<(13+res); else	GPIOC->BSRR = 1<<(13);	TIM1_Delay_2=250;}
+if (!TIM1_Delay_3) { if (GPIOB->IDR & 1<<12) GPIOB->BSRR = 1<<(12+res); else	GPIOB->BSRR = 1<<(12);	TIM1_Delay_3=500;}
+
+	
+	
 	
 }
 

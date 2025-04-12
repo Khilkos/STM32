@@ -27,7 +27,39 @@ Project File Date:  12/07/2024
 <h2>Output:</h2>
 *** Using Compiler 'V6.19', folder: 'C:\Keil_v5\ARM\ARMCLANG\Bin'
 Build target 'Target 1'
-".\Objects\Black_Pill_board_2.axf" - 0 Error(s), 0 Warning(s).
+main.c(16): warning: unused variable 'tmp' [-Wunused-variable]
+uint16_t tmp=0;
+         ^
+main.c(23): warning: unused variable 'Led_RGB2_3' [-Wunused-variable]
+ static uint8_t Led_RGB2_3 [2][3]=      {       {0,0,0},{0,0,0} };
+                ^
+main.c(26): warning: unused variable 'Led_RGB10_2' [-Wunused-variable]
+ static uint8_t Led_RGB10_2 [10][3]=    {       {0,0,0},{0,0,0},{0,0,0},{0,0,0},{0,0,0},{0,0,255},{0,0,255},{0,0,255},{0,0,255},{0,0,255}       };      
+                ^
+main.c(18): warning: unused variable 'led_buf' [-Wunused-variable]
+static uint32_t led_buf = 0x0F0F0f0f;
+                ^
+main.c(21): warning: unused variable 'Led_RGB2_1' [-Wunused-variable]
+ static uint8_t Led_RGB2_1 [2][3]=      {       {255,0,0},{0,0,0}       };
+                ^
+main.c(27): warning: unused variable 'Led_RGB10_3' [-Wunused-variable]
+ static uint8_t Led_RGB10_3 [10][3]=    {       {0,0,0},{0,0,0},{0,0,0},{0,0,0},{0,0,0},{0,0,0},{0,0,0},{0,0,0},{0,0,0},{0,0,0} };      
+                ^
+main.c(19): warning: unused variable 'temp32' [-Wunused-variable]
+static uint32_t temp32=0;
+                ^
+main.c(22): warning: unused variable 'Led_RGB2_2' [-Wunused-variable]
+ static uint8_t Led_RGB2_2 [2][3]=      {       {0,0,0},{0,0,255}       };
+                ^
+main.c(25): warning: unused variable 'Led_RGB10_1' [-Wunused-variable]
+ static uint8_t Led_RGB10_1 [10][3]=    {       {255,0,0},{255,0,0},{255,0,0},{255,0,0},{255,0,0},{0,0,0},{0,0,0},{0,0,0},{0,0,0},{0,0,0}       };      
+                ^
+9 warnings generated.
+compiling main.c...
+linking...
+Program Size: Code=9090 RO-data=634 RW-data=20 ZI-data=1984  
+FromELF: creating hex file...
+".\Objects\Black_Pill_board_2.axf" - 0 Error(s), 9 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -53,10 +85,10 @@ Package Vendor: Keil
    * Component: ARM::CMSIS:CORE:6.1.0
 
    * Component: Keil::Device:Startup:2.6.3
-      Source file:   MDK/Device/Source/ARM/STM32F4xx_OTP.s
-      Source file:   Drivers/CMSIS/Device/ST/STM32F4xx/Source/Templates/arm/startup_stm32f411xe.s
       Source file:   MDK/Device/Source/ARM/STM32F411xx_OPT.s
+      Source file:   MDK/Device/Source/ARM/STM32F4xx_OTP.s
       Include file:  Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h
+      Source file:   Drivers/CMSIS/Device/ST/STM32F4xx/Source/Templates/arm/startup_stm32f411xe.s
       Source file:   Drivers/CMSIS/Device/ST/STM32F4xx/Source/Templates/system_stm32f4xx.c
 Build Time Elapsed:  00:00:00
 </pre>
