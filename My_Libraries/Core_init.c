@@ -71,6 +71,68 @@ RCC->CFGR |=RCC_CFGR_SW_PLL ;	//switched System clock switch from PPL module
  while (!(RCC->CFGR &  RCC_CFGR_SWS_1)) ;	
 }
 //=========================================================
+void Core_F4_init_HSE_full(uint32_t _PLL_M, uint32_t _PLL_N, uint32_t _PLL_P, uint32_t _PLL_Q, uint32_t AHB_DIV, uint32_t APB1_DIV, uint32_t APB2_DIV)
+{
+	uint32_t temp_PLL_P=0;
+if (_PLL_P==2) temp_PLL_P=0;
+if (_PLL_P==4) temp_PLL_P=1;
+if (_PLL_P==6) temp_PLL_P=2;
+if (_PLL_P==8) temp_PLL_P=3;		
+RCC->CR =RCC_CR_HSEON;	//enable external HSE clock
+while (!(RCC->CR & RCC_CR_HSERDY));	//wait for HSE clock is enaled
+
+FLASH->ACR |= (FLASH_ACR_PRFTEN | FLASH_ACR_ICEN | FLASH_ACR_DCEN | FLASH_ACR_LATENCY_3WS );		
+	
+RCC->PLLCFGR =( RCC_PLLCFGR_PLLSRC_HSE | _PLL_M<<0 | _PLL_N<<6 | temp_PLL_P<<16 | _PLL_Q<<24  ); //setup PLL module		
+RCC->CR |= RCC_CR_PLLON;	//enable PLL
+while (!(RCC->CR & RCC_CR_PLLRDY)) __NOP();
+	
+ //setup bus preskaler
+if (AHB_DIV == 1 ) RCC->CFGR |= RCC_CFGR_HPRE_DIV1;
+if (AHB_DIV == 2 ) RCC->CFGR |= RCC_CFGR_HPRE_DIV2;
+if (AHB_DIV == 4 ) RCC->CFGR |= RCC_CFGR_HPRE_DIV4;
+if (AHB_DIV == 8 ) RCC->CFGR |= RCC_CFGR_HPRE_DIV8;
+if (AHB_DIV == 16 ) RCC->CFGR |= RCC_CFGR_HPRE_DIV16;
+if (AHB_DIV == 64 ) RCC->CFGR |= RCC_CFGR_HPRE_DIV64;	
+if (AHB_DIV == 128 ) RCC->CFGR |= RCC_CFGR_HPRE_DIV128;
+if (AHB_DIV == 256 ) RCC->CFGR |= RCC_CFGR_HPRE_DIV256;
+if (AHB_DIV == 512 ) RCC->CFGR |= RCC_CFGR_HPRE_DIV512;
+
+if (APB1_DIV == 1) RCC_CFGR_PPRE1_DIV1;
+if (APB1_DIV == 2) RCC_CFGR_PPRE1_DIV2;
+if (APB1_DIV == 4) RCC_CFGR_PPRE1_DIV4;
+if (APB1_DIV == 8) RCC_CFGR_PPRE1_DIV8;
+if (APB1_DIV == 16) RCC_CFGR_PPRE1_DIV16;
+
+if (APB2_DIV == 1) RCC_CFGR_PPRE2_DIV1;
+if (APB2_DIV == 2) RCC_CFGR_PPRE2_DIV2;
+if (APB2_DIV == 4) RCC_CFGR_PPRE2_DIV4;
+if (APB2_DIV == 8) RCC_CFGR_PPRE2_DIV8;
+if (APB2_DIV == 16) RCC_CFGR_PPRE2_DIV16;
+
+RCC->CFGR &= ~RCC_CFGR_SW;	
+RCC->CFGR |=RCC_CFGR_SW_PLL ;	//switched System clock switch from PPL module
+ while (!(RCC->CFGR &  RCC_CFGR_SWS_1)) ;	
+}
+//=========================================================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 #endif	
 	
 #ifdef STM32H7

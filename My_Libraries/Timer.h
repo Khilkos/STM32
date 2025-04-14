@@ -3,17 +3,17 @@
 
 #include "Config.h"
 
-extern uint32_t TIM1_Delay_1;
-extern uint32_t TIM1_Delay_2;
-extern uint32_t TIM1_Delay_3;
-extern uint32_t TIM1_Delay_4;
-extern uint32_t TIM1_Delay_5;
-extern uint32_t TIM1_Delay_6;
-extern uint32_t TIM1_Delay_7;
-extern uint32_t TIM1_Delay_8;
-extern uint32_t TIM1_Delay_9;
-extern uint32_t TIM1_Delay_10;
-extern uint32_t TIM2_Delay_1;
+extern volatile uint32_t TIM1_Delay_1;
+extern volatile uint32_t TIM1_Delay_2;
+extern volatile uint32_t TIM1_Delay_3;
+extern volatile uint32_t TIM1_Delay_4;
+extern volatile uint32_t TIM1_Delay_5;
+extern volatile uint32_t TIM1_Delay_6;
+extern volatile uint32_t TIM1_Delay_7;
+extern volatile uint32_t TIM1_Delay_8;
+extern volatile uint32_t TIM1_Delay_9;
+extern volatile uint32_t TIM1_Delay_10;
+extern volatile uint32_t TIM2_Delay_1;
 
 //============================================
 #ifdef STM32F4

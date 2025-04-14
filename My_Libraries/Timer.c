@@ -1,16 +1,16 @@
 #include "Timer.h"
 
-uint32_t TIM1_Delay_1=0;
-uint32_t TIM1_Delay_2=0;
-uint32_t TIM1_Delay_3=0;
-uint32_t TIM1_Delay_4=0;
-uint32_t TIM1_Delay_5=0;
-uint32_t TIM1_Delay_6=0;
-uint32_t TIM1_Delay_7=0;
-uint32_t TIM1_Delay_8=0;
-uint32_t TIM1_Delay_9=0;
-uint32_t TIM1_Delay_10=0;
-uint32_t TIM2_Delay_1=0;
+volatile uint32_t TIM1_Delay_1=0;
+volatile uint32_t TIM1_Delay_2=0;
+volatile uint32_t TIM1_Delay_3=0;
+volatile uint32_t TIM1_Delay_4=0;
+volatile uint32_t TIM1_Delay_5=0;
+volatile uint32_t TIM1_Delay_6=0;
+volatile uint32_t TIM1_Delay_7=0;
+volatile uint32_t TIM1_Delay_8=0;
+volatile uint32_t TIM1_Delay_9=0;
+volatile uint32_t TIM1_Delay_10=0;
+volatile uint32_t TIM2_Delay_1=0;
 
 
 //=============================================
