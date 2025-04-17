@@ -43,7 +43,7 @@
 
 void GPIO_DO_setup (GPIO_TypeDef *PORT, uint32_t PIN_number, uint32_t Output_speed);
 void GPIO_DI_setup (GPIO_TypeDef *PORT, uint32_t PIN_number, uint32_t Pull_mode);
-void GPIO_Alternate(GPIO_TypeDef *PORT, uint32_t PIN_number, uint32_t OTYPER, uint32_t Output_speed, uint32_t Pull_mode, uint32_t Alternate_function);
+void GPIO_Alternate(GPIO_TypeDef *PORT, uint32_t PIN_number, uint32_t OTYPER, uint32_t Output_speed, uint32_t Pull_mode, uint32_t Alternate_function);//GPIO_Alternate(GPIOA,7,Push_pull,High,No_pull,AF5);
 void GPIO_Analog_setup (GPIO_TypeDef *PORT, uint32_t PIN_number);
 
 

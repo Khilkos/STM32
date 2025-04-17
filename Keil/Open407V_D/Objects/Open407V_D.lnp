@@ -4,6 +4,7 @@
 ".\objects\delay.o"
 ".\objects\gpio_setup.o"
 ".\objects\timer.o"
+".\objects\fsmc.o"
 ".\objects\startup_stm32f407xx.o"
 ".\objects\system_stm32f4xx.o"
 --strict --scatter ".\Objects\Open407V_D.sct"
