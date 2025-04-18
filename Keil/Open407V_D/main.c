@@ -9,6 +9,7 @@ int main(void)
 	Core_F4_init_HSE_full(8,336,2,7,1,4,2); 
 	SysTick_F4_Init (168);
 	Timer1_F4_init(168000000,1000);
+	FSMC_init();
 	
 	GPIO_DO_setup(GPIOD,12,High);//Green_Led
 	GPIO_DO_setup(GPIOD,13,High);//Orange_Led
@@ -31,10 +32,10 @@ int main(void)
 	GPIO_Alternate(GPIOD,8,Push_pull,High,No_pull,AF12); //FSMC D13
 	GPIO_Alternate(GPIOD,9,Push_pull,High,No_pull,AF12); //FSMC D14
 	GPIO_Alternate(GPIOD,10,Push_pull,High,No_pull,AF12); //FSMC D15
-	GPIO_Alternate(GPIOD,11,Push_pull,High,No_pull,AF12); //FSMC D16/RS
+	GPIO_Alternate(GPIOD,11,Push_pull,High,No_pull,AF12); //FSMC A16/RS
 	GPIO_Alternate(GPIOD,4,Push_pull,High,No_pull,AF12); //FSMC NOE/RD
 	GPIO_Alternate(GPIOD,5,Push_pull,High,No_pull,AF12); //FSMC NWE/WR
-	GPIO_Alternate(GPIOD,7,Push_pull,High,No_pull,AF12); //FSMC NE1/LCS
+	GPIO_Alternate(GPIOD,7,Push_pull,High,Pull_down,AF12); //FSMC NE1/LCS
 
 	GPIO_DI_setup(GPIOA,0,Pull_down);	
 
@@ -47,7 +48,11 @@ int main(void)
 		
 	if (!TIM1_Delay_1) {if (GPIOD->IDR & 1<<12) Green_led_OFF; else Green_led_ON;  	TIM1_Delay_1 = 250;}
 	if (GPIOA->IDR &  1<<0) Orange_led_ON; else Orange_led_OFF;		
-	
+	LCD->LCD_REG = 0xf1;
+	delay_us(1);
+	LCD->LCD_RAM = 0x02;
+	//LCD->LCD_REG = 0xf1;
+	//LCD->LCD_RAM = 0x02;
 		
 	}
 	
