@@ -4,6 +4,7 @@
 ".\objects\gpio_setup.o"
 ".\objects\delay.o"
 ".\objects\timer.o"
+".\objects\fsmc.o"
 ".\objects\startup_stm32f407xx.o"
 ".\objects\system_stm32f4xx.o"
 --strict --scatter ".\Objects\TFT_Board_407.sct"

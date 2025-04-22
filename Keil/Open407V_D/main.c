@@ -49,8 +49,9 @@ int main(void)
 	if (!TIM1_Delay_1) {if (GPIOD->IDR & 1<<12) Green_led_OFF; else Green_led_ON;  	TIM1_Delay_1 = 250;}
 	if (GPIOA->IDR &  1<<0) Orange_led_ON; else Orange_led_OFF;		
 	LCD->LCD_REG = 0xf1;
-	delay_us(1);
+//	delay_us(1);
 	LCD->LCD_RAM = 0x02;
+		delay_us(1);
 	//LCD->LCD_REG = 0xf1;
 	//LCD->LCD_RAM = 0x02;
 		

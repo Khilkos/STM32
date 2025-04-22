@@ -3,48 +3,51 @@
 <pre>
 <h1>µVision Build Log</h1>
 <h2>Tool Versions:</h2>
-IDE-Version: µVision V5.38.0.0
-Copyright (C) 2022 ARM Ltd and ARM Germany GmbH. All rights reserved.
+IDE-Version: µVision V5.42.0.0
+Copyright (C) 2025 ARM Ltd and ARM Germany GmbH. All rights reserved.
 License Information: Serj Khilk, Beer, LIC=MPPLD-88035-FWL2N-YX52R-BTK51-S13PN
  
 Tool Versions:
-Toolchain:       MDK-ARM Plus  Version: 5.38.0.0
+Toolchain:       MDK-ARM Plus  Version: 5.42.0.0
 Toolchain Path:  C:\Keil_v5\ARM\ARMCLANG\Bin
-C Compiler:      ArmClang.exe V6.19
-Assembler:       Armasm.exe V6.19
-Linker/Locator:  ArmLink.exe V6.19
-Library Manager: ArmAr.exe V6.19
-Hex Converter:   FromElf.exe V6.19
-CPU DLL:         SARMCM3.DLL V5.38.0.0
+C Compiler:      ArmClang.exe V6.23
+Assembler:       Armasm.exe V6.23
+Linker/Locator:  ArmLink.exe V6.23
+Library Manager: ArmAr.exe V6.23
+Hex Converter:   FromElf.exe V6.23
+CPU DLL:         SARMCM3.DLL V5.42.0.0
 Dialog DLL:      DCM.DLL V1.17.5.0
 Target DLL:      STLink\ST-LINKIII-KEIL_SWO.dll V3.0.5.0
-Dialog DLL:      TCM.DLL V1.56.4.0
+Dialog DLL:      TCM.DLL V1.56.6.0
  
 <h2>Project:</h2>
 E:\STM32\Project\Git_STM32\Keil\TFT_Board_407\TFT_Board_407.uvprojx
-Project File Date:  04/14/2025
+Project File Date:  04/22/2025
 
 <h2>Output:</h2>
-*** Using Compiler 'V6.19', folder: 'C:\Keil_v5\ARM\ARMCLANG\Bin'
+*** Using Compiler 'V6.23', folder: 'C:\Keil_v5\ARM\ARMCLANG\Bin'
 Build target 'Target 1'
+compiling main.c...
+linking...
+Program Size: Code=1720 RO-data=408 RW-data=0 ZI-data=1680  
 ".\Objects\TFT_Board_407.axf" - 0 Error(s), 0 Warning(s).
 
 <h2>Software Packages used:</h2>
 
 Package Vendor: ARM
                 https://www.keil.com/pack/ARM.CMSIS.6.1.0.pack
-                ARM.CMSIS.6.1.0
+                ARM::CMSIS@6.1.0
                 CMSIS (Common Microcontroller Software Interface Standard)
    * Component: CORE Version: 6.1.0
 
 Package Vendor: Keil
                 https://www.keil.com/pack/Keil.STM32F4xx_DFP.3.0.0.pack
-                Keil.STM32F4xx_DFP.3.0.0
+                Keil::STM32F4xx_DFP@3.0.0
                 STMicroelectronics STM32F4 Series Device Support
 
 Package Vendor: Keil
                 https://www.keil.com/pack/Keil.STM32F4xx_DFP.2.17.0.pack
-                Keil.STM32F4xx_DFP.2.17.0
+                Keil::STM32F4xx_DFP@2.17.0
                 STMicroelectronics STM32F4 Series Device Support, Drivers and Examples
    * Component: Startup Version: 2.6.3
 
@@ -55,15 +58,15 @@ Package Vendor: Keil
 
 <h2>Collection of Component Files used:</h2>
 
-   * Component: ARM::CMSIS:CORE:6.1.0
+   * Component: ARM::CMSIS:CORE@6.1.0
 
-   * Component: Keil::Device:Startup:2.6.3
+   * Component: Keil::Device:Startup@2.6.3
+      Source file:   MDK/Device/Source/ARM/STM32F40xxx_41xxx_OPT.s
       Source file:   MDK/Device/Source/ARM/STM32F4xx_OTP.s
       Include file:  Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h
-      Source file:   MDK/Device/Source/ARM/STM32F40xxx_41xxx_OPT.s
       Source file:   Drivers/CMSIS/Device/ST/STM32F4xx/Source/Templates/arm/startup_stm32f407xx.s
       Source file:   Drivers/CMSIS/Device/ST/STM32F4xx/Source/Templates/system_stm32f4xx.c
-Build Time Elapsed:  00:00:00
+Build Time Elapsed:  00:00:01
 </pre>
 </body>
 </html>

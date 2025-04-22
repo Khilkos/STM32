@@ -10,7 +10,7 @@
       <TargetName>Target 1</TargetName>
       <ToolsetNumber>0x4</ToolsetNumber>
       <ToolsetName>ARM-ADS</ToolsetName>
-      <pCCUsed>6190000::V6.19::ARMCLANG</pCCUsed>
+      <pCCUsed>6230000::V6.23::ARMCLANG</pCCUsed>
       <uAC6>1</uAC6>
       <TargetOption>
         <TargetCommonOption>
@@ -419,6 +419,11 @@
               <FileType>1</FileType>
               <FilePath>..\..\My_Libraries\Timer.c</FilePath>
             </File>
+            <File>
+              <FileName>FSMC.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\My_Libraries\FSMC.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -436,7 +441,7 @@
       <filter>
         <targetInfos/>
       </filter>
-      <package name="CMSIS" schemaVersion="1.7.7" url="http://www.keil.com/pack/" vendor="ARM" version="5.9.0">
+      <package name="CMSIS" vendor="ARM">
         <targetInfos>
           <targetInfo name="Target 1"/>
         </targetInfos>
