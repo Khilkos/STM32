@@ -45,9 +45,9 @@ GPIO_DO_setup(GPIOA,1,High);
 	
 	
 //LCD_init
-LCD->LCD_REG = 0xE2; 	//PLL multiplier, set PLL clock to 110M
-LCD->LCD_RAM = 0x36;	//M = 54 - множитель
-LCD->LCD_RAM = 0x05;	//N = 5 - делитель
+LCD->LCD_REG = 0xE2; 	//PLL multiplier, set PLL clock to 120M
+LCD->LCD_RAM = 29;	//M = 29 - множитель
+LCD->LCD_RAM = 2;	//N = 2 - делитель
 LCD->LCD_RAM = 0x54;
 
 LCD->LCD_REG = 0xE0;	// PLL enable
@@ -62,9 +62,9 @@ LCD->LCD_REG = 0x01; // software reset
 delay_ms(20);
 
 LCD->LCD_REG = 0xE6; //PLL setting for PCLK, depends on resolution
-LCD->LCD_RAM = 0x01;
-LCD->LCD_RAM = 0x74;
-LCD->LCD_RAM = 0x5C;
+LCD->LCD_RAM = 0x03;
+LCD->LCD_RAM = 0x33;
+LCD->LCD_RAM = 0x33;
 
 LCD->LCD_REG = 0xB0; //LCD SPECIFICATION
 LCD->LCD_RAM = 0x20; //24 bit TFT panel
@@ -75,7 +75,62 @@ LCD->LCD_RAM = 0x01; //Set VDP
 LCD->LCD_RAM = 0xDF;
 LCD->LCD_RAM = 0x00; //set RGB
 
+LCD->LCD_REG =(0xB4);	//HSYNC
+LCD->LCD_RAM = (0x04);  //Set HT
+LCD->LCD_RAM = (0x1f);
+LCD->LCD_RAM = (0x00);  //Set HPS
+LCD->LCD_RAM = (0xd2);
+LCD->LCD_RAM = (0x00);			   //Set HPW
+LCD->LCD_RAM = (0x00);  //Set HPS
+LCD->LCD_RAM = (0x00);
+LCD->LCD_RAM = (0x00);
 
+LCD->LCD_REG =(0xB6);	//VSYNC
+LCD->LCD_RAM = (0x02);   //Set VT
+LCD->LCD_RAM = (0x0c);
+LCD->LCD_RAM = (0x00);  //Set VPS
+LCD->LCD_RAM = (0x22);
+LCD->LCD_RAM = (0x00);		//Set VPW
+LCD->LCD_RAM = (0x00);  //Set FPS
+LCD->LCD_RAM = (0x00);
+
+LCD->LCD_REG =(0xB8);
+LCD->LCD_RAM = (0x0f);    //GPIO is controlled by host GPIO[3:0]=output   GPIO[0]=1  LCD ON  GPIO[0]=1  LCD OFF 
+LCD->LCD_RAM = (0x01);    //GPIO0 normal
+
+LCD->LCD_REG =(0xBA);
+LCD->LCD_RAM = (0x01);    //GPIO[0] out 1 --- LCD display on/off control PIN
+
+LCD->LCD_REG =(0x36); //rotation
+LCD->LCD_RAM = (0xC0);//RGB=BGR
+
+LCD->LCD_REG =(0x3A); //Set the current pixel format for RGB image data
+LCD->LCD_RAM = (0x50);//16-bit/pixel
+
+LCD->LCD_REG =(0xF0); //Pixel Data Interface Format
+LCD->LCD_RAM = (0x03);//16-bit(565 format) data 
+
+LCD->LCD_REG =(0xBC); 
+LCD->LCD_RAM = (0x40);//contrast value
+LCD->LCD_RAM = (0x80);//brightness value
+LCD->LCD_RAM = (0x40);//saturation value
+LCD->LCD_RAM = (0x01);//Post Processor Enable
+
+	delay_ms(5);
+
+LCD->LCD_REG =(0x29); //display on
+
+
+LCD->LCD_REG =(0xBE); //set PWM for B/L
+LCD->LCD_RAM = (0x06);
+LCD->LCD_RAM = (0x80);
+LCD->LCD_RAM = (0x01);
+LCD->LCD_RAM = (0xf0);
+LCD->LCD_RAM = (0x00);
+LCD->LCD_RAM = (0x00);
+
+LCD->LCD_REG =(0xd0); 
+LCD->LCD_RAM = (0x0d);
 
 
 	
