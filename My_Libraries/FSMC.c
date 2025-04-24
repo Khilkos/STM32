@@ -27,10 +27,10 @@ FSMC_Bank1->BTCR[0] = 	0 << FSMC_BCR1_CBURSTRW_Pos 	| // write 0 - async 1 - syc
 FSMC_Bank1->BTCR[1] =		0 << FSMC_BTR1_ACCMOD_Pos			| // Access mode 0 = A, 1 = B, 2 = C, 3 = D Use w/EXTMOD bit
 												0 << FSMC_BTR1_DATLAT_Pos 		| // Data latency for synchronous NOR Flash memory 0(2CK)...F(17CK)
 												1 << FSMC_BTR1_CLKDIV_Pos 		| // for FSMC_CLK signal 1 = HCLK/2, 2 = HCLK/3 ... F= HCLK/16	
-												3 << FSMC_BTR1_BUSTURN_Pos 		| // Bus turnaround phase duration 0...F, расстояние между посылками
+												5 << FSMC_BTR1_BUSTURN_Pos 		| // Bus turnaround phase duration 0...F, расстояние между посылками
 												5 << FSMC_BTR1_DATAST_Pos 		| // Data-phase duration 1..FF * 2 * HCLK, длительность фазы данных
 												1 << FSMC_BTR1_ADDHLD_Pos 		| // Address-hold phase duration 1..F * 2 * HCLK, длительность фазы удержания адреса
-												2 << FSMC_BTR1_ADDSET_Pos 		; // Address setup phase duration 0..F * HCLK, длительность фазы настройки адреса
+												1 << FSMC_BTR1_ADDSET_Pos 		; // Address setup phase duration 0..F * HCLK, длительность фазы настройки адреса
  
   
 }

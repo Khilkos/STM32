@@ -9,6 +9,8 @@
 #include "GPIO_setup.h"
 #include "Timer.h"
 #include "FSMC.h"
+#include "SSD1963.h"
+
 
 
 

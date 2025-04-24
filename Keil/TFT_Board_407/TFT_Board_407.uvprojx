@@ -424,6 +424,11 @@
               <FileType>1</FileType>
               <FilePath>..\..\My_Libraries\FSMC.c</FilePath>
             </File>
+            <File>
+              <FileName>SSD1963.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\My_Libraries\SSD1963.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
