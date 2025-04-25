@@ -38,8 +38,8 @@ void LCD_WriteReg(const uint8_t LCD_Reg, const uint16_t LCD_RegValue);
 void SSD1963_SetArea(uint16_t x1, uint16_t width, uint16_t y1, uint16_t height);
 void SSD1963_ClearScreen(uint16_t color);
 void SSD1963_dot(uint16_t x, uint16_t y, uint16_t color);
-void SSD1963_Vertical_line(uint16_t x, uint16_t y, uint16_t height, uint16_t color);
-void SSD1963_Horisontal_line(uint16_t x, uint16_t y, uint16_t width, uint16_t color);
+void SSD1963_Vertical_line(uint16_t x, uint16_t y, uint16_t height, uint16_t thickness, uint16_t color);
+void SSD1963_Horisontal_line(uint16_t x, uint16_t y, uint16_t width, uint16_t thickness, uint16_t color);
 
 #endif
 

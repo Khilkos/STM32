@@ -102,15 +102,11 @@ void SSD1963_SetArea(uint16_t x1, uint16_t width, uint16_t y1, uint16_t height)
 //=====================================================================
 void SSD1963_ClearScreen(uint16_t color)
 {
-  unsigned int x,y;
+ // unsigned int x,y;
   SSD1963_SetArea(0, 800-1 , 0, 480-1);
-  
-  for(x=0;x<800;x++){
-    for(y= 0;y<480;y++){
-      LCD_DATA =(color);
-    }
-  }
-}
+  for (uint32_t i=0; i<(800*480);i++) 
+	LCD_DATA =(color);
+ }
 //======================================================================
 
 void SSD1963_dot(uint16_t x, uint16_t y, uint16_t color)
@@ -119,20 +115,22 @@ SSD1963_SetArea (x,0,y,0);
 LCD_DATA = color;	
 }
 //======================================================================
-void SSD1963_Vertical_line(uint16_t x, uint16_t y, uint16_t height, uint16_t color)
+void SSD1963_Vertical_line(uint16_t x, uint16_t y, uint16_t height, uint16_t thickness, uint16_t color)
 {
-for (uint16_t i=0; i<height; i++)
+	SSD1963_SetArea(x,thickness-1,y,height-1);
+for (uint32_t i=0; i<(height*thickness); i++)
 	{
-			SSD1963_dot(x,y+i,color);
+		LCD_DATA =(color);	
 	}
 
 }
 //=======================================================================
-void SSD1963_Horisontal_line(uint16_t x, uint16_t y, uint16_t width, uint16_t color)
+void SSD1963_Horisontal_line(uint16_t x, uint16_t y, uint16_t width, uint16_t thickness, uint16_t color)
 {
-for (uint16_t i=0; i<width; i++)
+	SSD1963_SetArea(x,width-1,y,thickness-1);
+for (uint32_t i=0; i<(width*thickness); i++)
 	{
-			SSD1963_dot(x+i,y,color);
+		LCD_DATA =(color);
 	}
 
 }

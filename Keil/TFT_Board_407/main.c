@@ -50,24 +50,36 @@ delay_ms(150);
 SSD1963_init();
 SSD1963_ClearScreen(0x0000);	
 	
-SSD1963_dot(50,50,0xffff);
-SSD1963_Vertical_line(100,10,200,0xff);	
-SSD1963_Horisontal_line(100,10,200,0xff);
+	
 	
 	while (1)
 	{
 			
 	if (!TIM1_Delay_1) {if (GPIOA->IDR & 1<<1) GPIOA->BSRR = 1<<(1+16); else GPIOA->BSRR = 1<<1;  	TIM1_Delay_1 = 250;}
-/*temp16=3;
-	for (uint16_t i=0;i<16;i++)
-{
-//temp16 |= 0x01;	
-SSD1963_ClearScreen(temp16);
-temp16  <<=1;	
-delay_ms(500);	
-}	
-*/
+SSD1963_dot(50,50,0xffff);
 	
+//SSD1963_Horisontal_line(0,0,30,5,0xff);
+//SSD1963_Vertical_line(0,0,200,5,0xff);		
+
+	
+	temp16=0;
+	for (uint16_t i=0;i<800;i++)
+{
+	
+SSD1963_Horisontal_line(i,0,1,480,0xff);
+temp16++;	
+delay_us(800);	
+}	
+
+
+	temp16=0;
+	for (uint16_t i=0;i<800;i++)
+{
+	
+SSD1963_Horisontal_line(i,0,1,480,0x0000);
+temp16++;	
+delay_us(800);	
+}		
 
 		
 	}
