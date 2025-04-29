@@ -5,4 +5,4 @@
   ..\..\My_Libraries\Core_init.h ..\TFT_Board_407\Config.h \
   ..\..\My_Libraries\Delay.h ..\..\My_Libraries\GPIO_setup.h \
   ..\..\My_Libraries\Timer.h ..\..\My_Libraries\FSMC.h \
-  ..\..\My_Libraries\SSD1963.h
+  ..\..\My_Libraries\SSD1963.h ..\..\My_Libraries\Font_table.h

@@ -134,5 +134,24 @@ for (uint32_t i=0; i<(width*thickness); i++)
 	}
 
 }
+//=======================================================================
+void SSD1963_string_font_10x16 (uint16_t x_start, uint16_t y_start, uint8_t *str, uint16_t color )
+{	while (*str!='\0')
+	{	uint8_t    let=*str;
+		for (uint8_t x=0; x<10; x++)
+			{
+					uint16_t	temp=font_10x16[let*10+x];
+					for (uint8_t y=0; y<16; y++)
+					{	if (temp & 0x01) SSD1963_dot(x_start+x,y_start+y,color); 
+						temp>>=1;
+					}
+			}
+		x_start+=11;
+		str++;	
+	}
+}	
+//========================================================================	
+	
+
 
 

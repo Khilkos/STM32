@@ -10,6 +10,7 @@
 #include "Timer.h"
 #include "FSMC.h"
 #include "SSD1963.h"
+#include "Font_table.h"
 
 
 

@@ -2,7 +2,8 @@
 //#include "GPIO_setup.h"
 
 static uint16_t temp16=0;
-
+static uint8_t temp8=0;
+static char String[300];
 
 int main(void)
 {
@@ -48,40 +49,29 @@ GPIOE->BSRR = 1<<(0);
 delay_ms(150);
 
 SSD1963_init();
-SSD1963_ClearScreen(0x0000);	
+SSD1963_ClearScreen(0xff);	
 	
 	
 	
 	while (1)
 	{
-			
-	if (!TIM1_Delay_1) {if (GPIOA->IDR & 1<<1) GPIOA->BSRR = 1<<(1+16); else GPIOA->BSRR = 1<<1;  	TIM1_Delay_1 = 250;}
-SSD1963_dot(50,50,0xffff);
-	
-//SSD1963_Horisontal_line(0,0,30,5,0xff);
-//SSD1963_Vertical_line(0,0,200,5,0xff);		
-
-	
-	temp16=0;
-	for (uint16_t i=0;i<800;i++)
-{
-	
-SSD1963_Horisontal_line(i,0,1,480,0xff);
-temp16++;	
-delay_us(800);	
-}	
-
-
-	temp16=0;
-	for (uint16_t i=0;i<800;i++)
-{
-	
-SSD1963_Horisontal_line(i,0,1,480,0x0000);
-temp16++;	
-delay_us(800);	
-}		
 
 		
+	if (!TIM1_Delay_1) {if (GPIOA->IDR & 1<<1) GPIOA->BSRR = 1<<(1+16); else GPIOA->BSRR = 1<<1;  	TIM1_Delay_1 = 250;}
+
+sprintf(String,"Позиция курсора X=");	
+SSD1963_string_font_10x16(20,20,(uint8_t*)String,0xff00);
+
+sprintf(String,"Позиция курсора Y=");	
+SSD1963_string_font_10x16(20,20+16,(uint8_t*)String,0xff00);
+
+
+
+	
+
+	
+	
+
 	}
 	
 }
