@@ -4,6 +4,7 @@
 static uint16_t temp16=0;
 static uint8_t temp8=0;
 static char String[300];
+_Bool TOUCH_IRQ=0;
 
 int main(void)
 {
@@ -17,6 +18,8 @@ int main(void)
 	GPIO_DO_setup(GPIOE,6,High);//LCD подсветка
 	GPIO_DO_setup(GPIOE,0,High);//LCD_Reset
 	GPIO_DO_setup(GPIOA,1,High);	
+	
+	GPIO_DI_setup(GPIOE,4,No_pull);// TOUCH_IRQ
 	
 	GPIO_Alternate(GPIOD,14,Push_pull,High,No_pull,AF12); //FSMC D0
 	GPIO_Alternate(GPIOD,15,Push_pull,High,No_pull,AF12); //FSMC D1
@@ -58,15 +61,21 @@ SSD1963_ClearScreen(0xff);
 
 		
 	if (!TIM1_Delay_1) {if (GPIOA->IDR & 1<<1) GPIOA->BSRR = 1<<(1+16); else GPIOA->BSRR = 1<<1;  	TIM1_Delay_1 = 250;}
+	if (!TIM1_Delay_2) {if (temp16 >=999) {temp16=0; TOUCH_IRQ=0;} else temp16++; TIM1_Delay_2=10;}
 
 sprintf(String,"Позиция курсора X=");	
 SSD1963_string_font_10x16(20,20,(uint8_t*)String,0xff00);
 
 sprintf(String,"Позиция курсора Y=");	
-SSD1963_string_font_10x16(20,20+16,(uint8_t*)String,0xff00);
+SSD1963_string_font_10x16(20,20+16*1,(uint8_t*)String,0xff00);
 
 
+sprintf(String,"Счетчик = %03d", temp16);	
+SSD1963_string_font_10x16_back_fone(20,20+16*2,(uint8_t*)String,0xff00, 0xff);
 
+if (GPIOE->IDR & 1<<4) TOUCH_IRQ=1; //else TOUCH_IRQ=0;
+sprintf(String,"Касание = %d", TOUCH_IRQ);	
+SSD1963_string_font_10x16_back_fone(20,20+16*3,(uint8_t*)String,0xff00, 0xff);
 	
 
 	
