@@ -4,6 +4,16 @@
 
 //требует FSMC
 
+/*
+//==========================
+//for GT911 define in Config.h
+#define TOUCH_IRQ_GPIO GPIOE
+#define TOUCH_IRQ_PIN 4	
+#define TOUCH_RST_GPIO GPIOE
+#define TOUCH_RST_PIN 5	
+//==========================
+*/
+
 #define LCD_CMD LCD->LCD_RAM
 #define LCD_DATA LCD->LCD_REG
 

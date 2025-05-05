@@ -337,7 +337,7 @@
             <v6WtE>0</v6WtE>
             <v6Rtti>0</v6Rtti>
             <VariousControls>
-              <MiscControls>-Wno-invalid-utf8 -Wno-invalid-source-encoding</MiscControls>
+              <MiscControls>-Wno-invalid-utf8 -Wno-invalid-source-encoding -Wno-missing-braces</MiscControls>
               <Define></Define>
               <Undefine></Undefine>
               <IncludePath>..\TFT_Board_407;..\..\My_Libraries</IncludePath>
@@ -433,6 +433,26 @@
               <FileName>Font_table.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\My_Libraries\Font_table.c</FilePath>
+            </File>
+            <File>
+              <FileName>GT911.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\My_Libraries\GT911.c</FilePath>
+            </File>
+            <File>
+              <FileName>GT911.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\..\My_Libraries\GT911.h</FilePath>
+            </File>
+            <File>
+              <FileName>I2C.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\My_Libraries\I2C.c</FilePath>
+            </File>
+            <File>
+              <FileName>I2C.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\..\My_Libraries\I2C.h</FilePath>
             </File>
           </Files>
         </Group>
