@@ -69,26 +69,35 @@ GT911_Init();
 	
 	while (1)
 	{
-
+//TouchCount = GT911_ReadTouch(&GT911Touch[0]);
 		
 	if (!TIM1_Delay_1) {if (GPIOA->IDR & 1<<1) GPIOA->BSRR = 1<<(1+16); else GPIOA->BSRR = 1<<1;  	TIM1_Delay_1 = 250;}
 	if (!TIM1_Delay_2) {if (temp16 >=99) {temp16=0; TOUCH_IRQ=0;} else temp16++; TIM1_Delay_2=10;}
 
-sprintf(String,"Позиция курсора X=");	
-SSD1963_string_font_10x16(20,20,(uint8_t*)String,0xff00);
+sprintf(String,"Позиция курсора X = %03d", GT911Touch[0].XCoordinate );	
+SSD1963_string_font_10x16_back_fone(20,20,(uint8_t*)String,0xff00,0xff);
 
-sprintf(String,"Позиция курсора Y=");	
-SSD1963_string_font_10x16(20,20+16*1,(uint8_t*)String,0xff00);
+sprintf(String,"Позиция курсора Y = %03d",GT911Touch[0].YCoordinate);	
+SSD1963_string_font_10x16_back_fone(20,20+16*1,(uint8_t*)String,0xff00,0xff);
+	
+sprintf(String,"Size = %03d",GT911Touch[0].Size);	
+SSD1963_string_font_10x16_back_fone(20,20+16*2,(uint8_t*)String,0xff00,0xff);	
+	
+sprintf(String,"Touch_Status = %02x", Touch_status);	
+SSD1963_string_font_10x16_back_fone(20,20+16*3,(uint8_t*)String,0xff00, 0xff);
 
 
 sprintf(String,"Счетчик = %02d", temp16);	
-SSD1963_string_font_10x16_back_fone(20,20+16*2,(uint8_t*)String,0xff00, 0xff);
+SSD1963_string_font_10x16_back_fone(20,20+16*4,(uint8_t*)String,0xff00, 0xff);
 
-if (GPIOE->IDR & 1<<4) TOUCH_IRQ=1; //else TOUCH_IRQ=0;
+if (GPIOE->IDR & 1<<4) {TOUCH_IRQ=1;} else {TOUCH_IRQ=0; TouchCount = GT911_ReadTouch(&GT911Touch[0]);}
 sprintf(String,"Касание = %d", TOUCH_IRQ);	
-SSD1963_string_font_10x16_back_fone(20,20+16*3,(uint8_t*)String,0xff00, 0xff);
-	
+SSD1963_string_font_10x16_back_fone(20,20+16*5,(uint8_t*)String,0xff00, 0xff);
 
+sprintf(String,"I2C Error = %d", I2C_eror);	
+SSD1963_string_font_10x16_back_fone(20,20+16*6,(uint8_t*)String,0xff00, 0xff);
+
+SSD1963_dot (GT911Touch[0].XCoordinate,GT911Touch[0].YCoordinate,0xffff);
 	
 	
 

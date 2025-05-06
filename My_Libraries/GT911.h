@@ -17,6 +17,10 @@
 //#define     GT911_DEFAULT_ID                  0x28 //0x28
 #define     GT911_ALTERNATIVE_ID              0x14
 
+
+
+
+
 typedef struct 
 {
   uint8_t ConfigVersion;
@@ -395,5 +399,11 @@ uint8_t GT911_ReadTouch(GT911Touch_TypeDef * GT911Touch);
 void GT911_Init(void);
 
 extern void InitEXTI(void);
+
+// Touch Controller GT911
+extern GT911Touch_TypeDef GT911Touch[5];
+extern uint8_t TouchCount;
+extern uint8_t Touch_status;
+
 
 #endif /*GT911_H*/

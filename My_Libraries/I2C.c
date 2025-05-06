@@ -1,7 +1,7 @@
 #include "I2C.h"
 
 uint32_t temp_count;
-
+_Bool I2C_eror=0;
 
 
 void I2C_STM32F4_init(void)
@@ -12,10 +12,10 @@ I2C1->CR2 &= ~I2C_CR2_FREQ;
 I2C1->CR2 |= 42;
 
 	
-//set prescaler for I2C in FM mode 400 kHz
-I2C1->CCR |=I2C_CCR_FS; //selection FM mode
+//set prescaler for I2C in FM mode 100 kHz
+//I2C1->CCR |=I2C_CCR_FS; //selection FM mode
 I2C1->CCR &= ~I2C_CCR_CCR;
-I2C1->CCR |=35; // =42MHz/3/400kHz
+I2C1->CCR |=140; // =42MHz/3/100kHz
 	
 
 I2C1->TRISE = 14; // =300ns/(1/42MHz) +1

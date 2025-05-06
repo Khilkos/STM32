@@ -14,6 +14,7 @@
 #define delay_answer  CPU_freq*9/I2C_speed //  (1/I2C_speed)*9/(1/CPU_freq)
 
 extern uint32_t temp_count;
+extern _Bool I2C_eror;
 
 
 void I2C_STM32F4_init(void);
