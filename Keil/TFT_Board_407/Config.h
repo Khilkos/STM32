@@ -1,5 +1,6 @@
 #include "stdio.h"
 #include "stdint.h"
+#include "stdlib.h"
 
 //#include "stm32h750xx.h"
 #include "stm32f407xx.h"
@@ -16,6 +17,7 @@
 #include "Font_table.h"
 #include "I2C.h"
 #include "GT911.h"
+#include "img.h"
 
 //==========================
 //for GT911 define in Config.h

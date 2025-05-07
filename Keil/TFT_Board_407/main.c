@@ -1,13 +1,22 @@
 #include "main.h"
 //#include "GPIO_setup.h"
 
+#define TOUCH_Press !(GPIOE->IDR & 1<<4)
 
-
-
+static uint32_t temp32=0;
 static uint16_t temp16=0;
 static uint8_t temp8=0;
 static char String[300];
 _Bool TOUCH_IRQ=0;
+
+static _Bool NEW_update=1;
+static _Bool Button_1=0;
+static _Bool Button_2=0;
+static _Bool Button_3=0;
+static _Bool Button_4=0;
+
+static uint16_t X_start=0;
+static uint16_t Y_start=0;
 
 int main(void)
 {
@@ -20,7 +29,10 @@ int main(void)
 	
 	GPIO_DO_setup(GPIOE,6,High);//LCD ïîäñâåòêà
 	GPIO_DO_setup(GPIOE,0,High);//LCD_Reset
-	GPIO_DO_setup(GPIOA,1,High);	
+	GPIO_DO_setup(GPIOA,1,High);//Ðåëå 1
+	GPIO_DO_setup(GPIOA,3,High);//Ðåëå 2
+	GPIO_DO_setup(GPIOA,5,High);//Ðåëå 3
+	GPIO_DO_setup(GPIOA,7,High);//Ðåëå 4	
 	
 	
 	GPIO_DO_setup(TOUCH_IRQ_GPIO,TOUCH_IRQ_PIN,High);// TOUCH_IRQ
@@ -65,15 +77,114 @@ I2C_STM32F4_init();
 SSD1963_init();
 SSD1963_ClearScreen(0xff);	
 GT911_Init();	
-	
-	
+
+TFT_Draw_image(10,200,320,240,&img);
+//TFT_Draw_image(10,200,400,247,&img1);
+//TFT_Draw_image(10,150,400,300,&img2);	
 	while (1)
 	{
-//TouchCount = GT911_ReadTouch(&GT911Touch[0]);
-		
-	if (!TIM1_Delay_1) {if (GPIOA->IDR & 1<<1) GPIOA->BSRR = 1<<(1+16); else GPIOA->BSRR = 1<<1;  	TIM1_Delay_1 = 250;}
-	if (!TIM1_Delay_2) {if (temp16 >=99) {temp16=0; TOUCH_IRQ=0;} else temp16++; TIM1_Delay_2=10;}
 
+		
+//	if (!TIM1_Delay_1) {if (GPIOA->IDR & 1<<1) GPIOA->BSRR = 1<<(1+16); else GPIOA->BSRR = 1<<1;  	TIM1_Delay_1 = 100000;}
+	if (!TIM1_Delay_2) {if (temp16 >=99) {temp16=0;} else temp16++; TIM1_Delay_2=10;}
+
+	if (GPIOE->IDR & 1<<4) {TOUCH_IRQ=1;} else {TOUCH_IRQ=0;TouchCount = GT911_ReadTouch(&GT911Touch[0]);}
+	if ((TOUCH_Press && !TIM1_Delay_3) || NEW_update) 
+	{	NEW_update = 0;
+		TIM1_Delay_3 = 1000;
+		if ((GT911Touch[0].XCoordinate>680 && GT911Touch[0].XCoordinate<(680+100) && GT911Touch[0].YCoordinate>(20+80*0) && GT911Touch[0].YCoordinate<(20+80*0+60)))
+					{if (Button_1) Button_1=0; else Button_1=1;}
+		
+		if ((GT911Touch[0].XCoordinate>680 && GT911Touch[0].XCoordinate<(680+100) && GT911Touch[0].YCoordinate>(20+80*1) && GT911Touch[0].YCoordinate<(20+80*1+60)))
+					{if (Button_2) Button_2=0; else Button_2=1;}
+		
+		if ((GT911Touch[0].XCoordinate>680 && GT911Touch[0].XCoordinate<(680+100) && GT911Touch[0].YCoordinate>(20+80*2) && GT911Touch[0].YCoordinate<(20+80*2+60)))
+					{if (Button_3) Button_3=0; else Button_3=1;}
+		
+		if ((GT911Touch[0].XCoordinate>680 && GT911Touch[0].XCoordinate<(680+100) && GT911Touch[0].YCoordinate>(20+80*3) && GT911Touch[0].YCoordinate<(20+80*3+60)))
+					{if (Button_4) Button_4=0; else Button_4=1;}
+		
+		if (!Button_1) 
+							{	//SSD1963_Horisontal_line(680,20,100,60,0xf800);
+								TFT_Draw_Fill_Round_Rect(680,20+80*0,100,60,10,0xf800);
+								sprintf(String,"ÐÅËÅ 1");
+								SSD1963_string_font_10x16(700,30,(uint8_t*)String,0xffff);
+								sprintf(String,"ÂÛÊË");
+								SSD1963_string_font_10x16(710,30+20,(uint8_t*)String,0xffff);
+								GPIOA->BSRR = 1<<(1+16);
+							}
+					else 
+							{	//SSD1963_Horisontal_line(680,20,100,60,0x7e0); 
+								TFT_Draw_Fill_Round_Rect(680,20+80*0,100,60,10,0x7e0);
+								sprintf(String,"ÐÅËÅ 1");
+								SSD1963_string_font_10x16(700,30,(uint8_t*)String,0xffff);
+								sprintf(String,"ÂÊË");
+								SSD1963_string_font_10x16(715,30+20,(uint8_t*)String,0xffff);
+								GPIOA->BSRR = 1<<(1);
+							}
+				
+		if (!Button_2) 
+							{	//SSD1963_Horisontal_line(680,20,100,60,0xf800);
+								TFT_Draw_Fill_Round_Rect(680,20+80*1,100,60,10,0xf800);
+								sprintf(String,"ÐÅËÅ 2");
+								SSD1963_string_font_10x16(700,30+80*1,(uint8_t*)String,0xffff);
+								sprintf(String,"ÂÛÊË");
+								SSD1963_string_font_10x16(710,30+80*1+20,(uint8_t*)String,0xffff);
+								GPIOA->BSRR = 1<<(3+16);
+							}
+					else 
+							{	//SSD1963_Horisontal_line(680,20,100,60,0x7e0); 
+								TFT_Draw_Fill_Round_Rect(680,20+80*1,100,60,10,0x7e0);
+								sprintf(String,"ÐÅËÅ 2");
+								SSD1963_string_font_10x16(700,30+80*1,(uint8_t*)String,0xffff);
+								sprintf(String,"ÂÊË");
+								SSD1963_string_font_10x16(715,30+80*1+20,(uint8_t*)String,0xffff);
+								GPIOA->BSRR = 1<<(3);
+							}
+		
+			if (!Button_3) 
+							{	//SSD1963_Horisontal_line(680,20,100,60,0xf800);
+								TFT_Draw_Fill_Round_Rect(680,20+80*2,100,60,10,0xf800);
+								sprintf(String,"ÐÅËÅ 3");
+								SSD1963_string_font_10x16(700,30+80*2,(uint8_t*)String,0xffff);
+								sprintf(String,"ÂÛÊË");
+								SSD1963_string_font_10x16(710,30+80*2+20,(uint8_t*)String,0xffff);
+								GPIOA->BSRR = 1<<(5+16);
+							}
+					else 
+							{	//SSD1963_Horisontal_line(680,20,100,60,0x7e0); 
+								TFT_Draw_Fill_Round_Rect(680,20+80*2,100,60,10,0x7e0);
+								sprintf(String,"ÐÅËÅ 3");
+								SSD1963_string_font_10x16(700,30+80*2,(uint8_t*)String,0xffff);
+								sprintf(String,"ÂÊË");
+								SSD1963_string_font_10x16(715,30+80*2+20,(uint8_t*)String,0xffff);
+								GPIOA->BSRR = 1<<(5);
+							}				
+				
+	if (!Button_4) 
+							{	//SSD1963_Horisontal_line(680,20,100,60,0xf800);
+								TFT_Draw_Fill_Round_Rect(680,20+80*3,100,60,10,0xf800);
+								sprintf(String,"ÐÅËÅ 4");
+								SSD1963_string_font_10x16(700,30+80*3,(uint8_t*)String,0xffff);
+								sprintf(String,"ÂÛÊË");
+								SSD1963_string_font_10x16(710,30+80*3+20,(uint8_t*)String,0xffff);
+								GPIOA->BSRR = 1<<(7+16);
+							}
+					else 
+							{	//SSD1963_Horisontal_line(680,20,100,60,0x7e0); 
+								TFT_Draw_Fill_Round_Rect(680,20+80*3,100,60,10,0x7e0);
+								sprintf(String,"ÐÅËÅ 4");
+								SSD1963_string_font_10x16(700,30+80*3,(uint8_t*)String,0xffff);
+								sprintf(String,"ÂÊË");
+								SSD1963_string_font_10x16(715,30+80*3+20,(uint8_t*)String,0xffff);
+								GPIOA->BSRR = 1<<(7);
+							}											
+							
+		
+	}
+	//if (!TOUCH_Press) TOUCH_trip=0;
+	
+	
 sprintf(String,"Ïîçèöèÿ êóðñîðà X = %03d", GT911Touch[0].XCoordinate );	
 SSD1963_string_font_10x16_back_fone(20,20,(uint8_t*)String,0xff00,0xff);
 
@@ -90,18 +201,28 @@ SSD1963_string_font_10x16_back_fone(20,20+16*3,(uint8_t*)String,0xff00, 0xff);
 sprintf(String,"Ñ÷åò÷èê = %02d", temp16);	
 SSD1963_string_font_10x16_back_fone(20,20+16*4,(uint8_t*)String,0xff00, 0xff);
 
-if (GPIOE->IDR & 1<<4) {TOUCH_IRQ=1;} else {TOUCH_IRQ=0; TouchCount = GT911_ReadTouch(&GT911Touch[0]);}
+if (GPIOE->IDR & 1<<4) {TOUCH_IRQ=1;} else {TOUCH_IRQ=0;}
 sprintf(String,"Êàñàíèå = %d", TOUCH_IRQ);	
 SSD1963_string_font_10x16_back_fone(20,20+16*5,(uint8_t*)String,0xff00, 0xff);
 
 sprintf(String,"I2C Error = %d", I2C_eror);	
 SSD1963_string_font_10x16_back_fone(20,20+16*6,(uint8_t*)String,0xff00, 0xff);
 
-SSD1963_dot (GT911Touch[0].XCoordinate,GT911Touch[0].YCoordinate,0xffff);
-	
-	
+X_start = 400;
+Y_start = 200;
+/*
+TFT_Draw_Circle(400,200,100,0,1,0xffff);
+TFT_Draw_Fill_Rectangle(10,200,60,100,0xffff);
+TFT_Draw_Rectangle(10,200,60,100,1,0xf800);	
+TFT_Draw_HLine(10,340,100,1,0xf800);
+TFT_Draw_HLine(10,350,100,5,0xf800);
+TFT_Draw_VLine(250,200,100,1,0xf800);
+*/
 
-	}
-	
+
+
+//SSD1963_dot (GT911Touch[0].XCoordinate,GT911Touch[0].YCoordinate,0xffff);
+
+
+}	
 }
-

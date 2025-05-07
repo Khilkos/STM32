@@ -9,6 +9,7 @@
 ".\objects\font_table.o"
 ".\objects\gt911.o"
 ".\objects\i2c.o"
+".\objects\img.o"
 ".\objects\startup_stm32f407xx.o"
 ".\objects\system_stm32f4xx.o"
 --strict --scatter ".\Objects\TFT_Board_407.sct"

@@ -22,19 +22,28 @@ Dialog DLL:      TCM.DLL V1.56.6.0
  
 <h2>Project:</h2>
 E:\STM32\Project\Git_STM32\Keil\TFT_Board_407\TFT_Board_407.uvprojx
-Project File Date:  05/05/2025
+Project File Date:  05/07/2025
 
 <h2>Output:</h2>
 *** Using Compiler 'V6.23', folder: 'C:\Keil_v5\ARM\ARMCLANG\Bin'
 Build target 'Target 1'
+main.c(81): warning: incompatible pointer types passing 'const uint16_t (*)[]' (aka 'const unsigned short (*)[]') to parameter of type 'uint16_t *' (aka 'unsigned short *') [-Wincompatible-pointer-types]
+   81 | TFT_Draw_image(10,200,320,240,&img);
+      |                               ^~~~
+../../My_Libraries\SSD1963.h(70): note: passing argument to parameter 'img' here
+   70 | void TFT_Draw_image(uint16_t x, uint16_t y, uint16_t length, uint16_t width, uint16_t *img);
+      |                                                                                        ^
+main.c(6): warning: unused variable 'temp32' [-Wunused-variable]
+    6 | static uint32_t temp32=0;
+      |                 ^~~~~~
 main.c(8): warning: unused variable 'temp8' [-Wunused-variable]
     8 | static uint8_t temp8=0;
       |                ^~~~~
-1 warning generated.
+3 warnings generated.
 compiling main.c...
 linking...
-Program Size: Code=4616 RO-data=5588 RW-data=0 ZI-data=2024  
-".\Objects\TFT_Board_407.axf" - 0 Error(s), 1 Warning(s).
+Program Size: Code=5880 RO-data=159188 RW-data=0 ZI-data=2024  
+".\Objects\TFT_Board_407.axf" - 0 Error(s), 3 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -65,12 +74,12 @@ Package Vendor: Keil
    * Component: ARM::CMSIS:CORE@6.1.0
 
    * Component: Keil::Device:Startup@2.6.3
+      Include file:  Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h
       Source file:   MDK/Device/Source/ARM/STM32F4xx_OTP.s
       Source file:   Drivers/CMSIS/Device/ST/STM32F4xx/Source/Templates/arm/startup_stm32f407xx.s
       Source file:   MDK/Device/Source/ARM/STM32F40xxx_41xxx_OPT.s
-      Include file:  Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h
       Source file:   Drivers/CMSIS/Device/ST/STM32F4xx/Source/Templates/system_stm32f4xx.c
-Build Time Elapsed:  00:00:00
+Build Time Elapsed:  00:00:01
 </pre>
 </body>
 </html>

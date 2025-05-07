@@ -440,19 +440,19 @@
               <FilePath>..\..\My_Libraries\GT911.c</FilePath>
             </File>
             <File>
-              <FileName>GT911.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\..\My_Libraries\GT911.h</FilePath>
-            </File>
-            <File>
               <FileName>I2C.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\My_Libraries\I2C.c</FilePath>
             </File>
             <File>
-              <FileName>I2C.h</FileName>
+              <FileName>img.h</FileName>
               <FileType>5</FileType>
-              <FilePath>..\..\My_Libraries\I2C.h</FilePath>
+              <FilePath>..\..\My_Libraries\img.h</FilePath>
+            </File>
+            <File>
+              <FileName>img.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\My_Libraries\img.c</FilePath>
             </File>
           </Files>
         </Group>

@@ -82,8 +82,8 @@ void GT911_Init(void)
   GT911ConfInfo.Filter=0x08;	//0x8050
   GT911ConfInfo.LargeTouch=40;	//0x8051
   GT911ConfInfo.NoiseReduction=6;//0x05;	//0x8052
-  GT911ConfInfo.ScreenTouchLvl=90;//0x50;	//0x8053 ѕорог дл€ обнаружени€ касани€
-  GT911ConfInfo.ScreenLeaveLvl=50;	//0x8054   ѕорог дл€ сн€ти€ касани€
+  GT911ConfInfo.ScreenTouchLvl=40;//0x50;	//0x8053 ѕорог дл€ обнаружени€ касани€
+  GT911ConfInfo.ScreenLeaveLvl=20;	//0x8054   ѕорог дл€ сн€ти€ касани€
   GT911ConfInfo.LowPowerControl=0x0;	//0x8055   »нтервал дл€ перехода в режим пониженного энергопотреблени€ (от 0 до 15 с)
   GT911ConfInfo.RefreshRate=0x10; //0x05;	//0x8056  —корость передачи координат (период: 5+N мс) max-15
   GT911ConfInfo.xThreshold=0x00;	//0x8057 ѕорог вывода координаты X: 0-255 (на основе последних сообщенных координат; если настроено на 0, GT911 будет продолжать непрерывно выводить координаты)
@@ -113,7 +113,7 @@ void GT911_Init(void)
   GT911ConfInfo.ChargingLvlUp=0x00;	//0x806F
   GT911ConfInfo.ModuleSwitch3=0x01;	//0x8070
   GT911ConfInfo.GestureDis=0x11;	//0x8071
-  GT911ConfInfo.GestureLongPressTime=0x00;	//0x8072
+  GT911ConfInfo.GestureLongPressTime=250;//0x00;	//0x8072
   GT911ConfInfo.XorYSlopeAdjust=0x00;	//0x8073
   GT911ConfInfo.GestureControl=0;//0x03;	//0x8074
   GT911ConfInfo.GestureSwitch1=0x00;	//0x8075
