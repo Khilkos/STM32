@@ -84,8 +84,11 @@ TFT_Draw_image(10,200,320,240,&img);
 	while (1)
 	{
 
-		
-//	if (!TIM1_Delay_1) {if (GPIOA->IDR & 1<<1) GPIOA->BSRR = 1<<(1+16); else GPIOA->BSRR = 1<<1;  	TIM1_Delay_1 = 100000;}
+
+	if (Button_1)	
+	{if (!TIM1_Delay_1) {if (temp8<6)  {TFT_Draw_image(560,20,60,60,&(Vent_gif_2[temp8])); temp8++;} else temp8=0;  	TIM1_Delay_1 = 5;} }
+			else TFT_Draw_image(560,20,60,60,&Vent_gif_2);
+	
 	if (!TIM1_Delay_2) {if (temp16 >=99) {temp16=0;} else temp16++; TIM1_Delay_2=10;}
 
 	if (GPIOE->IDR & 1<<4) {TOUCH_IRQ=1;} else {TOUCH_IRQ=0;TouchCount = GT911_ReadTouch(&GT911Touch[0]);}
@@ -117,9 +120,9 @@ TFT_Draw_image(10,200,320,240,&img);
 							{	//SSD1963_Horisontal_line(680,20,100,60,0x7e0); 
 								TFT_Draw_Fill_Round_Rect(680,20+80*0,100,60,10,0x7e0);
 								sprintf(String,"ÐÅËÅ 1");
-								SSD1963_string_font_10x16(700,30,(uint8_t*)String,0xffff);
+								SSD1963_string_font_10x16(700,30,(uint8_t*)String,0x0000);
 								sprintf(String,"ÂÊË");
-								SSD1963_string_font_10x16(715,30+20,(uint8_t*)String,0xffff);
+								SSD1963_string_font_10x16(715,30+20,(uint8_t*)String,0x0000);
 								GPIOA->BSRR = 1<<(1);
 							}
 				
@@ -136,9 +139,9 @@ TFT_Draw_image(10,200,320,240,&img);
 							{	//SSD1963_Horisontal_line(680,20,100,60,0x7e0); 
 								TFT_Draw_Fill_Round_Rect(680,20+80*1,100,60,10,0x7e0);
 								sprintf(String,"ÐÅËÅ 2");
-								SSD1963_string_font_10x16(700,30+80*1,(uint8_t*)String,0xffff);
+								SSD1963_string_font_10x16(700,30+80*1,(uint8_t*)String,0x0000);
 								sprintf(String,"ÂÊË");
-								SSD1963_string_font_10x16(715,30+80*1+20,(uint8_t*)String,0xffff);
+								SSD1963_string_font_10x16(715,30+80*1+20,(uint8_t*)String,0x0000);
 								GPIOA->BSRR = 1<<(3);
 							}
 		
@@ -155,9 +158,9 @@ TFT_Draw_image(10,200,320,240,&img);
 							{	//SSD1963_Horisontal_line(680,20,100,60,0x7e0); 
 								TFT_Draw_Fill_Round_Rect(680,20+80*2,100,60,10,0x7e0);
 								sprintf(String,"ÐÅËÅ 3");
-								SSD1963_string_font_10x16(700,30+80*2,(uint8_t*)String,0xffff);
+								SSD1963_string_font_10x16(700,30+80*2,(uint8_t*)String,0x0000);
 								sprintf(String,"ÂÊË");
-								SSD1963_string_font_10x16(715,30+80*2+20,(uint8_t*)String,0xffff);
+								SSD1963_string_font_10x16(715,30+80*2+20,(uint8_t*)String,0x0000);
 								GPIOA->BSRR = 1<<(5);
 							}				
 				
@@ -174,9 +177,9 @@ TFT_Draw_image(10,200,320,240,&img);
 							{	//SSD1963_Horisontal_line(680,20,100,60,0x7e0); 
 								TFT_Draw_Fill_Round_Rect(680,20+80*3,100,60,10,0x7e0);
 								sprintf(String,"ÐÅËÅ 4");
-								SSD1963_string_font_10x16(700,30+80*3,(uint8_t*)String,0xffff);
+								SSD1963_string_font_10x16(700,30+80*3,(uint8_t*)String,0x0000);
 								sprintf(String,"ÂÊË");
-								SSD1963_string_font_10x16(715,30+80*3+20,(uint8_t*)String,0xffff);
+								SSD1963_string_font_10x16(715,30+80*3+20,(uint8_t*)String,0x0000);
 								GPIOA->BSRR = 1<<(7);
 							}											
 							

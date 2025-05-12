@@ -27,23 +27,41 @@ Project File Date:  05/07/2025
 <h2>Output:</h2>
 *** Using Compiler 'V6.23', folder: 'C:\Keil_v5\ARM\ARMCLANG\Bin'
 Build target 'Target 1'
+compiling FSMC.c...
 main.c(81): warning: incompatible pointer types passing 'const uint16_t (*)[]' (aka 'const unsigned short (*)[]') to parameter of type 'uint16_t *' (aka 'unsigned short *') [-Wincompatible-pointer-types]
    81 | TFT_Draw_image(10,200,320,240,&img);
       |                               ^~~~
 ../../My_Libraries\SSD1963.h(70): note: passing argument to parameter 'img' here
    70 | void TFT_Draw_image(uint16_t x, uint16_t y, uint16_t length, uint16_t width, uint16_t *img);
       |                                                                                        ^
+main.c(89): warning: incompatible pointer types passing 'const uint16_t (*)[3600]' (aka 'const unsigned short (*)[3600]') to parameter of type 'uint16_t *' (aka 'unsigned short *') [-Wincompatible-pointer-types]
+   89 |         {if (!TIM1_Delay_1) {if (temp8<6)  {TFT_Draw_image(560,20,60,60,&(Vent_gif_2[temp8])); temp8++;} else temp8=0;          TIM1_Delay_1 = 5;} }
+      |                                                                         ^~~~~~~~~~~~~~~~~~~~
+../../My_Libraries\SSD1963.h(70): note: passing argument to parameter 'img' here
+   70 | void TFT_Draw_image(uint16_t x, uint16_t y, uint16_t length, uint16_t width, uint16_t *img);
+      |                                                                                        ^
+main.c(90): warning: incompatible pointer types passing 'const uint16_t (*)[6][3600]' (aka 'const unsigned short (*)[6][3600]') to parameter of type 'uint16_t *' (aka 'unsigned short *') [-Wincompatible-pointer-types]
+   90 |                         else TFT_Draw_image(560,20,60,60,&Vent_gif_2);
+      |                                                          ^~~~~~~~~~~
+../../My_Libraries\SSD1963.h(70): note: passing argument to parameter 'img' here
+   70 | void TFT_Draw_image(uint16_t x, uint16_t y, uint16_t length, uint16_t width, uint16_t *img);
+      |                                                                                        ^
 main.c(6): warning: unused variable 'temp32' [-Wunused-variable]
     6 | static uint32_t temp32=0;
       |                 ^~~~~~
-main.c(8): warning: unused variable 'temp8' [-Wunused-variable]
-    8 | static uint8_t temp8=0;
-      |                ^~~~~
-3 warnings generated.
+4 warnings generated.
 compiling main.c...
+compiling GPIO_setup.c...
+compiling Core_init.c...
+compiling Delay.c...
+compiling Timer.c...
+compiling SSD1963.c...
+compiling I2C.c...
+compiling GT911.c...
+compiling img.c...
 linking...
-Program Size: Code=5880 RO-data=159188 RW-data=0 ZI-data=2024  
-".\Objects\TFT_Board_407.axf" - 0 Error(s), 3 Warning(s).
+Program Size: Code=5980 RO-data=202388 RW-data=0 ZI-data=2032  
+".\Objects\TFT_Board_407.axf" - 0 Error(s), 4 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -76,10 +94,10 @@ Package Vendor: Keil
    * Component: Keil::Device:Startup@2.6.3
       Include file:  Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h
       Source file:   MDK/Device/Source/ARM/STM32F4xx_OTP.s
-      Source file:   Drivers/CMSIS/Device/ST/STM32F4xx/Source/Templates/arm/startup_stm32f407xx.s
       Source file:   MDK/Device/Source/ARM/STM32F40xxx_41xxx_OPT.s
+      Source file:   Drivers/CMSIS/Device/ST/STM32F4xx/Source/Templates/arm/startup_stm32f407xx.s
       Source file:   Drivers/CMSIS/Device/ST/STM32F4xx/Source/Templates/system_stm32f4xx.c
-Build Time Elapsed:  00:00:01
+Build Time Elapsed:  00:00:05
 </pre>
 </body>
 </html>
