@@ -1,4 +1,4 @@
-#include "DS18B20_F411.h"
+#include "DS18B20.h"
 
 static volatile uint8_t read_temperature_stage=0;
 volatile uint16_t DS18B20_temperature=0;
@@ -34,44 +34,44 @@ const uint8_t read_scratch[32] = {
 
 uint8_t DMA_read_temp[32];
 //==================================================
-_Bool DS18B20_Reset_single (void)
+_Bool DS18B20_Reset_single (USART_TypeDef * USARTx)
 {
 uint32_t temp=0;	
-USART_F411_set_9600_baud();
-	USART2->DR=0xf0;
-	while (!(USART2->SR & USART_SR_TC)) __NOP();
+USART_F4_set_9600_baud(USART_def);
+	USARTx->DR=0xf0;
+	while (!(USARTx->SR & USART_SR_TC)) __NOP();
 	
 	
-	while (!(USART2->SR & USART_SR_RXNE)) __NOP();
-	USART_F411_set_115200_baud();
-	temp=USART2->DR;
+	while (!(USARTx->SR & USART_SR_RXNE)) __NOP();
+	USART_F4_set_115200_baud(USART_def);
+	temp=USARTx->DR;
 	if (temp==0xf0) return 0;
 	return 1;
 }
 
 //==================================================
-void DS18B20_write_bit(_Bool write_bit)
+void DS18B20_write_bit(_Bool write_bit, USART_TypeDef * USARTx)
 {
-USART_F411_set_115200_baud();
-if (write_bit) USART2->DR=0xff;	else USART2->DR=0x00;
+USART_F4_set_115200_baud(USARTx);
+if (write_bit) USARTx->DR=0xff;	else USARTx->DR=0x00;
 while (!(USART2->SR & USART_SR_TC)) __NOP();
 }
 
 //==================================================
-void DS18B20_write_byte (uint8_t write_byte)
+void DS18B20_write_byte (uint8_t write_byte, USART_TypeDef * USARTx)
 {
 for (uint8_t i=0; i<8; i++)
 	{
-		if (write_byte & 0x01) DS18B20_write_bit(1); else DS18B20_write_bit(0);
+		if (write_byte & 0x01) DS18B20_write_bit(1, USARTx); else DS18B20_write_bit(0, USARTx);
 		write_byte>>=1;	
 	}
 }
 
 //==================================================
-_Bool DS18B20_read_bit (void)
+_Bool DS18B20_read_bit (USART_TypeDef * USARTx)
 {
 uint32_t temp=0;
-	DS18B20_write_bit(1);
+	DS18B20_write_bit(1, USARTx);
 	while (!(USART2->SR & USART_SR_RXNE)) __NOP();
 		temp=USART2->DR;
 	if (temp==0xff) return 1;
@@ -79,54 +79,53 @@ uint32_t temp=0;
 }	
 
 //==================================================
-uint8_t DS18B20_read_byte (void)
+uint8_t DS18B20_read_byte (USART_TypeDef * USARTx)
 {
 	uint8_t temp=0;
 	USART2->DR; //чтение чтоб убрать перед чтением предыдущее содержимое 
 for (uint8_t i=0; i<8; i++)
 	{ 
-		temp|=(uint8_t)(DS18B20_read_bit()<<i);
+		temp|=(uint8_t)(DS18B20_read_bit(USARTx)<<i);
 	}
 	return temp;
 }
 
 //==================================================
-void DS18B20_read_ROM (void)
+void DS18B20_read_ROM (USART_TypeDef * USARTx)
 {
-	DS18B20_Reset_single();
-	DS18B20_write_byte(read_ROM);
+	DS18B20_Reset_single(USARTx);
+	DS18B20_write_byte(read_ROM, USARTx);
 	for (uint8_t i=0; i<8;i++)
 	{
-	ROM[i] = DS18B20_read_byte();	
+	ROM[i] = DS18B20_read_byte(USARTx);	
 	}
 
 	
 	}
 //==================================================
-uint16_t DS18B20_read_temperatur (void)
+uint16_t DS18B20_read_temperatur (USART_TypeDef * USARTx)
 {
 	_Bool Sensor_OK=0;
 	if (read_temperature_stage==0) 
 		{
-			Sensor_OK=DS18B20_Reset_single();
+			Sensor_OK=DS18B20_Reset_single(USARTx);
 			if (!Sensor_OK) return 0;
-			DS18B20_write_byte(skip_rom);
-			DS18B20_write_byte(convert_t);
+			DS18B20_write_byte(skip_rom, USARTx);
+			DS18B20_write_byte(convert_t, USARTx);
 			read_temperature_stage=1;
 			TIM1_Delay_1=1000;
 		}
 	if (read_temperature_stage==1)
 		{
-			if (DS18B20_read_bit()) read_temperature_stage=2;		
-			//if (DS18B20_read_bit()) read_temperature_stage=2;		
+			if (DS18B20_read_bit(USARTx)) read_temperature_stage=2;		
 		}
 	if (read_temperature_stage==2)
 		{
-			Sensor_OK=DS18B20_Reset_single();
+			Sensor_OK=DS18B20_Reset_single(USARTx);
 			if (!Sensor_OK)	return 0;
-			DS18B20_write_byte(skip_rom);
-			DS18B20_write_byte(read_scratchpad);
-			DS18B20_temperature=(uint16_t)(DS18B20_read_byte()) + (uint16_t)(DS18B20_read_byte()<<8);
+			DS18B20_write_byte(skip_rom, USARTx);
+			DS18B20_write_byte(read_scratchpad, USARTx);
+			DS18B20_temperature=(uint16_t)(DS18B20_read_byte(USARTx)) + (uint16_t)(DS18B20_read_byte(USARTx)<<8);
 			DS18B20_temperature=(DS18B20_temperature/16*10)+(uint16_t)((DS18B20_temperature&0b00001111)*0.625);
 			read_temperature_stage=0;
 		}
@@ -143,20 +142,20 @@ _Bool DS18B20_read_temperatur_of_2_sensor (uint8_t* _ROM_1, uint8_t* _ROM_2,uint
 	if (read_temperature_stage==0) 
 		{
 			DMA_busy=1;
-			DMA_F411_One_Wire_Reset(One_wire_recive_buf);
+			DMA_F4_One_Wire_Reset(One_wire_recive_buf, USART_def);
 			read_temperature_stage=1;
 		}	
 	if (read_temperature_stage==1 && !DMA_busy) 		
 		{	
 			temp=skip_rom;
-			DMA_F411_One_Wire_Send (1, &temp);
+			DMA_F4_One_Wire_Send (1, &temp, USART_def);
 			read_temperature_stage=2;
 			DMA_busy=1;
 		}
 	if (read_temperature_stage==2 && !DMA_busy)
 		{
 			temp=convert_t;
-			DMA_F411_One_Wire_Send (1, &temp);
+			DMA_F4_One_Wire_Send (1, &temp, USART_def);
 			read_temperature_stage=3;
 			DMA_busy=1;
 		}		
@@ -173,31 +172,31 @@ _Bool DS18B20_read_temperatur_of_2_sensor (uint8_t* _ROM_1, uint8_t* _ROM_2,uint
 		{
 			//1 sensor
 			DMA_busy=1;
-			DMA_F411_One_Wire_Reset(One_wire_recive_buf);
+			DMA_F4_One_Wire_Reset(One_wire_recive_buf, USART_def);
 			read_temperature_stage=6;
 		}
 	if (read_temperature_stage==6 && !DMA_busy)
 		{
 			temp=match_ROM;
-			DMA_F411_One_Wire_Send (1, &temp);
+			DMA_F4_One_Wire_Send (1, &temp, USART_def);
 			read_temperature_stage=7;
 			DMA_busy=1;
 		}
 	if (read_temperature_stage==7 && !DMA_busy)		
-		{	DMA_F411_One_Wire_Send (8, _ROM_1);
+		{	DMA_F4_One_Wire_Send (8, _ROM_1, USART_def);
 			read_temperature_stage=8;
 			DMA_busy=1;
 		}
 	if (read_temperature_stage==8 && !DMA_busy)			
 		{	
 			temp=read_scratchpad;
-			DMA_F411_One_Wire_Send (1, &temp);
+			DMA_F4_One_Wire_Send (1, &temp, USART_def);
 			read_temperature_stage=9;
 			DMA_busy=1;
 		}
 	if (read_temperature_stage==9 && !DMA_busy)				
 		{	DMA_busy=1;
-			DMA_F411_One_Wire_Recive(2,One_wire_recive_buf);
+			DMA_F4_One_Wire_Recive(2,One_wire_recive_buf, USART_def);
 			read_temperature_stage=10;
 		}
 	if (read_temperature_stage==10 && !DMA_busy)				
@@ -215,29 +214,29 @@ _Bool DS18B20_read_temperatur_of_2_sensor (uint8_t* _ROM_1, uint8_t* _ROM_2,uint
 	if (read_temperature_stage==11)		
 		{			//	2 sensor
 			DMA_busy=1;
-			DMA_F411_One_Wire_Reset(One_wire_recive_buf);
+			DMA_F4_One_Wire_Reset(One_wire_recive_buf, USART_def);
 			read_temperature_stage=12;	
 		}
 	if (read_temperature_stage==12 && !DMA_busy)	
 		{	temp=match_ROM;
-			DMA_F411_One_Wire_Send (1, &temp);
+			DMA_F4_One_Wire_Send (1, &temp, USART_def);
 			read_temperature_stage=13;
 			DMA_busy=1;
 		}
 	if (read_temperature_stage==13 && !DMA_busy)				
-		{	DMA_F411_One_Wire_Send (8, _ROM_2);
+		{	DMA_F4_One_Wire_Send (8, _ROM_2, USART_def);
 			read_temperature_stage=14;
 			DMA_busy=1;
 		}
 	if (read_temperature_stage==14 && !DMA_busy)			
 		{	temp=read_scratchpad;
-			DMA_F411_One_Wire_Send (1, &temp);
+			DMA_F4_One_Wire_Send (1, &temp, USART_def);
 			read_temperature_stage=15;
 			DMA_busy=1;
 		}
 	if (read_temperature_stage==15 && !DMA_busy)		
 		{	DMA_busy=1;
-			DMA_F411_One_Wire_Recive(2,One_wire_recive_buf);
+			DMA_F4_One_Wire_Recive(2,One_wire_recive_buf, USART_def);
 			read_temperature_stage=16;
 		}
 	if (read_temperature_stage==16 && !DMA_busy)				

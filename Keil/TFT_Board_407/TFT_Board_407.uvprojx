@@ -445,14 +445,29 @@
               <FilePath>..\..\My_Libraries\I2C.c</FilePath>
             </File>
             <File>
-              <FileName>img.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\..\My_Libraries\img.h</FilePath>
-            </File>
-            <File>
               <FileName>img.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\My_Libraries\img.c</FilePath>
+            </File>
+            <File>
+              <FileName>DMA.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\My_Libraries\DMA.c</FilePath>
+            </File>
+            <File>
+              <FileName>DS18B20.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\My_Libraries\DS18B20.c</FilePath>
+            </File>
+            <File>
+              <FileName>USART.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\My_Libraries\USART.c</FilePath>
+            </File>
+            <File>
+              <FileName>One_Wire.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\My_Libraries\One_Wire.c</FilePath>
             </File>
           </Files>
         </Group>

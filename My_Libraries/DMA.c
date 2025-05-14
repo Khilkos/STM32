@@ -131,10 +131,53 @@ void DMA2_Stream2_IRQHandler(void)
 }	
 #endif
 //===================================================
+//================================================
+#ifdef DMA2_Stream5_IRQHandler_define
+void DMA2_Stream5_IRQHandler(void)
+{
+	if (DMA2->HISR & DMA_HISR_TCIF5)
+		{
+			DMA2->HIFCR |= DMA_HIFCR_CTCIF5;
+			if (!(DMA2_Stream5->CR & DMA_SxCR_CIRC)) 
+			DMA2_Stream5->CR &= ~(DMA_SxCR_EN);
+			DMA2_Stream5_IRQHandler_User();
+		}
+}	
+#endif
+//===============================================
+#ifdef DMA2_Stream6_IRQHandler_define
+void DMA2_Stream7_IRQHandler(void)
+{
+	if (DMA2->HISR & DMA_HISR_TCIF7)
+		{
+			DMA2->HIFCR |= DMA_HIFCR_CTCIF6;
+			if (!(DMA2_Stream7->CR & DMA_SxCR_CIRC)) 
+			DMA2_Stream7->CR &= ~(DMA_SxCR_EN);
+			DMA2_Stream7_IRQHandler_User();
+		}
+}	
+#endif
+//===============================================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 #endif
 
-
+//***********************************************************************
+//
+//***********************************************************************
 #ifdef STM32H7
 
 struct DMA_H7_init DMA_H7;

@@ -7,4 +7,6 @@
   ..\..\My_Libraries\GPIO_setup.h ..\..\My_Libraries\Timer.h \
   ..\..\My_Libraries\SSD1963.h ..\..\My_Libraries\Font_table.h \
   ..\..\My_Libraries\I2C.h ..\..\My_Libraries\GT911.h \
-  ..\..\My_Libraries\img.h
+  ..\..\My_Libraries\img.h ..\..\My_Libraries\DMA.h \
+  ..\..\My_Libraries\USART.h ..\..\My_Libraries\One_Wire.h \
+  ..\..\My_Libraries\DS18B20.h ..\TFT_Board_407\main.h

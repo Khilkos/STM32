@@ -15,8 +15,8 @@ static _Bool Button_2=0;
 static _Bool Button_3=0;
 static _Bool Button_4=0;
 
-static uint16_t X_start=0;
-static uint16_t Y_start=0;
+
+static uint16_t temperature=0;
 
 int main(void)
 {
@@ -40,6 +40,9 @@ int main(void)
 	
 	GPIO_Alternate(GPIOB,6,Open_drain,High,Pull_up,AF4);//I2C1_SCL
 	GPIO_Alternate(GPIOB,7,Open_drain,High,Pull_up,AF4);//I2C1_SDA
+	
+	GPIO_Alternate(GPIOA,9,Open_drain,High,Pull_up,AF7);// USART2 TX2
+	GPIO_Alternate(GPIOA,10,Open_drain,High,Pull_up,AF7);// USART2 RX2	
 	
 	
 	GPIO_Alternate(GPIOD,14,Push_pull,High,No_pull,AF12); //FSMC D0
@@ -77,6 +80,8 @@ I2C_STM32F4_init();
 SSD1963_init();
 SSD1963_ClearScreen(0xff);	
 GT911_Init();	
+DMA_F4_init();
+USART_F4_init(USART_def);
 
 TFT_Draw_image(10,200,320,240,&img);
 //TFT_Draw_image(10,200,400,247,&img1);
@@ -86,7 +91,7 @@ TFT_Draw_image(10,200,320,240,&img);
 
 
 	if (Button_1)	
-	{if (!TIM1_Delay_1) {if (temp8<6)  {TFT_Draw_image(560,20,60,60,&(Vent_gif_2[temp8])); temp8++;} else temp8=0;  	TIM1_Delay_1 = 5;} }
+	{if (!TIM1_Delay_3) {if (temp8<6)  {TFT_Draw_image(560,20,60,60,&(Vent_gif_2[temp8])); temp8++;} else temp8=0;  	TIM1_Delay_3 = 5;} }
 			else TFT_Draw_image(560,20,60,60,&Vent_gif_2);
 	
 	if (!TIM1_Delay_2) {if (temp16 >=99) {temp16=0;} else temp16++; TIM1_Delay_2=10;}
@@ -208,23 +213,11 @@ if (GPIOE->IDR & 1<<4) {TOUCH_IRQ=1;} else {TOUCH_IRQ=0;}
 sprintf(String,"Касание = %d", TOUCH_IRQ);	
 SSD1963_string_font_10x16_back_fone(20,20+16*5,(uint8_t*)String,0xff00, 0xff);
 
-sprintf(String,"I2C Error = %d", I2C_eror);	
+sprintf(String,"Температура = %d", temperature);	
 SSD1963_string_font_10x16_back_fone(20,20+16*6,(uint8_t*)String,0xff00, 0xff);
 
-X_start = 400;
-Y_start = 200;
-/*
-TFT_Draw_Circle(400,200,100,0,1,0xffff);
-TFT_Draw_Fill_Rectangle(10,200,60,100,0xffff);
-TFT_Draw_Rectangle(10,200,60,100,1,0xf800);	
-TFT_Draw_HLine(10,340,100,1,0xf800);
-TFT_Draw_HLine(10,350,100,5,0xf800);
-TFT_Draw_VLine(250,200,100,1,0xf800);
-*/
-
-
-
-//SSD1963_dot (GT911Touch[0].XCoordinate,GT911Touch[0].YCoordinate,0xffff);
+temperature = DS18B20_read_temperatur(USART_def);
+//temperature = USART_def->DR;
 
 
 }	

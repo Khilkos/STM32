@@ -7,6 +7,7 @@
 
 //#define STM32H7
 #define STM32F4
+#define USART_def USART1
 
 #include "Core_init.h"
 #include "Delay.h"
@@ -18,6 +19,14 @@
 #include "I2C.h"
 #include "GT911.h"
 #include "img.h"
+#include "DMA.h"
+#include "USART.h"
+#include "One_Wire.h"
+#include "DS18B20.h"
+
+
+
+
 
 //==========================
 //for GT911 define in Config.h
