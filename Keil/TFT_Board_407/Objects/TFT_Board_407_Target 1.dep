@@ -1,6 +1,6 @@
 Dependencies for Project 'TFT_Board_407', Target 'Target 1': (DO NOT MODIFY !)
 CompilerVersion: 6230000::V6.23::ARMCLANG
-F (.\main.c)(0x6824B054)(-xc -std=c11 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -Oz -ffunction-sections -Wall -Wextra -Wno-packed -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../TFT_Board_407 -I ../../My_Libraries -Wno-invalid-utf8 -Wno-invalid-source-encoding -Wno-missing-braces-I./RTE/_Target_1-IC:/Users/Khilk/AppData/Local/Arm/Packs/ARM/CMSIS/6.1.0/CMSIS/Core/Include-IC:/Users/Khilk/AppData/Local/Arm/Packs/Keil/STM32F4xx_DFP/2.17.0/Drivers/CMSIS/Device/ST/STM32F4xx/Include-D__UVISION_VERSION="542" -DSTM32F407xx -D_RTE_-o ./objects/main.o -MMD)
+F (.\main.c)(0x682DDE8A)(-xc -std=c11 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -Oz -ffunction-sections -Wall -Wextra -Wno-packed -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../TFT_Board_407 -I ../../My_Libraries -Wno-invalid-utf8 -Wno-invalid-source-encoding -Wno-missing-braces-I./RTE/_Target_1-IC:/Users/Khilk/AppData/Local/Arm/Packs/ARM/CMSIS/6.1.0/CMSIS/Core/Include-IC:/Users/Khilk/AppData/Local/Arm/Packs/Keil/STM32F4xx_DFP/2.17.0/Drivers/CMSIS/Device/ST/STM32F4xx/Include-D__UVISION_VERSION="542" -DSTM32F407xx -D_RTE_-o ./objects/main.o -MMD)
 I (main.h)(0x6818A86F)
 I (Config.h)(0x682485AD)
 I (C:\Users\Khilk\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.17.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f407xx.h)(0x63749E4A)
@@ -16,7 +16,7 @@ I (..\..\My_Libraries\SSD1963.h)(0x681B4ABC)
 I (..\..\My_Libraries\Font_table.h)(0x65955F76)
 I (..\..\My_Libraries\I2C.h)(0x681A0657)
 I (..\..\My_Libraries\GT911.h)(0x6819CE81)
-I (..\..\My_Libraries\img.h)(0x6821ED4E)
+I (..\..\My_Libraries\img.h)(0x682DDEA7)
 I (..\..\My_Libraries\DMA.h)(0x67F8F495)
 I (..\..\My_Libraries\USART.h)(0x682485AD)
 I (..\..\My_Libraries\One_Wire.h)(0x682485AD)
@@ -37,7 +37,7 @@ I (..\..\My_Libraries\SSD1963.h)(0x681B4ABC)
 I (..\..\My_Libraries\Font_table.h)(0x65955F76)
 I (..\..\My_Libraries\I2C.h)(0x681A0657)
 I (..\..\My_Libraries\GT911.h)(0x6819CE81)
-I (..\..\My_Libraries\img.h)(0x6821ED4E)
+I (..\..\My_Libraries\img.h)(0x682DDEA7)
 I (..\..\My_Libraries\DMA.h)(0x67F8F495)
 I (..\..\My_Libraries\USART.h)(0x682485AD)
 I (..\..\My_Libraries\One_Wire.h)(0x682485AD)
@@ -57,7 +57,7 @@ I (..\..\My_Libraries\SSD1963.h)(0x681B4ABC)
 I (..\..\My_Libraries\Font_table.h)(0x65955F76)
 I (..\..\My_Libraries\I2C.h)(0x681A0657)
 I (..\..\My_Libraries\GT911.h)(0x6819CE81)
-I (..\..\My_Libraries\img.h)(0x6821ED4E)
+I (..\..\My_Libraries\img.h)(0x682DDEA7)
 I (..\..\My_Libraries\DMA.h)(0x67F8F495)
 I (..\..\My_Libraries\USART.h)(0x682485AD)
 I (..\..\My_Libraries\One_Wire.h)(0x682485AD)
@@ -77,7 +77,7 @@ I (..\..\My_Libraries\SSD1963.h)(0x681B4ABC)
 I (..\..\My_Libraries\Font_table.h)(0x65955F76)
 I (..\..\My_Libraries\I2C.h)(0x681A0657)
 I (..\..\My_Libraries\GT911.h)(0x6819CE81)
-I (..\..\My_Libraries\img.h)(0x6821ED4E)
+I (..\..\My_Libraries\img.h)(0x682DDEA7)
 I (..\..\My_Libraries\DMA.h)(0x67F8F495)
 I (..\..\My_Libraries\USART.h)(0x682485AD)
 I (..\..\My_Libraries\One_Wire.h)(0x682485AD)
@@ -97,7 +97,7 @@ I (..\..\My_Libraries\SSD1963.h)(0x681B4ABC)
 I (..\..\My_Libraries\Font_table.h)(0x65955F76)
 I (..\..\My_Libraries\I2C.h)(0x681A0657)
 I (..\..\My_Libraries\GT911.h)(0x6819CE81)
-I (..\..\My_Libraries\img.h)(0x6821ED4E)
+I (..\..\My_Libraries\img.h)(0x682DDEA7)
 I (..\..\My_Libraries\DMA.h)(0x67F8F495)
 I (..\..\My_Libraries\USART.h)(0x682485AD)
 I (..\..\My_Libraries\One_Wire.h)(0x682485AD)
@@ -117,13 +117,13 @@ I (..\..\My_Libraries\SSD1963.h)(0x681B4ABC)
 I (..\..\My_Libraries\Font_table.h)(0x65955F76)
 I (..\..\My_Libraries\I2C.h)(0x681A0657)
 I (..\..\My_Libraries\GT911.h)(0x6819CE81)
-I (..\..\My_Libraries\img.h)(0x6821ED4E)
+I (..\..\My_Libraries\img.h)(0x682DDEA7)
 I (..\..\My_Libraries\DMA.h)(0x67F8F495)
 I (..\..\My_Libraries\USART.h)(0x682485AD)
 I (..\..\My_Libraries\One_Wire.h)(0x682485AD)
 I (..\..\My_Libraries\DS18B20.h)(0x6824AE73)
 I (..\TFT_Board_407\main.h)(0x6818A86F)
-F (..\..\My_Libraries\SSD1963.c)(0x681B4D72)(-xc -std=c11 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -Oz -ffunction-sections -Wall -Wextra -Wno-packed -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../TFT_Board_407 -I ../../My_Libraries -Wno-invalid-utf8 -Wno-invalid-source-encoding -Wno-missing-braces-I./RTE/_Target_1-IC:/Users/Khilk/AppData/Local/Arm/Packs/ARM/CMSIS/6.1.0/CMSIS/Core/Include-IC:/Users/Khilk/AppData/Local/Arm/Packs/Keil/STM32F4xx_DFP/2.17.0/Drivers/CMSIS/Device/ST/STM32F4xx/Include-D__UVISION_VERSION="542" -DSTM32F407xx -D_RTE_-o ./objects/ssd1963.o -MMD)
+F (..\..\My_Libraries\SSD1963.c)(0x682DDD87)(-xc -std=c11 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -Oz -ffunction-sections -Wall -Wextra -Wno-packed -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../TFT_Board_407 -I ../../My_Libraries -Wno-invalid-utf8 -Wno-invalid-source-encoding -Wno-missing-braces-I./RTE/_Target_1-IC:/Users/Khilk/AppData/Local/Arm/Packs/ARM/CMSIS/6.1.0/CMSIS/Core/Include-IC:/Users/Khilk/AppData/Local/Arm/Packs/Keil/STM32F4xx_DFP/2.17.0/Drivers/CMSIS/Device/ST/STM32F4xx/Include-D__UVISION_VERSION="542" -DSTM32F407xx -D_RTE_-o ./objects/ssd1963.o -MMD)
 I (..\..\My_Libraries\SSD1963.h)(0x681B4ABC)
 I (..\TFT_Board_407\Config.h)(0x682485AD)
 I (C:\Users\Khilk\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.17.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f407xx.h)(0x63749E4A)
@@ -137,7 +137,7 @@ I (..\..\My_Libraries\FSMC.h)(0x680A38F8)
 I (..\..\My_Libraries\Font_table.h)(0x65955F76)
 I (..\..\My_Libraries\I2C.h)(0x681A0657)
 I (..\..\My_Libraries\GT911.h)(0x6819CE81)
-I (..\..\My_Libraries\img.h)(0x6821ED4E)
+I (..\..\My_Libraries\img.h)(0x682DDEA7)
 I (..\..\My_Libraries\DMA.h)(0x67F8F495)
 I (..\..\My_Libraries\USART.h)(0x682485AD)
 I (..\..\My_Libraries\One_Wire.h)(0x682485AD)
@@ -159,7 +159,7 @@ I (..\..\My_Libraries\FSMC.h)(0x680A38F8)
 I (..\..\My_Libraries\SSD1963.h)(0x681B4ABC)
 I (..\..\My_Libraries\Font_table.h)(0x65955F76)
 I (..\..\My_Libraries\I2C.h)(0x681A0657)
-I (..\..\My_Libraries\img.h)(0x6821ED4E)
+I (..\..\My_Libraries\img.h)(0x682DDEA7)
 I (..\..\My_Libraries\DMA.h)(0x67F8F495)
 I (..\..\My_Libraries\USART.h)(0x682485AD)
 I (..\..\My_Libraries\One_Wire.h)(0x682485AD)
@@ -179,14 +179,14 @@ I (..\..\My_Libraries\FSMC.h)(0x680A38F8)
 I (..\..\My_Libraries\SSD1963.h)(0x681B4ABC)
 I (..\..\My_Libraries\Font_table.h)(0x65955F76)
 I (..\..\My_Libraries\GT911.h)(0x6819CE81)
-I (..\..\My_Libraries\img.h)(0x6821ED4E)
+I (..\..\My_Libraries\img.h)(0x682DDEA7)
 I (..\..\My_Libraries\DMA.h)(0x67F8F495)
 I (..\..\My_Libraries\USART.h)(0x682485AD)
 I (..\..\My_Libraries\One_Wire.h)(0x682485AD)
 I (..\..\My_Libraries\DS18B20.h)(0x6824AE73)
 I (..\TFT_Board_407\main.h)(0x6818A86F)
-F (..\..\My_Libraries\img.c)(0x6821ED4E)(-xc -std=c11 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -Oz -ffunction-sections -Wall -Wextra -Wno-packed -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../TFT_Board_407 -I ../../My_Libraries -Wno-invalid-utf8 -Wno-invalid-source-encoding -Wno-missing-braces-I./RTE/_Target_1-IC:/Users/Khilk/AppData/Local/Arm/Packs/ARM/CMSIS/6.1.0/CMSIS/Core/Include-IC:/Users/Khilk/AppData/Local/Arm/Packs/Keil/STM32F4xx_DFP/2.17.0/Drivers/CMSIS/Device/ST/STM32F4xx/Include-D__UVISION_VERSION="542" -DSTM32F407xx -D_RTE_-o ./objects/img.o -MMD)
-I (..\..\My_Libraries\img.h)(0x6821ED4E)
+F (..\..\My_Libraries\img.c)(0x682DDE8A)(-xc -std=c11 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -Oz -ffunction-sections -Wall -Wextra -Wno-packed -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../TFT_Board_407 -I ../../My_Libraries -Wno-invalid-utf8 -Wno-invalid-source-encoding -Wno-missing-braces-I./RTE/_Target_1-IC:/Users/Khilk/AppData/Local/Arm/Packs/ARM/CMSIS/6.1.0/CMSIS/Core/Include-IC:/Users/Khilk/AppData/Local/Arm/Packs/Keil/STM32F4xx_DFP/2.17.0/Drivers/CMSIS/Device/ST/STM32F4xx/Include-D__UVISION_VERSION="542" -DSTM32F407xx -D_RTE_-o ./objects/img.o -MMD)
+I (..\..\My_Libraries\img.h)(0x682DDEA7)
 F (..\..\My_Libraries\DMA.c)(0x68249AA4)(-xc -std=c11 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -Oz -ffunction-sections -Wall -Wextra -Wno-packed -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../TFT_Board_407 -I ../../My_Libraries -Wno-invalid-utf8 -Wno-invalid-source-encoding -Wno-missing-braces-I./RTE/_Target_1-IC:/Users/Khilk/AppData/Local/Arm/Packs/ARM/CMSIS/6.1.0/CMSIS/Core/Include-IC:/Users/Khilk/AppData/Local/Arm/Packs/Keil/STM32F4xx_DFP/2.17.0/Drivers/CMSIS/Device/ST/STM32F4xx/Include-D__UVISION_VERSION="542" -DSTM32F407xx -D_RTE_-o ./objects/dma.o -MMD)
 I (..\..\My_Libraries\DMA.h)(0x67F8F495)
 I (..\TFT_Board_407\Config.h)(0x682485AD)
@@ -202,12 +202,12 @@ I (..\..\My_Libraries\SSD1963.h)(0x681B4ABC)
 I (..\..\My_Libraries\Font_table.h)(0x65955F76)
 I (..\..\My_Libraries\I2C.h)(0x681A0657)
 I (..\..\My_Libraries\GT911.h)(0x6819CE81)
-I (..\..\My_Libraries\img.h)(0x6821ED4E)
+I (..\..\My_Libraries\img.h)(0x682DDEA7)
 I (..\..\My_Libraries\USART.h)(0x682485AD)
 I (..\..\My_Libraries\One_Wire.h)(0x682485AD)
 I (..\..\My_Libraries\DS18B20.h)(0x6824AE73)
 I (..\TFT_Board_407\main.h)(0x6818A86F)
-F (..\..\My_Libraries\DS18B20.c)(0x6824B031)(-xc -std=c11 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -Oz -ffunction-sections -Wall -Wextra -Wno-packed -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../TFT_Board_407 -I ../../My_Libraries -Wno-invalid-utf8 -Wno-invalid-source-encoding -Wno-missing-braces-I./RTE/_Target_1-IC:/Users/Khilk/AppData/Local/Arm/Packs/ARM/CMSIS/6.1.0/CMSIS/Core/Include-IC:/Users/Khilk/AppData/Local/Arm/Packs/Keil/STM32F4xx_DFP/2.17.0/Drivers/CMSIS/Device/ST/STM32F4xx/Include-D__UVISION_VERSION="542" -DSTM32F407xx -D_RTE_-o ./objects/ds18b20.o -MMD)
+F (..\..\My_Libraries\DS18B20.c)(0x682582A0)(-xc -std=c11 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -Oz -ffunction-sections -Wall -Wextra -Wno-packed -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../TFT_Board_407 -I ../../My_Libraries -Wno-invalid-utf8 -Wno-invalid-source-encoding -Wno-missing-braces-I./RTE/_Target_1-IC:/Users/Khilk/AppData/Local/Arm/Packs/ARM/CMSIS/6.1.0/CMSIS/Core/Include-IC:/Users/Khilk/AppData/Local/Arm/Packs/Keil/STM32F4xx_DFP/2.17.0/Drivers/CMSIS/Device/ST/STM32F4xx/Include-D__UVISION_VERSION="542" -DSTM32F407xx -D_RTE_-o ./objects/ds18b20.o -MMD)
 I (..\..\My_Libraries\DS18B20.h)(0x6824AE73)
 I (..\TFT_Board_407\Config.h)(0x682485AD)
 I (C:\Users\Khilk\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.17.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f407xx.h)(0x63749E4A)
@@ -222,12 +222,12 @@ I (..\..\My_Libraries\SSD1963.h)(0x681B4ABC)
 I (..\..\My_Libraries\Font_table.h)(0x65955F76)
 I (..\..\My_Libraries\I2C.h)(0x681A0657)
 I (..\..\My_Libraries\GT911.h)(0x6819CE81)
-I (..\..\My_Libraries\img.h)(0x6821ED4E)
+I (..\..\My_Libraries\img.h)(0x682DDEA7)
 I (..\..\My_Libraries\DMA.h)(0x67F8F495)
 I (..\..\My_Libraries\USART.h)(0x682485AD)
 I (..\..\My_Libraries\One_Wire.h)(0x682485AD)
 I (..\TFT_Board_407\main.h)(0x6818A86F)
-F (..\..\My_Libraries\USART.c)(0x6824AD77)(-xc -std=c11 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -Oz -ffunction-sections -Wall -Wextra -Wno-packed -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../TFT_Board_407 -I ../../My_Libraries -Wno-invalid-utf8 -Wno-invalid-source-encoding -Wno-missing-braces-I./RTE/_Target_1-IC:/Users/Khilk/AppData/Local/Arm/Packs/ARM/CMSIS/6.1.0/CMSIS/Core/Include-IC:/Users/Khilk/AppData/Local/Arm/Packs/Keil/STM32F4xx_DFP/2.17.0/Drivers/CMSIS/Device/ST/STM32F4xx/Include-D__UVISION_VERSION="542" -DSTM32F407xx -D_RTE_-o ./objects/usart.o -MMD)
+F (..\..\My_Libraries\USART.c)(0x68258A50)(-xc -std=c11 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -Oz -ffunction-sections -Wall -Wextra -Wno-packed -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../TFT_Board_407 -I ../../My_Libraries -Wno-invalid-utf8 -Wno-invalid-source-encoding -Wno-missing-braces-I./RTE/_Target_1-IC:/Users/Khilk/AppData/Local/Arm/Packs/ARM/CMSIS/6.1.0/CMSIS/Core/Include-IC:/Users/Khilk/AppData/Local/Arm/Packs/Keil/STM32F4xx_DFP/2.17.0/Drivers/CMSIS/Device/ST/STM32F4xx/Include-D__UVISION_VERSION="542" -DSTM32F407xx -D_RTE_-o ./objects/usart.o -MMD)
 I (..\..\My_Libraries\USART.h)(0x682485AD)
 I (..\TFT_Board_407\Config.h)(0x682485AD)
 I (C:\Users\Khilk\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.17.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f407xx.h)(0x63749E4A)
@@ -242,7 +242,7 @@ I (..\..\My_Libraries\SSD1963.h)(0x681B4ABC)
 I (..\..\My_Libraries\Font_table.h)(0x65955F76)
 I (..\..\My_Libraries\I2C.h)(0x681A0657)
 I (..\..\My_Libraries\GT911.h)(0x6819CE81)
-I (..\..\My_Libraries\img.h)(0x6821ED4E)
+I (..\..\My_Libraries\img.h)(0x682DDEA7)
 I (..\..\My_Libraries\DMA.h)(0x67F8F495)
 I (..\..\My_Libraries\One_Wire.h)(0x682485AD)
 I (..\..\My_Libraries\DS18B20.h)(0x6824AE73)
@@ -262,7 +262,7 @@ I (..\..\My_Libraries\SSD1963.h)(0x681B4ABC)
 I (..\..\My_Libraries\Font_table.h)(0x65955F76)
 I (..\..\My_Libraries\I2C.h)(0x681A0657)
 I (..\..\My_Libraries\GT911.h)(0x6819CE81)
-I (..\..\My_Libraries\img.h)(0x6821ED4E)
+I (..\..\My_Libraries\img.h)(0x682DDEA7)
 I (..\..\My_Libraries\DMA.h)(0x67F8F495)
 I (..\..\My_Libraries\USART.h)(0x682485AD)
 I (..\..\My_Libraries\DS18B20.h)(0x6824AE73)

@@ -37,13 +37,13 @@ uint8_t DMA_read_temp[32];
 _Bool DS18B20_Reset_single (USART_TypeDef * USARTx)
 {
 uint32_t temp=0;	
-USART_F4_set_9600_baud(USART_def);
+USART_F4_set_9600_baud(USARTx);
 	USARTx->DR=0xf0;
 	while (!(USARTx->SR & USART_SR_TC)) __NOP();
 	
 	
 	while (!(USARTx->SR & USART_SR_RXNE)) __NOP();
-	USART_F4_set_115200_baud(USART_def);
+	USART_F4_set_115200_baud(USARTx);
 	temp=USARTx->DR;
 	if (temp==0xf0) return 0;
 	return 1;
@@ -54,7 +54,7 @@ void DS18B20_write_bit(_Bool write_bit, USART_TypeDef * USARTx)
 {
 USART_F4_set_115200_baud(USARTx);
 if (write_bit) USARTx->DR=0xff;	else USARTx->DR=0x00;
-while (!(USART2->SR & USART_SR_TC)) __NOP();
+while (!(USARTx->SR & USART_SR_TC)) __NOP();
 }
 
 //==================================================
@@ -72,8 +72,8 @@ _Bool DS18B20_read_bit (USART_TypeDef * USARTx)
 {
 uint32_t temp=0;
 	DS18B20_write_bit(1, USARTx);
-	while (!(USART2->SR & USART_SR_RXNE)) __NOP();
-		temp=USART2->DR;
+	while (!(USARTx->SR & USART_SR_RXNE)) __NOP();
+		temp=USARTx->DR;
 	if (temp==0xff) return 1;
 	return 0;
 }	

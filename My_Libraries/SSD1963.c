@@ -431,6 +431,5 @@ uint32_t i=0;
 	
 	TFT_Set_Work_Area(x,y,length,width);
 	for(i=0; i<(length*width); i++)
-	//TFT_Write_Data(color);
 	LCD_DATA =*(img+i);
 }

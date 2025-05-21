@@ -13,8 +13,8 @@
 //uint16_t height = 128; 	// Высота изображения
 
 extern	const uint16_t img[]; 
-extern const uint16_t img1[];
-extern const uint16_t img2[];
+//extern const uint16_t img1[];
+//extern const uint16_t img2[];
 extern const uint16_t Vent_gif_1[6][100*100];
 extern const uint16_t Vent_gif_2[6][60*60];
 

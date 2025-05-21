@@ -8,6 +8,8 @@ static uint16_t temp16=0;
 static uint8_t temp8=0;
 static char String[300];
 _Bool TOUCH_IRQ=0;
+static uint16_t FPS_screen[10];
+static uint16_t FPS_screen_temp;
 
 static _Bool NEW_update=1;
 static _Bool Button_1=0;
@@ -97,9 +99,14 @@ TFT_Draw_image(10,200,320,240,&img);
 	if (!TIM1_Delay_2) {if (temp16 >=99) {temp16=0;} else temp16++; TIM1_Delay_2=10;}
 
 	if (GPIOE->IDR & 1<<4) {TOUCH_IRQ=1;} else {TOUCH_IRQ=0;TouchCount = GT911_ReadTouch(&GT911Touch[0]);}
-	if ((TOUCH_Press && !TIM1_Delay_3) || NEW_update) 
+	
+	
+	if (TIM1_Delay_5) {FPS_screen_temp++;}
+	if (!TIM1_Delay_5) {FPS_screen[0] = FPS_screen_temp; FPS_screen_temp=0; TIM1_Delay_5 = 1000;}
+
+	if ((TOUCH_Press && !TIM1_Delay_4) || NEW_update) 
 	{	NEW_update = 0;
-		TIM1_Delay_3 = 1000;
+		TIM1_Delay_4 = 1000;
 		if ((GT911Touch[0].XCoordinate>680 && GT911Touch[0].XCoordinate<(680+100) && GT911Touch[0].YCoordinate>(20+80*0) && GT911Touch[0].YCoordinate<(20+80*0+60)))
 					{if (Button_1) Button_1=0; else Button_1=1;}
 		
@@ -213,12 +220,19 @@ if (GPIOE->IDR & 1<<4) {TOUCH_IRQ=1;} else {TOUCH_IRQ=0;}
 sprintf(String,"Касание = %d", TOUCH_IRQ);	
 SSD1963_string_font_10x16_back_fone(20,20+16*5,(uint8_t*)String,0xff00, 0xff);
 
-sprintf(String,"Температура = %d", temperature);	
+sprintf(String,"Температура = %04.1f", temperature*0.1);	
 SSD1963_string_font_10x16_back_fone(20,20+16*6,(uint8_t*)String,0xff00, 0xff);
 
+sprintf(String,"FPS = %02d", FPS_screen[0]);	
+SSD1963_string_font_10x16_back_fone(20,20+16*7,(uint8_t*)String,0xff00, 0xff);
+
 temperature = DS18B20_read_temperatur(USART_def);
-//temperature = USART_def->DR;
 
+TFT_Draw_Rectangle(398,398,104,62,2,0x0000);
+TFT_Draw_Fill_Rectangle(400,400,100,60,0xFFFF);
 
+TFT_Draw_Fill_Round_Rect(600,400,100,60,5,0x0000);
+
+//TFT_Draw_image(10,200,320,240,&img);
 }	
 }
