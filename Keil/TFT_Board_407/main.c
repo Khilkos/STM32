@@ -226,7 +226,7 @@ SSD1963_string_font_10x16_back_fone(20,20+16*6,(uint8_t*)String,0xff00, 0xff);
 sprintf(String,"FPS = %02d", FPS_screen[0]);	
 SSD1963_string_font_10x16_back_fone(20,20+16*7,(uint8_t*)String,0xff00, 0xff);
 
-temperature = DS18B20_read_temperatur(USART_def);
+//temperature = DS18B20_read_temperatur(USART_def);
 
 TFT_Draw_Rectangle(398,398,104,62,2,0x0000);
 TFT_Draw_Fill_Rectangle(400,400,100,60,0xFFFF);
