@@ -3,108 +3,143 @@
 <pre>
 <h1>µVision Build Log</h1>
 <h2>Tool Versions:</h2>
-IDE-Version: µVision V5.42.0.0
-Copyright (C) 2025 ARM Ltd and ARM Germany GmbH. All rights reserved.
-License Information: Serj Khilk, Beer, LIC=MPPLD-88035-FWL2N-YX52R-BTK51-S13PN
+IDE-Version: µVision V5.38.0.0
+Copyright (C) 2022 ARM Ltd and ARM Germany GmbH. All rights reserved.
+License Information: Sergey Sergey, Home, LIC=BUURY-IT3D7-ARHXW-Q3CLD-7XGRR-AEUX8
  
 Tool Versions:
-Toolchain:       MDK-ARM Plus  Version: 5.42.0.0
+Toolchain:       MDK-ARM Plus  Version: 5.38.0.0
 Toolchain Path:  C:\Keil_v5\ARM\ARMCLANG\Bin
-C Compiler:      ArmClang.exe V6.23
-Assembler:       Armasm.exe V6.23
-Linker/Locator:  ArmLink.exe V6.23
-Library Manager: ArmAr.exe V6.23
-Hex Converter:   FromElf.exe V6.23
-CPU DLL:         SARMCM3.DLL V5.42.0.0
+C Compiler:      ArmClang.exe V6.19
+Assembler:       Armasm.exe V6.19
+Linker/Locator:  ArmLink.exe V6.19
+Library Manager: ArmAr.exe V6.19
+Hex Converter:   FromElf.exe V6.19
+CPU DLL:         SARMCM3.DLL V5.38.0.0
 Dialog DLL:      DCM.DLL V1.17.5.0
 Target DLL:      STLink\ST-LINKIII-KEIL_SWO.dll V3.0.5.0
-Dialog DLL:      TCM.DLL V1.56.6.0
+Dialog DLL:      TCM.DLL V1.56.4.0
  
 <h2>Project:</h2>
-E:\STM32\Project\Git_STM32\Keil\TFT_Board_407\TFT_Board_407.uvprojx
+F:\STM32\Project\Git_STM32\F411\STM32\Keil\TFT_Board_407\TFT_Board_407.uvprojx
 Project File Date:  05/30/2025
 
 <h2>Output:</h2>
-*** Using Compiler 'V6.23', folder: 'C:\Keil_v5\ARM\ARMCLANG\Bin'
+*** Using Compiler 'V6.19', folder: 'C:\Keil_v5\ARM\ARMCLANG\Bin'
 Build target 'Target 1'
-compiling Delay.c...
-compiling GPIO_setup.c...
-compiling FSMC.c...
-compiling Timer.c...
-compiling Core_init.c...
+main.c(1): warning: In file included from...
+../TFT_Board_407/main.h(1): warning: In file included from...
+../TFT_Board_407\Config.h(12): warning: In file included from...
+../../My_Libraries\Core_init.h(4): warning: In file included from...
+../TFT_Board_407\Config.h(13): warning: In file included from...
+../../My_Libraries\Delay.h(9): warning: In file included from...
+../TFT_Board_407\Config.h(14): warning: In file included from...
+../../My_Libraries\GPIO_setup.h(4): warning: In file included from...
+../TFT_Board_407\Config.h(15): warning: In file included from...
+../../My_Libraries\Timer.h(4): warning: In file included from...
+../TFT_Board_407\Config.h(16): warning: In file included from...
+../../My_Libraries\FSMC.h(3): warning: In file included from...
+../TFT_Board_407\Config.h(17): warning: In file included from...
+../../My_Libraries\SSD1963.h(3): warning: In file included from...
+../TFT_Board_407\Config.h(19): warning: In file included from...
+../../My_Libraries\I2C.h(4): warning: In file included from...
+../TFT_Board_407\Config.h(20): warning: In file included from...
+../../My_Libraries\GT911.h(3): warning: In file included from...
+../TFT_Board_407\Config.h(21): warning: In file included from...
+../../My_Libraries\img.h(23): warning: no newline at end of file [-Wnewline-eof]
+        
+        ^
+main.c(1): warning: In file included from...
+../TFT_Board_407\main.h(1): warning: In file included from...
+../TFT_Board_407\Config.h(12): warning: In file included from...
+../../My_Libraries\Core_init.h(4): warning: In file included from...
+../TFT_Board_407\Config.h(13): warning: In file included from...
+../../My_Libraries\Delay.h(9): warning: In file included from...
+../TFT_Board_407\Config.h(14): warning: In file included from...
+../../My_Libraries\GPIO_setup.h(4): warning: In file included from...
+../TFT_Board_407\Config.h(15): warning: In file included from...
+../../My_Libraries\Timer.h(4): warning: In file included from...
+../TFT_Board_407\Config.h(16): warning: In file included from...
+../../My_Libraries\FSMC.h(3): warning: In file included from...
+../TFT_Board_407\Config.h(17): warning: In file included from...
+../../My_Libraries\SSD1963.h(3): warning: In file included from...
+../TFT_Board_407\Config.h(19): warning: In file included from...
+../../My_Libraries\I2C.h(4): warning: In file included from...
+../TFT_Board_407\Config.h(20): warning: In file included from...
+../../My_Libraries\GT911.h(136): warning: padding struct 'GT911Point_TypeDef' with 1 byte to align 'XCoordinate' [-Wpadded]
+  uint16_t XCoordinate;
+           ^
+../../My_Libraries\GT911.h(133): warning: padding size of 'GT911Point_TypeDef' with 1 byte to alignment boundary [-Wpadded]
+typedef struct
+        ^
+main.c(10): warning: no previous extern declaration for non-static variable 'TOUCH_IRQ' [-Wmissing-variable-declarations]
+_Bool TOUCH_IRQ=0;
+      ^
+main.c(10): note: declare 'static' if the variable is not intended to be used outside of this translation unit
+_Bool TOUCH_IRQ=0;
+^
 main.c(88): warning: incompatible pointer types passing 'const uint16_t (*)[]' (aka 'const unsigned short (*)[]') to parameter of type 'uint16_t *' (aka 'unsigned short *') [-Wincompatible-pointer-types]
-   88 | TFT_Draw_image(10,200,320,240,&img);
-      |                               ^~~~
+TFT_Draw_image(10,200,320,240,&img);
+                              ^~~~
 ../../My_Libraries\SSD1963.h(70): note: passing argument to parameter 'img' here
-   70 | void TFT_Draw_image(uint16_t x, uint16_t y, uint16_t length, uint16_t width, uint16_t *img);
-      |                                                                                        ^
+void TFT_Draw_image(uint16_t x, uint16_t y, uint16_t length, uint16_t width, uint16_t *img);
+                                                                                       ^
 main.c(96): warning: incompatible pointer types passing 'const uint16_t (*)[3600]' (aka 'const unsigned short (*)[3600]') to parameter of type 'uint16_t *' (aka 'unsigned short *') [-Wincompatible-pointer-types]
-   96 |         {if (!TIM1_Delay_3) {if (temp8<6)  {TFT_Draw_image(560,20,60,60,&(Vent_gif_2[temp8])); temp8++;} else temp8=0;          TIM1_Delay_3 = 5;} }
-      |                                                                         ^~~~~~~~~~~~~~~~~~~~
+        {if (!TIM1_Delay_3) {if (temp8<6)  {TFT_Draw_image(560,20,60,60,&(Vent_gif_2[temp8])); temp8++;} else temp8=0;          TIM1_Delay_3 = 5;} }
+                                                                        ^~~~~~~~~~~~~~~~~~~~
 ../../My_Libraries\SSD1963.h(70): note: passing argument to parameter 'img' here
-   70 | void TFT_Draw_image(uint16_t x, uint16_t y, uint16_t length, uint16_t width, uint16_t *img);
-      |                                                                                        ^
+void TFT_Draw_image(uint16_t x, uint16_t y, uint16_t length, uint16_t width, uint16_t *img);
+                                                                                       ^
 main.c(97): warning: incompatible pointer types passing 'const uint16_t (*)[6][3600]' (aka 'const unsigned short (*)[6][3600]') to parameter of type 'uint16_t *' (aka 'unsigned short *') [-Wincompatible-pointer-types]
-   97 |                         else TFT_Draw_image(560,20,60,60,&Vent_gif_2);
-      |                                                          ^~~~~~~~~~~
+                        else TFT_Draw_image(560,20,60,60,&Vent_gif_2);
+                                                         ^~~~~~~~~~~
 ../../My_Libraries\SSD1963.h(70): note: passing argument to parameter 'img' here
-   70 | void TFT_Draw_image(uint16_t x, uint16_t y, uint16_t length, uint16_t width, uint16_t *img);
-      |                                                                                        ^
+void TFT_Draw_image(uint16_t x, uint16_t y, uint16_t length, uint16_t width, uint16_t *img);
+                                                                                       ^
 main.c(6): warning: unused variable 'temp32' [-Wunused-variable]
-    6 | static uint32_t temp32=0;
-      |                 ^~~~~~
-4 warnings generated.
+static uint32_t temp32=0;
+                ^
+8 warnings generated.
 compiling main.c...
-compiling Font_table.c...
-compiling SSD1963.c...
-compiling I2C.c...
-compiling DMA.c...
-compiling GT911.c...
-compiling USART.c...
-compiling One_Wire.c...
-compiling DS18B20.c...
-compiling system_stm32f4xx.c...
-compiling img.c...
-assembling startup_stm32f407xx.s...
 linking...
-Program Size: Code=11474 RO-data=202562 RW-data=0 ZI-data=2040  
-".\Objects\TFT_Board_407.axf" - 0 Error(s), 4 Warning(s).
+Program Size: Code=10286 RO-data=202562 RW-data=0 ZI-data=2040  
+".\Objects\TFT_Board_407.axf" - 0 Error(s), 8 Warning(s).
 
 <h2>Software Packages used:</h2>
 
 Package Vendor: ARM
                 https://www.keil.com/pack/ARM.CMSIS.6.1.0.pack
-                ARM::CMSIS@6.1.0
+                ARM.CMSIS.6.1.0
                 CMSIS (Common Microcontroller Software Interface Standard)
    * Component: CORE Version: 6.1.0
 
 Package Vendor: Keil
                 https://www.keil.com/pack/Keil.STM32F4xx_DFP.3.0.0.pack
-                Keil::STM32F4xx_DFP@3.0.0
+                Keil.STM32F4xx_DFP.3.0.0
                 STMicroelectronics STM32F4 Series Device Support
 
 Package Vendor: Keil
                 https://www.keil.com/pack/Keil.STM32F4xx_DFP.2.17.0.pack
-                Keil::STM32F4xx_DFP@2.17.0
+                Keil.STM32F4xx_DFP.2.17.0
                 STMicroelectronics STM32F4 Series Device Support, Drivers and Examples
    * Component: Startup Version: 2.6.3
 
 <h2>Collection of Component include folders:</h2>
   ./RTE/_Target_1
-  C:/Users/Khilk/AppData/Local/Arm/Packs/ARM/CMSIS/6.1.0/CMSIS/Core/Include
-  C:/Users/Khilk/AppData/Local/Arm/Packs/Keil/STM32F4xx_DFP/2.17.0/Drivers/CMSIS/Device/ST/STM32F4xx/Include
+  C:/Users/dasha/AppData/Local/Arm/Packs/ARM/CMSIS/6.1.0/CMSIS/Core/Include
+  C:/Users/dasha/AppData/Local/Arm/Packs/Keil/STM32F4xx_DFP/2.17.0/Drivers/CMSIS/Device/ST/STM32F4xx/Include
 
 <h2>Collection of Component Files used:</h2>
 
-   * Component: ARM::CMSIS:CORE@6.1.0
+   * Component: ARM::CMSIS:CORE:6.1.0
 
-   * Component: Keil::Device:Startup@2.6.3
+   * Component: Keil::Device:Startup:2.6.3
+      Source file:   MDK/Device/Source/ARM/STM32F40xxx_41xxx_OPT.s
+      Source file:   MDK/Device/Source/ARM/STM32F4xx_OTP.s
       Include file:  Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h
       Source file:   Drivers/CMSIS/Device/ST/STM32F4xx/Source/Templates/arm/startup_stm32f407xx.s
-      Source file:   MDK/Device/Source/ARM/STM32F4xx_OTP.s
-      Source file:   MDK/Device/Source/ARM/STM32F40xxx_41xxx_OPT.s
       Source file:   Drivers/CMSIS/Device/ST/STM32F4xx/Source/Templates/system_stm32f4xx.c
-Build Time Elapsed:  00:00:02
+Build Time Elapsed:  00:00:01
 </pre>
 </body>
 </html>
