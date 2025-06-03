@@ -29,6 +29,7 @@ extern uint8_t DMA_read_temp[32];
 extern uint8_t ROM[8];
 extern uint16_t DS18B20_temperature_of_2_sensor[2];
 
+
 extern uint8_t ROM1[8];
 extern uint8_t ROM2[8];
 extern uint8_t ROM3[8];

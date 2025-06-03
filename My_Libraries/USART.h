@@ -8,6 +8,7 @@
 
 
 extern uint32_t USART_DR_RX;
+extern _Bool usart_fault;
 
 void USART_F4_init (USART_TypeDef * USARTx);
 void USART_F4_set_9600_baud (USART_TypeDef * USARTx);

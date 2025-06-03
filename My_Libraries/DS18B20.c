@@ -2,6 +2,7 @@
 
 static volatile uint8_t read_temperature_stage=0;
 volatile uint16_t DS18B20_temperature=0;
+#define USART_answer 100000
 _Bool DMA_busy=0;
 
 uint16_t DS18B20_temperature_of_2_sensor[2]={0,0};
@@ -37,12 +38,19 @@ uint8_t DMA_read_temp[32];
 _Bool DS18B20_Reset_single (USART_TypeDef * USARTx)
 {
 uint32_t temp=0;	
+uint32_t count=0;
 USART_F4_set_9600_baud(USARTx);
 	USARTx->DR=0xf0;
-	while (!(USARTx->SR & USART_SR_TC)) __NOP();
+	while (!(USARTx->SR & USART_SR_TC)) 
+		{ 	count++;
+				if (count>USART_answer)  {usart_fault=1;	break;}
+		}	
 	
 	
-	while (!(USARTx->SR & USART_SR_RXNE)) __NOP();
+	while (!(USARTx->SR & USART_SR_RXNE)) 
+		{ 	count++;
+				if (count>USART_answer)  {usart_fault=1;	break;}
+		}	
 	USART_F4_set_115200_baud(USARTx);
 	temp=USARTx->DR;
 	if (temp==0xf0) return 0;
@@ -52,9 +60,13 @@ USART_F4_set_9600_baud(USARTx);
 //==================================================
 void DS18B20_write_bit(_Bool write_bit, USART_TypeDef * USARTx)
 {
+	uint32_t count=0;
 USART_F4_set_115200_baud(USARTx);
 if (write_bit) USARTx->DR=0xff;	else USARTx->DR=0x00;
-while (!(USARTx->SR & USART_SR_TC)) __NOP();
+while (!(USARTx->SR & USART_SR_TC))
+		{ 	count++;
+				if (count>USART_answer)  {usart_fault=1;	break;}
+		}
 }
 
 //==================================================
@@ -70,9 +82,13 @@ for (uint8_t i=0; i<8; i++)
 //==================================================
 _Bool DS18B20_read_bit (USART_TypeDef * USARTx)
 {
+	uint32_t count=0;
 uint32_t temp=0;
 	DS18B20_write_bit(1, USARTx);
-	while (!(USARTx->SR & USART_SR_RXNE)) __NOP();
+	while (!(USARTx->SR & USART_SR_RXNE)) 
+		{ 	count++;
+				if (count>USART_answer)  {usart_fault=1;	break;}
+		}
 		temp=USARTx->DR;
 	if (temp==0xff) return 1;
 	return 0;

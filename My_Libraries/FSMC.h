@@ -7,8 +7,8 @@
 //=============================================================
 //
 void FSMC_init (void);
-
-
+void FSMC_Low_init (void);
+void FSMC_Fast_init (void);
 
 
 

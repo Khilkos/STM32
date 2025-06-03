@@ -68,7 +68,7 @@ int main(void)
 	GPIO_Alternate(GPIOD,5,Push_pull,High,No_pull,AF12); //FSMC NWE/WR
 	GPIO_Alternate(GPIOD,7,Push_pull,High,Pull_down,AF12); //FSMC NE1/LCS
 
-FSMC_init();
+FSMC_Low_init();
 
 GPIOE->BSRR = 1<<6;//включить подсветку дисплея
 delay_ms(150);
@@ -80,6 +80,7 @@ delay_ms(150);
 
 I2C_STM32F4_init();
 SSD1963_init();
+FSMC_Fast_init();
 SSD1963_ClearScreen(0xff);	
 GT911_Init();	
 DMA_F4_init();
@@ -226,7 +227,10 @@ SSD1963_string_font_10x16_back_fone(20,20+16*6,(uint8_t*)String,0xff00, 0xff);
 sprintf(String,"FPS = %02d", FPS_screen[0]);	
 SSD1963_string_font_10x16_back_fone(20,20+16*7,(uint8_t*)String,0xff00, 0xff);
 
-//temperature = DS18B20_read_temperatur(USART_def);
+sprintf(String,"USART_FAULT = %d", usart_fault);	
+SSD1963_string_font_10x16_back_fone(20,20+16*8,(uint8_t*)String,0xff00, 0xff);
+
+temperature = DS18B20_read_temperatur(USART_def);
 
 TFT_Draw_Rectangle(398,398,104,62,2,0x0000);
 TFT_Draw_Fill_Rectangle(400,400,100,60,0xFFFF);

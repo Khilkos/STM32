@@ -1,6 +1,7 @@
 #include "USART.h"
 
 uint32_t USART_DR_RX=0;
+_Bool usart_fault=0;
 
 void USART_F4_init (USART_TypeDef * USARTx)
 {
