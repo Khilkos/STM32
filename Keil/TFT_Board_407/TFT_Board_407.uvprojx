@@ -10,7 +10,7 @@
       <TargetName>Target 1</TargetName>
       <ToolsetNumber>0x4</ToolsetNumber>
       <ToolsetName>ARM-ADS</ToolsetName>
-      <pCCUsed>6230000::V6.23::ARMCLANG</pCCUsed>
+      <pCCUsed>6190000::V6.19::ARMCLANG</pCCUsed>
       <uAC6>1</uAC6>
       <TargetOption>
         <TargetCommonOption>
@@ -337,7 +337,7 @@
             <v6WtE>0</v6WtE>
             <v6Rtti>0</v6Rtti>
             <VariousControls>
-              <MiscControls>-Wno-invalid-utf8 -Wno-invalid-source-encoding -Wno-missing-braces -Wno-pointer-sign -Wno-incompatible-pointer-types</MiscControls>
+              <MiscControls>-Wno-invalid-utf8 -Wno-invalid-source-encoding -Wno-missing-braces -Wno-pointer-sign -Wno-incompatible-pointer-types  -Wno-sign-conversion -Wno-gnu-binary-literal -Wno-implicit-int-conversion</MiscControls>
               <Define></Define>
               <Undefine></Undefine>
               <IncludePath>..\TFT_Board_407;..\..\My_Libraries</IncludePath>

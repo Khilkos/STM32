@@ -54,14 +54,14 @@ void TFT_Draw_string_font_10x16 (uint16_t x_start, uint16_t y_start, uint8_t *st
 void TFT_Draw_string_font_10x16_back_fone (uint16_t x_start, uint16_t y_start, uint8_t *str, uint16_t color, uint16_t color_back_fone);
 
 void TFT_Set_Work_Area(uint16_t x,uint16_t y,uint16_t length,uint16_t size);
-void TFT_Draw_Line (uint16_t x1,uint16_t y1,uint16_t x2,uint16_t y2, uint8_t size,uint16_t color);
+void TFT_Draw_Line (uint16_t x1,uint16_t y1,uint16_t x2,uint16_t y2, uint16_t size,uint16_t color);
 void TFT_Draw_HLine(uint16_t x, uint16_t y, uint16_t length, uint16_t size, uint16_t color);
 void TFT_Draw_VLine(uint16_t x, uint16_t y, uint16_t length, uint16_t size, uint16_t color);
-void TFT_Draw_Rectangle(uint16_t x, uint16_t y, uint16_t length, uint16_t width, uint8_t size, uint16_t color);
+void TFT_Draw_Rectangle(uint16_t x, uint16_t y, uint16_t length, uint16_t width, uint16_t size, uint16_t color);
 void TFT_Draw_Fill_Rectangle(uint16_t x, uint16_t y, uint16_t length, uint16_t width, uint16_t color);
-void TFT_Draw_Circle(uint16_t x, uint16_t y, uint8_t radius, uint8_t fill, uint8_t size, uint16_t color);
-void TFT_Draw_Circle_Helper( int16_t x0, int16_t y0, int16_t r, uint8_t cornername, uint8_t size, uint16_t color);
-void TFT_Draw_Round_Rect(uint16_t x, uint16_t y, uint16_t length, uint16_t width, uint16_t r, uint8_t size, uint16_t color);
+void TFT_Draw_Circle(uint16_t x, uint16_t y, uint16_t radius, uint16_t fill, uint16_t size, uint16_t color);
+void TFT_Draw_Circle_Helper( int16_t x0, int16_t y0, int16_t r, uint16_t cornername, uint16_t size, uint16_t color);
+void TFT_Draw_Round_Rect(uint16_t x, uint16_t y, uint16_t length, uint16_t width, uint16_t r, uint16_t size, uint16_t color);
 void TFT_Draw_Fill_Circle_Helper(int16_t x0, int16_t y0, int16_t r, uint8_t cornername, int16_t delta, uint16_t color) ;
 void TFT_Draw_Fill_Round_Rect(uint16_t x, uint16_t y, uint16_t length, uint16_t width, uint16_t r, uint16_t color);
 void TFT_Draw_Triangle( uint16_t x1, uint16_t y1, uint16_t x2, uint16_t y2, uint16_t x3, uint16_t y3, uint8_t size, uint16_t color);

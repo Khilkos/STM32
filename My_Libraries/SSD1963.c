@@ -186,7 +186,7 @@ void TFT_Set_Work_Area(uint16_t x,uint16_t y,uint16_t length,uint16_t size)
 }	
 //========================================================================	
 //ф-ция рисует линию заданного цвета и размера
-void TFT_Draw_Line (uint16_t x1,uint16_t y1,uint16_t x2,uint16_t y2, uint8_t size,uint16_t color)
+void TFT_Draw_Line (uint16_t x1,uint16_t y1,uint16_t x2,uint16_t y2, uint16_t size,uint16_t color)
 {
 	int deltaX = abs(x2 - x1);
 	int deltaY = abs(y2 - y1);
@@ -241,7 +241,7 @@ void TFT_Draw_VLine(uint16_t x, uint16_t y, uint16_t length, uint16_t size, uint
 }
 //==================================================================================
 //ф-ция рисует прямоугольник, указанной длины, ширины, толщины линий и цвета
-void TFT_Draw_Rectangle(uint16_t x, uint16_t y, uint16_t length, uint16_t width, uint8_t size, uint16_t color)
+void TFT_Draw_Rectangle(uint16_t x, uint16_t y, uint16_t length, uint16_t width, uint16_t size, uint16_t color)
 {
 	TFT_Draw_HLine(x, y, length, size, color);
 	TFT_Draw_HLine(x, y + width, length, size, color);
@@ -264,7 +264,7 @@ void TFT_Draw_Fill_Rectangle(uint16_t x, uint16_t y, uint16_t length, uint16_t h
 //=====================================================================================
 //ф-ция рисует окружность нужного радиуса, линией задданой толщины и выбранным цветом, также возможно 
 //залить окружность нужным цветом для этого установить аргумент fill равным единице, иначе ноль
-void TFT_Draw_Circle(uint16_t x, uint16_t y, uint8_t radius, uint8_t fill, uint8_t size, uint16_t color)
+void TFT_Draw_Circle(uint16_t x, uint16_t y, uint16_t radius, uint16_t fill, uint16_t size, uint16_t color)
 {
 	int a_,b_,P;
 	a_ = 0;
@@ -303,7 +303,7 @@ void TFT_Draw_Circle(uint16_t x, uint16_t y, uint8_t radius, uint8_t fill, uint8
 }
 //==========================================================================
 //вспомогательная ф-ция для закругления краёв прямоугольника
-void TFT_Draw_Circle_Helper( int16_t x0, int16_t y0, int16_t r, uint8_t cornername, uint8_t size, uint16_t color)
+void TFT_Draw_Circle_Helper( int16_t x0, int16_t y0, int16_t r, uint16_t cornername, uint16_t size, uint16_t color)
 {
   int16_t f     = 1 - r;
   int16_t ddF_x = 1;
@@ -340,7 +340,7 @@ void TFT_Draw_Circle_Helper( int16_t x0, int16_t y0, int16_t r, uint8_t cornerna
 }
 //====================================================================
 //ф-ция рисует прямоугольник заданной длины, ширины, радиусом закругления краёв, толщины линий и выбранным цветом
-void TFT_Draw_Round_Rect(uint16_t x, uint16_t y, uint16_t length, uint16_t hight, uint16_t r, uint8_t size, uint16_t color)
+void TFT_Draw_Round_Rect(uint16_t x, uint16_t y, uint16_t length, uint16_t hight, uint16_t r, uint16_t size, uint16_t color)
 {
 
   TFT_Draw_HLine(x+r  , y    , length-2*r, size, color); // Top
