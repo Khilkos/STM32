@@ -11,6 +11,8 @@ volatile uint32_t TIM1_Delay_8=0;
 volatile uint32_t TIM1_Delay_9=0;
 volatile uint32_t TIM1_Delay_10=0;
 volatile uint32_t TIM2_Delay_1=0;
+volatile _Bool pulse_500ms = 0;
+static uint32_t pulse_500ms_count=500;
 
 
 //=============================================
@@ -43,6 +45,7 @@ if (TIM1_Delay_7>0) TIM1_Delay_7--; else TIM1_Delay_7=0;
 if (TIM1_Delay_8>0) TIM1_Delay_8--; else TIM1_Delay_8=0;
 if (TIM1_Delay_9>0) TIM1_Delay_9--; else TIM1_Delay_9=0;
 if (TIM1_Delay_10>0) TIM1_Delay_10--; else TIM1_Delay_10=0;
+if (pulse_500ms_count>0) pulse_500ms_count--; else {pulse_500ms_count=500; if (pulse_500ms) pulse_500ms=0; else pulse_500ms=1;}  		
 	//if (GPIOB->IDR & (1<<12)) GPIOB->BSRR=1U<<(12+res); else GPIOB->BSRR=1U<<12;
 	}
 }

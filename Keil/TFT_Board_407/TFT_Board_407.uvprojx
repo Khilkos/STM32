@@ -337,7 +337,7 @@
             <v6WtE>0</v6WtE>
             <v6Rtti>0</v6Rtti>
             <VariousControls>
-              <MiscControls>-Wno-invalid-utf8 -Wno-invalid-source-encoding -Wno-missing-braces</MiscControls>
+              <MiscControls>-Wno-invalid-utf8 -Wno-invalid-source-encoding -Wno-missing-braces -Wno-pointer-sign -Wno-incompatible-pointer-types</MiscControls>
               <Define></Define>
               <Undefine></Undefine>
               <IncludePath>..\TFT_Board_407;..\..\My_Libraries</IncludePath>
@@ -393,6 +393,16 @@
               <FileName>Config.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\Config.h</FilePath>
+            </File>
+            <File>
+              <FileName>SCADA_init.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\SCADA_init.c</FilePath>
+            </File>
+            <File>
+              <FileName>SCADA_init.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\SCADA_init.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -468,6 +478,16 @@
               <FileName>One_Wire.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\My_Libraries\One_Wire.c</FilePath>
+            </File>
+            <File>
+              <FileName>Graph.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\My_Libraries\Graph.c</FilePath>
+            </File>
+            <File>
+              <FileName>Graph.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\..\My_Libraries\Graph.h</FilePath>
             </File>
           </Files>
         </Group>

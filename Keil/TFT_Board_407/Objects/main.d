@@ -9,4 +9,5 @@
   ..\..\My_Libraries\I2C.h ..\..\My_Libraries\GT911.h \
   ..\..\My_Libraries\img.h ..\..\My_Libraries\DMA.h \
   ..\..\My_Libraries\USART.h ..\..\My_Libraries\One_Wire.h \
-  ..\..\My_Libraries\DS18B20.h ..\TFT_Board_407\main.h
+  ..\..\My_Libraries\DS18B20.h ..\..\My_Libraries\Graph.h SCADA_init.h \
+  ..\TFT_Board_407\main.h

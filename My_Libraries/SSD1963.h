@@ -50,8 +50,8 @@ void SSD1963_ClearScreen(uint16_t color);
 void SSD1963_dot(uint16_t x, uint16_t y, uint16_t color);
 void SSD1963_Vertical_line(uint16_t x, uint16_t y, uint16_t height, uint16_t thickness, uint16_t color);
 void SSD1963_Horisontal_line(uint16_t x, uint16_t y, uint16_t width, uint16_t thickness, uint16_t color);
-void SSD1963_string_font_10x16 (uint16_t x_start, uint16_t y_start, uint8_t *str, uint16_t color );
-void SSD1963_string_font_10x16_back_fone (uint16_t x_start, uint16_t y_start, uint8_t *str, uint16_t color, uint16_t color_back_fone);
+void TFT_Draw_string_font_10x16 (uint16_t x_start, uint16_t y_start, uint8_t *str, uint16_t color );
+void TFT_Draw_string_font_10x16_back_fone (uint16_t x_start, uint16_t y_start, uint8_t *str, uint16_t color, uint16_t color_back_fone);
 
 void TFT_Set_Work_Area(uint16_t x,uint16_t y,uint16_t length,uint16_t size);
 void TFT_Draw_Line (uint16_t x1,uint16_t y1,uint16_t x2,uint16_t y2, uint8_t size,uint16_t color);

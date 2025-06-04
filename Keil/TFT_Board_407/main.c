@@ -6,16 +6,14 @@
 static uint32_t temp32=0;
 static uint16_t temp16=0;
 static uint8_t temp8=0;
-static char String[300];
+static uint8_t animation_count=0;
+static _Bool animation_update=0;
+static uint8_t String[300];
 _Bool TOUCH_IRQ=0;
 static uint16_t FPS_screen[10];
 static uint16_t FPS_screen_temp;
 
-static _Bool NEW_update=1;
-static _Bool Button_1=0;
-static _Bool Button_2=0;
-static _Bool Button_3=0;
-static _Bool Button_4=0;
+static _Bool Screen_update=1;
 
 
 static uint16_t temperature=0;
@@ -81,21 +79,56 @@ delay_ms(150);
 I2C_STM32F4_init();
 SSD1963_init();
 FSMC_Fast_init();
-SSD1963_ClearScreen(0xff);	
+	
 GT911_Init();	
 DMA_F4_init();
 USART_F4_init(USART_def);
 
-TFT_Draw_image(10,200,320,240,&img);
+SCADA_init();
+
+
+
+
+
 //TFT_Draw_image(10,200,400,247,&img1);
 //TFT_Draw_image(10,150,400,300,&img2);	
 	while (1)
 	{
-
-
-	if (Button_1)	
-	{if (!TIM1_Delay_3) {if (temp8<6)  {TFT_Draw_image(560,20,60,60,&(Vent_gif_2[temp8])); temp8++;} else temp8=0;  	TIM1_Delay_3 = 5;} }
-			else TFT_Draw_image(560,20,60,60,&Vent_gif_2);
+	if (Screen_update)
+	{		SSD1963_ClearScreen(0xff);
+			TFT_Draw_image(10,200,320,240,&img);
+			Button_init[0].button_update=1;
+			Button_init[1].button_update=1;
+			Button_init[2].button_update=1;
+			Button_init[3].button_update=1;
+			Button_init[4].button_update=1;
+			Button_init[5].button_update=1;
+			Button_init[6].button_update=1;
+	Screen_update = 0;
+	}
+		
+		
+		
+		
+	animation_update=0;
+	if (!TIM1_Delay_3) {if (animation_count<5)  animation_count++; else animation_count=0; TIM1_Delay_3 = 5; animation_update=1;} 
+	
+	if (Button_init[0].button_State ==1 && animation_update)	
+					TFT_Draw_image(Button_init[0].button_X0+20,20,60,60,&(Vent_gif_2[animation_count]));  
+		else 	TFT_Draw_image(Button_init[0].button_X0+20,20,60,60,&Vent_gif_2);
+	
+	if (Button_init[1].button_State ==1 && animation_update)	
+					TFT_Draw_image(Button_init[1].button_X0+20,20,60,60,&(Vent_gif_2[animation_count]));  
+		else 	TFT_Draw_image(Button_init[1].button_X0+20,20,60,60,&Vent_gif_2);
+	
+	if (Button_init[2].button_State ==1 && animation_update)	
+					TFT_Draw_image(Button_init[2].button_X0+20,20,60,60,&(Vent_gif_2[animation_count]));  
+		else 	TFT_Draw_image(Button_init[2].button_X0+20,20,60,60,&Vent_gif_2);
+	
+	if (Button_init[3].button_State ==1 && animation_update)	
+					TFT_Draw_image(Button_init[3].button_X0+20,20,60,60,&(Vent_gif_2[animation_count]));  
+		else 	TFT_Draw_image(Button_init[3].button_X0+20,20,60,60,&Vent_gif_2);
+	
 	
 	if (!TIM1_Delay_2) {if (temp16 >=99) {temp16=0;} else temp16++; TIM1_Delay_2=10;}
 
@@ -105,138 +138,93 @@ TFT_Draw_image(10,200,320,240,&img);
 	if (TIM1_Delay_5) {FPS_screen_temp++;}
 	if (!TIM1_Delay_5) {FPS_screen[0] = FPS_screen_temp; FPS_screen_temp=0; TIM1_Delay_5 = 1000;}
 
-	if ((TOUCH_Press && !TIM1_Delay_4) || NEW_update) 
-	{	NEW_update = 0;
-		TIM1_Delay_4 = 1000;
-		if ((GT911Touch[0].XCoordinate>680 && GT911Touch[0].XCoordinate<(680+100) && GT911Touch[0].YCoordinate>(20+80*0) && GT911Touch[0].YCoordinate<(20+80*0+60)))
-					{if (Button_1) Button_1=0; else Button_1=1;}
-		
-		if ((GT911Touch[0].XCoordinate>680 && GT911Touch[0].XCoordinate<(680+100) && GT911Touch[0].YCoordinate>(20+80*1) && GT911Touch[0].YCoordinate<(20+80*1+60)))
-					{if (Button_2) Button_2=0; else Button_2=1;}
-		
-		if ((GT911Touch[0].XCoordinate>680 && GT911Touch[0].XCoordinate<(680+100) && GT911Touch[0].YCoordinate>(20+80*2) && GT911Touch[0].YCoordinate<(20+80*2+60)))
-					{if (Button_3) Button_3=0; else Button_3=1;}
-		
-		if ((GT911Touch[0].XCoordinate>680 && GT911Touch[0].XCoordinate<(680+100) && GT911Touch[0].YCoordinate>(20+80*3) && GT911Touch[0].YCoordinate<(20+80*3+60)))
-					{if (Button_4) Button_4=0; else Button_4=1;}
-		
-		if (!Button_1) 
-							{	//SSD1963_Horisontal_line(680,20,100,60,0xf800);
-								TFT_Draw_Fill_Round_Rect(680,20+80*0,100,60,10,0xf800);
-								sprintf(String,"ÐÅËÅ 1");
-								SSD1963_string_font_10x16(700,30,(uint8_t*)String,0xffff);
-								sprintf(String,"ÂÛÊË");
-								SSD1963_string_font_10x16(710,30+20,(uint8_t*)String,0xffff);
-								GPIOA->BSRR = 1<<(1+16);
-							}
-					else 
-							{	//SSD1963_Horisontal_line(680,20,100,60,0x7e0); 
-								TFT_Draw_Fill_Round_Rect(680,20+80*0,100,60,10,0x7e0);
-								sprintf(String,"ÐÅËÅ 1");
-								SSD1963_string_font_10x16(700,30,(uint8_t*)String,0x0000);
-								sprintf(String,"ÂÊË");
-								SSD1963_string_font_10x16(715,30+20,(uint8_t*)String,0x0000);
-								GPIOA->BSRR = 1<<(1);
-							}
-				
-		if (!Button_2) 
-							{	//SSD1963_Horisontal_line(680,20,100,60,0xf800);
-								TFT_Draw_Fill_Round_Rect(680,20+80*1,100,60,10,0xf800);
-								sprintf(String,"ÐÅËÅ 2");
-								SSD1963_string_font_10x16(700,30+80*1,(uint8_t*)String,0xffff);
-								sprintf(String,"ÂÛÊË");
-								SSD1963_string_font_10x16(710,30+80*1+20,(uint8_t*)String,0xffff);
-								GPIOA->BSRR = 1<<(3+16);
-							}
-					else 
-							{	//SSD1963_Horisontal_line(680,20,100,60,0x7e0); 
-								TFT_Draw_Fill_Round_Rect(680,20+80*1,100,60,10,0x7e0);
-								sprintf(String,"ÐÅËÅ 2");
-								SSD1963_string_font_10x16(700,30+80*1,(uint8_t*)String,0x0000);
-								sprintf(String,"ÂÊË");
-								SSD1963_string_font_10x16(715,30+80*1+20,(uint8_t*)String,0x0000);
-								GPIOA->BSRR = 1<<(3);
-							}
-		
-			if (!Button_3) 
-							{	//SSD1963_Horisontal_line(680,20,100,60,0xf800);
-								TFT_Draw_Fill_Round_Rect(680,20+80*2,100,60,10,0xf800);
-								sprintf(String,"ÐÅËÅ 3");
-								SSD1963_string_font_10x16(700,30+80*2,(uint8_t*)String,0xffff);
-								sprintf(String,"ÂÛÊË");
-								SSD1963_string_font_10x16(710,30+80*2+20,(uint8_t*)String,0xffff);
-								GPIOA->BSRR = 1<<(5+16);
-							}
-					else 
-							{	//SSD1963_Horisontal_line(680,20,100,60,0x7e0); 
-								TFT_Draw_Fill_Round_Rect(680,20+80*2,100,60,10,0x7e0);
-								sprintf(String,"ÐÅËÅ 3");
-								SSD1963_string_font_10x16(700,30+80*2,(uint8_t*)String,0x0000);
-								sprintf(String,"ÂÊË");
-								SSD1963_string_font_10x16(715,30+80*2+20,(uint8_t*)String,0x0000);
-								GPIOA->BSRR = 1<<(5);
-							}				
-				
-	if (!Button_4) 
-							{	//SSD1963_Horisontal_line(680,20,100,60,0xf800);
-								TFT_Draw_Fill_Round_Rect(680,20+80*3,100,60,10,0xf800);
-								sprintf(String,"ÐÅËÅ 4");
-								SSD1963_string_font_10x16(700,30+80*3,(uint8_t*)String,0xffff);
-								sprintf(String,"ÂÛÊË");
-								SSD1963_string_font_10x16(710,30+80*3+20,(uint8_t*)String,0xffff);
-								GPIOA->BSRR = 1<<(7+16);
-							}
-					else 
-							{	//SSD1963_Horisontal_line(680,20,100,60,0x7e0); 
-								TFT_Draw_Fill_Round_Rect(680,20+80*3,100,60,10,0x7e0);
-								sprintf(String,"ÐÅËÅ 4");
-								SSD1963_string_font_10x16(700,30+80*3,(uint8_t*)String,0x0000);
-								sprintf(String,"ÂÊË");
-								SSD1963_string_font_10x16(715,30+80*3+20,(uint8_t*)String,0x0000);
-								GPIOA->BSRR = 1<<(7);
-							}											
-							
-		
+	if ((TOUCH_Press && !TIM1_Delay_4)) 
+	{	TIM1_Delay_4 = 1000;
+		TFT_Scan_press_Button(0);
+		TFT_Scan_press_Button(1);
+		TFT_Scan_press_Button(2);
+		TFT_Scan_press_Button(3);
+		TFT_Scan_press_Button(5);
+		TFT_Scan_press_Button(6);
 	}
-	//if (!TOUCH_Press) TOUCH_trip=0;
 	
 	
 sprintf(String,"Ïîçèöèÿ êóðñîðà X = %03d", GT911Touch[0].XCoordinate );	
-SSD1963_string_font_10x16_back_fone(20,20,(uint8_t*)String,0xff00,0xff);
+TFT_Draw_string_font_10x16_back_fone(20,20,String,0xff00,0xff);
 
 sprintf(String,"Ïîçèöèÿ êóðñîðà Y = %03d",GT911Touch[0].YCoordinate);	
-SSD1963_string_font_10x16_back_fone(20,20+16*1,(uint8_t*)String,0xff00,0xff);
+TFT_Draw_string_font_10x16_back_fone(20,20+16*1,String,0xff00,0xff);
 	
 sprintf(String,"Size = %03d",GT911Touch[0].Size);	
-SSD1963_string_font_10x16_back_fone(20,20+16*2,(uint8_t*)String,0xff00,0xff);	
+TFT_Draw_string_font_10x16_back_fone(20,20+16*2,String,0xff00,0xff);	
 	
 sprintf(String,"Touch_Status = %02x", Touch_status);	
-SSD1963_string_font_10x16_back_fone(20,20+16*3,(uint8_t*)String,0xff00, 0xff);
+TFT_Draw_string_font_10x16_back_fone(20,20+16*3,String,0xff00, 0xff);
 
 
 sprintf(String,"Ñ÷åò÷èê = %02d", temp16);	
-SSD1963_string_font_10x16_back_fone(20,20+16*4,(uint8_t*)String,0xff00, 0xff);
+TFT_Draw_string_font_10x16_back_fone(20,20+16*4,String,0xff00, 0xff);
 
 if (GPIOE->IDR & 1<<4) {TOUCH_IRQ=1;} else {TOUCH_IRQ=0;}
 sprintf(String,"Êàñàíèå = %d", TOUCH_IRQ);	
-SSD1963_string_font_10x16_back_fone(20,20+16*5,(uint8_t*)String,0xff00, 0xff);
+TFT_Draw_string_font_10x16_back_fone(20,20+16*5,String,0xff00, 0xff);
 
 sprintf(String,"Òåìïåðàòóðà = %04.1f", temperature*0.1);	
-SSD1963_string_font_10x16_back_fone(20,20+16*6,(uint8_t*)String,0xff00, 0xff);
+TFT_Draw_string_font_10x16_back_fone(20,20+16*6,String,0xff00, 0xff);
 
 sprintf(String,"FPS = %02d", FPS_screen[0]);	
-SSD1963_string_font_10x16_back_fone(20,20+16*7,(uint8_t*)String,0xff00, 0xff);
+TFT_Draw_string_font_10x16_back_fone(20,20+16*7,String,0xff00, 0xff);
 
 sprintf(String,"USART_FAULT = %d", usart_fault);	
-SSD1963_string_font_10x16_back_fone(20,20+16*8,(uint8_t*)String,0xff00, 0xff);
+TFT_Draw_string_font_10x16_back_fone(20,20+16*8,String,0xff00, 0xff);
+
+sprintf(String,"pulse_500ms = %d", pulse_500ms);	
+TFT_Draw_string_font_10x16_back_fone(20,20+16*9,String,0xff00, 0xff);
 
 temperature = DS18B20_read_temperatur(USART_def);
 
-TFT_Draw_Rectangle(398,398,104,62,2,0x0000);
-TFT_Draw_Fill_Rectangle(400,400,100,60,0xFFFF);
 
-TFT_Draw_Fill_Round_Rect(600,400,100,60,5,0x0000);
+if (Button_init[0].button_update) 
+		{Button_init[0].button_update=0;
+			if (Button_init[0].button_State == 0) {TFT_Button_Draw(0,0); GPIOA->BSRR = 1<<(1+16);}
+			if (Button_init[0].button_State == 1) {TFT_Button_Draw(0,1); GPIOA->BSRR = 1<<(1);}
+		}
 
+if (Button_init[1].button_update) 
+		{Button_init[1].button_update=0;
+			if (Button_init[1].button_State == 0) {TFT_Button_Draw(1,0); GPIOA->BSRR = 1<<(3+16);}
+			if (Button_init[1].button_State == 1) {TFT_Button_Draw(1,1); GPIOA->BSRR = 1<<(3);}
+		}
+
+if (Button_init[2].button_update) 
+		{Button_init[2].button_update=0;
+			if (Button_init[2].button_State == 0) {TFT_Button_Draw(2,0); GPIOA->BSRR = 1<<(5+16);}
+			if (Button_init[2].button_State == 1) {TFT_Button_Draw(2,1); GPIOA->BSRR = 1<<(5);}
+		}
+
+if (Button_init[3].button_update) 
+		{Button_init[3].button_update=0;
+			if (Button_init[3].button_State == 0) {TFT_Button_Draw(3,0); GPIOA->BSRR = 1<<(7+16);}
+			if (Button_init[3].button_State == 1) {TFT_Button_Draw(3,1); GPIOA->BSRR = 1<<(7);}
+		}
+
+/*
+if (Button_init[4].button_update) 
+		{Button_init[4].button_update=0;
+			TFT_Button_Draw(4,0); 
+		}
+*/
+if (Button_init[5].button_update) 
+		{	Button_init[5].button_update=0;
+			TFT_Button_Draw(5,0);
+				if (Button_init[5].button_State == 1) {TFT_Button_Draw(4,0);Button_init[5].button_State = 0;}
+		}
+
+if (Button_init[6].button_update) 
+		{	Button_init[6].button_update=0;
+			TFT_Button_Draw(6,0);
+				if (Button_init[6].button_State == 1) {Screen_update=1;Button_init[6].button_State = 0;}
+		}
 //TFT_Draw_image(10,200,320,240,&img);
 }	
 }

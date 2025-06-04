@@ -135,7 +135,7 @@ for (uint32_t i=0; i<(width*thickness); i++)
 
 }
 //=======================================================================
-void SSD1963_string_font_10x16 (uint16_t x_start, uint16_t y_start, uint8_t *str, uint16_t color )
+void TFT_Draw_string_font_10x16 (uint16_t x_start, uint16_t y_start, uint8_t *str, uint16_t color )
 {	while (*str!='\0')
 	{	uint8_t    let=*str;
 		for (uint8_t x=0; x<10; x++)
@@ -152,7 +152,7 @@ void SSD1963_string_font_10x16 (uint16_t x_start, uint16_t y_start, uint8_t *str
 }	
 //========================================================================	
 //=======================================================================
-void SSD1963_string_font_10x16_back_fone (uint16_t x_start, uint16_t y_start, uint8_t *str, uint16_t color, uint16_t color_back_fone)
+void TFT_Draw_string_font_10x16_back_fone (uint16_t x_start, uint16_t y_start, uint8_t *str, uint16_t color, uint16_t color_back_fone)
 {	while (*str!='\0')
 	{	uint8_t    let=*str;
 		for (uint8_t x=0; x<10; x++)
@@ -250,12 +250,12 @@ void TFT_Draw_Rectangle(uint16_t x, uint16_t y, uint16_t length, uint16_t width,
 }
 //====================================================================================
 //ф-ция рисует закрашенный прямоугольник, указанной длины, ширины, цвета
-void TFT_Draw_Fill_Rectangle(uint16_t x, uint16_t y, uint16_t length, uint16_t width, uint16_t color)
+void TFT_Draw_Fill_Rectangle(uint16_t x, uint16_t y, uint16_t length, uint16_t hight, uint16_t color)
 {
 	uint32_t i=0;
 	
-	TFT_Set_Work_Area(x,y,length, width);
-	for(i=0; i < length*width; i++)
+	TFT_Set_Work_Area(x,y,length, hight);
+	for(i=0; i < length*hight; i++)
 	{
 		//TFT_Write_Data(color);	//передаём кодировку цвета
 			LCD_DATA =(color);
@@ -340,18 +340,18 @@ void TFT_Draw_Circle_Helper( int16_t x0, int16_t y0, int16_t r, uint8_t cornerna
 }
 //====================================================================
 //ф-ция рисует прямоугольник заданной длины, ширины, радиусом закругления краёв, толщины линий и выбранным цветом
-void TFT_Draw_Round_Rect(uint16_t x, uint16_t y, uint16_t length, uint16_t width, uint16_t r, uint8_t size, uint16_t color)
+void TFT_Draw_Round_Rect(uint16_t x, uint16_t y, uint16_t length, uint16_t hight, uint16_t r, uint8_t size, uint16_t color)
 {
 
   TFT_Draw_HLine(x+r  , y    , length-2*r, size, color); // Top
-  TFT_Draw_HLine(x+r  , y+width-1, length-2*r, size, color); // Bottom
-  TFT_Draw_VLine(x    , y+r  , width-2*r, size, color); // Left
-  TFT_Draw_VLine(x+length-1, y+r  , width-2*r, size, color); // Right
+  TFT_Draw_HLine(x+r  , y+hight-1, length-2*r, size, color); // Bottom
+  TFT_Draw_VLine(x    , y+r  , hight-2*r, size, color); // Left
+  TFT_Draw_VLine(x+length-1, y+r  , hight-2*r, size, color); // Right
 
   TFT_Draw_Circle_Helper(x+r    , y+r    , r, 		 			1, size, color);
   TFT_Draw_Circle_Helper(x+length-r-1, y+r    , r, 			2, size, color);
-  TFT_Draw_Circle_Helper(x+length-r-1, y+width-r-1, r,  4, size, color);
-  TFT_Draw_Circle_Helper(x+r    , y+width-r-1, r, 			8, size, color);
+  TFT_Draw_Circle_Helper(x+length-r-1, y+hight-r-1, r,  4, size, color);
+  TFT_Draw_Circle_Helper(x+r    , y+hight-r-1, r, 			8, size, color);
 }
 //========================================================================
 //вспомогательная ф-ция для закругления краёв закрашенного прямоугольника
@@ -386,12 +386,12 @@ void TFT_Draw_Fill_Circle_Helper(int16_t x0, int16_t y0, int16_t r, uint8_t corn
 }
 //===============================================================================
 //ф-ция рисует закрашенный прямоугольник заданной длины, ширины, радиусом закругления краев и выбранным цветом
-void TFT_Draw_Fill_Round_Rect(uint16_t x, uint16_t y, uint16_t length, uint16_t width, uint16_t r, uint16_t color)
+void TFT_Draw_Fill_Round_Rect(uint16_t x, uint16_t y, uint16_t length, uint16_t hight, uint16_t r, uint16_t color)
 {
-  TFT_Draw_Fill_Rectangle(x+r, y, length-2*r, width, color);
+  TFT_Draw_Fill_Rectangle(x+r, y, length-2*r, hight, color);
 
-  TFT_Draw_Fill_Circle_Helper(x+length-r-1, y+r, r, 1, width-2*r-1, color);
-  TFT_Draw_Fill_Circle_Helper(x+r    , y+r, r, 2, width-2*r-1, color);
+  TFT_Draw_Fill_Circle_Helper(x+length-r-1, y+r, r, 1, hight-2*r-1, color);
+  TFT_Draw_Fill_Circle_Helper(x+r    , y+r, r, 2, hight-2*r-1, color);
 }
 //===============================================================================
 //ф-ция рисует треугольник по точкам с указанной толщиной линий и выбранным цветом
@@ -425,11 +425,11 @@ void TFT_Draw_Char(uint16_t x, uint16_t y, uint16_t color, uint16_t phone,const 
 	}
 }
 //===============================================================================
-void TFT_Draw_image(uint16_t x, uint16_t y, uint16_t length, uint16_t width, uint16_t *img)
+void TFT_Draw_image(uint16_t x, uint16_t y, uint16_t length, uint16_t hight, uint16_t *img)
 {
 uint32_t i=0;
 	
-	TFT_Set_Work_Area(x,y,length,width);
-	for(i=0; i<(length*width); i++)
+	TFT_Set_Work_Area(x,y,length,hight);
+	for(i=0; i<(length*hight); i++)
 	LCD_DATA =*(img+i);
 }

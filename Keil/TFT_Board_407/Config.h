@@ -23,7 +23,8 @@
 #include "USART.h"
 #include "One_Wire.h"
 #include "DS18B20.h"
-
+#include "Graph.h"
+#include "SCADA_init.h"
 
 
 

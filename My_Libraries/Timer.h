@@ -14,6 +14,7 @@ extern volatile uint32_t TIM1_Delay_8;
 extern volatile uint32_t TIM1_Delay_9;
 extern volatile uint32_t TIM1_Delay_10;
 extern volatile uint32_t TIM2_Delay_1;
+extern volatile _Bool pulse_500ms;
 
 //============================================
 #ifdef STM32F4

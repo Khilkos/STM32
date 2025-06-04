@@ -1,5 +1,6 @@
 --cpu=Cortex-M4.fp.sp
 ".\objects\main.o"
+".\objects\scada_init.o"
 ".\objects\core_init.o"
 ".\objects\gpio_setup.o"
 ".\objects\delay.o"
@@ -14,6 +15,7 @@
 ".\objects\ds18b20.o"
 ".\objects\usart.o"
 ".\objects\one_wire.o"
+".\objects\graph.o"
 ".\objects\startup_stm32f407xx.o"
 ".\objects\system_stm32f4xx.o"
 --strict --scatter ".\Objects\TFT_Board_407.sct"
