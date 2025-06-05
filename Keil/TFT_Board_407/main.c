@@ -13,7 +13,7 @@ _Bool TOUCH_IRQ=0;
 static uint16_t FPS_screen[10];
 static uint16_t FPS_screen_temp;
 
-static _Bool Screen_update=1;
+
 
 
 static uint16_t temperature=0;
@@ -87,7 +87,7 @@ USART_F4_init(USART_def);
 SCADA_init();
 
 
-
+Screen_update=1;
 
 
 //TFT_Draw_image(10,200,400,247,&img1);
@@ -102,8 +102,7 @@ SCADA_init();
 			Button_init[2].button_update=1;
 			Button_init[3].button_update=1;
 			Button_init[4].button_update=1;
-			Button_init[5].button_update=1;
-			Button_init[6].button_update=1;
+			
 	Screen_update = 0;
 	}
 		
@@ -144,8 +143,8 @@ SCADA_init();
 		TFT_Scan_press_Button(1);
 		TFT_Scan_press_Button(2);
 		TFT_Scan_press_Button(3);
-		TFT_Scan_press_Button(5);
-		TFT_Scan_press_Button(6);
+		TFT_Scan_press_Button(4);
+		if (Ctrl_Console_init[0].Ctrl_console_visible) TFT_Scan_press_Ctrl_Console(0);
 	}
 	
 	
@@ -181,6 +180,9 @@ TFT_Draw_string_font_10x16_back_fone(20,20+16*8,String,0xff00, 0xff);
 sprintf(String,"pulse_500ms = %d", pulse_500ms);	
 TFT_Draw_string_font_10x16_back_fone(20,20+16*9,String,0xff00, 0xff);
 
+//sprintf(String,"Console_output_enable = %d", Ctrl_Console_init[0].Ctrl_console_output_enable);	
+//TFT_Draw_string_font_10x16_back_fone(20,20+16*10,String,0xff00, 0xff);
+
 temperature = DS18B20_read_temperatur(USART_def);
 
 
@@ -208,23 +210,18 @@ if (Button_init[3].button_update)
 			if (Button_init[3].button_State == 1) {TFT_Button_Draw(3,1); GPIOA->BSRR = 1<<(7);}
 		}
 
-/*
 if (Button_init[4].button_update) 
-		{Button_init[4].button_update=0;
-			TFT_Button_Draw(4,0); 
+		{	Button_init[4].button_update=0;
+			if (Ctrl_Console_init[0].Ctrl_console_output_enable)	TFT_Button_Draw(4,1); else	TFT_Button_Draw(4,0);
+			if (Button_init[4].button_State == 1)	{Ctrl_Console_init[0].Ctrl_console_visible=1; Ctrl_Console_init[0].Ctrl_console_update=1; Button_init[4].button_State = 0;}
 		}
-*/
-if (Button_init[5].button_update) 
-		{	Button_init[5].button_update=0;
-			TFT_Button_Draw(5,0);
-				if (Button_init[5].button_State == 1) {TFT_Button_Draw(4,0);Button_init[5].button_State = 0;}
+if (Ctrl_Console_init[0].Ctrl_console_visible && Ctrl_Console_init[0].Ctrl_console_update) 
+		{	TFT_Ctrl_Console_Draw(0);
+			Button_init[4].button_update=1;		
+		
 		}
+		
 
-if (Button_init[6].button_update) 
-		{	Button_init[6].button_update=0;
-			TFT_Button_Draw(6,0);
-				if (Button_init[6].button_State == 1) {Screen_update=1;Button_init[6].button_State = 0;}
-		}
 //TFT_Draw_image(10,200,320,240,&img);
 }	
 }

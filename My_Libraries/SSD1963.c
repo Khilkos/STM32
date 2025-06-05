@@ -433,3 +433,21 @@ uint32_t i=0;
 	for(i=0; i<(length*hight); i++)
 	LCD_DATA =*(img+i);
 }
+//================================================================================
+//рисует кнопку с рамкой вокруг
+void TFT_Button_with_frame_Draw(uint16_t X0,uint16_t Y0,uint16_t rect,uint16_t lenght,uint16_t height,uint16_t frame_size,uint16_t light_color,uint16_t dark_color,uint16_t color)
+{
+TFT_Draw_Circle_Helper(X0+rect,Y0+rect,rect,1,frame_size,light_color);
+TFT_Draw_Circle_Helper(X0+lenght-rect-frame_size,Y0+rect,rect,2,frame_size,dark_color);
+TFT_Draw_Circle_Helper(X0+rect,Y0+height-rect-frame_size,rect,8,frame_size,dark_color);
+TFT_Draw_Circle_Helper(X0+lenght-rect-frame_size,Y0+height-rect-frame_size,rect,4,frame_size,dark_color);
+TFT_Draw_HLine(X0+rect,Y0,lenght-2*rect,frame_size,light_color);
+TFT_Draw_HLine(X0+rect,Y0+height-frame_size,lenght-2*rect,frame_size,dark_color);
+TFT_Draw_VLine(X0,Y0+rect,height-2*rect,frame_size,light_color);
+TFT_Draw_VLine(X0+lenght-frame_size,Y0+rect,height-2*rect,frame_size,dark_color);
+TFT_Draw_Fill_Round_Rect(X0+frame_size,Y0+frame_size,lenght-frame_size*2,height-frame_size*2,rect,color);
+}
+
+//===================================================================================
+
+

@@ -68,6 +68,7 @@ void TFT_Draw_Triangle( uint16_t x1, uint16_t y1, uint16_t x2, uint16_t y2, uint
 void TFT_Draw_Char(uint16_t x, uint16_t y, uint16_t color, uint16_t phone,const uint8_t *table, uint8_t ascii, uint8_t size);
 
 void TFT_Draw_image(uint16_t x, uint16_t y, uint16_t length, uint16_t width, uint16_t *img);
+void TFT_Button_with_frame_Draw(uint16_t X0,uint16_t Y0,uint16_t rect,uint16_t lenght,uint16_t height,uint16_t frame_size,uint16_t light_color,uint16_t dark_color,uint16_t color);
 
 #endif
 
