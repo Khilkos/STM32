@@ -168,7 +168,7 @@ if (GPIOE->IDR & 1<<4) {TOUCH_IRQ=1;} else {TOUCH_IRQ=0;}
 sprintf(String,"Касание = %d", TOUCH_IRQ);	
 TFT_Draw_string_font_10x16_back_fone(20,20+16*5,String,0xff00, 0xff);
 
-sprintf(String,"Температура = %04.1f", temperature*0.1);	
+sprintf(String,"Температура = %02.1f", temperature*0.1);	
 TFT_Draw_string_font_10x16_back_fone(20,20+16*6,String,0xff00, 0xff);
 
 sprintf(String,"FPS = %02d", FPS_screen[0]);	
