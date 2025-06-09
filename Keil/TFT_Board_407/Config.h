@@ -43,6 +43,17 @@
 #define I2C_speed 400000
 //==========================
 
+//==========================
+//for DI
+#define DI0 !(GPIOA->IDR  & 1<<11)
+#define DI1 !(GPIOA->IDR  & 1<<15)
+#define DI2 !(GPIOC->IDR  & 1<<7)
+#define DI3 !(GPIOB->IDR  & 1<<1)
+#define DI4 !(GPIOB->IDR  & 1<<3)
+#define DI5 !(GPIOB->IDR  & 1<<5)
+#define DI6 !(GPIOB->IDR  & 1<<9)
+#define DI7 !(GPIOB->IDR  & 1<<11)
+//==========================
 
 
 //#define DMA2_Stream0_IRQHandler_define

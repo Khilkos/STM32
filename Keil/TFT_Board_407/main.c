@@ -65,6 +65,18 @@ int main(void)
 	GPIO_Alternate(GPIOD,4,Push_pull,High,No_pull,AF12); //FSMC NOE/RD
 	GPIO_Alternate(GPIOD,5,Push_pull,High,No_pull,AF12); //FSMC NWE/WR
 	GPIO_Alternate(GPIOD,7,Push_pull,High,Pull_down,AF12); //FSMC NE1/LCS
+	
+	//==========================
+// DI
+	GPIO_DI_setup(GPIOA,11,Pull_up); //DI0
+	GPIO_DI_setup(GPIOA,15,Pull_up); //DI1
+	GPIO_DI_setup(GPIOC,7,Pull_up); //DI2
+	GPIO_DI_setup(GPIOB,1,Pull_up); //DI3
+	GPIO_DI_setup(GPIOB,3,Pull_up); //DI4
+	GPIO_DI_setup(GPIOB,5,Pull_up); //DI5
+	GPIO_DI_setup(GPIOB,9,Pull_up); //DI6
+	GPIO_DI_setup(GPIOB,11,Pull_up); //DI7
+//==========================
 
 FSMC_Low_init();
 
@@ -186,6 +198,7 @@ TFT_Draw_string_font_10x16_back_fone(20,20+16*9,String,0xff00, 0xff);
 temperature = DS18B20_read_temperatur(USART_def);
 
 
+
 if (Button_init[0].button_update) 
 		{Button_init[0].button_update=0;
 			if (Button_init[0].button_State == 0) {TFT_Button_Draw(0,0); GPIOA->BSRR = 1<<(1+16);}
@@ -220,7 +233,9 @@ if (Ctrl_Console_init[0].Ctrl_console_visible && Ctrl_Console_init[0].Ctrl_conso
 			Button_init[4].button_update=1;		
 		
 		}
-		
+	
+
+if (DI0) TFT_Button_Draw (5,1); else TFT_Button_Draw(5,0); 		
 
 //TFT_Draw_image(10,200,320,240,&img);
 }	
