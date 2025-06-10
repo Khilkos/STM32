@@ -4,7 +4,7 @@ struct Button_struct Button_init[20];
 struct Ctrl_Console_struct Ctrl_Console_init[20];
 
 volatile _Bool Screen_update=0;
-
+volatile static _Bool Push_trip=0; 
 
 void TFT_Button_Draw (uint8_t number, uint8_t State)
 {
@@ -150,7 +150,7 @@ height=45;
 frame_size=2;
 light_color=0xc5f8;
 dark_color=0x1062;	
-if (Ctrl_Console_init[num].Ctrl_console_manual_mode) color=0x0bc3; else color=0x5aeb;	//цвет кнопки
+if (Ctrl_Console_init[num].Ctrl_console_manual_mode) {if (Ctrl_Console_init[num].Ctrl_console_Start_push) color = 0x0240; else color=0x0bc3;} else color=0x5aeb;	//цвет кнопки
 
 TFT_Draw_Circle_Helper(X0+rect,Y0+rect,rect,1,frame_size,light_color);
 TFT_Draw_Circle_Helper(X0+lenght-rect-frame_size,Y0+rect,rect,2,frame_size,dark_color);
@@ -232,8 +232,8 @@ if (Ctrl_Console_init[num].Ctrl_console_manual_mode)
 		lenght=45;
 		height=45;	
 		if ((GT911Touch[0].XCoordinate>X && GT911Touch[0].XCoordinate<(X+lenght) && GT911Touch[0].YCoordinate>Y && GT911Touch[0].YCoordinate<(Y+height))) 
-				{Ctrl_Console_init[num].Ctrl_console_output_enable = 1; Ctrl_Console_init[num].Ctrl_console_update=1;}
-
+				{Ctrl_Console_init[num].Ctrl_console_output_enable = 1; Ctrl_Console_init[num].Ctrl_console_update=1; Ctrl_Console_init[num].Ctrl_console_Start_push = 1;}
+					else Ctrl_Console_init[num].Ctrl_console_Start_push =0;
 		//кнопка Стоп
 		X=Ctrl_Console_init[num].Ctrl_console_X0+10+55*2;
 		Y=Ctrl_Console_init[num].Ctrl_console_Y0+55;	
@@ -241,6 +241,11 @@ if (Ctrl_Console_init[num].Ctrl_console_manual_mode)
 		height=45;	
 		if ((GT911Touch[0].XCoordinate>X && GT911Touch[0].XCoordinate<(X+lenght) && GT911Touch[0].YCoordinate>Y && GT911Touch[0].YCoordinate<(Y+height))) 
 				{Ctrl_Console_init[num].Ctrl_console_output_enable = 0; Ctrl_Console_init[num].Ctrl_console_update=1;}	
+		
+		if (Push_trip && !Ctrl_Console_init[num].Ctrl_console_Start_push)	 Ctrl_Console_init[num].Ctrl_console_update=1;	
+		Push_trip = Ctrl_Console_init[num].Ctrl_console_Start_push;
+				
+	
 	}
 
 

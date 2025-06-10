@@ -50,6 +50,8 @@ _Bool Ctrl_console_update;
 _Bool Ctrl_console_Alarm;
 _Bool Ctrl_console_manual_mode;
 _Bool Ctrl_console_output_enable;	
+_Bool Ctrl_console_Start_push;
+_Bool Ctrl_console_Stop_push;	
 	
 };
 

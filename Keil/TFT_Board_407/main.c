@@ -12,8 +12,8 @@ static uint8_t String[300];
 _Bool TOUCH_IRQ=0;
 static uint16_t FPS_screen[10];
 static uint16_t FPS_screen_temp;
-
-
+static _Bool push_trip_main=0; 
+static _Bool scan_push_update=0;
 
 
 static uint16_t temperature=0;
@@ -102,10 +102,12 @@ SCADA_init();
 Screen_update=1;
 
 
-//TFT_Draw_image(10,200,400,247,&img1);
-//TFT_Draw_image(10,150,400,300,&img2);	
 	while (1)
 	{
+		
+//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+//Screen update BEGIN
+		
 	if (Screen_update)
 	{		SSD1963_ClearScreen(0xff);
 			TFT_Draw_image(10,200,320,240,&img);
@@ -117,10 +119,14 @@ Screen_update=1;
 			
 	Screen_update = 0;
 	}
-		
-		
-		
-		
+//Screen update END
+//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+//---------------------------------------------
+
+//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+//animation BEGIN
+	
 	animation_update=0;
 	if (!TIM1_Delay_3) {if (animation_count<5)  animation_count++; else animation_count=0; TIM1_Delay_3 = 5; animation_update=1;} 
 	
@@ -143,23 +149,59 @@ Screen_update=1;
 	
 	if (!TIM1_Delay_2) {if (temp16 >=99) {temp16=0;} else temp16++; TIM1_Delay_2=10;}
 
-	if (GPIOE->IDR & 1<<4) {TOUCH_IRQ=1;} else {TOUCH_IRQ=0;TouchCount = GT911_ReadTouch(&GT911Touch[0]);}
+	if (GPIOE->IDR & 1<<4) {TOUCH_IRQ=1;} else {TOUCH_IRQ=0;}
 	
 	
 	if (TIM1_Delay_5) {FPS_screen_temp++;}
 	if (!TIM1_Delay_5) {FPS_screen[0] = FPS_screen_temp; FPS_screen_temp=0; TIM1_Delay_5 = 1000;}
-
-	if ((TOUCH_Press && !TIM1_Delay_4)) 
-	{	TIM1_Delay_4 = 1000;
+//animation END
+//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+	
+//-----------------------------------------------	
+	
+//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+//Touch scan Begin	
+	if (TOUCH_Press) TouchCount = GT911_ReadTouch(&GT911Touch[0]);
+	
+	if ((TOUCH_Press && !TIM1_Delay_4) || scan_push_update )  //Scan press with delay 
+	{	
+		TIM1_Delay_4 = 1000;
+		push_trip_main=1;
+		scan_push_update=0;
+		
+		
+		
 		TFT_Scan_press_Button(0);
 		TFT_Scan_press_Button(1);
 		TFT_Scan_press_Button(2);
 		TFT_Scan_press_Button(3);
 		TFT_Scan_press_Button(4);
 		if (Ctrl_Console_init[0].Ctrl_console_visible) TFT_Scan_press_Ctrl_Console(0);
+		
+		GT911Touch[0].XCoordinate=0;
+		GT911Touch[0].YCoordinate=0;
 	}
+			
+	
+	//if (!TIM1_Delay_4 && push_trip_main) {push_trip_main=0; scan_push_update=1;}	
 	
 	
+	if (TOUCH_Press) //Scan press with out delay
+	{	 
+		__NOP();
+		
+	
+	}
+
+	
+	
+//Touch scan END
+//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<	
+
+//------------------------------------------------
+
+//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+//String BEGIN 	
 sprintf(String,"Позиция курсора X = %03d", GT911Touch[0].XCoordinate );	
 TFT_Draw_string_font_10x16_back_fone(20,20,String,0xff00,0xff);
 
@@ -192,12 +234,26 @@ TFT_Draw_string_font_10x16_back_fone(20,20+16*8,String,0xff00, 0xff);
 sprintf(String,"pulse_500ms = %d", pulse_500ms);	
 TFT_Draw_string_font_10x16_back_fone(20,20+16*9,String,0xff00, 0xff);
 
-//sprintf(String,"Console_output_enable = %d", Ctrl_Console_init[0].Ctrl_console_output_enable);	
-//TFT_Draw_string_font_10x16_back_fone(20,20+16*10,String,0xff00, 0xff);
+//String END
+//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
-temperature = DS18B20_read_temperatur(USART_def);
+//--------------------------------------------------------
+
+//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+//Status LED BEGIN
+
+if (DI0) TFT_Button_Draw (5,1); else TFT_Button_Draw(5,0); 		
 
 
+
+
+//Status LED END
+//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+//----------------------------------------------------------
+
+//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+//Action touch BEGIN
 
 if (Button_init[0].button_update) 
 		{Button_init[0].button_update=0;
@@ -233,10 +289,20 @@ if (Ctrl_Console_init[0].Ctrl_console_visible && Ctrl_Console_init[0].Ctrl_conso
 			Button_init[4].button_update=1;		
 		
 		}
-	
+//Action touch END
+//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
-if (DI0) TFT_Button_Draw (5,1); else TFT_Button_Draw(5,0); 		
+//------------------------------------------------------
 
-//TFT_Draw_image(10,200,320,240,&img);
+//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>		
+//Programm BEGIN
+temperature = DS18B20_read_temperatur(USART_def);
+		
+//Program END
+//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+		
+		
+
+
 }	
 }
