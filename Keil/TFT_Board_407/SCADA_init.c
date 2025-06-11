@@ -3,16 +3,70 @@
 void SCADA_init(void)
 {
 uint8_t num=0;
-// 	0x1062 - серый цвет, фон кнопок
+// 	0x9cd3 - серый цвет, фон кнопок
+//  0x5aeb - темно серый, для кнопок	
 //	0x1e63 - зеленый цвет
 //	0xe8c3 - красный цвет
 //	0xfde1 - желтый цвет
 //	0x9841 - темно красный
+//	0x7041 - сильно темно красный	
 //	0x0bc3 - темно зеленый
 //  0x0240 - сильно темно зеленый
 //	0x00ff - синий, фон рабочего стола
 //	0xC480 - темно желтый
 
+//Status_LED 0
+//	
+num=0;
+Status_LED_init[num].Status_LED_X0=480;
+Status_LED_init[num].Status_LED_Y0=160;	
+//-------------------------------------	
+//Status_LED 1
+//	
+num=1;
+Status_LED_init[num].Status_LED_X0=510;
+Status_LED_init[num].Status_LED_Y0=160;	
+//-------------------------------------
+//Status_LED 2
+//	
+num=2;
+Status_LED_init[num].Status_LED_X0=540;
+Status_LED_init[num].Status_LED_Y0=160;	
+//-------------------------------------
+//Status_LED 3
+//	
+num=3;
+Status_LED_init[num].Status_LED_X0=570;
+Status_LED_init[num].Status_LED_Y0=160;	
+//-------------------------------------
+//Status_LED 4
+//	
+num=4;
+Status_LED_init[num].Status_LED_X0=600;
+Status_LED_init[num].Status_LED_Y0=160;	
+//-------------------------------------
+//Status_LED 5
+//	
+num=5;
+Status_LED_init[num].Status_LED_X0=630;
+Status_LED_init[num].Status_LED_Y0=160;	
+//-------------------------------------
+//Status_LED 6
+//	
+num=6;
+Status_LED_init[num].Status_LED_X0=660;
+Status_LED_init[num].Status_LED_Y0=160;	
+//-------------------------------------
+//Status_LED 7
+//	
+num=7;
+Status_LED_init[num].Status_LED_X0=690;
+Status_LED_init[num].Status_LED_Y0=160;	
+//-------------------------------------
+	
+
+
+//******************************************************************
 	
 //button 0	-------------------------------------------------- 
 //кнопка включания РЕЛЕ1	

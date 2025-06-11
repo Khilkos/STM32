@@ -13,7 +13,7 @@ _Bool TOUCH_IRQ=0;
 static uint16_t FPS_screen[10];
 static uint16_t FPS_screen_temp;
 static _Bool push_trip_main=0; 
-static _Bool scan_push_update=0;
+static _Bool scan_push_back_front=0;
 
 
 static uint16_t temperature=0;
@@ -122,7 +122,45 @@ Screen_update=1;
 //Screen update END
 //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
-//---------------------------------------------
+//---------------------------------------------------------------------------------------------------	
+	
+//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+//Touch scan Begin	
+	if (TOUCH_Press) TouchCount = GT911_ReadTouch(&GT911Touch[0]);
+	
+	if ((TOUCH_Press && !TIM1_Delay_4) || scan_push_back_front )  //Scan press with delay 
+	{	if (scan_push_back_front) {GT911Touch[0].XCoordinate=0;		GT911Touch[0].YCoordinate=0;}
+		else 
+			TIM1_Delay_4 = 1000;
+		push_trip_main=1;
+		scan_push_back_front=0;
+		
+		TFT_Scan_press_Button(0);
+		TFT_Scan_press_Button(1);
+		TFT_Scan_press_Button(2);
+		TFT_Scan_press_Button(3);
+		TFT_Scan_press_Button(4);
+		if (Ctrl_Console_init[0].Ctrl_console_visible) TFT_Scan_press_Ctrl_Console(0);
+		
+		
+	}
+		else { if(push_trip_main && !TIM1_Delay_4) {scan_push_back_front =1; push_trip_main=0;}}
+
+		
+	
+	if (TOUCH_Press) //Scan press with out delay
+	{	 
+		__NOP();
+		
+	
+	}
+
+	
+	
+//Touch scan END
+//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<	
+
+//-----------------------------------------------------------------------------------------------------
 
 //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 //animation BEGIN
@@ -157,48 +195,8 @@ Screen_update=1;
 //animation END
 //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 	
-//-----------------------------------------------	
+//---------------------------------------------------------------------------------------------------------------------------
 	
-//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-//Touch scan Begin	
-	if (TOUCH_Press) TouchCount = GT911_ReadTouch(&GT911Touch[0]);
-	
-	if ((TOUCH_Press && !TIM1_Delay_4) || scan_push_update )  //Scan press with delay 
-	{	
-		TIM1_Delay_4 = 1000;
-		push_trip_main=1;
-		scan_push_update=0;
-		
-		
-		
-		TFT_Scan_press_Button(0);
-		TFT_Scan_press_Button(1);
-		TFT_Scan_press_Button(2);
-		TFT_Scan_press_Button(3);
-		TFT_Scan_press_Button(4);
-		if (Ctrl_Console_init[0].Ctrl_console_visible) TFT_Scan_press_Ctrl_Console(0);
-		
-		GT911Touch[0].XCoordinate=0;
-		GT911Touch[0].YCoordinate=0;
-	}
-			
-	
-	//if (!TIM1_Delay_4 && push_trip_main) {push_trip_main=0; scan_push_update=1;}	
-	
-	
-	if (TOUCH_Press) //Scan press with out delay
-	{	 
-		__NOP();
-		
-	
-	}
-
-	
-	
-//Touch scan END
-//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<	
-
-//------------------------------------------------
 
 //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 //String BEGIN 	
@@ -237,14 +235,19 @@ TFT_Draw_string_font_10x16_back_fone(20,20+16*9,String,0xff00, 0xff);
 //String END
 //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
-//--------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------
 
 //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 //Status LED BEGIN
 
-if (DI0) TFT_Button_Draw (5,1); else TFT_Button_Draw(5,0); 		
-
-
+if (DI0) TFT_Status_LED (0,2); else TFT_Status_LED(0,1); 		
+if (DI1) TFT_Status_LED (1,2); else TFT_Status_LED(1,1); 	
+if (DI2) TFT_Status_LED (2,2); else TFT_Status_LED(2,1); 	
+if (DI3) TFT_Status_LED (3,2); else TFT_Status_LED(3,1); 	
+if (DI4) TFT_Status_LED (4,2); else TFT_Status_LED(4,1); 	
+if (DI5) TFT_Status_LED (5,2); else TFT_Status_LED(5,1); 	
+if (DI6) TFT_Status_LED (6,2); else TFT_Status_LED(6,1); 	
+if (DI7) TFT_Status_LED (7,2); else TFT_Status_LED(7,1); 	
 
 
 //Status LED END
@@ -292,7 +295,7 @@ if (Ctrl_Console_init[0].Ctrl_console_visible && Ctrl_Console_init[0].Ctrl_conso
 //Action touch END
 //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
-//------------------------------------------------------
+//-----------------------------------------------------------------------------------------------------------------------------------------
 
 //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>		
 //Programm BEGIN
@@ -300,8 +303,27 @@ temperature = DS18B20_read_temperatur(USART_def);
 		
 //Program END
 //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+uint16_t X,Y,lenght, hight, light_color, dark_color, color=0;
+
 		
-		
+X=400;
+Y=260;
+lenght=120;
+hight=80;		
+light_color=0xc5f8;
+dark_color=0x1062;
+
+
+
+TFT_Draw_VLine (X,Y,hight,2,light_color);
+TFT_Draw_VLine (X+lenght,Y+2,hight,2,dark_color);		
+TFT_Draw_Line(X+2,Y,X+lenght,Y+hight,2,dark_color);
+TFT_Draw_Line(X,Y+hight,X+lenght/2,Y+hight/2,2,dark_color);
+TFT_Draw_Line (X+lenght/2+2,Y+hight/2,X+lenght,Y,2,light_color);
+
+TFT_Draw_VLine(X+lenght/2,Y,hight/2,2,dark_color);
+TFT_Draw_Rectangle(X+lenght/2-hight/4+1,Y-hight/2,hight/2,hight/2,2,0x0000);
 
 
 }	

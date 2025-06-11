@@ -2,6 +2,7 @@
 
 struct Button_struct Button_init[20];
 struct Ctrl_Console_struct Ctrl_Console_init[20];
+struct Status_LED_struct Status_LED_init[60];
 
 volatile _Bool Screen_update=0;
 volatile static _Bool Push_trip=0; 
@@ -167,7 +168,7 @@ TFT_Draw_string_font_10x16(Ctrl_Console_init[num].Ctrl_console_X0+14+55*1,Ctrl_C
 
 if (Ctrl_Console_init[num].Ctrl_console_manual_mode) //пиктограмма внутри кнопки
 	{		TFT_Draw_Circle(X0+21,Y0+21,14,0,3,0xc5f8); 
-			TFT_Draw_VLine (X0+18,Y0+3,10,9,0x0bc3);
+			if (Ctrl_Console_init[num].Ctrl_console_Start_push) TFT_Draw_VLine (X0+18,Y0+3,10,9,0x0240); else TFT_Draw_VLine (X0+18,Y0+3,10,9,0x0bc3);
 			TFT_Draw_VLine (X0+21,Y0+4,15,3,0xc5f8);
 	}
 
@@ -180,7 +181,7 @@ height=45;
 frame_size=2;
 light_color=0xc5f8;
 dark_color=0x1062;	
-if (Ctrl_Console_init[num].Ctrl_console_manual_mode) color=0x9841; else color=0x5aeb;	//цвет кнопки
+if (Ctrl_Console_init[num].Ctrl_console_manual_mode) {if (Ctrl_Console_init[num].Ctrl_console_Stop_push) color = 0x4820; else color=0x9841;} else color=0x5aeb;	//цвет кнопки
 
 TFT_Draw_Circle_Helper(X0+rect,Y0+rect,rect,1,frame_size,light_color);
 TFT_Draw_Circle_Helper(X0+lenght-rect-frame_size,Y0+rect,rect,2,frame_size,dark_color);
@@ -197,7 +198,7 @@ TFT_Draw_string_font_10x16(Ctrl_Console_init[num].Ctrl_console_X0+14+55*2,Ctrl_C
 
 if (Ctrl_Console_init[num].Ctrl_console_manual_mode) //пиктограмма внутри кнопки
 	{		TFT_Draw_Circle(X0+21,Y0+21,14,0,3,0xc5f8); 
-			TFT_Draw_VLine (X0+18,Y0+3,10,9,0x9841);
+			if (Ctrl_Console_init[num].Ctrl_console_Stop_push) TFT_Draw_VLine (X0+18,Y0+3,10,9,0x4820); else TFT_Draw_VLine (X0+18,Y0+3,10,9,0x9841);
 			TFT_Draw_VLine (X0+21,Y0+4,15,3,0xc5f8);
 	}
 
@@ -240,14 +241,82 @@ if (Ctrl_Console_init[num].Ctrl_console_manual_mode)
 		lenght=45;
 		height=45;	
 		if ((GT911Touch[0].XCoordinate>X && GT911Touch[0].XCoordinate<(X+lenght) && GT911Touch[0].YCoordinate>Y && GT911Touch[0].YCoordinate<(Y+height))) 
-				{Ctrl_Console_init[num].Ctrl_console_output_enable = 0; Ctrl_Console_init[num].Ctrl_console_update=1;}	
-		
+				{Ctrl_Console_init[num].Ctrl_console_output_enable = 0; Ctrl_Console_init[num].Ctrl_console_update=1; Ctrl_Console_init[num].Ctrl_console_Stop_push =1;}	
+					else Ctrl_Console_init[num].Ctrl_console_Stop_push =0;
 		if (Push_trip && !Ctrl_Console_init[num].Ctrl_console_Start_push)	 Ctrl_Console_init[num].Ctrl_console_update=1;	
-		Push_trip = Ctrl_Console_init[num].Ctrl_console_Start_push;
-				
-	
+		Push_trip = Ctrl_Console_init[num].Ctrl_console_Start_push | Ctrl_Console_init[num].Ctrl_console_Stop_push;
 	}
+
+}
+//===================================================================
+void TFT_Status_LED (uint16_t number, uint16_t state)
+{
+uint16_t X0=Status_LED_init[number].Status_LED_X0;
+uint16_t Y0=Status_LED_init[number].Status_LED_Y0;
+uint16_t rect=4;
+uint16_t lenght=20;
+uint16_t height=20;
+uint16_t frame_size=2;
+uint16_t light_color=0xc5f8;
+uint16_t dark_color=0x1062;	
+uint16_t color=0x9cd3;	
+
+switch (state)
+{
+	case 0:
+		color =0x9cd3; //светло серый, цвет кнопок
+		break;
+	case 1:
+		color =0x5aeb; // - темно серый, для кнопок	
+		break;
+	case 2:
+		color =0x1e63; //зеленый цвет
+		break;
+	case 3:
+		color =0x0bc3;	//темно зеленый
+		break;
+	case 4:
+		color =0x0240;	//сильно темно зеленый
+		break;
+	case 5:
+		color =0xe8c3;	//красный цвет
+		break;
+	case 6:
+		color =0x9841;	//темно красный
+		break;
+	case 7:
+		color =0x7041;	//сильно темно красный	
+		break;
+	case 8:
+		color =0xfde1;	//желтый цвет
+		break;
+	case 9:
+		color =0xC480;	//темно желтый
+		break;
+	case 10:
+		color =0x00ff;	//синий, фон рабочего стола
+		break;
+
+	default:
+		color=0x0000; 
+}	
+	
+TFT_Draw_Circle_Helper(X0+rect,Y0+rect,rect,1,frame_size,light_color);
+TFT_Draw_Circle_Helper(X0+lenght-rect-frame_size,Y0+rect,rect,2,frame_size,dark_color);
+TFT_Draw_Circle_Helper(X0+rect,Y0+height-rect-frame_size,rect,8,frame_size,dark_color);
+TFT_Draw_Circle_Helper(X0+lenght-rect-frame_size,Y0+height-rect-frame_size,rect,4,frame_size,dark_color);
+TFT_Draw_HLine(X0+rect,Y0,lenght-2*rect,frame_size,light_color);
+TFT_Draw_HLine(X0+rect,Y0+height-frame_size,lenght-2*rect,frame_size,dark_color);
+TFT_Draw_VLine(X0,Y0+rect,height-2*rect,frame_size,light_color);
+TFT_Draw_VLine(X0+lenght-frame_size,Y0+rect,height-2*rect,frame_size,dark_color);
+TFT_Draw_Fill_Round_Rect(X0+frame_size,Y0+frame_size,lenght-frame_size*2,height-frame_size*2,rect,color);	
+
+
+
+
+
 
 
 }
+
 

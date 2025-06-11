@@ -54,10 +54,16 @@ _Bool Ctrl_console_Start_push;
 _Bool Ctrl_console_Stop_push;	
 	
 };
-
+//-------------------------------
+struct Status_LED_struct
+{
+uint16_t Status_LED_X0;
+uint16_t Status_LED_Y0;
+};
 
 extern struct Button_struct Button_init[20];
 extern struct Ctrl_Console_struct Ctrl_Console_init[20];
+extern struct Status_LED_struct Status_LED_init[60];
 
 extern volatile _Bool Screen_update;
 
@@ -66,6 +72,7 @@ void TFT_Button_Draw (uint8_t number, uint8_t State);
 void TFT_Scan_press_Button (uint16_t number);
 void TFT_Ctrl_Console_Draw (uint16_t number);
 void TFT_Scan_press_Ctrl_Console (uint16_t number);
+void TFT_Status_LED (uint16_t number, uint16_t state);
 
 //
 //=============================================================
