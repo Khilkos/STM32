@@ -309,8 +309,8 @@ uint16_t X,Y,lenght, hight, light_color, dark_color, color=0;
 		
 X=400;
 Y=260;
-lenght=120;
-hight=80;		
+lenght=40;
+hight=20;		
 light_color=0xc5f8;
 dark_color=0x1062;
 
