@@ -307,7 +307,7 @@ temperature = DS18B20_read_temperatur(USART_def);
 uint16_t X,Y,lenght, hight, light_color, dark_color, color=0;
 
 		
-X=400;
+X=600;
 Y=260;
 lenght=40;
 hight=20;		
