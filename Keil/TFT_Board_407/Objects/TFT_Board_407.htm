@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\Objects\TFT_Board_407.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\Objects\TFT_Board_407.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 6230001: Last Updated: Mon Jun 23 12:02:48 2025
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 6230001: Last Updated: Thu Jun 26 17:36:26 2025
 <BR><P>
 <H3>Maximum Stack Usage =        324 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -848,7 +848,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[1b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DMA1_Stream6_IRQHandler
 </UL>
 
-<P><STRONG><a name="[f1]"></a>DMA_F4_init</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, dma.o(.text.DMA_F4_init))
+<P><STRONG><a name="[f2]"></a>DMA_F4_init</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, dma.o(.text.DMA_F4_init))
 <BR><BR>[Called By]<UL><LI><a href="#[83]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
@@ -1043,50 +1043,50 @@ Global Symbols
 <LI><a href="#[ba]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GT911_Read
 </UL>
 
-<P><STRONG><a name="[ef]"></a>I2C_STM32F4_init</STRONG> (Thumb, 60 bytes, Stack size 0 bytes, i2c.o(.text.I2C_STM32F4_init))
+<P><STRONG><a name="[f0]"></a>I2C_STM32F4_init</STRONG> (Thumb, 60 bytes, Stack size 0 bytes, i2c.o(.text.I2C_STM32F4_init))
 <BR><BR>[Called By]<UL><LI><a href="#[83]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[f2]"></a>SCADA_init</STRONG> (Thumb, 676 bytes, Stack size 36 bytes, scada_init.o(.text.SCADA_init))
+<P><STRONG><a name="[f3]"></a>SCADA_init</STRONG> (Thumb, 676 bytes, Stack size 36 bytes, scada_init.o(.text.SCADA_init))
 <BR><BR>[Stack]<UL><LI>Max Depth = 36<LI>Call Chain = SCADA_init
 </UL>
 <BR>[Called By]<UL><LI><a href="#[83]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[d8]"></a>SSD1963_ClearScreen</STRONG> (Thumb, 36 bytes, Stack size 8 bytes, ssd1963.o(.text.SSD1963_ClearScreen))
+<P><STRONG><a name="[d9]"></a>SSD1963_ClearScreen</STRONG> (Thumb, 36 bytes, Stack size 8 bytes, ssd1963.o(.text.SSD1963_ClearScreen))
 <BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = SSD1963_ClearScreen &rArr; SSD1963_SetArea
 </UL>
-<BR>[Calls]<UL><LI><a href="#[d9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SSD1963_SetArea
+<BR>[Calls]<UL><LI><a href="#[da]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SSD1963_SetArea
 </UL>
 <BR>[Called By]<UL><LI><a href="#[83]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[d9]"></a>SSD1963_SetArea</STRONG> (Thumb, 44 bytes, Stack size 16 bytes, ssd1963.o(.text.SSD1963_SetArea))
+<P><STRONG><a name="[da]"></a>SSD1963_SetArea</STRONG> (Thumb, 44 bytes, Stack size 16 bytes, ssd1963.o(.text.SSD1963_SetArea))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = SSD1963_SetArea
 </UL>
-<BR>[Calls]<UL><LI><a href="#[db]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OUTLINED_FUNCTION_2
-<LI><a href="#[da]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OUTLINED_FUNCTION_8
+<BR>[Calls]<UL><LI><a href="#[dc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OUTLINED_FUNCTION_2
+<LI><a href="#[db]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OUTLINED_FUNCTION_8
 </UL>
-<BR>[Called By]<UL><LI><a href="#[dc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SSD1963_dot
-<LI><a href="#[d8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SSD1963_ClearScreen
+<BR>[Called By]<UL><LI><a href="#[dd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SSD1963_dot
+<LI><a href="#[d9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SSD1963_ClearScreen
 </UL>
 
-<P><STRONG><a name="[dc]"></a>SSD1963_dot</STRONG> (Thumb, 20 bytes, Stack size 8 bytes, ssd1963.o(.text.SSD1963_dot))
+<P><STRONG><a name="[dd]"></a>SSD1963_dot</STRONG> (Thumb, 20 bytes, Stack size 8 bytes, ssd1963.o(.text.SSD1963_dot))
 <BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = SSD1963_dot &rArr; SSD1963_SetArea
 </UL>
-<BR>[Calls]<UL><LI><a href="#[d9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SSD1963_SetArea
+<BR>[Calls]<UL><LI><a href="#[da]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SSD1963_SetArea
 </UL>
 <BR>[Called By]<UL><LI><a href="#[64]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TFT_Draw_string_font_10x16
 <LI><a href="#[6b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TFT_Draw_string_font_10x16_back_fone
 </UL>
 
-<P><STRONG><a name="[f0]"></a>SSD1963_init</STRONG> (Thumb, 248 bytes, Stack size 32 bytes, ssd1963.o(.text.SSD1963_init))
+<P><STRONG><a name="[f1]"></a>SSD1963_init</STRONG> (Thumb, 248 bytes, Stack size 32 bytes, ssd1963.o(.text.SSD1963_init))
 <BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = SSD1963_init
 </UL>
 <BR>[Called By]<UL><LI><a href="#[83]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[ed]"></a>SysTick_F4_Init</STRONG> (Thumb, 28 bytes, Stack size 0 bytes, delay.o(.text.SysTick_F4_Init))
+<P><STRONG><a name="[ee]"></a>SysTick_F4_Init</STRONG> (Thumb, 28 bytes, Stack size 0 bytes, delay.o(.text.SysTick_F4_Init))
 <BR><BR>[Called By]<UL><LI><a href="#[83]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
@@ -1096,35 +1096,35 @@ Global Symbols
 <P><STRONG><a name="[5b]"></a>SystemInit</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, system_stm32f4xx.o(.text.SystemInit))
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f407xx.o(.text)
 </UL>
-<P><STRONG><a name="[cc]"></a>TFT_Button_Draw</STRONG> (Thumb, 412 bytes, Stack size 104 bytes, graph.o(.text.TFT_Button_Draw))
+<P><STRONG><a name="[d1]"></a>TFT_Button_Draw</STRONG> (Thumb, 412 bytes, Stack size 104 bytes, graph.o(.text.TFT_Button_Draw))
 <BR><BR>[Stack]<UL><LI>Max Depth = 240<LI>Call Chain = TFT_Button_Draw &rArr; TFT_Draw_Fill_Round_Rect &rArr; TFT_Draw_Fill_Circle_Helper &rArr; OUTLINED_FUNCTION_5 &rArr; TFT_Draw_VLine &rArr; TFT_Set_Work_Area
 </UL>
 <BR>[Calls]<UL><LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TFT_Draw_Fill_Round_Rect
-<LI><a href="#[61]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TFT_Draw_HLine
 <LI><a href="#[64]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TFT_Draw_string_font_10x16
+<LI><a href="#[61]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TFT_Draw_HLine
 <LI><a href="#[62]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TFT_Draw_VLine
 </UL>
 <BR>[Called By]<UL><LI><a href="#[83]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
-<LI><a href="#[cb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OUTLINED_FUNCTION_3
-<LI><a href="#[d1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OUTLINED_FUNCTION_4
+<LI><a href="#[d5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OUTLINED_FUNCTION_5
+<LI><a href="#[d0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OUTLINED_FUNCTION_4
 </UL>
 
-<P><STRONG><a name="[dd]"></a>TFT_Ctrl_Console_Draw</STRONG> (Thumb, 1628 bytes, Stack size 96 bytes, graph.o(.text.TFT_Ctrl_Console_Draw))
+<P><STRONG><a name="[de]"></a>TFT_Ctrl_Console_Draw</STRONG> (Thumb, 1628 bytes, Stack size 96 bytes, graph.o(.text.TFT_Ctrl_Console_Draw))
 <BR><BR>[Stack]<UL><LI>Max Depth = 232<LI>Call Chain = TFT_Ctrl_Console_Draw &rArr; OUTLINED_FUNCTION_7 &rArr; TFT_Draw_Fill_Round_Rect &rArr; TFT_Draw_Fill_Circle_Helper &rArr; OUTLINED_FUNCTION_5 &rArr; TFT_Draw_VLine &rArr; TFT_Set_Work_Area
 </UL>
 <BR>[Calls]<UL><LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OUTLINED_FUNCTION_4
-<LI><a href="#[e3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OUTLINED_FUNCTION_8
-<LI><a href="#[d6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OUTLINED_FUNCTION_7
-<LI><a href="#[d0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OUTLINED_FUNCTION_3
-<LI><a href="#[d7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OUTLINED_FUNCTION_9
+<LI><a href="#[e4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OUTLINED_FUNCTION_8
+<LI><a href="#[d7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OUTLINED_FUNCTION_7
+<LI><a href="#[cf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OUTLINED_FUNCTION_3
+<LI><a href="#[d8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OUTLINED_FUNCTION_9
 <LI><a href="#[c8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OUTLINED_FUNCTION_1
-<LI><a href="#[e2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OUTLINED_FUNCTION_2
-<LI><a href="#[e1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OUTLINED_FUNCTION_0
-<LI><a href="#[e0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OUTLINED_FUNCTION_5
-<LI><a href="#[df]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OUTLINED_FUNCTION_10
-<LI><a href="#[de]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OUTLINED_FUNCTION_6
-<LI><a href="#[61]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TFT_Draw_HLine
+<LI><a href="#[e3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OUTLINED_FUNCTION_2
+<LI><a href="#[e2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OUTLINED_FUNCTION_0
+<LI><a href="#[e1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OUTLINED_FUNCTION_5
+<LI><a href="#[e0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OUTLINED_FUNCTION_10
+<LI><a href="#[df]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OUTLINED_FUNCTION_6
 <LI><a href="#[64]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TFT_Draw_string_font_10x16
+<LI><a href="#[61]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TFT_Draw_HLine
 <LI><a href="#[6d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TFT_Draw_Line
 <LI><a href="#[62]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TFT_Draw_VLine
 </UL>
@@ -1135,7 +1135,7 @@ Global Symbols
 <BR><BR>[Stack]<UL><LI>Max Depth = 112<LI>Call Chain = TFT_Draw_Circle &rArr; TFT_Draw_Fill_Rectangle &rArr; OUTLINED_FUNCTION_3 &rArr; TFT_Set_Work_Area
 </UL>
 <BR>[Calls]<UL><LI><a href="#[65]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TFT_Draw_Fill_Rectangle
-<LI><a href="#[e4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OUTLINED_FUNCTION_6
+<LI><a href="#[e5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OUTLINED_FUNCTION_6
 </UL>
 <BR>[Called By]<UL><LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OUTLINED_FUNCTION_4
 </UL>
@@ -1146,14 +1146,14 @@ Global Symbols
 <BR>[Calls]<UL><LI><a href="#[c7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OUTLINED_FUNCTION_1
 <LI><a href="#[c6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OUTLINED_FUNCTION_0
 </UL>
-<BR>[Address Reference Count : 3]<UL><LI> graph.o(.text.TFT_Button_Draw)
+<BR>[Address Reference Count : 3]<UL><LI> graph.o(.text.TFT_Status_LED)
+<LI> graph.o(.text.TFT_Button_Draw)
 <LI> graph.o(.text.TFT_Ctrl_Console_Draw)
-<LI> graph.o(.text.TFT_Status_LED)
 </UL>
-<P><STRONG><a name="[e5]"></a>TFT_Draw_Fill_Circle_Helper</STRONG> (Thumb, 196 bytes, Stack size 56 bytes, ssd1963.o(.text.TFT_Draw_Fill_Circle_Helper))
+<P><STRONG><a name="[e6]"></a>TFT_Draw_Fill_Circle_Helper</STRONG> (Thumb, 196 bytes, Stack size 56 bytes, ssd1963.o(.text.TFT_Draw_Fill_Circle_Helper))
 <BR><BR>[Stack]<UL><LI>Max Depth = 88<LI>Call Chain = TFT_Draw_Fill_Circle_Helper &rArr; OUTLINED_FUNCTION_5 &rArr; TFT_Draw_VLine &rArr; TFT_Set_Work_Area
 </UL>
-<BR>[Calls]<UL><LI><a href="#[d5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OUTLINED_FUNCTION_5
+<BR>[Calls]<UL><LI><a href="#[d6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OUTLINED_FUNCTION_5
 <LI><a href="#[d2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OUTLINED_FUNCTION_4
 </UL>
 <BR>[Called By]<UL><LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TFT_Draw_Fill_Round_Rect
@@ -1162,7 +1162,7 @@ Global Symbols
 <P><STRONG><a name="[65]"></a>TFT_Draw_Fill_Rectangle</STRONG> (Thumb, 24 bytes, Stack size 16 bytes, ssd1963.o(.text.TFT_Draw_Fill_Rectangle))
 <BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = TFT_Draw_Fill_Rectangle &rArr; OUTLINED_FUNCTION_3 &rArr; TFT_Set_Work_Area
 </UL>
-<BR>[Calls]<UL><LI><a href="#[cd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OUTLINED_FUNCTION_3
+<BR>[Calls]<UL><LI><a href="#[cc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OUTLINED_FUNCTION_3
 </UL>
 <BR>[Called By]<UL><LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TFT_Draw_Fill_Round_Rect
 <LI><a href="#[d4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TFT_Draw_Circle
@@ -1175,25 +1175,26 @@ Global Symbols
 <P><STRONG><a name="[63]"></a>TFT_Draw_Fill_Round_Rect</STRONG> (Thumb, 102 bytes, Stack size 48 bytes, ssd1963.o(.text.TFT_Draw_Fill_Round_Rect))
 <BR><BR>[Stack]<UL><LI>Max Depth = 136<LI>Call Chain = TFT_Draw_Fill_Round_Rect &rArr; TFT_Draw_Fill_Circle_Helper &rArr; OUTLINED_FUNCTION_5 &rArr; TFT_Draw_VLine &rArr; TFT_Set_Work_Area
 </UL>
-<BR>[Calls]<UL><LI><a href="#[e5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TFT_Draw_Fill_Circle_Helper
+<BR>[Calls]<UL><LI><a href="#[e6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TFT_Draw_Fill_Circle_Helper
 <LI><a href="#[65]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TFT_Draw_Fill_Rectangle
 </UL>
-<BR>[Called By]<UL><LI><a href="#[d6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OUTLINED_FUNCTION_7
+<BR>[Called By]<UL><LI><a href="#[d7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OUTLINED_FUNCTION_7
 <LI><a href="#[6c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TFT_Status_LED
-<LI><a href="#[cc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TFT_Button_Draw
+<LI><a href="#[d1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TFT_Button_Draw
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> graph.o(.text.TFT_Ctrl_Console_Draw)
 </UL>
 <P><STRONG><a name="[61]"></a>TFT_Draw_HLine</STRONG> (Thumb, 32 bytes, Stack size 16 bytes, ssd1963.o(.text.TFT_Draw_HLine))
 <BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = TFT_Draw_HLine &rArr; OUTLINED_FUNCTION_3 &rArr; TFT_Set_Work_Area
 </UL>
-<BR>[Calls]<UL><LI><a href="#[cd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OUTLINED_FUNCTION_3
+<BR>[Calls]<UL><LI><a href="#[cc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OUTLINED_FUNCTION_3
 </UL>
 <BR>[Called By]<UL><LI><a href="#[c8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OUTLINED_FUNCTION_1
 <LI><a href="#[6c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TFT_Status_LED
-<LI><a href="#[e6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TFT_Draw_Rectangle
-<LI><a href="#[dd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TFT_Ctrl_Console_Draw
-<LI><a href="#[cc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TFT_Button_Draw
+<LI><a href="#[e7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TFT_Draw_Rectangle
+<LI><a href="#[de]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TFT_Ctrl_Console_Draw
+<LI><a href="#[d1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TFT_Button_Draw
+<LI><a href="#[cb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OUTLINED_FUNCTION_3
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> graph.o(.text.TFT_Ctrl_Console_Draw)
 </UL>
@@ -1202,15 +1203,15 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[65]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TFT_Draw_Fill_Rectangle
 </UL>
-<BR>[Called By]<UL><LI><a href="#[dd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TFT_Ctrl_Console_Draw
+<BR>[Called By]<UL><LI><a href="#[de]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TFT_Ctrl_Console_Draw
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> main.o(.text.main)
 </UL>
-<P><STRONG><a name="[e6]"></a>TFT_Draw_Rectangle</STRONG> (Thumb, 88 bytes, Stack size 32 bytes, ssd1963.o(.text.TFT_Draw_Rectangle))
-<BR><BR>[Stack]<UL><LI>Max Depth = 64<LI>Call Chain = TFT_Draw_Rectangle &rArr; TFT_Draw_HLine &rArr; OUTLINED_FUNCTION_3 &rArr; TFT_Set_Work_Area
+<P><STRONG><a name="[e7]"></a>TFT_Draw_Rectangle</STRONG> (Thumb, 88 bytes, Stack size 32 bytes, ssd1963.o(.text.TFT_Draw_Rectangle))
+<BR><BR>[Stack]<UL><LI>Max Depth = 64<LI>Call Chain = TFT_Draw_Rectangle &rArr; OUTLINED_FUNCTION_4 &rArr; TFT_Draw_VLine &rArr; TFT_Set_Work_Area
 </UL>
-<BR>[Calls]<UL><LI><a href="#[61]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TFT_Draw_HLine
-<LI><a href="#[d2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OUTLINED_FUNCTION_4
+<BR>[Calls]<UL><LI><a href="#[d2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OUTLINED_FUNCTION_4
+<LI><a href="#[61]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TFT_Draw_HLine
 <LI><a href="#[62]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TFT_Draw_VLine
 </UL>
 <BR>[Called By]<UL><LI><a href="#[83]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
@@ -1219,16 +1220,16 @@ Global Symbols
 <P><STRONG><a name="[62]"></a>TFT_Draw_VLine</STRONG> (Thumb, 40 bytes, Stack size 16 bytes, ssd1963.o(.text.TFT_Draw_VLine))
 <BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = TFT_Draw_VLine &rArr; TFT_Set_Work_Area
 </UL>
-<BR>[Calls]<UL><LI><a href="#[ce]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TFT_Set_Work_Area
+<BR>[Calls]<UL><LI><a href="#[cd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TFT_Set_Work_Area
 </UL>
-<BR>[Called By]<UL><LI><a href="#[d0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OUTLINED_FUNCTION_3
-<LI><a href="#[d7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OUTLINED_FUNCTION_9
-<LI><a href="#[d5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OUTLINED_FUNCTION_5
+<BR>[Called By]<UL><LI><a href="#[cf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OUTLINED_FUNCTION_3
+<LI><a href="#[d8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OUTLINED_FUNCTION_9
+<LI><a href="#[d6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OUTLINED_FUNCTION_5
 <LI><a href="#[d2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OUTLINED_FUNCTION_4
 <LI><a href="#[6c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TFT_Status_LED
-<LI><a href="#[e6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TFT_Draw_Rectangle
-<LI><a href="#[dd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TFT_Ctrl_Console_Draw
-<LI><a href="#[cc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TFT_Button_Draw
+<LI><a href="#[e7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TFT_Draw_Rectangle
+<LI><a href="#[de]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TFT_Ctrl_Console_Draw
+<LI><a href="#[d1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TFT_Button_Draw
 </UL>
 <BR>[Address Reference Count : 2]<UL><LI> main.o(.text.main)
 <LI> graph.o(.text.TFT_Ctrl_Console_Draw)
@@ -1236,7 +1237,7 @@ Global Symbols
 <P><STRONG><a name="[ca]"></a>TFT_Draw_image</STRONG> (Thumb, 28 bytes, Stack size 16 bytes, ssd1963.o(.text.TFT_Draw_image))
 <BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = TFT_Draw_image &rArr; OUTLINED_FUNCTION_3 &rArr; TFT_Set_Work_Area
 </UL>
-<BR>[Calls]<UL><LI><a href="#[cd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OUTLINED_FUNCTION_3
+<BR>[Calls]<UL><LI><a href="#[cc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OUTLINED_FUNCTION_3
 </UL>
 <BR>[Called By]<UL><LI><a href="#[83]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 <LI><a href="#[c9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OUTLINED_FUNCTION_2
@@ -1245,17 +1246,17 @@ Global Symbols
 <P><STRONG><a name="[64]"></a>TFT_Draw_string_font_10x16</STRONG> (Thumb, 108 bytes, Stack size 40 bytes, ssd1963.o(.text.TFT_Draw_string_font_10x16))
 <BR><BR>[Stack]<UL><LI>Max Depth = 64<LI>Call Chain = TFT_Draw_string_font_10x16 &rArr; SSD1963_dot &rArr; SSD1963_SetArea
 </UL>
-<BR>[Calls]<UL><LI><a href="#[dc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SSD1963_dot
+<BR>[Calls]<UL><LI><a href="#[dd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SSD1963_dot
 </UL>
-<BR>[Called By]<UL><LI><a href="#[dd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TFT_Ctrl_Console_Draw
-<LI><a href="#[cc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TFT_Button_Draw
+<BR>[Called By]<UL><LI><a href="#[de]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TFT_Ctrl_Console_Draw
+<LI><a href="#[d1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TFT_Button_Draw
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> graph.o(.text.TFT_Ctrl_Console_Draw)
 </UL>
 <P><STRONG><a name="[6b]"></a>TFT_Draw_string_font_10x16_back_fone</STRONG> (Thumb, 116 bytes, Stack size 48 bytes, ssd1963.o(.text.TFT_Draw_string_font_10x16_back_fone))
 <BR><BR>[Stack]<UL><LI>Max Depth = 72<LI>Call Chain = TFT_Draw_string_font_10x16_back_fone &rArr; SSD1963_dot &rArr; SSD1963_SetArea
 </UL>
-<BR>[Calls]<UL><LI><a href="#[dc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SSD1963_dot
+<BR>[Calls]<UL><LI><a href="#[dd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SSD1963_dot
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> main.o(.text.main)
 </UL>
@@ -1264,19 +1265,19 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> main.o(.text.main)
 </UL>
-<P><STRONG><a name="[f3]"></a>TFT_Scan_press_Ctrl_Console</STRONG> (Thumb, 284 bytes, Stack size 20 bytes, graph.o(.text.TFT_Scan_press_Ctrl_Console))
+<P><STRONG><a name="[f4]"></a>TFT_Scan_press_Ctrl_Console</STRONG> (Thumb, 284 bytes, Stack size 20 bytes, graph.o(.text.TFT_Scan_press_Ctrl_Console))
 <BR><BR>[Stack]<UL><LI>Max Depth = 20<LI>Call Chain = TFT_Scan_press_Ctrl_Console
 </UL>
 <BR>[Called By]<UL><LI><a href="#[83]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[ce]"></a>TFT_Set_Work_Area</STRONG> (Thumb, 48 bytes, Stack size 16 bytes, ssd1963.o(.text.TFT_Set_Work_Area))
+<P><STRONG><a name="[cd]"></a>TFT_Set_Work_Area</STRONG> (Thumb, 48 bytes, Stack size 16 bytes, ssd1963.o(.text.TFT_Set_Work_Area))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = TFT_Set_Work_Area
 </UL>
-<BR>[Calls]<UL><LI><a href="#[db]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OUTLINED_FUNCTION_2
-<LI><a href="#[da]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OUTLINED_FUNCTION_8
+<BR>[Calls]<UL><LI><a href="#[dc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OUTLINED_FUNCTION_2
+<LI><a href="#[db]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OUTLINED_FUNCTION_8
 </UL>
-<BR>[Called By]<UL><LI><a href="#[cd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OUTLINED_FUNCTION_3
+<BR>[Called By]<UL><LI><a href="#[cc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OUTLINED_FUNCTION_3
 <LI><a href="#[62]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TFT_Draw_VLine
 </UL>
 
@@ -1295,16 +1296,16 @@ Global Symbols
 <P><STRONG><a name="[26]"></a>TIM2_IRQHandler</STRONG> (Thumb, 36 bytes, Stack size 0 bytes, timer.o(.text.TIM2_IRQHandler))
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f407xx.o(RESET)
 </UL>
-<P><STRONG><a name="[e7]"></a>Timer1_F4_init</STRONG> (Thumb, 56 bytes, Stack size 8 bytes, timer.o(.text.Timer1_F4_init))
+<P><STRONG><a name="[e8]"></a>Timer1_F4_init</STRONG> (Thumb, 56 bytes, Stack size 8 bytes, timer.o(.text.Timer1_F4_init))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = Timer1_F4_init
 </UL>
-<BR>[Calls]<UL><LI><a href="#[e8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OUTLINED_FUNCTION_0
+<BR>[Calls]<UL><LI><a href="#[e9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OUTLINED_FUNCTION_0
 </UL>
 <BR>[Called By]<UL><LI><a href="#[83]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
 <P><STRONG><a name="[a2]"></a>USART_F4_DMAR_OFF</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, usart.o(.text.USART_F4_DMAR_OFF))
-<BR><BR>[Calls]<UL><LI><a href="#[e9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OUTLINED_FUNCTION_1
+<BR><BR>[Calls]<UL><LI><a href="#[ea]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OUTLINED_FUNCTION_1
 </UL>
 <BR>[Called By]<UL><LI><a href="#[a1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DMA1_Stream5_IRQHandler_User
 </UL>
@@ -1313,8 +1314,8 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[a3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DMA1_Stream6_IRQHandler_User
 </UL>
 
-<P><STRONG><a name="[ea]"></a>USART_F4_init</STRONG> (Thumb, 88 bytes, Stack size 0 bytes, usart.o(.text.USART_F4_init))
-<BR><BR>[Calls]<UL><LI><a href="#[eb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OUTLINED_FUNCTION_0
+<P><STRONG><a name="[eb]"></a>USART_F4_init</STRONG> (Thumb, 88 bytes, Stack size 0 bytes, usart.o(.text.USART_F4_init))
+<BR><BR>[Calls]<UL><LI><a href="#[ec]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OUTLINED_FUNCTION_0
 </UL>
 <BR>[Called By]<UL><LI><a href="#[83]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
@@ -1329,44 +1330,44 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[5f]"></a>delay_ms</STRONG> (Thumb, 32 bytes, Stack size 0 bytes, delay.o(.text.delay_ms))
-<BR><BR>[Calls]<UL><LI><a href="#[ec]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OUTLINED_FUNCTION_0
+<BR><BR>[Calls]<UL><LI><a href="#[ed]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OUTLINED_FUNCTION_0
 </UL>
 <BR>[Called By]<UL><LI><a href="#[b8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GT911_Reset
 </UL>
 <BR>[Address Reference Count : 2]<UL><LI> ssd1963.o(.text.SSD1963_init)
 <LI> main.o(.text.main)
 </UL>
-<P><STRONG><a name="[83]"></a>main</STRONG> (Thumb, 1932 bytes, Stack size 16 bytes, main.o(.text.main))
+<P><STRONG><a name="[83]"></a>main</STRONG> (Thumb, 2080 bytes, Stack size 16 bytes, main.o(.text.main))
 <BR><BR>[Stack]<UL><LI>Max Depth = 256 + Unknown Stack Size
 <LI>Call Chain = main &rArr; TFT_Button_Draw &rArr; TFT_Draw_Fill_Round_Rect &rArr; TFT_Draw_Fill_Circle_Helper &rArr; OUTLINED_FUNCTION_5 &rArr; TFT_Draw_VLine &rArr; TFT_Set_Work_Area
 </UL>
-<BR>[Calls]<UL><LI><a href="#[e6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TFT_Draw_Rectangle
+<BR>[Calls]<UL><LI><a href="#[e7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TFT_Draw_Rectangle
 <LI><a href="#[ab]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DS18B20_read_temperatur
-<LI><a href="#[dd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TFT_Ctrl_Console_Draw
-<LI><a href="#[cc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TFT_Button_Draw
-<LI><a href="#[f3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TFT_Scan_press_Ctrl_Console
+<LI><a href="#[de]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TFT_Ctrl_Console_Draw
+<LI><a href="#[d1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TFT_Button_Draw
+<LI><a href="#[f4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TFT_Scan_press_Ctrl_Console
 <LI><a href="#[c4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GT911_ReadTouch
 <LI><a href="#[ca]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TFT_Draw_image
-<LI><a href="#[d8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SSD1963_ClearScreen
-<LI><a href="#[f2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SCADA_init
-<LI><a href="#[ea]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART_F4_init
-<LI><a href="#[f1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DMA_F4_init
+<LI><a href="#[d9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SSD1963_ClearScreen
+<LI><a href="#[f3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SCADA_init
+<LI><a href="#[eb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART_F4_init
+<LI><a href="#[f2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DMA_F4_init
 <LI><a href="#[b4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GT911_Init
 <LI><a href="#[b1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;FSMC_Fast_init
-<LI><a href="#[f0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SSD1963_init
-<LI><a href="#[ef]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C_STM32F4_init
+<LI><a href="#[f1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SSD1963_init
+<LI><a href="#[f0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C_STM32F4_init
 <LI><a href="#[b3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;FSMC_Low_init
-<LI><a href="#[e7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Timer1_F4_init
-<LI><a href="#[ed]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SysTick_F4_Init
+<LI><a href="#[e8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Timer1_F4_init
+<LI><a href="#[ee]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SysTick_F4_Init
 <LI><a href="#[9e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Core_F4_init_HSE_full
 <LI><a href="#[cb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OUTLINED_FUNCTION_3
-<LI><a href="#[d1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OUTLINED_FUNCTION_4
-<LI><a href="#[f6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OUTLINED_FUNCTION_5
+<LI><a href="#[d5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OUTLINED_FUNCTION_5
+<LI><a href="#[d0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OUTLINED_FUNCTION_4
+<LI><a href="#[f6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OUTLINED_FUNCTION_6
 <LI><a href="#[f5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OUTLINED_FUNCTION_1
 <LI><a href="#[c9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OUTLINED_FUNCTION_2
-<LI><a href="#[f4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OUTLINED_FUNCTION_6
-<LI><a href="#[ee]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OUTLINED_FUNCTION_0
-<LI><a href="#[cf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dmul
+<LI><a href="#[ef]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OUTLINED_FUNCTION_0
+<LI><a href="#[ce]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dmul
 <LI><a href="#[ad]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_ui2d
 </UL>
 <BR>[Called By]<UL><LI><a href="#[82]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_entry_main
@@ -1462,7 +1463,7 @@ Global Symbols
 
 <P><STRONG><a name="[132]"></a>_dfltu</STRONG> (Thumb, 38 bytes, Stack size 0 bytes, dflt_clz.o(x$fpl$dfltu), UNUSED)
 
-<P><STRONG><a name="[cf]"></a>__aeabi_dmul</STRONG> (Thumb, 0 bytes, Stack size 32 bytes, dmul.o(x$fpl$dmul))
+<P><STRONG><a name="[ce]"></a>__aeabi_dmul</STRONG> (Thumb, 0 bytes, Stack size 32 bytes, dmul.o(x$fpl$dmul))
 <BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = __aeabi_dmul
 </UL>
 <BR>[Called By]<UL><LI><a href="#[ae]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OUTLINED_FUNCTION_3
@@ -1502,11 +1503,7 @@ Global Symbols
 <H3>
 Local Symbols
 </H3>
-<P><STRONG><a name="[ee]"></a>OUTLINED_FUNCTION_0</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, main.o(.text.OUTLINED_FUNCTION_0))
-<BR><BR>[Called By]<UL><LI><a href="#[83]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
-</UL>
-
-<P><STRONG><a name="[f4]"></a>OUTLINED_FUNCTION_6</STRONG> (Thumb, 14 bytes, Stack size 0 bytes, main.o(.text.OUTLINED_FUNCTION_6))
+<P><STRONG><a name="[ef]"></a>OUTLINED_FUNCTION_0</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, main.o(.text.OUTLINED_FUNCTION_0))
 <BR><BR>[Called By]<UL><LI><a href="#[83]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
@@ -1522,22 +1519,30 @@ Local Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[83]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[f6]"></a>OUTLINED_FUNCTION_5</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, main.o(.text.OUTLINED_FUNCTION_5))
+<P><STRONG><a name="[f6]"></a>OUTLINED_FUNCTION_6</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, main.o(.text.OUTLINED_FUNCTION_6))
 <BR><BR>[Called By]<UL><LI><a href="#[83]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[d1]"></a>OUTLINED_FUNCTION_4</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, main.o(.text.OUTLINED_FUNCTION_4))
+<P><STRONG><a name="[d0]"></a>OUTLINED_FUNCTION_4</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, main.o(.text.OUTLINED_FUNCTION_4))
 <BR><BR>[Stack]<UL><LI>Max Depth = 240<LI>Call Chain = OUTLINED_FUNCTION_4 &rArr; TFT_Button_Draw &rArr; TFT_Draw_Fill_Round_Rect &rArr; TFT_Draw_Fill_Circle_Helper &rArr; OUTLINED_FUNCTION_5 &rArr; TFT_Draw_VLine &rArr; TFT_Set_Work_Area
 </UL>
-<BR>[Calls]<UL><LI><a href="#[cc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TFT_Button_Draw
+<BR>[Calls]<UL><LI><a href="#[d1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TFT_Button_Draw
 </UL>
 <BR>[Called By]<UL><LI><a href="#[83]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[cb]"></a>OUTLINED_FUNCTION_3</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, main.o(.text.OUTLINED_FUNCTION_3))
-<BR><BR>[Stack]<UL><LI>Max Depth = 240<LI>Call Chain = OUTLINED_FUNCTION_3 &rArr; TFT_Button_Draw &rArr; TFT_Draw_Fill_Round_Rect &rArr; TFT_Draw_Fill_Circle_Helper &rArr; OUTLINED_FUNCTION_5 &rArr; TFT_Draw_VLine &rArr; TFT_Set_Work_Area
+<P><STRONG><a name="[d5]"></a>OUTLINED_FUNCTION_5</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, main.o(.text.OUTLINED_FUNCTION_5))
+<BR><BR>[Stack]<UL><LI>Max Depth = 240<LI>Call Chain = OUTLINED_FUNCTION_5 &rArr; TFT_Button_Draw &rArr; TFT_Draw_Fill_Round_Rect &rArr; TFT_Draw_Fill_Circle_Helper &rArr; OUTLINED_FUNCTION_5 &rArr; TFT_Draw_VLine &rArr; TFT_Set_Work_Area
 </UL>
-<BR>[Calls]<UL><LI><a href="#[cc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TFT_Button_Draw
+<BR>[Calls]<UL><LI><a href="#[d1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TFT_Button_Draw
+</UL>
+<BR>[Called By]<UL><LI><a href="#[83]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
+</UL>
+
+<P><STRONG><a name="[cb]"></a>OUTLINED_FUNCTION_3</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, main.o(.text.OUTLINED_FUNCTION_3))
+<BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = OUTLINED_FUNCTION_3 &rArr; TFT_Draw_HLine &rArr; OUTLINED_FUNCTION_3 &rArr; TFT_Set_Work_Area
+</UL>
+<BR>[Calls]<UL><LI><a href="#[61]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TFT_Draw_HLine
 </UL>
 <BR>[Called By]<UL><LI><a href="#[83]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
@@ -1550,12 +1555,12 @@ Local Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[9e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Core_F4_init_HSE_full
 </UL>
 
-<P><STRONG><a name="[ec]"></a>OUTLINED_FUNCTION_0</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, delay.o(.text.OUTLINED_FUNCTION_0))
+<P><STRONG><a name="[ed]"></a>OUTLINED_FUNCTION_0</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, delay.o(.text.OUTLINED_FUNCTION_0))
 <BR><BR>[Called By]<UL><LI><a href="#[5f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delay_ms
 </UL>
 
-<P><STRONG><a name="[e8]"></a>OUTLINED_FUNCTION_0</STRONG> (Thumb, 18 bytes, Stack size 0 bytes, timer.o(.text.OUTLINED_FUNCTION_0))
-<BR><BR>[Called By]<UL><LI><a href="#[e7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Timer1_F4_init
+<P><STRONG><a name="[e9]"></a>OUTLINED_FUNCTION_0</STRONG> (Thumb, 18 bytes, Stack size 0 bytes, timer.o(.text.OUTLINED_FUNCTION_0))
+<BR><BR>[Called By]<UL><LI><a href="#[e8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Timer1_F4_init
 </UL>
 
 <P><STRONG><a name="[b2]"></a>OUTLINED_FUNCTION_0</STRONG> (Thumb, 20 bytes, Stack size 0 bytes, fsmc.o(.text.OUTLINED_FUNCTION_0))
@@ -1563,23 +1568,23 @@ Local Symbols
 <LI><a href="#[b3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;FSMC_Low_init
 </UL>
 
-<P><STRONG><a name="[da]"></a>OUTLINED_FUNCTION_8</STRONG> (Thumb, 14 bytes, Stack size 0 bytes, ssd1963.o(.text.OUTLINED_FUNCTION_8))
-<BR><BR>[Called By]<UL><LI><a href="#[ce]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TFT_Set_Work_Area
-<LI><a href="#[d9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SSD1963_SetArea
+<P><STRONG><a name="[db]"></a>OUTLINED_FUNCTION_8</STRONG> (Thumb, 14 bytes, Stack size 0 bytes, ssd1963.o(.text.OUTLINED_FUNCTION_8))
+<BR><BR>[Called By]<UL><LI><a href="#[cd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TFT_Set_Work_Area
+<LI><a href="#[da]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SSD1963_SetArea
 </UL>
 
-<P><STRONG><a name="[db]"></a>OUTLINED_FUNCTION_2</STRONG> (Thumb, 18 bytes, Stack size 0 bytes, ssd1963.o(.text.OUTLINED_FUNCTION_2))
-<BR><BR>[Called By]<UL><LI><a href="#[ce]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TFT_Set_Work_Area
-<LI><a href="#[d9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SSD1963_SetArea
+<P><STRONG><a name="[dc]"></a>OUTLINED_FUNCTION_2</STRONG> (Thumb, 18 bytes, Stack size 0 bytes, ssd1963.o(.text.OUTLINED_FUNCTION_2))
+<BR><BR>[Called By]<UL><LI><a href="#[cd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TFT_Set_Work_Area
+<LI><a href="#[da]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SSD1963_SetArea
 </UL>
 
-<P><STRONG><a name="[cd]"></a>OUTLINED_FUNCTION_3</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, ssd1963.o(.text.OUTLINED_FUNCTION_3))
+<P><STRONG><a name="[cc]"></a>OUTLINED_FUNCTION_3</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, ssd1963.o(.text.OUTLINED_FUNCTION_3))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = OUTLINED_FUNCTION_3 &rArr; TFT_Set_Work_Area
 </UL>
-<BR>[Calls]<UL><LI><a href="#[ce]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TFT_Set_Work_Area
+<BR>[Calls]<UL><LI><a href="#[cd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TFT_Set_Work_Area
 </UL>
-<BR>[Called By]<UL><LI><a href="#[61]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TFT_Draw_HLine
-<LI><a href="#[65]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TFT_Draw_Fill_Rectangle
+<BR>[Called By]<UL><LI><a href="#[65]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TFT_Draw_Fill_Rectangle
+<LI><a href="#[61]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TFT_Draw_HLine
 <LI><a href="#[ca]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TFT_Draw_image
 </UL>
 
@@ -1588,11 +1593,11 @@ Local Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[62]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TFT_Draw_VLine
 </UL>
-<BR>[Called By]<UL><LI><a href="#[e5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TFT_Draw_Fill_Circle_Helper
-<LI><a href="#[e6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TFT_Draw_Rectangle
+<BR>[Called By]<UL><LI><a href="#[e6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TFT_Draw_Fill_Circle_Helper
+<LI><a href="#[e7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TFT_Draw_Rectangle
 </UL>
 
-<P><STRONG><a name="[e4]"></a>OUTLINED_FUNCTION_6</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, ssd1963.o(.text.OUTLINED_FUNCTION_6))
+<P><STRONG><a name="[e5]"></a>OUTLINED_FUNCTION_6</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, ssd1963.o(.text.OUTLINED_FUNCTION_6))
 <BR><BR>[Called By]<UL><LI><a href="#[d4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TFT_Draw_Circle
 </UL>
 
@@ -1612,12 +1617,12 @@ Local Symbols
 <BR>[Called By]<UL><LI><a href="#[60]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TFT_Draw_Circle_Helper
 </UL>
 
-<P><STRONG><a name="[d5]"></a>OUTLINED_FUNCTION_5</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, ssd1963.o(.text.OUTLINED_FUNCTION_5))
+<P><STRONG><a name="[d6]"></a>OUTLINED_FUNCTION_5</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, ssd1963.o(.text.OUTLINED_FUNCTION_5))
 <BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = OUTLINED_FUNCTION_5 &rArr; TFT_Draw_VLine &rArr; TFT_Set_Work_Area
 </UL>
 <BR>[Calls]<UL><LI><a href="#[62]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TFT_Draw_VLine
 </UL>
-<BR>[Called By]<UL><LI><a href="#[e5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TFT_Draw_Fill_Circle_Helper
+<BR>[Called By]<UL><LI><a href="#[e6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TFT_Draw_Fill_Circle_Helper
 </UL>
 
 <P><STRONG><a name="[bb]"></a>OUTLINED_FUNCTION_0</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, gt911.o(.text.OUTLINED_FUNCTION_0))
@@ -1643,37 +1648,37 @@ Local Symbols
 <P><STRONG><a name="[ae]"></a>OUTLINED_FUNCTION_3</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, ds18b20.o(.text.OUTLINED_FUNCTION_3))
 <BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = OUTLINED_FUNCTION_3 &rArr; __aeabi_dmul
 </UL>
-<BR>[Calls]<UL><LI><a href="#[cf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dmul
+<BR>[Calls]<UL><LI><a href="#[ce]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dmul
 </UL>
 <BR>[Called By]<UL><LI><a href="#[ab]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DS18B20_read_temperatur
 </UL>
 
-<P><STRONG><a name="[eb]"></a>OUTLINED_FUNCTION_0</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, usart.o(.text.OUTLINED_FUNCTION_0))
-<BR><BR>[Called By]<UL><LI><a href="#[ea]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART_F4_init
+<P><STRONG><a name="[ec]"></a>OUTLINED_FUNCTION_0</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, usart.o(.text.OUTLINED_FUNCTION_0))
+<BR><BR>[Called By]<UL><LI><a href="#[eb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART_F4_init
 </UL>
 
-<P><STRONG><a name="[e9]"></a>OUTLINED_FUNCTION_1</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, usart.o(.text.OUTLINED_FUNCTION_1))
+<P><STRONG><a name="[ea]"></a>OUTLINED_FUNCTION_1</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, usart.o(.text.OUTLINED_FUNCTION_1))
 <BR><BR>[Called By]<UL><LI><a href="#[a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART_F4_DMAR_OFF
 </UL>
 
-<P><STRONG><a name="[de]"></a>OUTLINED_FUNCTION_6</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, graph.o(.text.OUTLINED_FUNCTION_6))
-<BR><BR>[Called By]<UL><LI><a href="#[dd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TFT_Ctrl_Console_Draw
+<P><STRONG><a name="[df]"></a>OUTLINED_FUNCTION_6</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, graph.o(.text.OUTLINED_FUNCTION_6))
+<BR><BR>[Called By]<UL><LI><a href="#[de]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TFT_Ctrl_Console_Draw
 </UL>
 
-<P><STRONG><a name="[df]"></a>OUTLINED_FUNCTION_10</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, graph.o(.text.OUTLINED_FUNCTION_10))
-<BR><BR>[Called By]<UL><LI><a href="#[dd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TFT_Ctrl_Console_Draw
+<P><STRONG><a name="[e0]"></a>OUTLINED_FUNCTION_10</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, graph.o(.text.OUTLINED_FUNCTION_10))
+<BR><BR>[Called By]<UL><LI><a href="#[de]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TFT_Ctrl_Console_Draw
 </UL>
 
-<P><STRONG><a name="[e0]"></a>OUTLINED_FUNCTION_5</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, graph.o(.text.OUTLINED_FUNCTION_5))
-<BR><BR>[Called By]<UL><LI><a href="#[dd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TFT_Ctrl_Console_Draw
+<P><STRONG><a name="[e1]"></a>OUTLINED_FUNCTION_5</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, graph.o(.text.OUTLINED_FUNCTION_5))
+<BR><BR>[Called By]<UL><LI><a href="#[de]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TFT_Ctrl_Console_Draw
 </UL>
 
-<P><STRONG><a name="[e1]"></a>OUTLINED_FUNCTION_0</STRONG> (Thumb, 16 bytes, Stack size 0 bytes, graph.o(.text.OUTLINED_FUNCTION_0))
-<BR><BR>[Called By]<UL><LI><a href="#[dd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TFT_Ctrl_Console_Draw
+<P><STRONG><a name="[e2]"></a>OUTLINED_FUNCTION_0</STRONG> (Thumb, 16 bytes, Stack size 0 bytes, graph.o(.text.OUTLINED_FUNCTION_0))
+<BR><BR>[Called By]<UL><LI><a href="#[de]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TFT_Ctrl_Console_Draw
 </UL>
 
-<P><STRONG><a name="[e2]"></a>OUTLINED_FUNCTION_2</STRONG> (Thumb, 22 bytes, Stack size 0 bytes, graph.o(.text.OUTLINED_FUNCTION_2))
-<BR><BR>[Called By]<UL><LI><a href="#[dd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TFT_Ctrl_Console_Draw
+<P><STRONG><a name="[e3]"></a>OUTLINED_FUNCTION_2</STRONG> (Thumb, 22 bytes, Stack size 0 bytes, graph.o(.text.OUTLINED_FUNCTION_2))
+<BR><BR>[Called By]<UL><LI><a href="#[de]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TFT_Ctrl_Console_Draw
 </UL>
 
 <P><STRONG><a name="[c8]"></a>OUTLINED_FUNCTION_1</STRONG> (Thumb, 22 bytes, Stack size 0 bytes, graph.o(.text.OUTLINED_FUNCTION_1))
@@ -1681,35 +1686,35 @@ Local Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[61]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TFT_Draw_HLine
 </UL>
-<BR>[Called By]<UL><LI><a href="#[dd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TFT_Ctrl_Console_Draw
+<BR>[Called By]<UL><LI><a href="#[de]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TFT_Ctrl_Console_Draw
 </UL>
 
-<P><STRONG><a name="[d7]"></a>OUTLINED_FUNCTION_9</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, graph.o(.text.OUTLINED_FUNCTION_9))
+<P><STRONG><a name="[d8]"></a>OUTLINED_FUNCTION_9</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, graph.o(.text.OUTLINED_FUNCTION_9))
 <BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = OUTLINED_FUNCTION_9 &rArr; TFT_Draw_VLine &rArr; TFT_Set_Work_Area
 </UL>
 <BR>[Calls]<UL><LI><a href="#[62]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TFT_Draw_VLine
 </UL>
-<BR>[Called By]<UL><LI><a href="#[dd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TFT_Ctrl_Console_Draw
+<BR>[Called By]<UL><LI><a href="#[de]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TFT_Ctrl_Console_Draw
 </UL>
 
-<P><STRONG><a name="[d0]"></a>OUTLINED_FUNCTION_3</STRONG> (Thumb, 14 bytes, Stack size 0 bytes, graph.o(.text.OUTLINED_FUNCTION_3))
+<P><STRONG><a name="[cf]"></a>OUTLINED_FUNCTION_3</STRONG> (Thumb, 14 bytes, Stack size 0 bytes, graph.o(.text.OUTLINED_FUNCTION_3))
 <BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = OUTLINED_FUNCTION_3 &rArr; TFT_Draw_VLine &rArr; TFT_Set_Work_Area
 </UL>
 <BR>[Calls]<UL><LI><a href="#[62]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TFT_Draw_VLine
 </UL>
-<BR>[Called By]<UL><LI><a href="#[dd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TFT_Ctrl_Console_Draw
+<BR>[Called By]<UL><LI><a href="#[de]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TFT_Ctrl_Console_Draw
 </UL>
 
-<P><STRONG><a name="[d6]"></a>OUTLINED_FUNCTION_7</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, graph.o(.text.OUTLINED_FUNCTION_7))
+<P><STRONG><a name="[d7]"></a>OUTLINED_FUNCTION_7</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, graph.o(.text.OUTLINED_FUNCTION_7))
 <BR><BR>[Stack]<UL><LI>Max Depth = 136<LI>Call Chain = OUTLINED_FUNCTION_7 &rArr; TFT_Draw_Fill_Round_Rect &rArr; TFT_Draw_Fill_Circle_Helper &rArr; OUTLINED_FUNCTION_5 &rArr; TFT_Draw_VLine &rArr; TFT_Set_Work_Area
 </UL>
 <BR>[Calls]<UL><LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TFT_Draw_Fill_Round_Rect
 </UL>
-<BR>[Called By]<UL><LI><a href="#[dd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TFT_Ctrl_Console_Draw
+<BR>[Called By]<UL><LI><a href="#[de]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TFT_Ctrl_Console_Draw
 </UL>
 
-<P><STRONG><a name="[e3]"></a>OUTLINED_FUNCTION_8</STRONG> (Thumb, 16 bytes, Stack size 0 bytes, graph.o(.text.OUTLINED_FUNCTION_8))
-<BR><BR>[Called By]<UL><LI><a href="#[dd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TFT_Ctrl_Console_Draw
+<P><STRONG><a name="[e4]"></a>OUTLINED_FUNCTION_8</STRONG> (Thumb, 16 bytes, Stack size 0 bytes, graph.o(.text.OUTLINED_FUNCTION_8))
+<BR><BR>[Called By]<UL><LI><a href="#[de]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TFT_Ctrl_Console_Draw
 </UL>
 
 <P><STRONG><a name="[d3]"></a>OUTLINED_FUNCTION_4</STRONG> (Thumb, 14 bytes, Stack size 0 bytes, graph.o(.text.OUTLINED_FUNCTION_4))
@@ -1717,7 +1722,7 @@ Local Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[d4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TFT_Draw_Circle
 </UL>
-<BR>[Called By]<UL><LI><a href="#[dd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TFT_Ctrl_Console_Draw
+<BR>[Called By]<UL><LI><a href="#[de]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TFT_Ctrl_Console_Draw
 </UL>
 
 <P><STRONG><a name="[92]"></a>_fp_digits</STRONG> (Thumb, 432 bytes, Stack size 96 bytes, _printf_fp_dec.o(.text))
