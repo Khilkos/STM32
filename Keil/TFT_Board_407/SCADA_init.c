@@ -63,7 +63,37 @@ num=7;
 Status_LED_init[num].Status_LED_X0=690;
 Status_LED_init[num].Status_LED_Y0=160;	
 //-------------------------------------
-	
+
+
+//******************************************************************
+
+
+//Valve 0
+//
+num=0;
+Valve_init[num].Valve_X0=600;
+Valve_init[num].Valve_Y0=280;
+//-------------------------------
+//Valve 1
+//
+num=1;
+Valve_init[num].Valve_X0=700;
+Valve_init[num].Valve_Y0=280;
+//-------------------------------
+
+//Valve 2
+//
+num=2;
+Valve_init[num].Valve_X0=400;
+Valve_init[num].Valve_Y0=280;
+//-------------------------------
+//Valve 3
+//
+num=3;
+Valve_init[num].Valve_X0=500;
+Valve_init[num].Valve_Y0=280;
+//-------------------------------
+
 
 
 //******************************************************************

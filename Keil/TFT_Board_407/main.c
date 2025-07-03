@@ -255,6 +255,20 @@ if (DI7) TFT_Status_LED (7,2); else TFT_Status_LED(7,1);
 
 //----------------------------------------------------------
 
+//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+//Valve BEGIN
+TFT_Valve_H(0,1);
+TFT_Valve_H(1,2);
+TFT_Valve_V(2,1);
+TFT_Valve_V(3,2);
+
+
+
+//Valve END
+//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+//----------------------------------------------------------
+
 //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 //Action touch BEGIN
 
@@ -304,136 +318,5 @@ temperature = DS18B20_read_temperatur(USART_def);
 //Program END
 //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
-uint16_t X,Y,lenght, hight, light_color, dark_color, color, x1, x2, y1, y2=0;
-
-		
-X=600;
-Y=260;
-lenght=140;
-hight=80;		
-light_color=0xc5f8;
-dark_color=0x1062;
-color =0x5aeb;
-
-
-TFT_Draw_VLine (X,Y,hight,2,light_color);
-TFT_Draw_VLine (X+lenght,Y+2,hight,2,dark_color);		
-TFT_Draw_Line(X+2,Y,X+lenght,Y+hight,2,dark_color);
-TFT_Draw_Line(X,Y+hight,X+lenght/2,Y+hight/2,2,dark_color);
-TFT_Draw_Line (X+lenght/2+2,Y+hight/2,X+lenght,Y,2,light_color);
-
-TFT_Draw_VLine(X+lenght/2,Y,hight/2,2,dark_color);
-TFT_Draw_Rectangle(X+lenght/2-hight/4+1,Y-hight/2,hight/2,hight/2,2,0x0000);
-//-------------------------------------------------------------------
-x1=X+2;
-y1=Y+2;
-x2=X+lenght/2-4;
-y2=Y+hight/2;
-
-
-int deltaX = abs(x2 - x1);
-	int deltaY = abs(y2 - y1);
-	int error = deltaX - deltaY;
-	int error2 = 0;
-	uint16_t i =0;
-	
-	for (;;)
-	{
-		TFT_Draw_HLine (X+2,Y+2+i,x1-X,2,color);
-		
-	
-		if(x1 == x2 && y1 == y2)
-		break;
-		
-		error2 = error * 2;
-		
-		if(error2 > -deltaY)
-		{
-			error -= deltaY;
-			x1++;
-		}
-		
-		if(error2 < deltaX)
-		{
-			error += deltaX;
-			y1++;
-				i++;
-		}
-	}
-//---------------------------------------------
-	x1=X+2;
-y1=Y+hight-2;
-x2=X+lenght/2-4;
-y2=Y+hight/2+2;
-
-
-deltaX = abs(x2 - x1);
-deltaY = abs(y2 - y1);
-error = deltaX - deltaY;
-error2 = 0;
-i =0;
-	
-	for (;;)
-	{
-		TFT_Draw_HLine (X+2,Y+hight-4-i,x1-X,2,color);
-		
-	
-		if(x1 == x2 && y1 == y2)
-		break;
-		
-		error2 = error * 2;
-		
-		if(error2 > -deltaY)
-		{
-			error -= deltaY;
-			x1++;
-		}
-		
-		if(error2 < deltaX)
-		{
-			error += deltaX;
-			y1--;
-				i++;
-		}
-	}
-//---------------------------------------------
-//---------------------------------------------
-/*	x1=X+lenght/2+2;
-y1=Y+hight-2;
-x2=X+lenght-2;
-y2=Y-2;
-
-
-deltaX = abs(x2 - x1);
-deltaY = abs(y2 - y1);
-error = deltaX - deltaY;
-error2 = 0;
-i =0;
-	
-	for (;;)
-	{
-		TFT_Draw_HLine (X+2,Y+hight-4-i,x1-X,2,color);
-		
-	
-		if(x1 == x2 && y1 == y2)
-		break;
-		
-		error2 = error * 2;
-		
-		if(error2 > -deltaY)
-		{
-			error -= deltaY;
-			x1++;
-		}
-		
-		if(error2 < deltaX)
-		{
-			error += deltaX;
-			y1--;
-				i++;
-		}
-	}
-	*/
-//---------------------------------------------
 }	
 }
