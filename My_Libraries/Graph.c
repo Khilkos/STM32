@@ -44,9 +44,31 @@ uint16_t height=Button_init[number].button_height;
 	
 	
 if ((GT911Touch[0].XCoordinate>X && GT911Touch[0].XCoordinate<(X+lenght) && GT911Touch[0].YCoordinate>Y && GT911Touch[0].YCoordinate<(Y+height)))
-					{if (Button_init[number].button_State == 1) Button_init[number].button_State=0; else Button_init[number].button_State=1; Button_init[number].button_update=1;}
+			{Button_init[number].button_press = 1;}
 }
-//---------------------------------------------------------------------------
+//==================================================================
+void TFT_Scan_press_Button_with_delay (uint16_t number, uint16_t delay)
+{
+		uint16_t X=Button_init[number].button_X0;
+		uint16_t Y=Button_init[number].button_Y0;
+		uint16_t lenght=Button_init[number].button_lenght;
+		uint16_t height=Button_init[number].button_height;	
+	
+	
+		if ((GT911Touch[0].XCoordinate>X && GT911Touch[0].XCoordinate<(X+lenght) && GT911Touch[0].YCoordinate>Y && GT911Touch[0].YCoordinate<(Y+height)))
+			{
+				if (!Button_init[number].button_delay)
+					{
+						Button_init[number].button_delay=delay;
+						Button_init[number].button_press = 1;
+					}
+				else 
+					Button_init[number].button_press = 0;
+			}
+		else Button_init[number].button_press = 0;		
+}
+
+//===================================================================
 void TFT_Ctrl_Console_Draw (uint16_t num)
 {
 uint8_t String[30];	
@@ -312,11 +334,17 @@ TFT_Draw_VLine(X0,Y0+rect,height-2*rect,frame_size,light_color);
 TFT_Draw_VLine(X0+lenght-frame_size,Y0+rect,height-2*rect,frame_size,dark_color);
 TFT_Draw_Fill_Round_Rect(X0+frame_size,Y0+frame_size,lenght-frame_size*2,height-frame_size*2,rect,color);	
 }
+
+
+
 //============================================================================
 
-void TFT_Valve_H (uint16_t number, uint16_t state)
-{
+
+void TFT_Valve_Draw (uint16_t number, uint16_t state)
+{	
 uint16_t X, Y, lenght, hight, light_color, dark_color, color, x1, x2, y1, y2=0;
+int deltaX, deltaY, error, error2;
+uint16_t i =0;
 X=Valve_init[number].Valve_X0;
 Y=Valve_init[number].Valve_Y0;	
 	
@@ -358,366 +386,331 @@ switch (state)
 
 	default:
 		color=0x0000; 
-}		
+}	
 
-lenght=50;
-hight=25;		
+
 light_color=0xc5f8;
 dark_color=0x1062;
 
-TFT_Draw_VLine (X,Y,hight,2,light_color);
-TFT_Draw_VLine (X+lenght,Y+2,hight,2,dark_color);		
-TFT_Draw_Line(X+2,Y,X+lenght,Y+hight,2,dark_color);
-TFT_Draw_Line(X,Y+hight,X+lenght/2,Y+hight/2,2,dark_color);
-TFT_Draw_Line (X+lenght/2+2,Y+hight/2,X+lenght,Y,2,light_color);
+if (Valve_init[number].Valve_orientation == 2) //Valve_Horisontal_orientation
+		{		
+				lenght=50;
+				hight=25;		
+				if (Y < hight/2) Y=hight/2+1;
+				
+				TFT_Draw_VLine (X,Y,hight,2,light_color);
+				TFT_Draw_VLine (X+lenght,Y+2,hight,2,dark_color);		
+				TFT_Draw_Line(X+2,Y,X+lenght,Y+hight,2,dark_color);
+				TFT_Draw_Line(X,Y+hight,X+lenght/2,Y+hight/2,2,dark_color);
+				TFT_Draw_Line (X+lenght/2+2,Y+hight/2,X+lenght,Y,2,light_color);
 
-TFT_Draw_VLine(X+lenght/2,Y+2,hight/2-2,2,dark_color);
-TFT_Draw_HLine(X+lenght/2-hight/4+1,Y-hight/2,hight/2-2,2,light_color);
-TFT_Draw_VLine(X+lenght/2-hight/4+1,Y-hight/2+2,hight/2-2,2,light_color);
-TFT_Draw_HLine(X+lenght/2-hight/4+1,Y,hight/2,2,dark_color);
-TFT_Draw_VLine(X+lenght/2+hight/4+1-2,Y-hight/2,hight/2,2,dark_color);
+				TFT_Draw_VLine(X+lenght/2,Y+2,hight/2-2,2,dark_color);
+				TFT_Draw_HLine(X+lenght/2-hight/4+1,Y-hight/2,hight/2-2,2,light_color);
+				TFT_Draw_VLine(X+lenght/2-hight/4+1,Y-hight/2+2,hight/2-2,2,light_color);
+				TFT_Draw_HLine(X+lenght/2-hight/4+1,Y,hight/2,2,dark_color);
+				TFT_Draw_VLine(X+lenght/2+hight/4+1-2,Y-hight/2,hight/2,2,dark_color);
 
-TFT_Draw_Fill_Rectangle(X+lenght/2-hight/4+1+2,Y-hight/2+2,hight/2-4,hight/2-2,color);
-//-------------------------------------------------------------------
-x1=X+2;
-y1=Y+2;
-x2=X+lenght/2-4;
-y2=Y+hight/2;
+				TFT_Draw_Fill_Rectangle(X+lenght/2-hight/4+1+2,Y-hight/2+2,hight/2-4,hight/2-2,color);
+				//-------------------------------------------------------------------
+				x1=X+2;
+				y1=Y+2;
+				x2=X+lenght/2-4;
+				y2=Y+hight/2;
 
-int deltaX = abs(x2 - x1);
-	int deltaY = abs(y2 - y1);
-	int error = deltaX - deltaY;
-	int error2 = 0;
-	uint16_t i =0;
+				deltaX = abs(x2 - x1);
+				deltaY = abs(y2 - y1);
+				error = deltaX - deltaY;
+				error2 = 0;
 	
-	for (;;)
-	{
-		TFT_Draw_HLine (X+2,Y+2+i,x1-X,2,color);
+					for (;;)
+						{
+							TFT_Draw_HLine (X+2,Y+2+i,x1-X,2,color);
 
-		if(x1 == x2 && y1 == y2)
-		break;
+							if(x1 == x2 && y1 == y2)
+						break;
 		
-		error2 = error * 2;
+							error2 = error * 2;
 		
-		if(error2 > -deltaY)
-		{
-			error -= deltaY;
-			x1++;
-		}
+							if(error2 > -deltaY)
+								{
+									error -= deltaY;
+									x1++;
+								}
 		
-		if(error2 < deltaX)
-		{
-			error += deltaX;
-			y1++;
-				i++;
-		}
-	}
-//---------------------------------------------
-	x1=X+2;
-y1=Y+hight-2;
-x2=X+lenght/2-4;
-y2=Y+hight/2+2;
+							if(error2 < deltaX)
+								{
+									error += deltaX;
+									y1++;
+									i++;
+								}
+						}
+				//---------------------------------------------
+				x1=X+2;
+				y1=Y+hight-2;
+				x2=X+lenght/2-4;
+				y2=Y+hight/2+2;
 
+				deltaX = abs(x2 - x1);
+				deltaY = abs(y2 - y1);
+				error = deltaX - deltaY;
+				error2 = 0;
+				i =0;
+					for (;;)
+						{
+							TFT_Draw_HLine (X+2,Y+hight-4-i,x1-X,2,color);
 
-deltaX = abs(x2 - x1);
-deltaY = abs(y2 - y1);
-error = deltaX - deltaY;
-error2 = 0;
-i =0;
-	for (;;)
-	{
-		TFT_Draw_HLine (X+2,Y+hight-4-i,x1-X,2,color);
+							if(x1 == x2 && y1 == y2)
+						break;
+							error2 = error * 2;
+							if(error2 > -deltaY)
+								{
+									error -= deltaY;
+									x1++;
+								}
+							if(error2 < deltaX)
+								{
+									error += deltaX;
+									y1--;
+									i++;
+								}
+						}
+				//---------------------------------------------
+				x1=X+lenght/2+6;
+				y1=Y+hight/2;
+				x2=X+lenght-2;
+				y2=Y+4;
 
-		if(x1 == x2 && y1 == y2)
-		break;
-		error2 = error * 2;
-		if(error2 > -deltaY)
-		{
-			error -= deltaY;
-			x1++;
-		}
-		if(error2 < deltaX)
-		{
-			error += deltaX;
-			y1--;
-				i++;
-		}
-	}
-//---------------------------------------------
-//---------------------------------------------
-	x1=X+lenght/2+6;
-y1=Y+hight/2;
-x2=X+lenght-2;
-y2=Y+4;
+				deltaX = abs(x2 - x1);
+				deltaY = abs(y2 - y1);
+				error = deltaX - deltaY;
+				error2 = 0;
+				i =0;
 
-	deltaX = abs(x2 - x1);
-deltaY = abs(y2 - y1);
-error = deltaX - deltaY;
-error2 = 0;
-i =0;
+					for (;;)
+					{
+						TFT_Draw_HLine (x1,y1,X+lenght-x1,2,color);
 
-	for (;;)
-	{
-		TFT_Draw_HLine (x1,y1,X+lenght-x1,2,color);
+						if(x1 == x2 && y1 == y2)
+				break;
+						error2 = error * 2;
+						if(error2 > -deltaY)
+							{
+								error -= deltaY;
+								x1++;
+							}
+						if(error2 < deltaX)
+							{
+								error += deltaX;
+								y1--;
+								i++;
+							}
+					}
+			//---------------------------------------------
+				x1=X+lenght/2+6;
+				y1=Y+hight/2;
+				x2=X+lenght-2;
+				y2=Y+hight-4;
 
-		if(x1 == x2 && y1 == y2)
-		break;
-		error2 = error * 2;
-		if(error2 > -deltaY)
-		{
-			error -= deltaY;
-			x1++;
-		}
-		if(error2 < deltaX)
-		{
-			error += deltaX;
-			y1--;
-				i++;
-		}
-	}
+				deltaX = abs(x2 - x1);
+				deltaY = abs(y2 - y1);
+				error = deltaX - deltaY;
+				error2 = 0;
+				i = 0;
 	
-//---------------------------------------------
-	//---------------------------------------------
-	x1=X+lenght/2+6;
-y1=Y+hight/2;
-x2=X+lenght-2;
-y2=Y+hight-4;
-
-deltaX = abs(x2 - x1);
-deltaY = abs(y2 - y1);
-error = deltaX - deltaY;
-error2 = 0;
-i =0;
+					for (;;)
+						{
+							TFT_Draw_HLine (x1,y1,X+lenght-x1,2,color);
 	
-	for (;;)
-	{
-		TFT_Draw_HLine (x1,y1,X+lenght-x1,2,color);
-	
-		if(x1 == x2 && y1 == y2)
-		break;
-		error2 = error * 2;
-		if(error2 > -deltaY)
-		{
-			error -= deltaY;
-			x1++;
+							if(x1 == x2 && y1 == y2)
+					break;
+							error2 = error * 2;
+							if(error2 > -deltaY)
+								{
+									error -= deltaY;
+									x1++;
+								}
+							if(error2 < deltaX)
+								{
+									error += deltaX;
+									y1++;
+									i++;
+								}
+						}
+			//---------------------------------------------
 		}
-		if(error2 < deltaX)
-		{
-			error += deltaX;
-			y1++;
-				i++;
-		}
-	}
-//---------------------------------------------
-
-}
 
 //==============================================================
-void TFT_Valve_V (uint16_t number, uint16_t state)
-{
-uint16_t X, Y, lenght, hight, light_color, dark_color, color, x1, x2, y1, y2=0;
-X=Valve_init[number].Valve_X0;
-Y=Valve_init[number].Valve_Y0;	
-	
-switch (state)
-{
-	case 0:
-		color =0x9cd3; //светло серый, цвет кнопок
-		break;
-	case 1:
-		color =0x5aeb; // - темно серый, для кнопок	
-		break;
-	case 2:
-		color =0x1e63; //зеленый цвет
-		break;
-	case 3:
-		color =0x0bc3;	//темно зеленый
-		break;
-	case 4:
-		color =0x0240;	//сильно темно зеленый
-		break;
-	case 5:
-		color =0xe8c3;	//красный цвет
-		break;
-	case 6:
-		color =0x9841;	//темно красный
-		break;
-	case 7:
-		color =0x7041;	//сильно темно красный	
-		break;
-	case 8:
-		color =0xfde1;	//желтый цвет
-		break;
-	case 9:
-		color =0xC480;	//темно желтый
-		break;
-	case 10:
-		color =0x00ff;	//синий, фон рабочего стола
-		break;
+	if (Valve_init[number].Valve_orientation == 1)
+		{
+			lenght=25;
+			hight=50;		
 
-	default:
-		color=0x0000; 
-}		
+			TFT_Draw_HLine (X,Y,lenght,2,dark_color);
+			TFT_Draw_Line(X,Y+2,X+lenght/2,Y+hight/2,2,dark_color);
+			TFT_Draw_Line(X+lenght/2,Y+hight/2,X+lenght-2,Y+2,2,dark_color);
 
-lenght=25;
-hight=50;		
-light_color=0xc5f8;
-dark_color=0x1062;
+			TFT_Draw_HLine (X,Y+hight,lenght,2,dark_color);		
+			TFT_Draw_Line(X,Y+hight-2,X+lenght/2,Y+hight/2,2,dark_color);
+			TFT_Draw_Line(X+lenght/2,Y+hight/2,X+lenght-2,Y+hight-2,2,dark_color);
 
-TFT_Draw_HLine (X,Y,lenght,2,dark_color);
-TFT_Draw_Line(X,Y+2,X+lenght/2,Y+hight/2,2,dark_color);
-TFT_Draw_Line(X+lenght/2,Y+hight/2,X+lenght-2,Y+2,2,dark_color);
+			TFT_Draw_HLine(X+lenght/2,Y+hight/2,lenght/2-2,2,dark_color);
+			TFT_Draw_HLine(X+lenght,Y+hight/2-lenght/4,lenght/2-2,2,light_color);
+			TFT_Draw_VLine(X+lenght-2,Y+hight/2-lenght/4,lenght/2,2,light_color);
+			TFT_Draw_HLine(X+lenght-2,Y+hight/2+lenght/4,lenght/2,2,dark_color);
+			TFT_Draw_VLine(X+lenght+lenght/2-2,Y+hight/2-lenght/4,lenght/2+2,2,dark_color);
 
-TFT_Draw_HLine (X,Y+hight,lenght,2,dark_color);		
-TFT_Draw_Line(X,Y+hight-2,X+lenght/2,Y+hight/2,2,dark_color);
-TFT_Draw_Line(X+lenght/2,Y+hight/2,X+lenght-2,Y+hight-2,2,dark_color);
+			TFT_Draw_Fill_Rectangle(X+lenght,Y+hight/2-lenght/4+2,lenght/2-2,lenght/2-2,color);
+			
+			//---------------------------------------------
+			x1=X+2+1;
+			y1=Y+2;
+			x2=X+lenght/2+1;
+			y2=Y+hight/2-4;
 
-TFT_Draw_HLine(X+lenght/2,Y+hight/2,lenght/2-2,2,dark_color);
-TFT_Draw_HLine(X+lenght,Y+hight/2-lenght/4,lenght/2-2,2,light_color);
-TFT_Draw_VLine(X+lenght-2,Y+hight/2-lenght/4,lenght/2,2,light_color);
-TFT_Draw_HLine(X+lenght-2,Y+hight/2+lenght/4,lenght/2,2,dark_color);
-TFT_Draw_VLine(X+lenght+lenght/2-2,Y+hight/2-lenght/4,lenght/2+2,2,dark_color);
+			deltaX = abs(x2 - x1);
+			deltaY = abs(y2 - y1);
+			error = deltaX - deltaY;
+			error2 = 0;
 
-TFT_Draw_Fill_Rectangle(X+lenght,Y+hight/2-lenght/4+2,lenght/2-2,lenght/2-2,color);
-
-
-
-//---------------------------------------------
-x1=X+2+1;
-y1=Y+2;
-x2=X+lenght/2+1;
-y2=Y+hight/2-4;
-
-int deltaX = abs(x2 - x1);
-	int deltaY = abs(y2 - y1);
-	int error = deltaX - deltaY;
-	int error2 = 0;
-
-	
-	for (;;)
-	{
-		TFT_Draw_HLine (x1,y1,X+lenght/2-x1+1,2,color);
-		//TFT_Draw_Fill_Rectangle(x1,y1,2,2,color);
+				for (;;)
+					{
+						TFT_Draw_HLine (x1,y1,X+lenght/2-x1+1,2,color);
+						//TFT_Draw_Fill_Rectangle(x1,y1,2,2,color);
 		
-		if(x1 == x2 && y1 == y2)
-		break;
-		error2 = error * 2;
-		if(error2 > -deltaY)
-		{
-			error -= deltaY;
-			x1++;
-		}
-		if(error2 < deltaX)
-		{
-			error += deltaX;
-			y1++;
-		}
-	}
-//---------------------------------------------
+						if(x1 == x2 && y1 == y2)
+				break;
+						error2 = error * 2;
+						if(error2 > -deltaY)
+							{
+								error -= deltaY;
+								x1++;
+							}
+						if(error2 < deltaX)
+							{
+								error += deltaX;
+								y1++;
+							}
+					}
+			//---------------------------------------------
 
-	
-	//---------------------------------------------
-x1=X+lenght/2-1;
-y1=Y+hight/2-4;
-x2=X+lenght-4-1;
-y2=Y+2;
+			x1=X+lenght/2-1;
+			y1=Y+hight/2-4;
+			x2=X+lenght-4-1;
+			y2=Y+2;
 
-deltaX = abs(x2 - x1);
-deltaY = abs(y2 - y1);
-error = deltaX - deltaY;
-error2 = 0;
+			deltaX = abs(x2 - x1);
+			deltaY = abs(y2 - y1);
+			error = deltaX - deltaY;
+			error2 = 0;
 	
-	for (;;)
-	{
-		TFT_Draw_HLine (X+lenght/2,y1,x1-X-lenght/2+2,2,color);
-		//TFT_Draw_Fill_Rectangle(x1,y1,2,2,color);
+				for (;;)
+					{
+						TFT_Draw_HLine (X+lenght/2,y1,x1-X-lenght/2+2,2,color);
+						//TFT_Draw_Fill_Rectangle(x1,y1,2,2,color);
 		
-		if(x1 == x2 && y1 == y2)
-		break;
-		error2 = error * 2;
-		if(error2 > -deltaY)
-		{
-			error -= deltaY;
-			x1++;
-		}
-		if(error2 < deltaX)
-		{
-			error += deltaX;
-			y1--;
-			//	i++;
-		}
-	}
-//---------------------------------------------
+						if(x1 == x2 && y1 == y2)
+				break;
+						error2 = error * 2;
+						if(error2 > -deltaY)
+							{
+								error -= deltaY;
+								x1++;
+							}
+						if(error2 < deltaX)
+							{
+								error += deltaX;
+								y1--;
+							}
+					}
+			//---------------------------------------------
+			
+			x1=X+2+1;
+			y1=Y+hight-2;
+			x2=X+lenght/2+1;
+			y2=Y+hight/2+4;
 
+			deltaX = abs(x2 - x1);
+			deltaY = abs(y2 - y1);
+			error = deltaX - deltaY;
+			error2 = 0;
 	
-	//---------------------------------------------
-x1=X+2+1;
-y1=Y+hight-2;
-x2=X+lenght/2+1;
-y2=Y+hight/2+4;
-
-deltaX = abs(x2 - x1);
-deltaY = abs(y2 - y1);
-error = deltaX - deltaY;
-error2 = 0;
-	
-	for (;;)
-	{
-		TFT_Draw_HLine (x1,y1,X+lenght/2-x1+1,2,color);
-		//TFT_Draw_Fill_Rectangle(x1,y1,2,2,color);
+				for (;;)
+					{
+						TFT_Draw_HLine (x1,y1,X+lenght/2-x1+1,2,color);
+						//TFT_Draw_Fill_Rectangle(x1,y1,2,2,color);
 		
-		if(x1 == x2 && y1 == y2)
-		break;
-		error2 = error * 2;
-		if(error2 > -deltaY)
-		{
-			error -= deltaY;
-			x1++;
-		}
-		if(error2 < deltaX)
-		{
-			error += deltaX;
-			y1--;
-			//	i++;
-		}
-	}
+						if(x1 == x2 && y1 == y2)
+				break;
+						error2 = error * 2;
+						if(error2 > -deltaY)
+							{
+								error -= deltaY;
+								x1++;
+							}
+						if(error2 < deltaX)
+							{
+								error += deltaX;
+								y1--;
+							}
+					}
 	
-//---------------------------------------------
-x1=X+lenght/2-1;
-y1=Y+hight/2+4;
-x2=X+lenght-4-1;
-y2=Y+hight-2;
+			//---------------------------------------------
+			x1=X+lenght/2-1;
+			y1=Y+hight/2+4;
+			x2=X+lenght-4-1;
+			y2=Y+hight-2;
 
-deltaX = abs(x2 - x1);
-deltaY = abs(y2 - y1);
-error = deltaX - deltaY;
-error2 = 0;
+			deltaX = abs(x2 - x1);
+			deltaY = abs(y2 - y1);
+			error = deltaX - deltaY;
+			error2 = 0;
 	
-	for (;;)
-	{
-		TFT_Draw_HLine (X+lenght/2,y1,x1-X-lenght/2+2,2,color);
-		//TFT_Draw_Fill_Rectangle(x1,y1,2,2,color);
+				for (;;)
+					{
+						TFT_Draw_HLine (X+lenght/2,y1,x1-X-lenght/2+2,2,color);
+						//TFT_Draw_Fill_Rectangle(x1,y1,2,2,color);
 		
-		if(x1 == x2 && y1 == y2)
-		break;
-		error2 = error * 2;
-		if(error2 > -deltaY)
-		{
-			error -= deltaY;
-			x1++;
-		}
-		if(error2 < deltaX)
-		{
-			error += deltaX;
-			y1++;
-			//	i++;
-		}
-	}
+						if(x1 == x2 && y1 == y2)
+				break;
+						error2 = error * 2;
+						if(error2 > -deltaY)
+							{
+								error -= deltaY;
+								x1++;
+							}
+						if(error2 < deltaX)
+							{
+								error += deltaX;
+								y1++;
+							}
+					}
 
-
-	
-}
+		}
+} //end of function Valve_Draw		
 //===============================================================
 
+void TFT_Scan_press_Valve (uint16_t number)
+{
+uint16_t X=Valve_init[number].Valve_X0;
+uint16_t Y=Valve_init[number].Valve_Y0;
+uint16_t lenght;
+uint16_t height;	
 
+if (Valve_init[number].Valve_orientation == 1) //Valve_vertical_orientation 
+	{
+		lenght=25+25/2;
+		height=50;
+	}
+
+if (Valve_init[number].Valve_orientation == 2)
+	{
+		lenght=50;
+		height=25+25/2;
+		if (Y< 25/2) Y=25/2+1;
+	}
+	
+if ((GT911Touch[0].XCoordinate>X && GT911Touch[0].XCoordinate<(X+lenght) && GT911Touch[0].YCoordinate>Y && GT911Touch[0].YCoordinate<(Y+height)))
+					{Valve_init[number].Valve_Press = 1;}
+
+}
 

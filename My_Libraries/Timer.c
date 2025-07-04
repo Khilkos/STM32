@@ -63,13 +63,18 @@ RCC->APB1ENR |=RCC_APB1ENR_TIM2EN; //enable clock for Timer 2
 }
 
 void TIM2_IRQHandler(void)
-{
+{	static uint8_t tim2_count;
 if (TIM2->SR&TIM_SR_UIF) 
 	{		
 TIM2->SR &= ~TIM_SR_UIF;	
+		if (Button_init[0].button_delay>0) Button_init[0].button_delay--; else Button_init[0].button_delay =0;
+		if (Button_init[1].button_delay>0) Button_init[1].button_delay--; else Button_init[1].button_delay =0;
+		if (Button_init[2].button_delay>0) Button_init[2].button_delay--; else Button_init[2].button_delay =0;
+		if (Button_init[3].button_delay>0) Button_init[3].button_delay--; else Button_init[3].button_delay =0;
+		
+		
 if (TIM2_Delay_1>0) TIM2_Delay_1--; else TIM2_Delay_1=0;
-
-	//if (GPIOB->IDR & (1<<12)) GPIOB->BSRR=1U<<(12+res); else GPIOB->BSRR=1U<<12;
+	if (tim2_count < 10) tim2_count++; else {tim2_count=0;if (GPIOA->IDR & (1<<0)) GPIOA->BSRR=1U<<(0+16); else GPIOA->BSRR=1U<<0;}
 	}
 }	
 

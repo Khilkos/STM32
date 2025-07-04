@@ -1,6 +1,8 @@
 #ifndef _Graph_H
 #define _Graph_H
 #include "Config.h"
+#define Valve_Vertical 1
+#define Valve_Horizontal 2
 
 
 #ifdef STM32F4
@@ -28,6 +30,8 @@ uint8_t buttuon_TEXT_line_2_State[4][30];
 uint16_t buttuon_TEXT_line_2_Color_State[4];	
 uint8_t button_State;
 _Bool button_update;	
+_Bool button_press;
+uint16_t button_delay;	
 };
 //--------------------------
 struct Ctrl_Console_struct
@@ -65,6 +69,9 @@ struct Valve_struct
 {
 uint16_t Valve_X0;
 uint16_t Valve_Y0;	
+uint8_t Valve_orientation;
+_Bool Valve_Press;
+_Bool Valve_update;
 };
 //---------------------------------
 
@@ -80,11 +87,14 @@ extern volatile _Bool Screen_update;
 
 void TFT_Button_Draw (uint8_t number, uint8_t State);
 void TFT_Scan_press_Button (uint16_t number);
+void TFT_Scan_press_Button_with_delay (uint16_t number, uint16_t delay);
 void TFT_Ctrl_Console_Draw (uint16_t number);
 void TFT_Scan_press_Ctrl_Console (uint16_t number);
 void TFT_Status_LED (uint16_t number, uint16_t state);
-void TFT_Valve_H (uint16_t number, uint16_t state);
-void TFT_Valve_V (uint16_t number, uint16_t state);
+void TFT_Valve_Draw (uint16_t number, uint16_t state);
+void TFT_Scan_press_Valve (uint16_t number);
+
+
 
 
 //

@@ -72,26 +72,30 @@ Status_LED_init[num].Status_LED_Y0=160;
 //
 num=0;
 Valve_init[num].Valve_X0=600;
-Valve_init[num].Valve_Y0=280;
+Valve_init[num].Valve_Y0=200;
+Valve_init[num].Valve_orientation = Valve_Horizontal;
 //-------------------------------
 //Valve 1
 //
 num=1;
 Valve_init[num].Valve_X0=700;
-Valve_init[num].Valve_Y0=280;
+Valve_init[num].Valve_Y0=200;
+Valve_init[num].Valve_orientation = Valve_Horizontal;
 //-------------------------------
 
 //Valve 2
 //
 num=2;
 Valve_init[num].Valve_X0=400;
-Valve_init[num].Valve_Y0=280;
+Valve_init[num].Valve_Y0=200;
+Valve_init[num].Valve_orientation = Valve_Vertical;
 //-------------------------------
 //Valve 3
 //
 num=3;
 Valve_init[num].Valve_X0=500;
-Valve_init[num].Valve_Y0=280;
+Valve_init[num].Valve_Y0=200;
+Valve_init[num].Valve_orientation = Valve_Vertical;
 //-------------------------------
 
 

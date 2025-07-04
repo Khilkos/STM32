@@ -25,6 +25,7 @@ int main(void)
 	Core_F4_init_HSE_full(6,168,2,7,1,4,2); 
 	SysTick_F4_Init (168);
 	Timer1_F4_init(168000000,1000);
+	Timer2_F4_init(168000000,100);
 	
 	
 	GPIO_DO_setup(GPIOE,6,High);//LCD подсветка
@@ -33,6 +34,8 @@ int main(void)
 	GPIO_DO_setup(GPIOA,3,High);//Реле 2
 	GPIO_DO_setup(GPIOA,5,High);//Реле 3
 	GPIO_DO_setup(GPIOA,7,High);//Реле 4	
+	
+	GPIO_DO_setup(GPIOA,0,High);//Светодиод	
 	
 	
 	GPIO_DO_setup(TOUCH_IRQ_GPIO,TOUCH_IRQ_PIN,High);// TOUCH_IRQ
@@ -115,7 +118,8 @@ Screen_update=1;
 			Button_init[1].button_update=1;
 			Button_init[2].button_update=1;
 			Button_init[3].button_update=1;
-			Button_init[4].button_update=1;
+			
+			Valve_init[0].Valve_update = 1;
 			
 	Screen_update = 0;
 	}
@@ -135,11 +139,7 @@ Screen_update=1;
 		push_trip_main=1;
 		scan_push_back_front=0;
 		
-		TFT_Scan_press_Button(0);
-		TFT_Scan_press_Button(1);
-		TFT_Scan_press_Button(2);
-		TFT_Scan_press_Button(3);
-		TFT_Scan_press_Button(4);
+		TFT_Scan_press_Valve(0);
 		if (Ctrl_Console_init[0].Ctrl_console_visible) TFT_Scan_press_Ctrl_Console(0);
 		
 		
@@ -151,7 +151,10 @@ Screen_update=1;
 	if (TOUCH_Press) //Scan press with out delay
 	{	 
 		__NOP();
-		
+		TFT_Scan_press_Button_with_delay(0,100);	
+		TFT_Scan_press_Button_with_delay(1,100);
+		TFT_Scan_press_Button_with_delay(2,100);
+		TFT_Scan_press_Button_with_delay(3,100);
 	
 	}
 
@@ -256,24 +259,29 @@ if (DI7) TFT_Status_LED (7,2); else TFT_Status_LED(7,1);
 //----------------------------------------------------------
 
 //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-//Valve BEGIN
-TFT_Valve_H(0,1);
-TFT_Valve_H(1,2);
-TFT_Valve_V(2,1);
-TFT_Valve_V(3,2);
+//Valve Draw BEGIN
+
+if (Valve_init[0].Valve_update)
+		{	Valve_init[0].Valve_update=0;
+			if (Ctrl_Console_init[0].Ctrl_console_output_enable)	TFT_Valve_Draw(0,2); else	TFT_Valve_Draw(0,1);
+		}
+
+//TFT_Valve_Draw(1,2);
+//TFT_Valve_Draw(2,1);
+//TFT_Valve_Draw(3,2);
 
 
 
-//Valve END
+//Valve Draw END
 //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
 //----------------------------------------------------------
 
-//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-//Action touch BEGIN
+		//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+//Button Draw BEGIN
 
-if (Button_init[0].button_update) 
-		{Button_init[0].button_update=0;
+if (Button_init[0].button_update)
+		{	Button_init[0].button_update=0;
 			if (Button_init[0].button_State == 0) {TFT_Button_Draw(0,0); GPIOA->BSRR = 1<<(1+16);}
 			if (Button_init[0].button_State == 1) {TFT_Button_Draw(0,1); GPIOA->BSRR = 1<<(1);}
 		}
@@ -296,16 +304,56 @@ if (Button_init[3].button_update)
 			if (Button_init[3].button_State == 1) {TFT_Button_Draw(3,1); GPIOA->BSRR = 1<<(7);}
 		}
 
-if (Button_init[4].button_update) 
-		{	Button_init[4].button_update=0;
-			if (Ctrl_Console_init[0].Ctrl_console_output_enable)	TFT_Button_Draw(4,1); else	TFT_Button_Draw(4,0);
-			if (Button_init[4].button_State == 1)	{Ctrl_Console_init[0].Ctrl_console_visible=1; Ctrl_Console_init[0].Ctrl_console_update=1; Button_init[4].button_State = 0;}
+//Button Draw END
+//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+//----------------------------------------------------------
+		
+		
+		
+		
+		
+		
+		
+//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+//Action touch BEGIN
+if (Button_init[0].button_press)
+		{		Button_init[0].button_press=0;
+				Button_init[0].button_update=1;	
+				if (Button_init[0].button_State) Button_init[0].button_State = 0; else Button_init[0].button_State =1; 
 		}
+
+if (Button_init[1].button_press)
+		{		Button_init[1].button_press=0;
+				Button_init[1].button_update=1;	
+				if (Button_init[1].button_State) Button_init[1].button_State = 0; else Button_init[1].button_State =1; 
+		}
+		
+if (Button_init[2].button_press)
+		{		Button_init[2].button_press=0;
+				Button_init[2].button_update=1;	
+				if (Button_init[2].button_State) Button_init[2].button_State = 0; else Button_init[2].button_State =1; 
+		}
+		
+if (Button_init[3].button_press)
+		{		Button_init[3].button_press=0;
+				Button_init[3].button_update=1;	
+				if (Button_init[3].button_State) Button_init[3].button_State = 0; else Button_init[3].button_State =1; 
+		}		
+
+
+if (Valve_init[0].Valve_Press) 
+		{	Valve_init[0].Valve_Press=0; 
+			Valve_init[0].Valve_update=1;
+			Ctrl_Console_init[0].Ctrl_console_visible=1; Ctrl_Console_init[0].Ctrl_console_update=1;
+		}
+		
 if (Ctrl_Console_init[0].Ctrl_console_visible && Ctrl_Console_init[0].Ctrl_console_update) 
 		{	TFT_Ctrl_Console_Draw(0);
-			Button_init[4].button_update=1;		
-		
+			Valve_init[0].Valve_update=1;
 		}
+		
+
 //Action touch END
 //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
@@ -315,6 +363,7 @@ if (Ctrl_Console_init[0].Ctrl_console_visible && Ctrl_Console_init[0].Ctrl_conso
 //Programm BEGIN
 temperature = DS18B20_read_temperatur(USART_def);
 		
+//GPIOA->BSRR = 1<<0;		
 //Program END
 //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
