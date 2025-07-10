@@ -5,7 +5,7 @@
 <h2>Tool Versions:</h2>
 IDE-Version: µVision V5.42.0.0
 Copyright (C) 2025 ARM Ltd and ARM Germany GmbH. All rights reserved.
-License Information: Serj Khilk, Beer, LIC=MPPLD-88035-FWL2N-YX52R-BTK51-S13PN
+License Information: Sergey Sergey, Home, LIC=BUURY-IT3D7-ARHXW-Q3CLD-7XGRR-AEUX8
  
 Tool Versions:
 Toolchain:       MDK-ARM Plus  Version: 5.42.0.0
@@ -21,12 +21,25 @@ Target DLL:      STLink\ST-LINKIII-KEIL_SWO.dll V3.0.5.0
 Dialog DLL:      TCM.DLL V1.56.6.0
  
 <h2>Project:</h2>
-E:\STM32\Project\Git_STM32\Keil\TFT_Board_407\TFT_Board_407.uvprojx
+F:\STM32\Project\Git_STM32\F411\STM32\Keil\TFT_Board_407\TFT_Board_407.uvprojx
 Project File Date:  06/05/2025
 
 <h2>Output:</h2>
 *** Using Compiler 'V6.23', folder: 'C:\Keil_v5\ARM\ARMCLANG\Bin'
 Build target 'Target 1'
+compiling Font_table.c...
+compiling FSMC.c...
+compiling Core_init.c...
+compiling GPIO_setup.c...
+compiling Delay.c...
+compiling DMA.c...
+compiling Timer.c...
+compiling USART.c...
+compiling SCADA_init.c...
+compiling DS18B20.c...
+compiling One_Wire.c...
+compiling I2C.c...
+compiling GT911.c...
 main.c(6): warning: unused variable 'temp32' [-Wunused-variable]
     6 | static uint32_t temp32=0;
       |                 ^~~~~~
@@ -35,6 +48,10 @@ main.c(8): warning: unused variable 'temp8' [-Wunused-variable]
       |                ^~~~~
 2 warnings generated.
 compiling main.c...
+compiling SSD1963.c...
+compiling system_stm32f4xx.c...
+compiling Graph.c...
+compiling img.c...
 linking...
 Program Size: Code=18274 RO-data=202650 RW-data=4 ZI-data=10132  
 ".\Objects\TFT_Board_407.axf" - 0 Error(s), 2 Warning(s).
@@ -60,20 +77,20 @@ Package Vendor: Keil
 
 <h2>Collection of Component include folders:</h2>
   ./RTE/_Target_1
-  C:/Users/Khilk/AppData/Local/Arm/Packs/ARM/CMSIS/6.1.0/CMSIS/Core/Include
-  C:/Users/Khilk/AppData/Local/Arm/Packs/Keil/STM32F4xx_DFP/2.17.0/Drivers/CMSIS/Device/ST/STM32F4xx/Include
+  C:/Users/dasha/AppData/Local/Arm/Packs/ARM/CMSIS/6.1.0/CMSIS/Core/Include
+  C:/Users/dasha/AppData/Local/Arm/Packs/Keil/STM32F4xx_DFP/2.17.0/Drivers/CMSIS/Device/ST/STM32F4xx/Include
 
 <h2>Collection of Component Files used:</h2>
 
    * Component: ARM::CMSIS:CORE@6.1.0
 
    * Component: Keil::Device:Startup@2.6.3
-      Source file:   MDK/Device/Source/ARM/STM32F40xxx_41xxx_OPT.s
+      Source file:   Drivers/CMSIS/Device/ST/STM32F4xx/Source/Templates/arm/startup_stm32f407xx.s
       Source file:   MDK/Device/Source/ARM/STM32F4xx_OTP.s
       Include file:  Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h
-      Source file:   Drivers/CMSIS/Device/ST/STM32F4xx/Source/Templates/arm/startup_stm32f407xx.s
+      Source file:   MDK/Device/Source/ARM/STM32F40xxx_41xxx_OPT.s
       Source file:   Drivers/CMSIS/Device/ST/STM32F4xx/Source/Templates/system_stm32f4xx.c
-Build Time Elapsed:  00:00:00
+Build Time Elapsed:  00:00:02
 </pre>
 </body>
 </html>
