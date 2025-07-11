@@ -2367,28 +2367,28 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   Object Name
 
-       242         12          0          0          0       3262   core_init.o
-       106         20          0          0          4       2484   delay.o
-       108          8          0          0          0       3581   dma.o
-       432         32          0          0          4       5544   ds18b20.o
-         0          0       5120          0          0        757   font_table.o
-        76         16          0          0          0       1797   fsmc.o
-       156          0          0          0          0       1980   gpio_setup.o
-      4618        132         22          0       8082      12354   graph.o
-       692        100          0          0         32       7923   gt911.o
-       280         16          0          0          1       3589   i2c.o
-         0          0     196800          0          0        622   img.o
-      2238        284         50          0        314       4243   main.o
-        64         16          0          0          0       5433   one_wire.o
-       852        140          0          0          0       1544   scada_init.o
-      1864         28          0          0          0      13368   ssd1963.o
+       242         12          0          0          0       3251   core_init.o
+       106         20          0          0          4       2473   delay.o
+       108          8          0          0          0       3570   dma.o
+       432         32          0          0          4       5533   ds18b20.o
+         0          0       5120          0          0        746   font_table.o
+        76         16          0          0          0       1786   fsmc.o
+       156          0          0          0          0       1969   gpio_setup.o
+      4618        132         22          0       8082      12343   graph.o
+       692        100          0          0         32       7912   gt911.o
+       280         16          0          0          1       3578   i2c.o
+         0          0     196800          0          0        611   img.o
+      2238        284         50          0        314       4232   main.o
+        64         16          0          0          0       5422   one_wire.o
+       852        140          0          0          0       1533   scada_init.o
+      1864         28          0          0          0      13357   ssd1963.o
         64         26        392          0       1536        904   startup_stm32f407xx.o
-        16          4          0          0          0       2908   system_stm32f4xx.o
-       478         40          0          4         48       3991   timer.o
-       186         16          0          0          1       2951   usart.o
+        16          4          0          0          0       2897   system_stm32f4xx.o
+       478         40          0          4         48       3980   timer.o
+       186         16          0          0          1       2940   usart.o
 
     ----------------------------------------------------------------------
-     12492        894     202416          4      10036      79235   Object Totals
+     12492        894     202416          4      10036      79037   Object Totals
          0          0         32          0          0          0   (incl. Generated)
         20          4          0          0         14          0   (incl. Padding)
 
@@ -2472,8 +2472,8 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   
 
-     18274       1128     202650          4      10132      80739   Grand Totals
-     18274       1128     202650          4      10132      80739   ELF Image Totals
+     18274       1128     202650          4      10132      80541   Grand Totals
+     18274       1128     202650          4      10132      80541   ELF Image Totals
      18274       1128     202650          4          0          0   ROM Totals
 
 ==============================================================================
