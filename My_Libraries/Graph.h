@@ -93,6 +93,7 @@ void TFT_Scan_press_Ctrl_Console (uint16_t number);
 void TFT_Status_LED (uint16_t number, uint16_t state);
 void TFT_Valve_Draw (uint16_t number, uint16_t state);
 void TFT_Scan_press_Valve (uint16_t number);
+void TFT_Numpad (void);
 
 
 

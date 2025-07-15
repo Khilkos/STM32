@@ -113,13 +113,15 @@ Screen_update=1;
 		
 	if (Screen_update)
 	{		SSD1963_ClearScreen(0xff);
-			TFT_Draw_image(10,200,320,240,&img);
+		//	TFT_Draw_image(10,200,320,240,&img);
 			Button_init[0].button_update=1;
 			Button_init[1].button_update=1;
 			Button_init[2].button_update=1;
 			Button_init[3].button_update=1;
 			
 			Valve_init[0].Valve_update = 1;
+		
+			TFT_Numpad();
 			
 	Screen_update = 0;
 	}
