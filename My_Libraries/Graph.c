@@ -717,7 +717,7 @@ if ((GT911Touch[0].XCoordinate>X && GT911Touch[0].XCoordinate<(X+lenght) && GT91
 
 //=========================================================================
 
-void TFT_Numpad (void)
+void TFT_Numpad_Draw (void)
 {
 uint16_t Numpad_X, Numpad_Y, Numpad_lenght, Numpad_height;	
 uint16_t X0, Y0, rect, lenght, height, frame_size, light_color, dark_color, color;

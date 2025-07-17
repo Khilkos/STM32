@@ -121,7 +121,7 @@ Screen_update=1;
 			
 			Valve_init[0].Valve_update = 1;
 		
-			TFT_Numpad();
+			TFT_Numpad_Draw();
 			
 	Screen_update = 0;
 	}
