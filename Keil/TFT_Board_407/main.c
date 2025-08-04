@@ -363,7 +363,7 @@ if (Ctrl_Console_init[0].Ctrl_console_visible && Ctrl_Console_init[0].Ctrl_conso
 
 //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>		
 //Programm BEGIN
-temperature = DS18B20_read_temperatur(USART_def);
+//temperature = DS18B20_read_temperatur(USART_def);
 		
 //GPIOA->BSRR = 1<<0;		
 //Program END
