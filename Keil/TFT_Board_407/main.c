@@ -103,7 +103,7 @@ SCADA_init();
 
 
 Screen_update=1;
-
+	Numpad_init[0].Numpad_Active=0;
 
 	while (1)
 	{
@@ -120,9 +120,7 @@ Screen_update=1;
 			Button_init[3].button_update=1;
 			
 			Valve_init[0].Valve_update = 1;
-		
-			TFT_Numpad_Draw();
-			
+	
 	Screen_update = 0;
 	}
 //Screen update END
@@ -149,7 +147,9 @@ Screen_update=1;
 		else { if(push_trip_main && !TIM1_Delay_4) {scan_push_back_front =1; push_trip_main=0;}}
 
 		
-	
+		TFT_Numpad(0);
+	Numpad_init[0].Numpad_Active=1;
+		
 	if (TOUCH_Press) //Scan press with out delay
 	{	 
 		__NOP();
@@ -157,6 +157,7 @@ Screen_update=1;
 		TFT_Scan_press_Button_with_delay(1,100);
 		TFT_Scan_press_Button_with_delay(2,100);
 		TFT_Scan_press_Button_with_delay(3,100);
+		
 	
 	}
 
@@ -252,7 +253,7 @@ if (DI3) TFT_Status_LED (3,2); else TFT_Status_LED(3,1);
 if (DI4) TFT_Status_LED (4,2); else TFT_Status_LED(4,1); 	
 if (DI5) TFT_Status_LED (5,2); else TFT_Status_LED(5,1); 	
 if (DI6) TFT_Status_LED (6,2); else TFT_Status_LED(6,1); 	
-if (DI7) TFT_Status_LED (7,2); else TFT_Status_LED(7,1); 	
+if (Numpad_init[0].Numpad_0_key_press) TFT_Status_LED (7,2); else TFT_Status_LED(7,1); 	
 
 
 //Status LED END

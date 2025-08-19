@@ -78,8 +78,8 @@ struct Numpad_struct
 {
 uint16_t Numpad_X0;
 uint16_t Numpad_Y0;
-_Bool Numpad_Press;
-uint16_t Numpad_Delay;
+_Bool Numpad_Active;
+_Bool Numpad_New;	
 _Bool Numpad_0_key_press;
 _Bool Numpad_1_key_press;	
 _Bool Numpad_2_key_press;	
@@ -94,6 +94,36 @@ _Bool Numpad_Dot_key_press;
 _Bool Numpad_Back_key_press;	
 _Bool Numpad_Esc_key_press;	
 _Bool Numpad_Enter_key_press;
+	
+_Bool Numpad_0_key_update;
+_Bool Numpad_1_key_update;	
+_Bool Numpad_2_key_update;	
+_Bool Numpad_3_key_update;
+_Bool Numpad_4_key_update;	
+_Bool Numpad_5_key_update;	
+_Bool Numpad_6_key_update;	
+_Bool Numpad_7_key_update;	
+_Bool Numpad_8_key_update;	
+_Bool Numpad_9_key_update;	
+_Bool Numpad_Dot_key_update;
+_Bool Numpad_Back_key_update;	
+_Bool Numpad_Esc_key_update;	
+_Bool Numpad_Enter_key_update;	
+
+uint16_t Numpad_0_key_delay;
+uint16_t Numpad_1_key_delay;	
+uint16_t Numpad_2_key_delay;	
+uint16_t Numpad_3_key_delay;
+uint16_t Numpad_4_key_delay;	
+uint16_t Numpad_5_key_delay;	
+uint16_t Numpad_6_key_delay;	
+uint16_t Numpad_7_key_delay;	
+uint16_t Numpad_8_key_delay;	
+uint16_t Numpad_9_key_delay;	
+uint16_t Numpad_Dot_key_delay;
+uint16_t Numpad_Back_key_delay;	
+uint16_t Numpad_Esc_key_delay;	
+uint16_t Numpad_Enter_key_delay;
 	
 };
 
@@ -115,8 +145,8 @@ void TFT_Scan_press_Ctrl_Console (uint16_t number);
 void TFT_Status_LED (uint16_t number, uint16_t state);
 void TFT_Valve_Draw (uint16_t number, uint16_t state);
 void TFT_Scan_press_Valve (uint16_t number);
-void TFT_Numpad_Draw (void);
-
+void TFT_Numpad (uint16_t number);
+void TFT_Scan_Numpad (uint16_t number);
 
 
 
