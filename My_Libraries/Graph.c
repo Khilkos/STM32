@@ -4,7 +4,7 @@ struct Button_struct Button_init[20];
 struct Ctrl_Console_struct Ctrl_Console_init[20];
 struct Status_LED_struct Status_LED_init[60];
 struct Valve_struct Valve_init[30];
-struct Numpad_struct Numpad_init[30];
+struct Numpad_struct Numpad_init[1];
 
 volatile _Bool Screen_update=0;
 volatile static _Bool Push_trip=0; 
@@ -718,17 +718,28 @@ if ((GT911Touch[0].XCoordinate>X && GT911Touch[0].XCoordinate<(X+lenght) && GT91
 
 //=========================================================================
 
-void TFT_Numpad (uint16_t number)
+void TFT_Numpad (void)
 {
+uint16_t number=0;
 uint16_t Numpad_X, Numpad_Y, Numpad_lenght, Numpad_height;	
 uint16_t X0, Y0, rect, lenght, height, frame_size, light_color, dark_color, color;
 uint8_t String[30];	
-
+uint32_t Num_min;
+uint32_t Num_max; 
+uint32_t *Num_adres;
 
 	if (!Numpad_init[number].Numpad_Active) {Numpad_init[number].Numpad_New=1;} 
 	else 
 {		
+Num_max = Numpad_init[number].Num_max;
+Num_min = Numpad_init[number].Num_min;	
 	
+if (Numpad_init[number].Numpad_New)	
+	{	
+		Numpad_init[number].Num = *(Numpad_init[number].Value_adress);
+		if (Numpad_init[number].Num > Num_max) Numpad_init[number].Num=Num_min;
+	}
+
 //Scaning_BEGIN	
 uint16_t key_delay=20;
 	X0=Numpad_init[number].Numpad_X0 = 10;
@@ -751,6 +762,7 @@ uint16_t key_delay=20;
 											Numpad_init[number].Numpad_0_key_press=1;
 											Numpad_init[number].Numpad_0_key_delay=key_delay;
 											Numpad_init[number].Numpad_0_key_update=1;
+											if ((Numpad_init[number].Num*10+0) <= Num_max)	{Numpad_init[number].Num = Numpad_init[number].Num*10 + 0;}
 										}
 							}
 						
@@ -767,6 +779,7 @@ uint16_t key_delay=20;
 											Numpad_init[number].Numpad_1_key_press=1;
 											Numpad_init[number].Numpad_1_key_delay=key_delay;
 											Numpad_init[number].Numpad_1_key_update=1;
+											if ((Numpad_init[number].Num*10+1) <= Num_max)	{Numpad_init[number].Num = Numpad_init[number].Num*10 + 1;}
 										}
 							}	
 					// button 2
@@ -782,6 +795,7 @@ uint16_t key_delay=20;
 											Numpad_init[number].Numpad_2_key_press=1;
 											Numpad_init[number].Numpad_2_key_delay=key_delay;
 											Numpad_init[number].Numpad_2_key_update=1;
+											if ((Numpad_init[number].Num*10+2) <= Num_max)	{Numpad_init[number].Num = Numpad_init[number].Num*10 + 2;}
 										}
 							}
 					// button 3
@@ -797,6 +811,7 @@ uint16_t key_delay=20;
 											Numpad_init[number].Numpad_3_key_press=1;
 											Numpad_init[number].Numpad_3_key_delay=key_delay;
 											Numpad_init[number].Numpad_3_key_update=1;
+											if ((Numpad_init[number].Num*10+3) <= Num_max)	{Numpad_init[number].Num = Numpad_init[number].Num*10 + 3;}
 										}
 							}								
 					// button 4
@@ -812,6 +827,7 @@ uint16_t key_delay=20;
 											Numpad_init[number].Numpad_4_key_press=1;
 											Numpad_init[number].Numpad_4_key_delay=key_delay;
 											Numpad_init[number].Numpad_4_key_update=1;
+											if ((Numpad_init[number].Num*10+4) <= Num_max)	{Numpad_init[number].Num = Numpad_init[number].Num*10 + 4;}
 										}
 							}	
 					// button 5
@@ -827,6 +843,7 @@ uint16_t key_delay=20;
 											Numpad_init[number].Numpad_5_key_press=1;
 											Numpad_init[number].Numpad_5_key_delay=key_delay;
 											Numpad_init[number].Numpad_5_key_update=1;
+											if ((Numpad_init[number].Num*10+5) <= Num_max)	{Numpad_init[number].Num = Numpad_init[number].Num*10 + 5;}
 										}
 							}	
 					// button 6
@@ -842,6 +859,7 @@ uint16_t key_delay=20;
 											Numpad_init[number].Numpad_6_key_press=1;
 											Numpad_init[number].Numpad_6_key_delay=key_delay;
 											Numpad_init[number].Numpad_6_key_update=1;
+											if ((Numpad_init[number].Num*10+6) <= Num_max)	{Numpad_init[number].Num = Numpad_init[number].Num*10 + 6;}
 										}
 							}	
 					// button 7
@@ -857,7 +875,7 @@ uint16_t key_delay=20;
 											Numpad_init[number].Numpad_7_key_press=1;
 											Numpad_init[number].Numpad_7_key_delay=key_delay;
 											Numpad_init[number].Numpad_7_key_update=1;
-											
+											if ((Numpad_init[number].Num*10+7) <= Num_max)	{Numpad_init[number].Num = Numpad_init[number].Num*10 + 7;}
 										}	
 							}
 					// button 8
@@ -873,6 +891,7 @@ uint16_t key_delay=20;
 											Numpad_init[number].Numpad_8_key_press=1;
 											Numpad_init[number].Numpad_8_key_delay=key_delay;
 											Numpad_init[number].Numpad_8_key_update=1;
+											if ((Numpad_init[number].Num*10+8) <= Num_max)	{Numpad_init[number].Num = Numpad_init[number].Num*10 + 8;}
 										}
 							}	
 					// button 9
@@ -888,10 +907,83 @@ uint16_t key_delay=20;
 											Numpad_init[number].Numpad_9_key_press=1;
 											Numpad_init[number].Numpad_9_key_delay=key_delay;
 											Numpad_init[number].Numpad_9_key_update=1;
+											if ((Numpad_init[number].Num*10+9) <= Num_max)	{Numpad_init[number].Num = Numpad_init[number].Num*10 + 9;}
 										}
 							}	
-						//next_button	
-													
+					// button Dot
+					X0=Numpad_init[number].Numpad_X0+10+45*1;
+					Y0=Numpad_init[number].Numpad_Y0+40+45*3;
+					lenght=40;
+					height=40;
+			
+						if ((GT911Touch[0].XCoordinate>X0 && GT911Touch[0].XCoordinate<(X0+lenght) && GT911Touch[0].YCoordinate>Y0 && GT911Touch[0].YCoordinate<(Y0+height)))
+							{
+									if (!Numpad_init[number].Numpad_Dot_key_delay)
+										{
+											Numpad_init[number].Numpad_Dot_key_press=1;
+											Numpad_init[number].Numpad_Dot_key_delay=key_delay;
+											Numpad_init[number].Numpad_Dot_key_update=1;
+										}
+							}	
+					// button Back
+					X0=Numpad_init[number].Numpad_X0+10+45*2;
+					Y0=Numpad_init[number].Numpad_Y0+40+45*3;
+					lenght=40;
+					height=40;
+			
+						if ((GT911Touch[0].XCoordinate>X0 && GT911Touch[0].XCoordinate<(X0+lenght) && GT911Touch[0].YCoordinate>Y0 && GT911Touch[0].YCoordinate<(Y0+height)))
+							{
+									if (!Numpad_init[number].Numpad_Back_key_delay)
+										{
+											Numpad_init[number].Numpad_Back_key_press=1;
+											Numpad_init[number].Numpad_Back_key_delay=key_delay;
+											Numpad_init[number].Numpad_Back_key_update=1;
+											if ((Numpad_init[number].Num/10) >= Num_min)	{Numpad_init[number].Num = Numpad_init[number].Num/10;}
+										}
+							}
+					// button Clr
+					X0=Numpad_init[number].Numpad_X0+10+45*3;
+					Y0=Numpad_init[number].Numpad_Y0+40+45*0;
+					lenght=40;
+					height=40;
+			
+						if ((GT911Touch[0].XCoordinate>X0 && GT911Touch[0].XCoordinate<(X0+lenght) && GT911Touch[0].YCoordinate>Y0 && GT911Touch[0].YCoordinate<(Y0+height)))
+							{
+									if (!Numpad_init[number].Numpad_Clr_key_delay)
+										{
+											Numpad_init[number].Numpad_Clr_key_press=1;
+											Numpad_init[number].Numpad_Clr_key_delay=key_delay;
+											Numpad_init[number].Numpad_Clr_key_update=1;
+											Numpad_init[number].Num=0;
+										}
+							}	
+					// button Enter
+					X0=Numpad_init[number].Numpad_X0+10+45*3;
+					Y0=Numpad_init[number].Numpad_Y0+40+45*1;
+					lenght=40;
+					height=130;
+			
+						if ((GT911Touch[0].XCoordinate>X0 && GT911Touch[0].XCoordinate<(X0+lenght) && GT911Touch[0].YCoordinate>Y0 && GT911Touch[0].YCoordinate<(Y0+height)))
+							{
+									if (!Numpad_init[number].Numpad_Enter_key_delay)
+										{
+											Numpad_init[number].Numpad_Enter_key_press=1;
+											Numpad_init[number].Numpad_Enter_key_delay=key_delay;
+											Numpad_init[number].Numpad_Enter_key_update=1;
+											*Numpad_init[number].Value_adress = Numpad_init[number].Num;
+										}
+							}	
+	//Close_button	
+					X0=Numpad_init[number].Numpad_X0+160;
+					Y0=Numpad_init[number].Numpad_Y0+2;
+					lenght=25;
+					height=25;
+			
+						if ((GT911Touch[0].XCoordinate>X0 && GT911Touch[0].XCoordinate<(X0+lenght) && GT911Touch[0].YCoordinate>Y0 && GT911Touch[0].YCoordinate<(Y0+height)))		
+						{
+							Numpad_init[number].Numpad_Active = 0;
+							Screen_update=1;
+						}
 							
 				}
 			else
@@ -955,6 +1047,30 @@ uint16_t key_delay=20;
 							{
 								Numpad_init[number].Numpad_9_key_press=0;
 								Numpad_init[number].Numpad_9_key_update=1;
+							}
+				// button Dot
+						if (Numpad_init[number].Numpad_Dot_key_press && !Numpad_init[number].Numpad_Dot_key_delay)
+							{
+								Numpad_init[number].Numpad_Dot_key_press=0;
+								Numpad_init[number].Numpad_Dot_key_update=1;
+							}
+				// button Back
+						if (Numpad_init[number].Numpad_Back_key_press && !Numpad_init[number].Numpad_Back_key_delay)
+							{
+								Numpad_init[number].Numpad_Back_key_press=0;
+								Numpad_init[number].Numpad_Back_key_update=1;
+							}
+				// button Esc
+						if (Numpad_init[number].Numpad_Clr_key_press && !Numpad_init[number].Numpad_Clr_key_delay)
+							{
+								Numpad_init[number].Numpad_Clr_key_press=0;
+								Numpad_init[number].Numpad_Clr_key_update=1;
+							}
+				// button Enter
+						if (Numpad_init[number].Numpad_Enter_key_press && !Numpad_init[number].Numpad_Enter_key_delay)
+							{
+								Numpad_init[number].Numpad_Enter_key_press=0;
+								Numpad_init[number].Numpad_Enter_key_update=1;
 							}
 				//next_button			
 							
@@ -1053,6 +1169,7 @@ if (Numpad_init[number].Numpad_New || Numpad_init[number].Numpad_7_key_update)
 //кнопка 8
 if (Numpad_init[number].Numpad_New || Numpad_init[number].Numpad_8_key_update)
 	{
+		Numpad_init[number].Numpad_8_key_update=0;
 		X0=Numpad_X+10+45;
 		Y0=Numpad_Y+40;
 		rect=2;
@@ -1081,6 +1198,7 @@ if (Numpad_init[number].Numpad_New || Numpad_init[number].Numpad_8_key_update)
 //кнопка 9
 if (Numpad_init[number].Numpad_New || Numpad_init[number].Numpad_9_key_update)
 	{
+		Numpad_init[number].Numpad_9_key_update=0;
 		X0=Numpad_X+10+45*2;
 		Y0=Numpad_Y+40;
 		rect=2;
@@ -1109,6 +1227,7 @@ if (Numpad_init[number].Numpad_New || Numpad_init[number].Numpad_9_key_update)
 //кнопка 4
 if (Numpad_init[number].Numpad_New || Numpad_init[number].Numpad_4_key_update)	
 	{
+		Numpad_init[number].Numpad_4_key_update=0;
 		X0=Numpad_X+10+45*0;
 		Y0=Numpad_Y+40+45;
 		rect=2;
@@ -1135,275 +1254,304 @@ if (Numpad_init[number].Numpad_New || Numpad_init[number].Numpad_4_key_update)
 //---------------------------------------------------------------
 
 //кнопка 5
-	if (Numpad_init[number].Numpad_New || Numpad_init[number].Numpad_5_key_update)	
+if (Numpad_init[number].Numpad_New || Numpad_init[number].Numpad_5_key_update)	
 	{
-X0=Numpad_X+10+45*1;
-Y0=Numpad_Y+40+45*1;
-rect=2;
-lenght=40;
-height=40;
-frame_size=2;
-light_color=0xc5f8;
-dark_color=0x1062;	
+		Numpad_init[number].Numpad_5_key_update=0;
+		X0=Numpad_X+10+45*1;
+		Y0=Numpad_Y+40+45*1;
+		rect=2;
+		lenght=40;
+		height=40;
+		frame_size=2;
+		light_color=0xc5f8;
+		dark_color=0x1062;	
 		if (Numpad_init[number].Numpad_5_key_press)	color=0x2104; else color=0x5aeb;	//цвет кнопки
 
-TFT_Draw_Circle_Helper(X0+rect,Y0+rect,rect,1,frame_size,light_color);
-TFT_Draw_Circle_Helper(X0+lenght-rect-frame_size,Y0+rect,rect,2,frame_size,dark_color);
-TFT_Draw_Circle_Helper(X0+rect,Y0+height-rect-frame_size,rect,8,frame_size,dark_color);
-TFT_Draw_Circle_Helper(X0+lenght-rect-frame_size,Y0+height-rect-frame_size,rect,4,frame_size,dark_color);
-TFT_Draw_HLine(X0+rect,Y0,lenght-2*rect,frame_size,light_color);
-TFT_Draw_HLine(X0+rect,Y0+height-frame_size,lenght-2*rect,frame_size,dark_color);
-TFT_Draw_VLine(X0,Y0+rect,height-2*rect,frame_size,light_color);
-TFT_Draw_VLine(X0+lenght-frame_size,Y0+rect,height-2*rect,frame_size,dark_color);
-TFT_Draw_Fill_Round_Rect(X0+frame_size,Y0+frame_size,lenght-frame_size*2,height-frame_size*2,rect,color);
+		TFT_Draw_Circle_Helper(X0+rect,Y0+rect,rect,1,frame_size,light_color);
+		TFT_Draw_Circle_Helper(X0+lenght-rect-frame_size,Y0+rect,rect,2,frame_size,dark_color);
+		TFT_Draw_Circle_Helper(X0+rect,Y0+height-rect-frame_size,rect,8,frame_size,dark_color);
+		TFT_Draw_Circle_Helper(X0+lenght-rect-frame_size,Y0+height-rect-frame_size,rect,4,frame_size,dark_color);
+		TFT_Draw_HLine(X0+rect,Y0,lenght-2*rect,frame_size,light_color);
+		TFT_Draw_HLine(X0+rect,Y0+height-frame_size,lenght-2*rect,frame_size,dark_color);
+		TFT_Draw_VLine(X0,Y0+rect,height-2*rect,frame_size,light_color);
+		TFT_Draw_VLine(X0+lenght-frame_size,Y0+rect,height-2*rect,frame_size,dark_color);
+		TFT_Draw_Fill_Round_Rect(X0+frame_size,Y0+frame_size,lenght-frame_size*2,height-frame_size*2,rect,color);
 
-sprintf(String,"5");
-TFT_Draw_string_font_10x16(X0+12, Y0+10, String, light_color);
-}
+		sprintf(String,"5");
+		TFT_Draw_string_font_10x16(X0+12, Y0+10, String, light_color);
+	}
 //---------------------------------------------------------------
 
 //кнопка 6
 if (Numpad_init[number].Numpad_New || Numpad_init[number].Numpad_6_key_update)	
 	{
-X0=Numpad_X+10+45*2;
-Y0=Numpad_Y+40+45*1;
-rect=2;
-lenght=40;
-height=40;
-frame_size=2;
-light_color=0xc5f8;
-dark_color=0x1062;	
+		Numpad_init[number].Numpad_6_key_update=0;
+		X0=Numpad_X+10+45*2;
+		Y0=Numpad_Y+40+45*1;
+		rect=2;
+		lenght=40;
+		height=40;
+		frame_size=2;
+		light_color=0xc5f8;
+		dark_color=0x1062;	
 		if (Numpad_init[number].Numpad_6_key_press)	color=0x2104; else color=0x5aeb;	//цвет кнопки
 
-TFT_Draw_Circle_Helper(X0+rect,Y0+rect,rect,1,frame_size,light_color);
-TFT_Draw_Circle_Helper(X0+lenght-rect-frame_size,Y0+rect,rect,2,frame_size,dark_color);
-TFT_Draw_Circle_Helper(X0+rect,Y0+height-rect-frame_size,rect,8,frame_size,dark_color);
-TFT_Draw_Circle_Helper(X0+lenght-rect-frame_size,Y0+height-rect-frame_size,rect,4,frame_size,dark_color);
-TFT_Draw_HLine(X0+rect,Y0,lenght-2*rect,frame_size,light_color);
-TFT_Draw_HLine(X0+rect,Y0+height-frame_size,lenght-2*rect,frame_size,dark_color);
-TFT_Draw_VLine(X0,Y0+rect,height-2*rect,frame_size,light_color);
-TFT_Draw_VLine(X0+lenght-frame_size,Y0+rect,height-2*rect,frame_size,dark_color);
-TFT_Draw_Fill_Round_Rect(X0+frame_size,Y0+frame_size,lenght-frame_size*2,height-frame_size*2,rect,color);
+		TFT_Draw_Circle_Helper(X0+rect,Y0+rect,rect,1,frame_size,light_color);
+		TFT_Draw_Circle_Helper(X0+lenght-rect-frame_size,Y0+rect,rect,2,frame_size,dark_color);
+		TFT_Draw_Circle_Helper(X0+rect,Y0+height-rect-frame_size,rect,8,frame_size,dark_color);
+		TFT_Draw_Circle_Helper(X0+lenght-rect-frame_size,Y0+height-rect-frame_size,rect,4,frame_size,dark_color);
+		TFT_Draw_HLine(X0+rect,Y0,lenght-2*rect,frame_size,light_color);
+		TFT_Draw_HLine(X0+rect,Y0+height-frame_size,lenght-2*rect,frame_size,dark_color);
+		TFT_Draw_VLine(X0,Y0+rect,height-2*rect,frame_size,light_color);
+		TFT_Draw_VLine(X0+lenght-frame_size,Y0+rect,height-2*rect,frame_size,dark_color);
+		TFT_Draw_Fill_Round_Rect(X0+frame_size,Y0+frame_size,lenght-frame_size*2,height-frame_size*2,rect,color);
 
-sprintf(String,"6");
-TFT_Draw_string_font_10x16(X0+12, Y0+10, String, light_color);
-}
+		sprintf(String,"6");
+		TFT_Draw_string_font_10x16(X0+12, Y0+10, String, light_color);
+	}
 //---------------------------------------------------------------
 
 //кнопка 1
 if (Numpad_init[number].Numpad_New || Numpad_init[number].Numpad_1_key_update)	
 	{
-X0=Numpad_X+10+45*0;
-Y0=Numpad_Y+40+45*2;
-rect=2;
-lenght=40;
-height=40;
-frame_size=2;
-light_color=0xc5f8;
-dark_color=0x1062;	
+		Numpad_init[number].Numpad_1_key_update=0;
+		X0=Numpad_X+10+45*0;
+		Y0=Numpad_Y+40+45*2;
+		rect=2;
+		lenght=40;
+		height=40;
+		frame_size=2;
+		light_color=0xc5f8;
+		dark_color=0x1062;	
 		if (Numpad_init[number].Numpad_1_key_press)	color=0x2104; else color=0x5aeb;	//цвет кнопки
 
-TFT_Draw_Circle_Helper(X0+rect,Y0+rect,rect,1,frame_size,light_color);
-TFT_Draw_Circle_Helper(X0+lenght-rect-frame_size,Y0+rect,rect,2,frame_size,dark_color);
-TFT_Draw_Circle_Helper(X0+rect,Y0+height-rect-frame_size,rect,8,frame_size,dark_color);
-TFT_Draw_Circle_Helper(X0+lenght-rect-frame_size,Y0+height-rect-frame_size,rect,4,frame_size,dark_color);
-TFT_Draw_HLine(X0+rect,Y0,lenght-2*rect,frame_size,light_color);
-TFT_Draw_HLine(X0+rect,Y0+height-frame_size,lenght-2*rect,frame_size,dark_color);
-TFT_Draw_VLine(X0,Y0+rect,height-2*rect,frame_size,light_color);
-TFT_Draw_VLine(X0+lenght-frame_size,Y0+rect,height-2*rect,frame_size,dark_color);
-TFT_Draw_Fill_Round_Rect(X0+frame_size,Y0+frame_size,lenght-frame_size*2,height-frame_size*2,rect,color);
+		TFT_Draw_Circle_Helper(X0+rect,Y0+rect,rect,1,frame_size,light_color);
+		TFT_Draw_Circle_Helper(X0+lenght-rect-frame_size,Y0+rect,rect,2,frame_size,dark_color);
+		TFT_Draw_Circle_Helper(X0+rect,Y0+height-rect-frame_size,rect,8,frame_size,dark_color);
+		TFT_Draw_Circle_Helper(X0+lenght-rect-frame_size,Y0+height-rect-frame_size,rect,4,frame_size,dark_color);
+		TFT_Draw_HLine(X0+rect,Y0,lenght-2*rect,frame_size,light_color);
+		TFT_Draw_HLine(X0+rect,Y0+height-frame_size,lenght-2*rect,frame_size,dark_color);
+		TFT_Draw_VLine(X0,Y0+rect,height-2*rect,frame_size,light_color);
+		TFT_Draw_VLine(X0+lenght-frame_size,Y0+rect,height-2*rect,frame_size,dark_color);
+		TFT_Draw_Fill_Round_Rect(X0+frame_size,Y0+frame_size,lenght-frame_size*2,height-frame_size*2,rect,color);
 
-sprintf(String,"1");
-TFT_Draw_string_font_10x16(X0+12, Y0+10, String, light_color);
-}
+		sprintf(String,"1");
+		TFT_Draw_string_font_10x16(X0+12, Y0+10, String, light_color);
+	}
 //---------------------------------------------------------------
 
 //кнопка 2
 if (Numpad_init[number].Numpad_New || Numpad_init[number].Numpad_2_key_update)	
 	{
-X0=Numpad_X+10+45*1;
-Y0=Numpad_Y+40+45*2;
-rect=2;
-lenght=40;
-height=40;
-frame_size=2;
-light_color=0xc5f8;
-dark_color=0x1062;	
+		Numpad_init[number].Numpad_2_key_update=0;
+		X0=Numpad_X+10+45*1;
+		Y0=Numpad_Y+40+45*2;
+		rect=2;
+		lenght=40;
+		height=40;
+		frame_size=2;
+		light_color=0xc5f8;
+		dark_color=0x1062;	
 		if (Numpad_init[number].Numpad_2_key_press)	color=0x2104; else color=0x5aeb;	//цвет кнопки
 
-TFT_Draw_Circle_Helper(X0+rect,Y0+rect,rect,1,frame_size,light_color);
-TFT_Draw_Circle_Helper(X0+lenght-rect-frame_size,Y0+rect,rect,2,frame_size,dark_color);
-TFT_Draw_Circle_Helper(X0+rect,Y0+height-rect-frame_size,rect,8,frame_size,dark_color);
-TFT_Draw_Circle_Helper(X0+lenght-rect-frame_size,Y0+height-rect-frame_size,rect,4,frame_size,dark_color);
-TFT_Draw_HLine(X0+rect,Y0,lenght-2*rect,frame_size,light_color);
-TFT_Draw_HLine(X0+rect,Y0+height-frame_size,lenght-2*rect,frame_size,dark_color);
-TFT_Draw_VLine(X0,Y0+rect,height-2*rect,frame_size,light_color);
-TFT_Draw_VLine(X0+lenght-frame_size,Y0+rect,height-2*rect,frame_size,dark_color);
-TFT_Draw_Fill_Round_Rect(X0+frame_size,Y0+frame_size,lenght-frame_size*2,height-frame_size*2,rect,color);
+		TFT_Draw_Circle_Helper(X0+rect,Y0+rect,rect,1,frame_size,light_color);
+		TFT_Draw_Circle_Helper(X0+lenght-rect-frame_size,Y0+rect,rect,2,frame_size,dark_color);
+		TFT_Draw_Circle_Helper(X0+rect,Y0+height-rect-frame_size,rect,8,frame_size,dark_color);
+		TFT_Draw_Circle_Helper(X0+lenght-rect-frame_size,Y0+height-rect-frame_size,rect,4,frame_size,dark_color);
+		TFT_Draw_HLine(X0+rect,Y0,lenght-2*rect,frame_size,light_color);
+		TFT_Draw_HLine(X0+rect,Y0+height-frame_size,lenght-2*rect,frame_size,dark_color);
+		TFT_Draw_VLine(X0,Y0+rect,height-2*rect,frame_size,light_color);
+		TFT_Draw_VLine(X0+lenght-frame_size,Y0+rect,height-2*rect,frame_size,dark_color);
+		TFT_Draw_Fill_Round_Rect(X0+frame_size,Y0+frame_size,lenght-frame_size*2,height-frame_size*2,rect,color);
 
-sprintf(String,"2");
-TFT_Draw_string_font_10x16(X0+12, Y0+10, String, light_color);
-}
+		sprintf(String,"2");
+		TFT_Draw_string_font_10x16(X0+12, Y0+10, String, light_color);
+	}
 //---------------------------------------------------------------
 
 //кнопка 3
 if (Numpad_init[number].Numpad_New || Numpad_init[number].Numpad_3_key_update)	
 	{
-X0=Numpad_X+10+45*2;
-Y0=Numpad_Y+40+45*2;
-rect=2;
-lenght=40;
-height=40;
-frame_size=2;
-light_color=0xc5f8;
-dark_color=0x1062;	
+		Numpad_init[number].Numpad_3_key_update=0;
+		X0=Numpad_X+10+45*2;
+		Y0=Numpad_Y+40+45*2;
+		rect=2;
+		lenght=40;
+		height=40;
+		frame_size=2;
+		light_color=0xc5f8;
+		dark_color=0x1062;	
 		if (Numpad_init[number].Numpad_3_key_press)	color=0x2104; else color=0x5aeb;	//цвет кнопки
 
-TFT_Draw_Circle_Helper(X0+rect,Y0+rect,rect,1,frame_size,light_color);
-TFT_Draw_Circle_Helper(X0+lenght-rect-frame_size,Y0+rect,rect,2,frame_size,dark_color);
-TFT_Draw_Circle_Helper(X0+rect,Y0+height-rect-frame_size,rect,8,frame_size,dark_color);
-TFT_Draw_Circle_Helper(X0+lenght-rect-frame_size,Y0+height-rect-frame_size,rect,4,frame_size,dark_color);
-TFT_Draw_HLine(X0+rect,Y0,lenght-2*rect,frame_size,light_color);
-TFT_Draw_HLine(X0+rect,Y0+height-frame_size,lenght-2*rect,frame_size,dark_color);
-TFT_Draw_VLine(X0,Y0+rect,height-2*rect,frame_size,light_color);
-TFT_Draw_VLine(X0+lenght-frame_size,Y0+rect,height-2*rect,frame_size,dark_color);
-TFT_Draw_Fill_Round_Rect(X0+frame_size,Y0+frame_size,lenght-frame_size*2,height-frame_size*2,rect,color);
+		TFT_Draw_Circle_Helper(X0+rect,Y0+rect,rect,1,frame_size,light_color);
+		TFT_Draw_Circle_Helper(X0+lenght-rect-frame_size,Y0+rect,rect,2,frame_size,dark_color);
+		TFT_Draw_Circle_Helper(X0+rect,Y0+height-rect-frame_size,rect,8,frame_size,dark_color);
+		TFT_Draw_Circle_Helper(X0+lenght-rect-frame_size,Y0+height-rect-frame_size,rect,4,frame_size,dark_color);
+		TFT_Draw_HLine(X0+rect,Y0,lenght-2*rect,frame_size,light_color);
+		TFT_Draw_HLine(X0+rect,Y0+height-frame_size,lenght-2*rect,frame_size,dark_color);
+		TFT_Draw_VLine(X0,Y0+rect,height-2*rect,frame_size,light_color);
+		TFT_Draw_VLine(X0+lenght-frame_size,Y0+rect,height-2*rect,frame_size,dark_color);
+		TFT_Draw_Fill_Round_Rect(X0+frame_size,Y0+frame_size,lenght-frame_size*2,height-frame_size*2,rect,color);
 
-sprintf(String,"3");
-TFT_Draw_string_font_10x16(X0+12, Y0+10, String, light_color);
-}
+		sprintf(String,"3");
+		TFT_Draw_string_font_10x16(X0+12, Y0+10, String, light_color);
+	}
 //---------------------------------------------------------------
 
 //кнопка 0
 if (Numpad_init[number].Numpad_New || Numpad_init[number].Numpad_0_key_update)	
 	{
-X0=Numpad_X+10+45*0;
-Y0=Numpad_Y+40+45*3;
-rect=2;
-lenght=40;
-height=40;
-frame_size=2;
-light_color=0xc5f8;
-dark_color=0x1062;	
+		Numpad_init[number].Numpad_0_key_update=0;
+		X0=Numpad_X+10+45*0;
+		Y0=Numpad_Y+40+45*3;
+		rect=2;
+		lenght=40;
+		height=40;
+		frame_size=2;
+		light_color=0xc5f8;
+		dark_color=0x1062;	
 		if (Numpad_init[number].Numpad_0_key_press)	color=0x2104; else color=0x5aeb;	//цвет кнопки
 
-TFT_Draw_Circle_Helper(X0+rect,Y0+rect,rect,1,frame_size,light_color);
-TFT_Draw_Circle_Helper(X0+lenght-rect-frame_size,Y0+rect,rect,2,frame_size,dark_color);
-TFT_Draw_Circle_Helper(X0+rect,Y0+height-rect-frame_size,rect,8,frame_size,dark_color);
-TFT_Draw_Circle_Helper(X0+lenght-rect-frame_size,Y0+height-rect-frame_size,rect,4,frame_size,dark_color);
-TFT_Draw_HLine(X0+rect,Y0,lenght-2*rect,frame_size,light_color);
-TFT_Draw_HLine(X0+rect,Y0+height-frame_size,lenght-2*rect,frame_size,dark_color);
-TFT_Draw_VLine(X0,Y0+rect,height-2*rect,frame_size,light_color);
-TFT_Draw_VLine(X0+lenght-frame_size,Y0+rect,height-2*rect,frame_size,dark_color);
-TFT_Draw_Fill_Round_Rect(X0+frame_size,Y0+frame_size,lenght-frame_size*2,height-frame_size*2,rect,color);
+		TFT_Draw_Circle_Helper(X0+rect,Y0+rect,rect,1,frame_size,light_color);
+		TFT_Draw_Circle_Helper(X0+lenght-rect-frame_size,Y0+rect,rect,2,frame_size,dark_color);
+		TFT_Draw_Circle_Helper(X0+rect,Y0+height-rect-frame_size,rect,8,frame_size,dark_color);
+		TFT_Draw_Circle_Helper(X0+lenght-rect-frame_size,Y0+height-rect-frame_size,rect,4,frame_size,dark_color);
+		TFT_Draw_HLine(X0+rect,Y0,lenght-2*rect,frame_size,light_color);
+		TFT_Draw_HLine(X0+rect,Y0+height-frame_size,lenght-2*rect,frame_size,dark_color);
+		TFT_Draw_VLine(X0,Y0+rect,height-2*rect,frame_size,light_color);
+		TFT_Draw_VLine(X0+lenght-frame_size,Y0+rect,height-2*rect,frame_size,dark_color);
+		TFT_Draw_Fill_Round_Rect(X0+frame_size,Y0+frame_size,lenght-frame_size*2,height-frame_size*2,rect,color);
 
-sprintf(String,"0");
-TFT_Draw_string_font_10x16(X0+12, Y0+10, String, light_color);
-}
+		sprintf(String,"0");
+		TFT_Draw_string_font_10x16(X0+12, Y0+10, String, light_color);
+	}
 //---------------------------------------------------------------
 
 //кнопка .
-X0=Numpad_X+10+45*1;
-Y0=Numpad_Y+40+45*3;
-rect=2;
-lenght=40;
-height=40;
-frame_size=2;
-light_color=0xc5f8;
-dark_color=0x1062;	
-color=0x5aeb;	//цвет кнопки
+if (Numpad_init[number].Numpad_New || Numpad_init[number].Numpad_Dot_key_update)	
+	{
+		Numpad_init[number].Numpad_Dot_key_update=0;
+		X0=Numpad_X+10+45*1;
+		Y0=Numpad_Y+40+45*3;
+		rect=2;
+		lenght=40;
+		height=40;
+		frame_size=2;
+		light_color=0xc5f8;
+		dark_color=0x1062;	
+		if (Numpad_init[number].Numpad_Dot_key_press)	color=0x2104; else color=0x5aeb;	//цвет кнопки
 
-TFT_Draw_Circle_Helper(X0+rect,Y0+rect,rect,1,frame_size,light_color);
-TFT_Draw_Circle_Helper(X0+lenght-rect-frame_size,Y0+rect,rect,2,frame_size,dark_color);
-TFT_Draw_Circle_Helper(X0+rect,Y0+height-rect-frame_size,rect,8,frame_size,dark_color);
-TFT_Draw_Circle_Helper(X0+lenght-rect-frame_size,Y0+height-rect-frame_size,rect,4,frame_size,dark_color);
-TFT_Draw_HLine(X0+rect,Y0,lenght-2*rect,frame_size,light_color);
-TFT_Draw_HLine(X0+rect,Y0+height-frame_size,lenght-2*rect,frame_size,dark_color);
-TFT_Draw_VLine(X0,Y0+rect,height-2*rect,frame_size,light_color);
-TFT_Draw_VLine(X0+lenght-frame_size,Y0+rect,height-2*rect,frame_size,dark_color);
-TFT_Draw_Fill_Round_Rect(X0+frame_size,Y0+frame_size,lenght-frame_size*2,height-frame_size*2,rect,color);
+		TFT_Draw_Circle_Helper(X0+rect,Y0+rect,rect,1,frame_size,light_color);
+		TFT_Draw_Circle_Helper(X0+lenght-rect-frame_size,Y0+rect,rect,2,frame_size,dark_color);
+		TFT_Draw_Circle_Helper(X0+rect,Y0+height-rect-frame_size,rect,8,frame_size,dark_color);
+		TFT_Draw_Circle_Helper(X0+lenght-rect-frame_size,Y0+height-rect-frame_size,rect,4,frame_size,dark_color);
+		TFT_Draw_HLine(X0+rect,Y0,lenght-2*rect,frame_size,light_color);
+		TFT_Draw_HLine(X0+rect,Y0+height-frame_size,lenght-2*rect,frame_size,dark_color);
+		TFT_Draw_VLine(X0,Y0+rect,height-2*rect,frame_size,light_color);
+		TFT_Draw_VLine(X0+lenght-frame_size,Y0+rect,height-2*rect,frame_size,dark_color);
+		TFT_Draw_Fill_Round_Rect(X0+frame_size,Y0+frame_size,lenght-frame_size*2,height-frame_size*2,rect,color);
 
-sprintf(String,".");
-TFT_Draw_string_font_10x16(X0+12, Y0+10, String, light_color);
+		sprintf(String,".");
+		TFT_Draw_string_font_10x16(X0+12, Y0+10, String, light_color);
+	}
 //---------------------------------------------------------------
 
 //кнопка <-
-X0=Numpad_X+10+45*2;
-Y0=Numpad_Y+40+45*3;
-rect=2;
-lenght=40;
-height=40;
-frame_size=2;
-light_color=0xc5f8;
-dark_color=0x1062;	
-color=0x5aeb;	//цвет кнопки
+if (Numpad_init[number].Numpad_New || Numpad_init[number].Numpad_Back_key_update)	
+	{
+		Numpad_init[number].Numpad_Back_key_update=0;
+		X0=Numpad_X+10+45*2;
+		Y0=Numpad_Y+40+45*3;
+		rect=2;
+		lenght=40;
+		height=40;
+		frame_size=2;
+		light_color=0xc5f8;
+		dark_color=0x1062;	
+		if (Numpad_init[number].Numpad_Back_key_press)	color=0x2104; else color=0x5aeb;	//цвет кнопки
 
-TFT_Draw_Circle_Helper(X0+rect,Y0+rect,rect,1,frame_size,light_color);
-TFT_Draw_Circle_Helper(X0+lenght-rect-frame_size,Y0+rect,rect,2,frame_size,dark_color);
-TFT_Draw_Circle_Helper(X0+rect,Y0+height-rect-frame_size,rect,8,frame_size,dark_color);
-TFT_Draw_Circle_Helper(X0+lenght-rect-frame_size,Y0+height-rect-frame_size,rect,4,frame_size,dark_color);
-TFT_Draw_HLine(X0+rect,Y0,lenght-2*rect,frame_size,light_color);
-TFT_Draw_HLine(X0+rect,Y0+height-frame_size,lenght-2*rect,frame_size,dark_color);
-TFT_Draw_VLine(X0,Y0+rect,height-2*rect,frame_size,light_color);
-TFT_Draw_VLine(X0+lenght-frame_size,Y0+rect,height-2*rect,frame_size,dark_color);
-TFT_Draw_Fill_Round_Rect(X0+frame_size,Y0+frame_size,lenght-frame_size*2,height-frame_size*2,rect,color);
+		TFT_Draw_Circle_Helper(X0+rect,Y0+rect,rect,1,frame_size,light_color);
+		TFT_Draw_Circle_Helper(X0+lenght-rect-frame_size,Y0+rect,rect,2,frame_size,dark_color);
+		TFT_Draw_Circle_Helper(X0+rect,Y0+height-rect-frame_size,rect,8,frame_size,dark_color);
+		TFT_Draw_Circle_Helper(X0+lenght-rect-frame_size,Y0+height-rect-frame_size,rect,4,frame_size,dark_color);
+		TFT_Draw_HLine(X0+rect,Y0,lenght-2*rect,frame_size,light_color);
+		TFT_Draw_HLine(X0+rect,Y0+height-frame_size,lenght-2*rect,frame_size,dark_color);
+		TFT_Draw_VLine(X0,Y0+rect,height-2*rect,frame_size,light_color);
+		TFT_Draw_VLine(X0+lenght-frame_size,Y0+rect,height-2*rect,frame_size,dark_color);
+		TFT_Draw_Fill_Round_Rect(X0+frame_size,Y0+frame_size,lenght-frame_size*2,height-frame_size*2,rect,color);
 
-sprintf(String,"<");
-TFT_Draw_string_font_10x16(X0+12, Y0+10, String, light_color);
-TFT_Draw_HLine(X0+14,Y0+16,15,2,light_color);
+		sprintf(String,"<");
+		TFT_Draw_string_font_10x16(X0+12, Y0+10, String, light_color);
+		TFT_Draw_HLine(X0+14,Y0+16,15,2,light_color);
+	}
 //---------------------------------------------------------------
 
-//кнопка Esc
-X0=Numpad_X+10+45*3;
-Y0=Numpad_Y+40+45*0;
-rect=2;
-lenght=40;
-height=40;
-frame_size=2;
-light_color=0xc5f8;
-dark_color=0x1062;	
-color=0x5aeb;	//цвет кнопки
+//кнопка Clr
+if (Numpad_init[number].Numpad_New || Numpad_init[number].Numpad_Clr_key_update)	
+	{	
+		Numpad_init[number].Numpad_Clr_key_update=0;
+		X0=Numpad_X+10+45*3;
+		Y0=Numpad_Y+40+45*0;
+		rect=2;
+		lenght=40;
+		height=40;
+		frame_size=2;
+		light_color=0xc5f8;
+		dark_color=0x1062;	
+		if (Numpad_init[number].Numpad_Clr_key_press)	color=0x2104; else color=0x5aeb;	//цвет кнопки
 
-TFT_Draw_Circle_Helper(X0+rect,Y0+rect,rect,1,frame_size,light_color);
-TFT_Draw_Circle_Helper(X0+lenght-rect-frame_size,Y0+rect,rect,2,frame_size,dark_color);
-TFT_Draw_Circle_Helper(X0+rect,Y0+height-rect-frame_size,rect,8,frame_size,dark_color);
-TFT_Draw_Circle_Helper(X0+lenght-rect-frame_size,Y0+height-rect-frame_size,rect,4,frame_size,dark_color);
-TFT_Draw_HLine(X0+rect,Y0,lenght-2*rect,frame_size,light_color);
-TFT_Draw_HLine(X0+rect,Y0+height-frame_size,lenght-2*rect,frame_size,dark_color);
-TFT_Draw_VLine(X0,Y0+rect,height-2*rect,frame_size,light_color);
-TFT_Draw_VLine(X0+lenght-frame_size,Y0+rect,height-2*rect,frame_size,dark_color);
-TFT_Draw_Fill_Round_Rect(X0+frame_size,Y0+frame_size,lenght-frame_size*2,height-frame_size*2,rect,color);
+		TFT_Draw_Circle_Helper(X0+rect,Y0+rect,rect,1,frame_size,light_color);
+		TFT_Draw_Circle_Helper(X0+lenght-rect-frame_size,Y0+rect,rect,2,frame_size,dark_color);
+		TFT_Draw_Circle_Helper(X0+rect,Y0+height-rect-frame_size,rect,8,frame_size,dark_color);
+		TFT_Draw_Circle_Helper(X0+lenght-rect-frame_size,Y0+height-rect-frame_size,rect,4,frame_size,dark_color);
+		TFT_Draw_HLine(X0+rect,Y0,lenght-2*rect,frame_size,light_color);
+		TFT_Draw_HLine(X0+rect,Y0+height-frame_size,lenght-2*rect,frame_size,dark_color);
+		TFT_Draw_VLine(X0,Y0+rect,height-2*rect,frame_size,light_color);
+		TFT_Draw_VLine(X0+lenght-frame_size,Y0+rect,height-2*rect,frame_size,dark_color);
+		TFT_Draw_Fill_Round_Rect(X0+frame_size,Y0+frame_size,lenght-frame_size*2,height-frame_size*2,rect,color);
 
-sprintf(String,"Esc");
-TFT_Draw_string_font_10x16(X0+4, Y0+10, String, light_color);
-
+		sprintf(String,"Clr");
+		TFT_Draw_string_font_10x16(X0+4, Y0+10, String, light_color);
+	}
 //---------------------------------------------------------------
 
-//кнопка Esc
-X0=Numpad_X+10+45*3;
-Y0=Numpad_Y+40+45;
-rect=2;
-lenght=40;
-height=130;
-frame_size=2;
-light_color=0xc5f8;
-dark_color=0x1062;	
-color=0x5aeb;	//цвет кнопки
+//кнопка Enter
+if (Numpad_init[number].Numpad_New || Numpad_init[number].Numpad_Enter_key_update)	
+	{
+		Numpad_init[number].Numpad_Enter_key_update=0;
+		X0=Numpad_X+10+45*3;
+		Y0=Numpad_Y+40+45;
+		rect=2;
+		lenght=40;
+		height=130;
+		frame_size=2;
+		light_color=0xc5f8;
+		dark_color=0x1062;	
+		if (Numpad_init[number].Numpad_Enter_key_press)	color=0x2104; else color=0x5aeb;	//цвет кнопки
 
-TFT_Draw_Circle_Helper(X0+rect,Y0+rect,rect,1,frame_size,light_color);
-TFT_Draw_Circle_Helper(X0+lenght-rect-frame_size,Y0+rect,rect,2,frame_size,dark_color);
-TFT_Draw_Circle_Helper(X0+rect,Y0+height-rect-frame_size,rect,8,frame_size,dark_color);
-TFT_Draw_Circle_Helper(X0+lenght-rect-frame_size,Y0+height-rect-frame_size,rect,4,frame_size,dark_color);
-TFT_Draw_HLine(X0+rect,Y0,lenght-2*rect,frame_size,light_color);
-TFT_Draw_HLine(X0+rect,Y0+height-frame_size,lenght-2*rect,frame_size,dark_color);
-TFT_Draw_VLine(X0,Y0+rect,height-2*rect,frame_size,light_color);
-TFT_Draw_VLine(X0+lenght-frame_size,Y0+rect,height-2*rect,frame_size,dark_color);
-TFT_Draw_Fill_Round_Rect(X0+frame_size,Y0+frame_size,lenght-frame_size*2,height-frame_size*2,rect,color);
+		TFT_Draw_Circle_Helper(X0+rect,Y0+rect,rect,1,frame_size,light_color);
+		TFT_Draw_Circle_Helper(X0+lenght-rect-frame_size,Y0+rect,rect,2,frame_size,dark_color);
+		TFT_Draw_Circle_Helper(X0+rect,Y0+height-rect-frame_size,rect,8,frame_size,dark_color);
+		TFT_Draw_Circle_Helper(X0+lenght-rect-frame_size,Y0+height-rect-frame_size,rect,4,frame_size,dark_color);
+		TFT_Draw_HLine(X0+rect,Y0,lenght-2*rect,frame_size,light_color);
+		TFT_Draw_HLine(X0+rect,Y0+height-frame_size,lenght-2*rect,frame_size,dark_color);
+		TFT_Draw_VLine(X0,Y0+rect,height-2*rect,frame_size,light_color);
+		TFT_Draw_VLine(X0+lenght-frame_size,Y0+rect,height-2*rect,frame_size,dark_color);
+		TFT_Draw_Fill_Round_Rect(X0+frame_size,Y0+frame_size,lenght-frame_size*2,height-frame_size*2,rect,color);
 
-sprintf(String,"Ent");
-TFT_Draw_string_font_10x16(X0+4, Y0+60, String, light_color);
-
+		sprintf(String,"Ent");
+		TFT_Draw_string_font_10x16(X0+4, Y0+60, String, light_color);
+	}
 //---------------------------------------------------------------
+sprintf(String,"%6d", Numpad_init[0].Num);	
+TFT_Draw_string_font_10x16_back_fone(Numpad_X+90,Numpad_Y+10,String,0x0000, 0x9cd3);
+	
+sprintf(String,"Max=%d", Num_max);	
+TFT_Draw_string_font_5x8_back_fone(Numpad_X+10,Numpad_Y+7,String,0x0000, 0x9cd3);	
+	
+sprintf(String,"Min=%d", Num_min);	
+TFT_Draw_string_font_5x8_back_fone(Numpad_X+10,Numpad_Y+7+10,String,0x0000, 0x9cd3);		
+	
 Numpad_init[number].Numpad_New=0;
 }
 

@@ -168,6 +168,23 @@ void TFT_Draw_string_font_10x16_back_fone (uint16_t x_start, uint16_t y_start, u
 	}
 }	
 //========================================================================
+//=======================================================================
+void TFT_Draw_string_font_5x8_back_fone (uint16_t x_start, uint16_t y_start, uint8_t *str, uint16_t color, uint16_t color_back_fone)
+{	while (*str!='\0')
+	{	uint8_t    let=*str;
+		for (uint8_t x=0; x<5; x++)
+			{
+					uint16_t	temp=FontTable[let][x];
+					for (uint8_t y=0; y<8; y++)
+					{	if (temp & 0x01) SSD1963_dot(x_start+x,y_start+y,color);  else SSD1963_dot(x_start+x,y_start+y,color_back_fone); 
+						temp>>=1;
+					}
+			}
+		x_start+=6;
+		str++;	
+	}
+}	
+//========================================================================
 void TFT_Set_Work_Area(uint16_t x,uint16_t y,uint16_t length,uint16_t size)
 {
 	LCD_CMD =(0x2a);

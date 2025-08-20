@@ -397,6 +397,7 @@ void GT911_Write(uint16_t RegisterAddress, uint8_t* TransmitedBuffer, uint8_t Si
 uint8_t GT911_ReadTouch(GT911Touch_TypeDef * GT911Touch);
 
 void GT911_Init(void);
+_Bool Press_Area (uint16_t X0, uint16_t Y0, uint16_t lenght, uint16_t height);
 
 extern void InitEXTI(void);
 

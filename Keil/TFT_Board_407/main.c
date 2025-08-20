@@ -2,7 +2,7 @@
 //#include "GPIO_setup.h"
 
 #define TOUCH_Press !(GPIOE->IDR & 1<<4)
-
+static uint16_t X0, Y0, lenght, height;
 static uint32_t temp32=0;
 static uint16_t temp16=0;
 static uint8_t temp8=0;
@@ -14,7 +14,10 @@ static uint16_t FPS_screen[10];
 static uint16_t FPS_screen_temp;
 static _Bool push_trip_main=0; 
 static _Bool scan_push_back_front=0;
+static _Bool Output_1=0;
 
+static uint32_t ON_value=0;
+static uint32_t OFF_value=0;
 
 static uint16_t temperature=0;
 
@@ -130,6 +133,8 @@ Screen_update=1;
 	
 //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 //Touch scan Begin	
+	GT911Touch[0].XCoordinate=0;		
+	GT911Touch[0].YCoordinate=0;
 	if (TOUCH_Press) TouchCount = GT911_ReadTouch(&GT911Touch[0]);
 	
 	if ((TOUCH_Press && !TIM1_Delay_4) || scan_push_back_front )  //Scan press with delay 
@@ -147,8 +152,8 @@ Screen_update=1;
 		else { if(push_trip_main && !TIM1_Delay_4) {scan_push_back_front =1; push_trip_main=0;}}
 
 		
-		TFT_Numpad(0);
-	Numpad_init[0].Numpad_Active=1;
+		TFT_Numpad();
+	
 		
 	if (TOUCH_Press) //Scan press with out delay
 	{	 
@@ -191,7 +196,7 @@ Screen_update=1;
 		else 	TFT_Draw_image(Button_init[3].button_X0+20,20,60,60,&Vent_gif_2);
 	
 	
-	if (!TIM1_Delay_2) {if (temp16 >=99) {temp16=0;} else temp16++; TIM1_Delay_2=10;}
+	if (!TIM1_Delay_2) {if (temp16 >=999) {temp16=0;} else temp16++; TIM1_Delay_2=10;}
 
 	if (GPIOE->IDR & 1<<4) {TOUCH_IRQ=1;} else {TOUCH_IRQ=0;}
 	
@@ -219,7 +224,7 @@ sprintf(String,"Touch_Status = %02x", Touch_status);
 TFT_Draw_string_font_10x16_back_fone(20,20+16*3,String,0xff00, 0xff);
 
 
-sprintf(String,"—четчик = %02d", temp16);	
+sprintf(String,"—четчик = %3d", temp16);	
 TFT_Draw_string_font_10x16_back_fone(20,20+16*4,String,0xff00, 0xff);
 
 if (GPIOE->IDR & 1<<4) {TOUCH_IRQ=1;} else {TOUCH_IRQ=0;}
@@ -238,6 +243,36 @@ TFT_Draw_string_font_10x16_back_fone(20,20+16*8,String,0xff00, 0xff);
 sprintf(String,"pulse_500ms = %d", pulse_500ms);	
 TFT_Draw_string_font_10x16_back_fone(20,20+16*9,String,0xff00, 0xff);
 
+
+		sprintf(String,"ON = %04d", ON_value);	
+		X0=220;
+		Y0=220;
+		lenght =100;
+		height = 16;
+		TFT_Draw_string_font_10x16_back_fone(X0,Y0,String,0xff00, 0xff);
+	if (Press_Area(X0,Y0,lenght,height) && !Numpad_init[0].Numpad_Active)
+		{
+			Numpad_init[0].Num_max = 3000;
+			Numpad_init[0].Num_min = 0;
+			Numpad_init[0].Value_adress = &ON_value;
+			Numpad_init[0].Numpad_Active=1;
+		}
+
+		
+		sprintf(String,"OFF = %04d", OFF_value);
+		X0=220;
+		Y0=280;
+		lenght =100;
+		height = 16;
+		TFT_Draw_string_font_10x16_back_fone(X0,Y0,String,0xff00, 0xff);	
+	if (Press_Area(X0,Y0,lenght,height) && !Numpad_init[0].Numpad_Active)
+		{
+			Numpad_init[0].Num_max = 2000;
+			Numpad_init[0].Num_min = 0;
+			Numpad_init[0].Value_adress = &OFF_value;
+			Numpad_init[0].Numpad_Active=1;
+		}
+
 //String END
 //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
@@ -253,8 +288,9 @@ if (DI3) TFT_Status_LED (3,2); else TFT_Status_LED(3,1);
 if (DI4) TFT_Status_LED (4,2); else TFT_Status_LED(4,1); 	
 if (DI5) TFT_Status_LED (5,2); else TFT_Status_LED(5,1); 	
 if (DI6) TFT_Status_LED (6,2); else TFT_Status_LED(6,1); 	
-if (Numpad_init[0].Numpad_0_key_press) TFT_Status_LED (7,2); else TFT_Status_LED(7,1); 	
+if (Output_1) TFT_Status_LED (7,2); else TFT_Status_LED(7,1); 	
 
+		
 
 //Status LED END
 //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
@@ -365,6 +401,9 @@ if (Ctrl_Console_init[0].Ctrl_console_visible && Ctrl_Console_init[0].Ctrl_conso
 //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>		
 //Programm BEGIN
 //temperature = DS18B20_read_temperatur(USART_def);
+		
+if (temp16 >= ON_value && temp16 <= OFF_value) Output_1=1; else  Output_1 =0;		
+		
 		
 //GPIOA->BSRR = 1<<0;		
 //Program END

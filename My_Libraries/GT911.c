@@ -296,3 +296,17 @@ uint8_t GT911_ReadTouch(GT911Touch_TypeDef * GT911Touch)
 		GT911_Write(STATUS_ADDRESS, &reset, 1);
 	return (status & 0xF);
 }
+
+//*****************************************************************************
+_Bool Press_Area (uint16_t X0, uint16_t Y0, uint16_t lenght, uint16_t height)
+{
+	_Bool result;
+	if (GT911Touch[0].XCoordinate>X0 && GT911Touch[0].XCoordinate<(X0+lenght) && GT911Touch[0].YCoordinate>Y0 && GT911Touch[0].YCoordinate<(Y0+height))
+			result =1;
+	else 
+			result =0;
+return result;
+}
+
+
+

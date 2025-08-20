@@ -81,6 +81,11 @@ TIM2->SR &= ~TIM_SR_UIF;
 		if (Numpad_init[0].Numpad_7_key_delay>0) Numpad_init[0].Numpad_7_key_delay--; else Numpad_init[0].Numpad_7_key_delay =0;
 		if (Numpad_init[0].Numpad_8_key_delay>0) Numpad_init[0].Numpad_8_key_delay--; else Numpad_init[0].Numpad_8_key_delay =0;		
 		if (Numpad_init[0].Numpad_9_key_delay>0) Numpad_init[0].Numpad_9_key_delay--; else Numpad_init[0].Numpad_9_key_delay =0;
+		if (Numpad_init[0].Numpad_Dot_key_delay>0) Numpad_init[0].Numpad_Dot_key_delay--; else Numpad_init[0].Numpad_Dot_key_delay =0;
+		if (Numpad_init[0].Numpad_Back_key_delay>0) Numpad_init[0].Numpad_Back_key_delay--; else Numpad_init[0].Numpad_Back_key_delay =0;
+		if (Numpad_init[0].Numpad_Clr_key_delay>0) Numpad_init[0].Numpad_Clr_key_delay--; else Numpad_init[0].Numpad_Clr_key_delay =0;		
+		if (Numpad_init[0].Numpad_Enter_key_delay>0) Numpad_init[0].Numpad_Enter_key_delay--; else Numpad_init[0].Numpad_Enter_key_delay =0;		
+		
 		
 if (TIM2_Delay_1>0) TIM2_Delay_1--; else TIM2_Delay_1=0;
 	if (tim2_count < 10) tim2_count++; else {tim2_count=0;if (GPIOA->IDR & (1<<0)) GPIOA->BSRR=1U<<(0+16); else GPIOA->BSRR=1U<<0;}

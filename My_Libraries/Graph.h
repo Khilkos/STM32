@@ -76,6 +76,10 @@ _Bool Valve_update;
 //---------------------------------
 struct Numpad_struct
 {
+uint32_t *Value_adress;	
+uint32_t Num;
+uint32_t Num_min;
+uint32_t Num_max;	
 uint16_t Numpad_X0;
 uint16_t Numpad_Y0;
 _Bool Numpad_Active;
@@ -92,7 +96,7 @@ _Bool Numpad_8_key_press;
 _Bool Numpad_9_key_press;	
 _Bool Numpad_Dot_key_press;
 _Bool Numpad_Back_key_press;	
-_Bool Numpad_Esc_key_press;	
+_Bool Numpad_Clr_key_press;	
 _Bool Numpad_Enter_key_press;
 	
 _Bool Numpad_0_key_update;
@@ -107,7 +111,7 @@ _Bool Numpad_8_key_update;
 _Bool Numpad_9_key_update;	
 _Bool Numpad_Dot_key_update;
 _Bool Numpad_Back_key_update;	
-_Bool Numpad_Esc_key_update;	
+_Bool Numpad_Clr_key_update;	
 _Bool Numpad_Enter_key_update;	
 
 uint16_t Numpad_0_key_delay;
@@ -122,7 +126,7 @@ uint16_t Numpad_8_key_delay;
 uint16_t Numpad_9_key_delay;	
 uint16_t Numpad_Dot_key_delay;
 uint16_t Numpad_Back_key_delay;	
-uint16_t Numpad_Esc_key_delay;	
+uint16_t Numpad_Clr_key_delay;	
 uint16_t Numpad_Enter_key_delay;
 	
 };
@@ -132,7 +136,7 @@ extern struct Button_struct Button_init[20];
 extern struct Ctrl_Console_struct Ctrl_Console_init[20];
 extern struct Status_LED_struct Status_LED_init[60];
 extern struct Valve_struct Valve_init[30];
-extern struct Numpad_struct Numpad_init[30];
+extern struct Numpad_struct Numpad_init[1];
 
 extern volatile _Bool Screen_update;
 
@@ -145,8 +149,9 @@ void TFT_Scan_press_Ctrl_Console (uint16_t number);
 void TFT_Status_LED (uint16_t number, uint16_t state);
 void TFT_Valve_Draw (uint16_t number, uint16_t state);
 void TFT_Scan_press_Valve (uint16_t number);
-void TFT_Numpad (uint16_t number);
-void TFT_Scan_Numpad (uint16_t number);
+void TFT_Numpad (void);
+void TFT_Num_field ();
+
 
 
 
