@@ -61,7 +61,7 @@ RCC->APB1ENR |=RCC_APB1ENR_TIM2EN; //enable clock for Timer 2
 	//TIM1->CR1 |=TIM_CR1_URS;
 	TIM2->CR1 |=TIM_CR1_CEN;// | TIM_CR1_URS;
 }
-
+/*
 void TIM2_IRQHandler(void)
 {	static uint8_t tim2_count;
 if (TIM2->SR&TIM_SR_UIF) 
@@ -91,7 +91,7 @@ if (TIM2_Delay_1>0) TIM2_Delay_1--; else TIM2_Delay_1=0;
 	if (tim2_count < 10) tim2_count++; else {tim2_count=0;if (GPIOA->IDR & (1<<0)) GPIOA->BSRR=1U<<(0+16); else GPIOA->BSRR=1U<<0;}
 	}
 }	
-
+*/
 #endif
 //==============================================================
 //
