@@ -110,6 +110,7 @@ Screen_update=1;
 
 	while (1)
 	{
+		GPIOA->BSRR = 1<<0;
 		
 //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 //Screen update BEGIN
