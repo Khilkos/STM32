@@ -103,7 +103,7 @@ DMA_F4_init();
 USART_F4_init(USART_def);
 
 SCADA_init();
-
+SSD1963_ClearScreen(0xff);
 
 Screen_update=1;
 	Numpad_init[0].Numpad_Active=0;
