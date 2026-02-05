@@ -9,8 +9,10 @@
 #include "GPIO_setup.h"
 #include "Timer.h"
 #include "FSMC.h"
+#include "Open407_LCD.h"
+#include "Font_table.h"
 
 
-
+//#define TIM2_IRQHandler_define
 
 //#define DMA2_Stream0_IRQHandler_define

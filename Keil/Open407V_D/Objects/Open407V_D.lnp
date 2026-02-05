@@ -1,10 +1,12 @@
 --cpu=Cortex-M4.fp.sp
 ".\objects\main.o"
+".\objects\open407_lcd.o"
 ".\objects\core_init.o"
 ".\objects\delay.o"
 ".\objects\gpio_setup.o"
 ".\objects\timer.o"
 ".\objects\fsmc.o"
+".\objects\font_table.o"
 ".\objects\startup_stm32f407xx.o"
 ".\objects\system_stm32f4xx.o"
 --strict --scatter ".\Objects\Open407V_D.sct"

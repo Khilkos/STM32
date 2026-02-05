@@ -399,6 +399,16 @@
               <FileType>5</FileType>
               <FilePath>.\Config.h</FilePath>
             </File>
+            <File>
+              <FileName>Open407_LCD.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Open407_LCD.c</FilePath>
+            </File>
+            <File>
+              <FileName>Open407_LCD.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\Open407_LCD.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -428,6 +438,16 @@
               <FileName>FSMC.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\My_Libraries\FSMC.c</FilePath>
+            </File>
+            <File>
+              <FileName>Font_table.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\My_Libraries\Font_table.c</FilePath>
+            </File>
+            <File>
+              <FileName>Font_table.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\..\My_Libraries\Font_table.h</FilePath>
             </File>
           </Files>
         </Group>
