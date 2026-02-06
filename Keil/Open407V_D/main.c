@@ -1,6 +1,7 @@
 #include "main.h"
 
-
+static uint8_t String[300];
+static uint16_t temp16;
 
 int main(void)
 {
@@ -45,19 +46,21 @@ int main(void)
 	
 	
 	FSMC_Low_init();
+	delay_ms(300);
 	Open407_LCD_Init();
 	Open407_ClearScreen(0xff);
-	Open407_dot(10, 100, 0xffff);
+//	Open407_dot(10, 100, 0xffff);
 	while (1)
 	{
 		
 	if (!TIM1_Delay_1) {if (GPIOD->IDR & 1<<12) Green_led_OFF; else Green_led_ON;  	TIM1_Delay_1 = 250;}
 	if (GPIOA->IDR &  1<<0) Orange_led_ON; else Orange_led_OFF;		
-
-//	delay_us(1);
 	
-		delay_us(1);
+	if (!TIM1_Delay_2) {if (temp16<999) temp16++; else temp16=0; TIM1_Delay_2=10;}
 	
+	sprintf(String,"—четчик = %03d",temp16);	
+TFT_Draw_string_font_10x16_back_fone(2,2,String,0xff00, 0xff);
+TFT_Draw_string_font_5x8_back_fone(2,20,String,0xff00, 0xff);	
 		
 	}
 	

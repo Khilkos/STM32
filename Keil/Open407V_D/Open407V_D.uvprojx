@@ -337,7 +337,7 @@
             <v6WtE>0</v6WtE>
             <v6Rtti>0</v6Rtti>
             <VariousControls>
-              <MiscControls>-Wno-invalid-utf8</MiscControls>
+              <MiscControls>-Wno-invalid-utf8  -Wno-invalid-source-encoding -Wno-pointer-sign</MiscControls>
               <Define></Define>
               <Undefine></Undefine>
               <IncludePath>..\Open407V_D;..\..\My_Libraries</IncludePath>
