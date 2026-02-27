@@ -5,4 +5,5 @@
   C:\Users\Khilk\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.17.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include\system_stm32f4xx.h \
   ..\..\My_Libraries\Core_init.h ..\..\My_Libraries\Delay.h \
   ..\..\My_Libraries\GPIO_setup.h ..\..\My_Libraries\FSMC.h \
-  ..\Open407V_D\Open407_LCD.h ..\..\My_Libraries\Font_table.h
+  ..\Open407V_D\Open407_LCD.h ..\..\My_Libraries\Font_table.h \
+  ..\..\My_Libraries\USART.h

@@ -20,11 +20,11 @@ USARTx->CR1 |= USART_CR1_UE; //USART enable
 //=======================================
 void USART_F4_set_9600_baud (USART_TypeDef * USARTx)
 {
-//USART2->CR1 &= ~USART_CR1_UE;
+USART2->CR1 &= ~USART_CR1_UE;
 USARTx->BRR = 0;
-USARTx->BRR |= 1093UL<<USART_BRR_DIV_Mantissa_Pos; //set usart baud 9600 //312 הכÿ 48ֳּצ
-USARTx->BRR |= 12UL<<USART_BRR_DIV_Fraction_Pos;	//8 הכÿ 48ֳּצ
-//USART2->CR1 |= USART_CR1_UE;	
+USARTx->BRR |= 273UL<<USART_BRR_DIV_Mantissa_Pos; //set usart baud 9600 //312 הכÿ 48ֳּצ //273 הכÿ 42 ֳּצ
+USARTx->BRR |= 7UL<<USART_BRR_DIV_Fraction_Pos;	//8 הכÿ 48ֳּצ // 7 הכÿ 42 ֳּצ
+USART2->CR1 |= USART_CR1_UE;	
 }
 //=======================================
 void USART_F4_set_115200_baud (USART_TypeDef * USARTx)

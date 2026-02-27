@@ -7,6 +7,8 @@
 ".\objects\timer.o"
 ".\objects\fsmc.o"
 ".\objects\font_table.o"
+".\objects\usart.o"
+".\objects\dma.o"
 ".\objects\startup_stm32f407xx.o"
 ".\objects\system_stm32f4xx.o"
 --strict --scatter ".\Objects\Open407V_D.sct"

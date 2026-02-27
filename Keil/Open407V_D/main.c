@@ -2,6 +2,7 @@
 
 static uint8_t String[300];
 static uint16_t temp16;
+static uint8_t temp8;
 
 int main(void)
 {
@@ -11,6 +12,11 @@ int main(void)
 	SysTick_F4_Init (168);
 	Timer1_F4_init(168000000,1000);
 	FSMC_init();
+	USART_F4_init(USART2);
+	USART_F4_set_9600_baud(USART2);
+	
+	GPIO_Alternate(GPIOA,2,Open_drain,High,Pull_up,AF7);// USART2 TX2
+	GPIO_Alternate(GPIOA,3,Open_drain,High,Pull_up,AF7);// USART2 RX2
 	
 	GPIO_DO_setup(GPIOD,12,High);//Green_Led
 	GPIO_DO_setup(GPIOD,13,High);//Orange_Led
@@ -61,7 +67,11 @@ int main(void)
 	sprintf(String,"—четчик = %03d",temp16);	
 TFT_Draw_string_font_10x16_back_fone(2,2,String,0xff00, 0xff);
 TFT_Draw_string_font_5x8_back_fone(2,20,String,0xff00, 0xff);	
-		
+
+if (USART2->SR & USART_SR_RXNE)	
+temp8= USART2->DR;
+sprintf(String,"USART Rx = %x",temp8);		
+TFT_Draw_string_font_10x16_back_fone(2,40,String,0xff00, 0xff);	
 	}
 	
 }
