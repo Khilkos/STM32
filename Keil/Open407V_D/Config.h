@@ -12,8 +12,9 @@
 #include "Open407_LCD.h"
 #include "Font_table.h"
 #include "USART.h"
-
+#include "DMA.h"
 
 //#define TIM2_IRQHandler_define
 
 //#define DMA2_Stream0_IRQHandler_define
+#define DMA1_Stream5_IRQHandler_define

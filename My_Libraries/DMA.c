@@ -11,6 +11,7 @@ struct DMA_STM_F4_init_param DMA_STM_F4;
 //==========================================
 void DMA_F4_param_init (void)
 {
+RCC->AHB1ENR |= RCC_AHB1ENR_DMA2EN | RCC_AHB1ENR_DMA1EN;	
 uint32_t temp=0;
 _Bool bit_temp=0;
 if (DMA_STM_F4.DMA_Stream->CR & DMA_SxCR_EN)

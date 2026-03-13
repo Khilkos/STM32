@@ -16,6 +16,6 @@
 #define Blue_led_ON GPIOD->BSRR = 1<<15
 #define Blue_led_OFF GPIOD->BSRR = 1<<(15+16)
 
-
-
+extern uint8_t Modbus_RX_buf[10];
+void DMA1_Stream5_IRQHandler_User(void);
 

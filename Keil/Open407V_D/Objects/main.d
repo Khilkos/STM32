@@ -5,4 +5,5 @@
   ..\..\My_Libraries\Core_init.h ..\Open407V_D\Config.h \
   ..\..\My_Libraries\Delay.h ..\..\My_Libraries\GPIO_setup.h \
   ..\..\My_Libraries\Timer.h ..\..\My_Libraries\FSMC.h Open407_LCD.h \
-  ..\..\My_Libraries\Font_table.h ..\..\My_Libraries\USART.h
+  ..\..\My_Libraries\Font_table.h ..\..\My_Libraries\USART.h \
+  ..\..\My_Libraries\DMA.h ..\Open407V_D\main.h
