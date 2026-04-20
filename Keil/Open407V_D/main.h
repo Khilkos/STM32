@@ -17,5 +17,8 @@
 #define Blue_led_OFF GPIOD->BSRR = 1<<(15+16)
 
 extern uint8_t Modbus_RX_buf[10];
+extern uint8_t Modbus_TX_buf[10];
 void DMA1_Stream5_IRQHandler_User(void);
-
+void DMA1_Stream6_IRQHandler_User(void);
+uint16_t CRC_modbus (uint8_t* buf, uint8_t size);
+void CRC_fn5(uint8_t Id, uint16_t adresse, uint16_t data);

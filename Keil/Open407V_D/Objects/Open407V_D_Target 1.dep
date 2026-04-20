@@ -1,13 +1,13 @@
 Dependencies for Project 'Open407V_D', Target 'Target 1': (DO NOT MODIFY !)
 CompilerVersion: 6230000::V6.23::ARMCLANG
-F (.\main.c)(0x69B2B55E)(-xc -std=c11 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -Oz -ffunction-sections -Wall -Wextra -Wno-packed -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Open407V_D -I ../../My_Libraries -Wno-invalid-utf8  -Wno-invalid-source-encoding -Wno-pointer-sign-I./RTE/_Target_1-IC:/Users/Khilk/AppData/Local/Arm/Packs/ARM/CMSIS/6.1.0/CMSIS/Core/Include-IC:/Users/Khilk/AppData/Local/Arm/Packs/Keil/STM32F4xx_DFP/2.17.0/Drivers/CMSIS/Device/ST/STM32F4xx/Include-D__UVISION_VERSION="542" -DSTM32F407xx -D_RTE_-o ./objects/main.o -MMD)
-I (main.h)(0x69B17A7C)
-I (Config.h)(0x69B17A7C)
+F (.\main.c)(0x69E63931)(-xc -std=c11 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -Oz -ffunction-sections -Wall -Wextra -Wno-packed -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Open407V_D -I ../../My_Libraries -Wno-invalid-utf8  -Wno-invalid-source-encoding -Wno-pointer-sign-I./RTE/_Target_1-IC:/Users/Khilk/AppData/Local/Arm/Packs/ARM/CMSIS/6.1.0/CMSIS/Core/Include-IC:/Users/Khilk/AppData/Local/Arm/Packs/Keil/STM32F4xx_DFP/2.17.0/Drivers/CMSIS/Device/ST/STM32F4xx/Include-D__UVISION_VERSION="542" -DSTM32F407xx -D_RTE_-o ./objects/main.o -MMD)
+I (main.h)(0x69E635E7)
+I (Config.h)(0x69E635E7)
 I (C:\Users\Khilk\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.17.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f407xx.h)(0x63749E4A)
 I (C:\Users\Khilk\AppData\Local\Arm\Packs\ARM\CMSIS\6.1.0\CMSIS\Core\Include\core_cm4.h)(0x664C1ED8)
 I (C:\Users\Khilk\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.17.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include\system_stm32f4xx.h)(0x63749E4A)
 I (..\..\My_Libraries\Core_init.h)(0x67FCFBAD)
-I (..\Open407V_D\Config.h)(0x69B17A7C)
+I (..\Open407V_D\Config.h)(0x69E635E7)
 I (..\..\My_Libraries\Delay.h)(0x67599C10)
 I (..\..\My_Libraries\GPIO_setup.h)(0x6800D1D4)
 I (..\..\My_Libraries\Timer.h)(0x68401895)
@@ -16,17 +16,17 @@ I (Open407_LCD.h)(0x69859B69)
 I (..\..\My_Libraries\Font_table.h)(0x65955F76)
 I (..\..\My_Libraries\USART.h)(0x683EFE1B)
 I (..\..\My_Libraries\DMA.h)(0x67F8F495)
-I (..\Open407V_D\main.h)(0x69B17A7C)
-F (.\main.h)(0x69B17A7C)()
-F (.\Config.h)(0x69B17A7C)()
+I (..\Open407V_D\main.h)(0x69E635E7)
+F (.\main.h)(0x69E635E7)()
+F (.\Config.h)(0x69E635E7)()
 F (.\Open407_LCD.c)(0x69859B69)(-xc -std=c11 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -Oz -ffunction-sections -Wall -Wextra -Wno-packed -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Open407V_D -I ../../My_Libraries -Wno-invalid-utf8  -Wno-invalid-source-encoding -Wno-pointer-sign-I./RTE/_Target_1-IC:/Users/Khilk/AppData/Local/Arm/Packs/ARM/CMSIS/6.1.0/CMSIS/Core/Include-IC:/Users/Khilk/AppData/Local/Arm/Packs/Keil/STM32F4xx_DFP/2.17.0/Drivers/CMSIS/Device/ST/STM32F4xx/Include-D__UVISION_VERSION="542" -DSTM32F407xx -D_RTE_-o ./objects/open407_lcd.o -MMD)
 I (Open407_LCD.h)(0x69859B69)
-I (Config.h)(0x69B17A7C)
+I (Config.h)(0x69E635E7)
 I (C:\Users\Khilk\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.17.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f407xx.h)(0x63749E4A)
 I (C:\Users\Khilk\AppData\Local\Arm\Packs\ARM\CMSIS\6.1.0\CMSIS\Core\Include\core_cm4.h)(0x664C1ED8)
 I (C:\Users\Khilk\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.17.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include\system_stm32f4xx.h)(0x63749E4A)
 I (..\..\My_Libraries\Core_init.h)(0x67FCFBAD)
-I (..\Open407V_D\Config.h)(0x69B17A7C)
+I (..\Open407V_D\Config.h)(0x69E635E7)
 I (..\..\My_Libraries\Delay.h)(0x67599C10)
 I (..\..\My_Libraries\GPIO_setup.h)(0x6800D1D4)
 I (..\..\My_Libraries\Timer.h)(0x68401895)
@@ -34,11 +34,11 @@ I (..\..\My_Libraries\FSMC.h)(0x683F013E)
 I (..\..\My_Libraries\Font_table.h)(0x65955F76)
 I (..\..\My_Libraries\USART.h)(0x683EFE1B)
 I (..\..\My_Libraries\DMA.h)(0x67F8F495)
-I (..\Open407V_D\main.h)(0x69B17A7C)
+I (..\Open407V_D\main.h)(0x69E635E7)
 F (.\Open407_LCD.h)(0x69859B69)()
 F (..\..\My_Libraries\Core_init.c)(0x67FCFBAD)(-xc -std=c11 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -Oz -ffunction-sections -Wall -Wextra -Wno-packed -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Open407V_D -I ../../My_Libraries -Wno-invalid-utf8  -Wno-invalid-source-encoding -Wno-pointer-sign-I./RTE/_Target_1-IC:/Users/Khilk/AppData/Local/Arm/Packs/ARM/CMSIS/6.1.0/CMSIS/Core/Include-IC:/Users/Khilk/AppData/Local/Arm/Packs/Keil/STM32F4xx_DFP/2.17.0/Drivers/CMSIS/Device/ST/STM32F4xx/Include-D__UVISION_VERSION="542" -DSTM32F407xx -D_RTE_-o ./objects/core_init.o -MMD)
 I (..\..\My_Libraries\Core_init.h)(0x67FCFBAD)
-I (..\Open407V_D\Config.h)(0x69B17A7C)
+I (..\Open407V_D\Config.h)(0x69E635E7)
 I (C:\Users\Khilk\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.17.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f407xx.h)(0x63749E4A)
 I (C:\Users\Khilk\AppData\Local\Arm\Packs\ARM\CMSIS\6.1.0\CMSIS\Core\Include\core_cm4.h)(0x664C1ED8)
 I (C:\Users\Khilk\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.17.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include\system_stm32f4xx.h)(0x63749E4A)
@@ -50,10 +50,10 @@ I (..\Open407V_D\Open407_LCD.h)(0x69859B69)
 I (..\..\My_Libraries\Font_table.h)(0x65955F76)
 I (..\..\My_Libraries\USART.h)(0x683EFE1B)
 I (..\..\My_Libraries\DMA.h)(0x67F8F495)
-I (..\Open407V_D\main.h)(0x69B17A7C)
+I (..\Open407V_D\main.h)(0x69E635E7)
 F (..\..\My_Libraries\Delay.c)(0x67E54E95)(-xc -std=c11 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -Oz -ffunction-sections -Wall -Wextra -Wno-packed -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Open407V_D -I ../../My_Libraries -Wno-invalid-utf8  -Wno-invalid-source-encoding -Wno-pointer-sign-I./RTE/_Target_1-IC:/Users/Khilk/AppData/Local/Arm/Packs/ARM/CMSIS/6.1.0/CMSIS/Core/Include-IC:/Users/Khilk/AppData/Local/Arm/Packs/Keil/STM32F4xx_DFP/2.17.0/Drivers/CMSIS/Device/ST/STM32F4xx/Include-D__UVISION_VERSION="542" -DSTM32F407xx -D_RTE_-o ./objects/delay.o -MMD)
 I (..\..\My_Libraries\Delay.h)(0x67599C10)
-I (..\Open407V_D\Config.h)(0x69B17A7C)
+I (..\Open407V_D\Config.h)(0x69E635E7)
 I (C:\Users\Khilk\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.17.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f407xx.h)(0x63749E4A)
 I (C:\Users\Khilk\AppData\Local\Arm\Packs\ARM\CMSIS\6.1.0\CMSIS\Core\Include\core_cm4.h)(0x664C1ED8)
 I (C:\Users\Khilk\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.17.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include\system_stm32f4xx.h)(0x63749E4A)
@@ -65,10 +65,10 @@ I (..\Open407V_D\Open407_LCD.h)(0x69859B69)
 I (..\..\My_Libraries\Font_table.h)(0x65955F76)
 I (..\..\My_Libraries\USART.h)(0x683EFE1B)
 I (..\..\My_Libraries\DMA.h)(0x67F8F495)
-I (..\Open407V_D\main.h)(0x69B17A7C)
+I (..\Open407V_D\main.h)(0x69E635E7)
 F (..\..\My_Libraries\GPIO_setup.c)(0x67FCE6C3)(-xc -std=c11 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -Oz -ffunction-sections -Wall -Wextra -Wno-packed -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Open407V_D -I ../../My_Libraries -Wno-invalid-utf8  -Wno-invalid-source-encoding -Wno-pointer-sign-I./RTE/_Target_1-IC:/Users/Khilk/AppData/Local/Arm/Packs/ARM/CMSIS/6.1.0/CMSIS/Core/Include-IC:/Users/Khilk/AppData/Local/Arm/Packs/Keil/STM32F4xx_DFP/2.17.0/Drivers/CMSIS/Device/ST/STM32F4xx/Include-D__UVISION_VERSION="542" -DSTM32F407xx -D_RTE_-o ./objects/gpio_setup.o -MMD)
 I (..\..\My_Libraries\GPIO_setup.h)(0x6800D1D4)
-I (..\Open407V_D\Config.h)(0x69B17A7C)
+I (..\Open407V_D\Config.h)(0x69E635E7)
 I (C:\Users\Khilk\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.17.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f407xx.h)(0x63749E4A)
 I (C:\Users\Khilk\AppData\Local\Arm\Packs\ARM\CMSIS\6.1.0\CMSIS\Core\Include\core_cm4.h)(0x664C1ED8)
 I (C:\Users\Khilk\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.17.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include\system_stm32f4xx.h)(0x63749E4A)
@@ -80,10 +80,10 @@ I (..\Open407V_D\Open407_LCD.h)(0x69859B69)
 I (..\..\My_Libraries\Font_table.h)(0x65955F76)
 I (..\..\My_Libraries\USART.h)(0x683EFE1B)
 I (..\..\My_Libraries\DMA.h)(0x67F8F495)
-I (..\Open407V_D\main.h)(0x69B17A7C)
+I (..\Open407V_D\main.h)(0x69E635E7)
 F (..\..\My_Libraries\Timer.c)(0x69848290)(-xc -std=c11 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -Oz -ffunction-sections -Wall -Wextra -Wno-packed -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Open407V_D -I ../../My_Libraries -Wno-invalid-utf8  -Wno-invalid-source-encoding -Wno-pointer-sign-I./RTE/_Target_1-IC:/Users/Khilk/AppData/Local/Arm/Packs/ARM/CMSIS/6.1.0/CMSIS/Core/Include-IC:/Users/Khilk/AppData/Local/Arm/Packs/Keil/STM32F4xx_DFP/2.17.0/Drivers/CMSIS/Device/ST/STM32F4xx/Include-D__UVISION_VERSION="542" -DSTM32F407xx -D_RTE_-o ./objects/timer.o -MMD)
 I (..\..\My_Libraries\Timer.h)(0x68401895)
-I (..\Open407V_D\Config.h)(0x69B17A7C)
+I (..\Open407V_D\Config.h)(0x69E635E7)
 I (C:\Users\Khilk\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.17.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f407xx.h)(0x63749E4A)
 I (C:\Users\Khilk\AppData\Local\Arm\Packs\ARM\CMSIS\6.1.0\CMSIS\Core\Include\core_cm4.h)(0x664C1ED8)
 I (C:\Users\Khilk\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.17.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include\system_stm32f4xx.h)(0x63749E4A)
@@ -95,10 +95,10 @@ I (..\Open407V_D\Open407_LCD.h)(0x69859B69)
 I (..\..\My_Libraries\Font_table.h)(0x65955F76)
 I (..\..\My_Libraries\USART.h)(0x683EFE1B)
 I (..\..\My_Libraries\DMA.h)(0x67F8F495)
-I (..\Open407V_D\main.h)(0x69B17A7C)
+I (..\Open407V_D\main.h)(0x69E635E7)
 F (..\..\My_Libraries\FSMC.c)(0x683F036C)(-xc -std=c11 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -Oz -ffunction-sections -Wall -Wextra -Wno-packed -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Open407V_D -I ../../My_Libraries -Wno-invalid-utf8  -Wno-invalid-source-encoding -Wno-pointer-sign-I./RTE/_Target_1-IC:/Users/Khilk/AppData/Local/Arm/Packs/ARM/CMSIS/6.1.0/CMSIS/Core/Include-IC:/Users/Khilk/AppData/Local/Arm/Packs/Keil/STM32F4xx_DFP/2.17.0/Drivers/CMSIS/Device/ST/STM32F4xx/Include-D__UVISION_VERSION="542" -DSTM32F407xx -D_RTE_-o ./objects/fsmc.o -MMD)
 I (..\..\My_Libraries\FSMC.h)(0x683F013E)
-I (..\Open407V_D\Config.h)(0x69B17A7C)
+I (..\Open407V_D\Config.h)(0x69E635E7)
 I (C:\Users\Khilk\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.17.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f407xx.h)(0x63749E4A)
 I (C:\Users\Khilk\AppData\Local\Arm\Packs\ARM\CMSIS\6.1.0\CMSIS\Core\Include\core_cm4.h)(0x664C1ED8)
 I (C:\Users\Khilk\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.17.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include\system_stm32f4xx.h)(0x63749E4A)
@@ -110,13 +110,13 @@ I (..\Open407V_D\Open407_LCD.h)(0x69859B69)
 I (..\..\My_Libraries\Font_table.h)(0x65955F76)
 I (..\..\My_Libraries\USART.h)(0x683EFE1B)
 I (..\..\My_Libraries\DMA.h)(0x67F8F495)
-I (..\Open407V_D\main.h)(0x69B17A7C)
+I (..\Open407V_D\main.h)(0x69E635E7)
 F (..\..\My_Libraries\Font_table.c)(0x659568AC)(-xc -std=c11 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -Oz -ffunction-sections -Wall -Wextra -Wno-packed -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Open407V_D -I ../../My_Libraries -Wno-invalid-utf8  -Wno-invalid-source-encoding -Wno-pointer-sign-I./RTE/_Target_1-IC:/Users/Khilk/AppData/Local/Arm/Packs/ARM/CMSIS/6.1.0/CMSIS/Core/Include-IC:/Users/Khilk/AppData/Local/Arm/Packs/Keil/STM32F4xx_DFP/2.17.0/Drivers/CMSIS/Device/ST/STM32F4xx/Include-D__UVISION_VERSION="542" -DSTM32F407xx -D_RTE_-o ./objects/font_table.o -MMD)
 I (..\..\My_Libraries\Font_table.h)(0x65955F76)
 F (..\..\My_Libraries\Font_table.h)(0x65955F76)()
 F (..\..\My_Libraries\USART.c)(0x69A6EE9B)(-xc -std=c11 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -Oz -ffunction-sections -Wall -Wextra -Wno-packed -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Open407V_D -I ../../My_Libraries -Wno-invalid-utf8  -Wno-invalid-source-encoding -Wno-pointer-sign-I./RTE/_Target_1-IC:/Users/Khilk/AppData/Local/Arm/Packs/ARM/CMSIS/6.1.0/CMSIS/Core/Include-IC:/Users/Khilk/AppData/Local/Arm/Packs/Keil/STM32F4xx_DFP/2.17.0/Drivers/CMSIS/Device/ST/STM32F4xx/Include-D__UVISION_VERSION="542" -DSTM32F407xx -D_RTE_-o ./objects/usart.o -MMD)
 I (..\..\My_Libraries\USART.h)(0x683EFE1B)
-I (..\Open407V_D\Config.h)(0x69B17A7C)
+I (..\Open407V_D\Config.h)(0x69E635E7)
 I (C:\Users\Khilk\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.17.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f407xx.h)(0x63749E4A)
 I (C:\Users\Khilk\AppData\Local\Arm\Packs\ARM\CMSIS\6.1.0\CMSIS\Core\Include\core_cm4.h)(0x664C1ED8)
 I (C:\Users\Khilk\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.17.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include\system_stm32f4xx.h)(0x63749E4A)
@@ -128,11 +128,11 @@ I (..\..\My_Libraries\FSMC.h)(0x683F013E)
 I (..\Open407V_D\Open407_LCD.h)(0x69859B69)
 I (..\..\My_Libraries\Font_table.h)(0x65955F76)
 I (..\..\My_Libraries\DMA.h)(0x67F8F495)
-I (..\Open407V_D\main.h)(0x69B17A7C)
+I (..\Open407V_D\main.h)(0x69E635E7)
 F (..\..\My_Libraries\USART.h)(0x683EFE1B)()
 F (..\..\My_Libraries\DMA.c)(0x69B178F2)(-xc -std=c11 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -Oz -ffunction-sections -Wall -Wextra -Wno-packed -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Open407V_D -I ../../My_Libraries -Wno-invalid-utf8  -Wno-invalid-source-encoding -Wno-pointer-sign-I./RTE/_Target_1-IC:/Users/Khilk/AppData/Local/Arm/Packs/ARM/CMSIS/6.1.0/CMSIS/Core/Include-IC:/Users/Khilk/AppData/Local/Arm/Packs/Keil/STM32F4xx_DFP/2.17.0/Drivers/CMSIS/Device/ST/STM32F4xx/Include-D__UVISION_VERSION="542" -DSTM32F407xx -D_RTE_-o ./objects/dma.o -MMD)
 I (..\..\My_Libraries\DMA.h)(0x67F8F495)
-I (..\Open407V_D\Config.h)(0x69B17A7C)
+I (..\Open407V_D\Config.h)(0x69E635E7)
 I (C:\Users\Khilk\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.17.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f407xx.h)(0x63749E4A)
 I (C:\Users\Khilk\AppData\Local\Arm\Packs\ARM\CMSIS\6.1.0\CMSIS\Core\Include\core_cm4.h)(0x664C1ED8)
 I (C:\Users\Khilk\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.17.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include\system_stm32f4xx.h)(0x63749E4A)
@@ -144,7 +144,7 @@ I (..\..\My_Libraries\FSMC.h)(0x683F013E)
 I (..\Open407V_D\Open407_LCD.h)(0x69859B69)
 I (..\..\My_Libraries\Font_table.h)(0x65955F76)
 I (..\..\My_Libraries\USART.h)(0x683EFE1B)
-I (..\Open407V_D\main.h)(0x69B17A7C)
+I (..\Open407V_D\main.h)(0x69E635E7)
 F (..\..\My_Libraries\DMA.h)(0x67F8F495)()
 F (RTE/Device/STM32F407VGTx/startup_stm32f407xx.s)(0x63749E4A)(--target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -masm=auto  -Wa,armasm,--diag_suppress=A1950W -c-gdwarf-4-I./RTE/_Target_1-IC:/Users/Khilk/AppData/Local/Arm/Packs/ARM/CMSIS/6.1.0/CMSIS/Core/Include-IC:/Users/Khilk/AppData/Local/Arm/Packs/Keil/STM32F4xx_DFP/2.17.0/Drivers/CMSIS/Device/ST/STM32F4xx/Include-Wa,armasm,--pd,"__UVISION_VERSION SETA 542" -Wa,armasm,--pd,"STM32F407xx SETA 1" -Wa,armasm,--pd,"_RTE_ SETA 1"-o ./objects/startup_stm32f407xx.o)
 F (RTE/Device/STM32F407VGTx/system_stm32f4xx.c)(0x63749E4A)(-xc -std=c11 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -Oz -ffunction-sections -Wall -Wextra -Wno-packed -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Open407V_D -I ../../My_Libraries -Wno-invalid-utf8  -Wno-invalid-source-encoding -Wno-pointer-sign-I./RTE/_Target_1-IC:/Users/Khilk/AppData/Local/Arm/Packs/ARM/CMSIS/6.1.0/CMSIS/Core/Include-IC:/Users/Khilk/AppData/Local/Arm/Packs/Keil/STM32F4xx_DFP/2.17.0/Drivers/CMSIS/Device/ST/STM32F4xx/Include-D__UVISION_VERSION="542" -DSTM32F407xx -D_RTE_-o ./objects/system_stm32f4xx.o -MMD)

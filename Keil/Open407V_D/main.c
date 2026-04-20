@@ -6,7 +6,10 @@ static uint8_t temp8;
 static uint8_t Modbus_count=0;
 static uint8_t Modbus_buf[10];
 uint8_t Modbus_RX_buf[10];
+uint8_t Modbus_TX_buf[10];
 static uint16_t _FPS=0;
+static uint16_t CRC_res=0;
+// Таймер1_4 для отслеживания конца модбас пакета
 
 int main(void)
 {
@@ -23,7 +26,7 @@ int main(void)
 DMA_STM_F4.DMA_Number = DMA1;//выбор ДМА, напр. - DMA2
 DMA_STM_F4.DMA_Stream = DMA1_Stream5;//выбор потока ДМА напр. -  DMA2_Stream0
 DMA_STM_F4.DMA_Peripheral_address = (volatile uint32_t*)&(USART2->DR);//адрес перефирии, например (volatile uint32_t*)&(USART2->DR);
-DMA_STM_F4.DMA_Memory_address = (void*)Modbus_RX_buf;//адрес памяти, например (void*)temp_send_buf ;
+DMA_STM_F4.DMA_Memory_address = (void*)Modbus_buf;//адрес памяти, например (void*)temp_send_buf ;
 DMA_STM_F4.DMA_Quantity = 1;//количество данный передаваемых в ДМА
 DMA_STM_F4.DMA_Chanel = 4;//выбор канала ДМА
 DMA_STM_F4.DMA_Prioroty = DMA_Priority_high;//приоритет потока - DMA_Priority_low, DMA_Priority_medium, DMA_Priority_high, DMA_Priority_very_high
@@ -35,11 +38,28 @@ DMA_STM_F4.DMA_Peripheral_data_size = DMA_8_bit;//размер потока перифирии: DMA_8
 DMA_STM_F4.DMA_Circular_mode = Circular_mode_disabled;//кольцевой режим:  Circular_mode_disabled, Circular_mode_enabled
 DMA_STM_F4.DMA_Interrupt = DMA1_Stream5_IRQn;// прерывание из stm32f411xe.h, например - DMA2_Stream0_IRQn
 DMA_F4_param_init ();//Запуск ДМА с заданными параметрами
-	
+//---------------------------------------------------
+DMA_STM_F4.DMA_Number = DMA1;//выбор ДМА, напр. - DMA2
+DMA_STM_F4.DMA_Stream = DMA1_Stream6;//выбор потока ДМА напр. -  DMA2_Stream0
+DMA_STM_F4.DMA_Peripheral_address = (volatile uint32_t*)&(USART2->DR);//адрес перефирии, например (volatile uint32_t*)&(USART2->DR);
+DMA_STM_F4.DMA_Memory_address = (void*)Modbus_TX_buf;//адрес памяти, например (void*)temp_send_buf ;
+DMA_STM_F4.DMA_Quantity = 8;//количество данный передаваемых в ДМА
+DMA_STM_F4.DMA_Chanel = 4;//выбор канала ДМА
+DMA_STM_F4.DMA_Prioroty = DMA_Priority_high;//приоритет потока - DMA_Priority_low, DMA_Priority_medium, DMA_Priority_high, DMA_Priority_very_high
+DMA_STM_F4.DMA_Data_transfer_direction = DMA_Memory_to_Peripheral;//направление потока данных перефирия <-> память: DMA_Peripheral_to_memory, DMA_Memory_to_Peripheral, DMA_Memory_to_memory
+DMA_STM_F4.DMA_Memory_inc =  DMA_Inc_ON;//инкремент памяти DMA_Inc_ON-включить, DMA_Inc_OFF-выключить
+DMA_STM_F4.DMA_Peripheral_inc = DMA_Inc_OFF;//инкремент перефирии DMA_Inc_ON-включить, DMA_Inc_OFF-выключить
+DMA_STM_F4.DMA_Memory_data_size = DMA_8_bit;//размер потока памяти: DMA_8_bit, DMA_16_bit, DMA_32_bit
+DMA_STM_F4.DMA_Peripheral_data_size = DMA_8_bit;//размер потока перифирии: DMA_8_bit, DMA_16_bit, DMA_32_bit
+DMA_STM_F4.DMA_Circular_mode = Circular_mode_disabled;//кольцевой режим:  Circular_mode_disabled, Circular_mode_enabled
+DMA_STM_F4.DMA_Interrupt = DMA1_Stream6_IRQn;// прерывание из stm32f411xe.h, например - DMA2_Stream0_IRQn
+DMA_F4_param_init ();//Запуск ДМА с заданными параметрами
+//---------------------------------------------------
 	
 	USART_F4_init(USART2);
 	USART_F4_set_9600_baud(USART2);
 	USART_F4_DMAR_ON(USART2);
+//	USART_F4_DMAT_ON(USART2);
 	
 	GPIO_Alternate(GPIOA,2,Open_drain,High,Pull_up,AF7);// USART2 TX2
 	GPIO_Alternate(GPIOA,3,Open_drain,High,Pull_up,AF7);// USART2 RX2
@@ -71,11 +91,8 @@ DMA_F4_param_init ();//Запуск ДМА с заданными параметрами
 	GPIO_Alternate(GPIOD,5,Push_pull,High,No_pull,AF12); //FSMC NWE/WR
 	GPIO_Alternate(GPIOD,7,Push_pull,High,Pull_down,AF12); //FSMC NE1/LCS
 
-//	GPIO_DI_setup(GPIOA,0,Pull_down);	
-
-//	GPIOE->BSRR = 1<<6;
-//		GPIOA->BSRR = 1<<1;
-	
+	GPIO_DI_setup(GPIOA,4,Pull_up);
+	GPIO_DI_setup(GPIOC,6,Pull_up);
 	
 	
 	FSMC_Low_init();
@@ -87,7 +104,8 @@ DMA_F4_param_init ();//Запуск ДМА с заданными параметрами
 	{
 		
 	if (!TIM1_Delay_1) {if (GPIOD->IDR & 1<<12) Green_led_OFF; else Green_led_ON;  	TIM1_Delay_1 = 250;}
-//	if (GPIOA->IDR &  1<<0) Orange_led_ON; else Orange_led_OFF;		
+	if (!(GPIOA->IDR &  1<<4) && !(GPIOD->IDR & 1<<13)) {Orange_led_ON;  CRC_fn5(0x01,0x00,0xFF00);  }// else Orange_led_OFF;		
+	if (!(GPIOC->IDR &  1<<6) && (GPIOD->IDR & 1<<13)) {Orange_led_OFF; CRC_fn5(0x01,0x00,0x0000);  }// else Orange_led_OFF;
 	
 	if (!TIM1_Delay_2) {if (temp16<999) temp16++; else temp16=0; TIM1_Delay_2=10;}
 	if (!TIM1_Delay_3)
@@ -101,29 +119,89 @@ DMA_F4_param_init ();//Запуск ДМА с заданными параметрами
 TFT_Draw_string_font_10x16_back_fone(2,2,String,0xff00, 0xff);
 TFT_Draw_string_font_5x8_back_fone(2,20,String,0xff00, 0xff);	
 
-//if (USART2->SR & USART_SR_RXNE)	
+sprintf(String,"Tx = %02x:%02x:%02x:%02x:%02x:%02x:%02x:%02x",Modbus_TX_buf[0],Modbus_TX_buf[1],Modbus_TX_buf[2],Modbus_TX_buf[3],Modbus_TX_buf[4],Modbus_TX_buf[5],Modbus_TX_buf[6],Modbus_TX_buf[7]);		
+TFT_Draw_string_font_10x16_back_fone(2,40,String,0xff00, 0xff);
 
-//{
-//	if (Modbus_count < 8)	{Modbus_buf[Modbus_count]= USART2->DR; Modbus_count++;} else Modbus_count=0;
-	
-//}
-sprintf(String,"Rx = %02x:%02x:%02x:%02x:%02x:%02x:%02x:%02x",Modbus_buf[0],Modbus_buf[1],Modbus_buf[2],Modbus_buf[3],Modbus_buf[4],Modbus_buf[5],Modbus_buf[6],Modbus_buf[7]);		
-TFT_Draw_string_font_10x16_back_fone(2,40,String,0xff00, 0xff);	
-//	GPIOA->BSRR = 1<<0;
-//	if ( (USART2->SR & USART_SR_TXE))
-//	{USART2->DR = 0xAA;}
-	
-	
+sprintf(String,"Rx = %02x:%02x:%02x:%02x:%02x:%02x:%02x:%02x",Modbus_RX_buf[0],Modbus_RX_buf[1],Modbus_RX_buf[2],Modbus_RX_buf[3],Modbus_RX_buf[4],Modbus_RX_buf[5],Modbus_RX_buf[6],Modbus_RX_buf[7]);		
+TFT_Draw_string_font_10x16_back_fone(2,80,String,0xff00, 0xff);
+
+sprintf(String,"CRC = %02x:%02x",(CRC_res&0xFF00)>>8,(CRC_res&0xFF));		
+TFT_Draw_string_font_10x16_back_fone(2,100,String,0xff00, 0xff);
+
+//======================================================================				
+if (!TIM1_Delay_4) 
+			{
+				if (Modbus_RX_buf[1]==05)
+				{
+					CRC_res = CRC_modbus(Modbus_RX_buf,6);
+				}
+			
+			
+			
+				
+				
+				
+			}
+//======================================================================				
+
+			
+				
+				
 	}
 	
 }
 
 void DMA1_Stream5_IRQHandler_User(void)
 {
-	Modbus_buf[Modbus_count] = Modbus_RX_buf[0];
+	if (!TIM1_Delay_4) 	
+		{	
+			for (uint8_t i=0;i<10;i++) 
+			Modbus_RX_buf[i]=0; 
+			Modbus_count=0;}
+	Modbus_RX_buf[Modbus_count] = Modbus_buf[0];
 	Modbus_count++;
-	if (Modbus_count >= 8) Modbus_count=0; 
-	//for (uint8_t i=0; i<8; i++)
-		//	Modbus_buf[i] = Modbus_RX_buf[i];
+	TIM1_Delay_4=3;
+			
 	DMA1_Stream5->CR |= DMA_SxCR_EN;
+}
+//==========================================================
+void DMA1_Stream6_IRQHandler_User(void)
+{
+USART_F4_DMAT_OFF(USART2);
+GPIOA->BSRR =1<< (0+16);
+//USART2->DR;
+//USART2->DR;
+
+}
+//==========================================================
+uint16_t CRC_modbus (uint8_t* buf, uint8_t size)
+{	
+					uint16_t CRC_temp16=0xffff;
+					for (uint8_t i=0;i<size;i++)
+						{
+							CRC_temp16 = CRC_temp16^(*(buf+i));
+							for (uint8_t j=0; j<8;j++)
+								{
+									if ((CRC_temp16&0x01) ==1) {CRC_temp16 = CRC_temp16>>1; CRC_temp16 = CRC_temp16^0xA001;}
+									else CRC_temp16 = CRC_temp16>>1;
+								}
+
+						}
+				CRC_temp16 = (CRC_temp16&0xff00)>>8 | (CRC_temp16&0x00ff)<<8;
+		return CRC_temp16;
+}
+//=========================================================
+void CRC_fn5(uint8_t Id, uint16_t adresse, uint16_t data)
+{	uint16_t loc_temp16=0;
+	Modbus_TX_buf[0]=Id;
+	Modbus_TX_buf[1]=0x05;
+	Modbus_TX_buf[2]=(adresse&0xff00)>>8;
+	Modbus_TX_buf[3]=adresse&0xff;
+	Modbus_TX_buf[4]=(data&0xff00)>>8;
+	Modbus_TX_buf[5]=data&0xff;
+	loc_temp16=CRC_modbus(Modbus_TX_buf,6);
+	Modbus_TX_buf[6]=(loc_temp16&0xff00)>>8;
+	Modbus_TX_buf[7]=loc_temp16&0xff;
+	GPIOA->BSRR = 1<<0;
+	USART_F4_DMAT_ON(USART2);
 }

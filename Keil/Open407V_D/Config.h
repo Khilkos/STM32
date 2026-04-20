@@ -18,3 +18,4 @@
 
 //#define DMA2_Stream0_IRQHandler_define
 #define DMA1_Stream5_IRQHandler_define
+#define DMA1_Stream6_IRQHandler_define
