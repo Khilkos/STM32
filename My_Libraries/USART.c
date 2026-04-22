@@ -8,12 +8,14 @@ void USART_F4_init (USART_TypeDef * USARTx)
 if (USARTx == USART1)	RCC->APB2ENR |= RCC_APB2ENR_USART1EN; // включение тактирования усар1
 if (USARTx == USART2) RCC->APB1ENR |= RCC_APB1ENR_USART2EN; // включение тактирования усар2
 
+	USARTx->CR1 |= USART_CR1_UE; //USART enable	
 USARTx->CR1 &= ~USART_CR1_M;	//длина передаваемого пакета 8 бит
 USARTx->CR2 &= ~(3UL<<USART_CR2_STOP_Pos); //установка 1 стоп бита
 USART_F4_set_115200_baud (USART1);
+
 USARTx->CR1 |= USART_CR1_TE; //включение передатчика
 USARTx->CR1 |= USART_CR1_RE; //включение приемника
-USARTx->CR1 |= USART_CR1_UE; //USART enable
+
 // USART2->DR=123;
 }
 
