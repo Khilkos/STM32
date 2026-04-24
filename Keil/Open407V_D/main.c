@@ -6,9 +6,10 @@ static uint8_t temp8;
 static uint8_t Modbus_count=0;
 static uint8_t Modbus_buf[10];
 uint8_t Modbus_RX_buf[10];
-uint8_t Modbus_TX_buf[10];
+uint8_t Modbus_TX_buf[10]={0,0,0,0,0,0,0,0,0,0};
 static uint16_t _FPS=0;
 static uint16_t CRC_res=0;
+static volatile uint8_t* ptr8=0;
 // Таймер1_4 для отслеживания конца модбас пакета
 
 int main(void)
@@ -43,7 +44,7 @@ DMA_STM_F4.DMA_Number = DMA1;//выбор ДМА, напр. - DMA2
 DMA_STM_F4.DMA_Stream = DMA1_Stream6;//выбор потока ДМА напр. -  DMA2_Stream0
 DMA_STM_F4.DMA_Peripheral_address = (volatile uint32_t*)&(USART2->DR);//адрес перефирии, например (volatile uint32_t*)&(USART2->DR);
 DMA_STM_F4.DMA_Memory_address = (void*)Modbus_TX_buf;//адрес памяти, например (void*)temp_send_buf ;
-DMA_STM_F4.DMA_Quantity = 2;//количество данный передаваемых в ДМА
+DMA_STM_F4.DMA_Quantity = 3;//количество данный передаваемых в ДМА
 DMA_STM_F4.DMA_Chanel = 4;//выбор канала ДМА
 DMA_STM_F4.DMA_Prioroty = DMA_Priority_high;//приоритет потока - DMA_Priority_low, DMA_Priority_medium, DMA_Priority_high, DMA_Priority_very_high
 DMA_STM_F4.DMA_Data_transfer_direction = DMA_Memory_to_Peripheral;//направление потока данных перефирия <-> память: DMA_Peripheral_to_memory, DMA_Memory_to_Peripheral, DMA_Memory_to_memory
@@ -98,13 +99,32 @@ DMA_F4_param_init ();//Запуск ДМА с заданными параметрами
 	delay_ms(300);
 	Open407_LCD_Init();
 	Open407_ClearScreen(0xff);
+	
+//	DMA1_Stream6->CR &= ~DMA_SxCR_EN;
+	//while (DMA1_Stream6->CR & DMA_SxCR_EN) __NOP();
+//	DMA1_Stream6->NDTR = 2;
+//	DMA1_Stream6->CR |= DMA_SxCR_EN;
+	CRC_fn5(0x2,0x0202,0x0200);
+		delay_ms(2000);
+		
+		CRC_fn5(0xff,0xffff,0xff00);
+			delay_ms(2000);
+		
+		CRC_fn5(0xf0,0xf0f0,0xf000);
+			delay_ms(2000);
+		
+		CRC_fn5(0x0f,0x0f0f,0x0f00);
+			delay_ms(2000);
+		
+		CRC_fn5(0x00,0x0000,0x0000);
+	
 //	Open407_dot(10, 100, 0xffff);
 	while (1)
 	{
-		
+	ptr8=Modbus_TX_buf;	
 	if (!TIM1_Delay_1) {if (GPIOD->IDR & 1<<12) Green_led_OFF; else Green_led_ON;  	TIM1_Delay_1 = 250;}
-	if (!(GPIOA->IDR &  1<<4) && !(GPIOD->IDR & 1<<13)) {Orange_led_ON;  CRC_fn5(0x02,0x00,0xFF00);  }// else Orange_led_OFF;		
-	if (!(GPIOC->IDR &  1<<6) && (GPIOD->IDR & 1<<13)) {Orange_led_OFF; CRC_fn5(0x01,0x00,0x0000);  }// else Orange_led_OFF;
+	if (!(GPIOA->IDR &  1<<4) && !(GPIOD->IDR & 1<<13)) {Orange_led_ON;  CRC_fn5(0xf0,0xf0f0,0xF000);  }// else Orange_led_OFF;		
+	if (!(GPIOC->IDR &  1<<6) && (GPIOD->IDR & 1<<13)) {Orange_led_OFF; CRC_fn5(0x0f,0x0f0f,0x0f00);  }// else Orange_led_OFF;
 	
 	if (!TIM1_Delay_2) {if (temp16<999) temp16++; else temp16=0; TIM1_Delay_2=10;}
 	if (!TIM1_Delay_3)
@@ -196,8 +216,8 @@ void CRC_fn5(uint8_t Id, uint16_t adresse, uint16_t data)
 {	uint16_t loc_temp16=0;
 
 	
-	USART2->DR;
-	USART2->DR;
+//	USART2->DR;
+	//USART2->DR;
 //		USART2->SR &=~USART_SR_TC;
 //USART2->SR &=~USART_SR_RXNE;
 	//USART_F4_restart(USART2);
@@ -212,6 +232,6 @@ void CRC_fn5(uint8_t Id, uint16_t adresse, uint16_t data)
 	Modbus_TX_buf[7]=loc_temp16&0xff;
 	GPIOA->BSRR = 1<<0;
 	
-USART2->SR &=~USART_SR_TC;
+//USART2->SR &=~USART_SR_TC;
 	USART_F4_DMAT_ON(USART2);
 }

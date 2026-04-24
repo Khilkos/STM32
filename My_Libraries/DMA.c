@@ -83,7 +83,7 @@ void DMA1_Stream5_IRQHandler(void)
 		{
 			DMA1->HIFCR |= DMA_HIFCR_CTCIF5;
 			if (!(DMA1_Stream5->CR & DMA_SxCR_CIRC)) 
-			DMA1_Stream5->CR &= ~(DMA_SxCR_EN);
+			DMA1_Stream5->CR &= ~(DMA_SxCR_EN); //выключение потока, необходимо включить его заново
 			DMA1_Stream5_IRQHandler_User();
 		}
 }	
@@ -96,7 +96,7 @@ void DMA1_Stream6_IRQHandler(void)
 		{
 			DMA1->HIFCR |= DMA_HIFCR_CTCIF6;
 			if (!(DMA1_Stream6->CR & DMA_SxCR_CIRC)) 
-			DMA1_Stream6->CR &= ~(DMA_SxCR_EN);
+			DMA1_Stream6->CR &= ~(DMA_SxCR_EN); //выключение потока, необходимо включить его заново
 			DMA1_Stream6_IRQHandler_User();
 		}
 }	
